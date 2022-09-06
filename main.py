@@ -2,13 +2,12 @@ import pygame
 import stua, time
 from stua import gtfsSubway
 from stua import gtfsBus
-#import random
 from pygame import freetype
-import dotenv, os
+#import dotenv, os
 
-dotenv.load_dotenv()
-stua.keyMTA(os.getenv("NYCT"))#os.getenv("NYCT"))
-stua.keyBUSTIME(os.getenv("BusTime"))
+#dotenv.load_dotenv()
+stua.keyMTA("wnv0JF7QxN7xwebeUgjDd4bNbjSGvDt1PexLxWRj")#os.getenv("NYCT"))
+stua.keyBUSTIME("6f064d4d-ed7d-415a-9d4a-c01204897506")
 
 pygame.init()
 screen = pygame.display.set_mode()
