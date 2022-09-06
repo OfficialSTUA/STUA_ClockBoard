@@ -39,9 +39,16 @@ image = pygame.image.load('logo.png')
 screen.blit(image, (0, height/4))
 standardbigLOADING = freetype.Font("standard-medium.otf", int(height/17))
 standardbigLOADING.render_to(screen, (width/3.25, height/2.25), "Stuyvesant Transit and Urbanism Association")
-e = pygame.draw.rect(screen, "#000000", pygame.Rect(width/3.25, width/3.25, height/0.86, height/22), 2)
-standardbigLOADING.render_to(screen, (width/3.25, height/1.96), "Loading Display...")
+bar = pygame.draw.rect(screen, "#000000", pygame.Rect(width/3.25, width/3.25, height/0.86, height/22), 2)
+#standardbigLOADING.render_to(screen, (width/3.25, height/1.96), "Loading Display...")
 pygame.display.update()
+
+def percent_update(percent):
+    if percent == 0:
+        bar = pygame.draw.rect(screen, "#ffffff", pygame.Rect(width/3.25, width/3.25, 1*(height/0.86), height/22))
+    else:
+        bar = pygame.draw.rect(screen, "#000000", pygame.Rect(width/3.25, width/3.25, percent*(height/0.86), height/22))
+        pygame.display.update(bar)
 
 """
 seventhup = [gtfsSubway(),gtfsSubway(),gtfsSubway(),gtfsSubway(),gtfsSubway()]
@@ -61,6 +68,10 @@ terminuslong = ("Van Cortlandt Park-242 St","137 St-City College","Eastchester-D
                 "Coney Island-Stillwell Av", "Whitehall St-South Ferry", "Kew Gardens-Union Turnpike")
 terminusmed = ("Van Cortlandt Park", "137 St-Broadway", "Eastchstr-Dyre", "Brooklyn College", "Jamaica Centre", "Ozone Park", "Beach 116 St", "Far Rockaway", "Astoria", "Forest Hills", "Bay Ridge",
                "Coney Island", "Ignore This", "Kew Gardens")
+
+if loading == True:
+    percent_update(0.05)
+
 while 1:
     t0 = time.time()
     masterlistSUBWAY = stua.gtfsSubwayBATCHED([("137", "N", 1, 3, "NONE"), ("137", "N", 2, 3, "NONE"), ("137", "N", 3, 3, "NONE"), ("137", "N", 4, 3, "NONE"), ("137", "N", 5, 3, "NONE"),
@@ -70,10 +81,17 @@ while 1:
                                      ("R24", "N", 1, 7, "NONE"), ("R24", "N", 2, 7, "NONE"),
                                      ("R28", "S", 1, 14, "NONE"), ("R28", "S", 2, 14, "NONE"),
                                      ("M21", "N", 1, 10, "NONE"), ("M21", "N", 2, 10, "NONE")])
+    if loading == True:
+        percent_update(0.65)
     masterlistBUS = stua.gtfsBusBATCHED([("404969", 0, 1, 2, "NONE"), ("404969", 0, 2, 2, "NONE"),
                                      ("803147", 0, 1, 2, "NONE"), ("803147", 0, 2, 2, "NONE"),
                                      ("404238", 1, 1, 2, "SIM1"), ("404238", 1, 1, 2, "SIM1"), ("404225", 1, 1, 2, "M55"), ("905204", 1, 1, 2, "SIM2"), ("404238", 1, 2, 2, "SIM1"), ("404238", 1, 2, 2, "SIM1"), ("404225", 1, 2, 2, "M55"), ("905204", 1, 2, 2, "SIM2")])
     
+    if loading == True:
+        percent_update(1)
+        time.sleep(1.5)
+        percent_update(0.00)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             on = False
@@ -241,7 +259,7 @@ while 1:
     smalltimeIRT(masterlistSUBWAY[3], 6, 0, "#ee352e")
     smalltimeIRT(masterlistSUBWAY[4], 7, 0, "#ee352e")
 
-    ###print("7thUp")
+    #print("7thUp")
     #end of 7th Av Uptown
     #start of 7th downtown
     #
@@ -260,7 +278,10 @@ while 1:
     seventhdown[2].get("137","S",position+2)
     seventhdown[3].get("137","S",position+3)
     seventhdown[4].get("137","S",position+4)
+    
     """
+
+
     #main 7 dt
     standardbig.render_to(screen, (0.1*sectionfactor*height,1.1*sectionfactor*height),  bulletIRT(masterlistSUBWAY[5]) , "#ee352e")
     standardsmall.render_to(screen, (sectionfactor*height,1.1*sectionfactor*height), checktime(masterlistSUBWAY[5]) + " minutes", colouroftext(masterlistSUBWAY[5]))
@@ -271,6 +292,7 @@ while 1:
     smalltimeIRT(masterlistSUBWAY[7], 5, 1, "#ee352e")
     smalltimeIRT(masterlistSUBWAY[8], 6, 1, "#ee352e")
     smalltimeIRT(masterlistSUBWAY[9], 7, 1, "#ee352e")
+
     #print("7thdone")
     #
     #end of 7th downtown, start of 8th uptown
@@ -305,6 +327,8 @@ while 1:
     smalltimeIND(masterlistSUBWAY[12], 5, "#0039a6")
     smalltimeIND(masterlistSUBWAY[13], 6, "#0039a6")
     smalltimeIND(masterlistSUBWAY[14], 7, "#0039a6")
+
+
     #
     ###print("8thUp")
     #end of 8 up, start of 8 down
@@ -442,6 +466,7 @@ while 1:
     #standardc.render_to(screen, (4.1*0.125*width,(5.55*sectionfactor*height)), busprintout , "#ffffff")
     #expresses
     #end, update screen
+
     loading = False
     pygame.display.update()
     #orange = not orange
