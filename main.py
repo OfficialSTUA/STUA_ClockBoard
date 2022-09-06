@@ -10,13 +10,13 @@ dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT"))#os.getenv("NYCT"))
 stua.keyBUSTIME(os.getenv("BusTime"))
 
-
 pygame.init()
 screen = pygame.display.set_mode()
 #pygame.draw.rect(screen, "#888888", (0,70*gwidth,60,70)) #top left coords, width, height
 height = screen.get_height()
 width = screen.get_width()
 #screen = pygame.display.set_mode((width, (5/6)*height))
+
 sectionfactor = 1/6
 halfwidth = 0.5*width
 bulletfont = freetype.Font("Acta_Symbols_W95_Circles.ttf", int(1.15*sectionfactor*height)) #for a .otf/.ttf font
@@ -31,6 +31,17 @@ routelist = ("1","2","3","4","5","6","7","6X")
 bulletlist = ("➊","➋","➌","➍","➎","➏","➐","⑥")
 
 orange = True
+loading = True
+
+#LOADING SCREEN
+screen.fill("#ffffff")
+image = pygame.image.load('logo.png')
+screen.blit(image, (0, height/4))
+standardbigLOADING = freetype.Font("standard-medium.otf", int(height/17))
+standardbigLOADING.render_to(screen, (width/3.25, height/2.25), "Stuyvesant Transit and Urbanism Association")
+e = pygame.draw.rect(screen, "#000000", pygame.Rect(width/3.25, width/3.25, height/0.86, height/22), 2)
+standardbigLOADING.render_to(screen, (width/3.25, height/1.96), "Loading Display...")
+pygame.display.update()
 
 """
 seventhup = [gtfsSubway(),gtfsSubway(),gtfsSubway(),gtfsSubway(),gtfsSubway()]
@@ -100,7 +111,6 @@ while 1:
     pygame.draw.line(screen, "#ffffff", (0,4*sectionfactor*height) , (width,4*sectionfactor*height), int(height*0.01))
     pygame.draw.line(screen, "#ffffff", (0,5*sectionfactor*height) , (width,5*sectionfactor*height), int(height*0.01))
     
-    print("UI drawing done")
     #
     #end of UI Drawing
     #functions begin
@@ -432,7 +442,8 @@ while 1:
     #standardc.render_to(screen, (4.1*0.125*width,(5.55*sectionfactor*height)), busprintout , "#ffffff")
     #expresses
     #end, update screen
+    loading = False
     pygame.display.update()
-    orange = not orange
+    #orange = not orange
     print(time.time() - t0)
 pygame.quit()
