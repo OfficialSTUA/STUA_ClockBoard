@@ -2,12 +2,14 @@ import pygame
 import stua, time
 from stua import gtfsSubway
 from stua import gtfsBus
+#import random
 from pygame import freetype
 #import dotenv, os
 
 #dotenv.load_dotenv()
-stua.keyMTA("wnv0JF7QxN7xwebeUgjDd4bNbjSGvDt1PexLxWRj")#os.getenv("NYCT"))
-stua.keyBUSTIME("6f064d4d-ed7d-415a-9d4a-c01204897506")
+stua.keyMTA("097LcRK8Ka8Q73B5ryPl13WZZhBNcKuT5lYrDSvc")#os.getenv("NYCT"))
+stua.keyBUSTIME("3a004167-4cfc-420c-9a50-05482f6ee786")
+
 
 pygame.init()
 screen = pygame.display.set_mode()
@@ -15,7 +17,6 @@ screen = pygame.display.set_mode()
 height = screen.get_height()
 width = screen.get_width()
 #screen = pygame.display.set_mode((width, (5/6)*height))
-
 sectionfactor = 1/6
 halfwidth = 0.5*width
 bulletfont = freetype.Font("Acta_Symbols_W95_Circles.ttf", int(1.15*sectionfactor*height)) #for a .otf/.ttf font
@@ -30,8 +31,9 @@ routelist = ("1","2","3","4","5","6","7","6X")
 bulletlist = ("➊","➋","➌","➍","➎","➏","➐","⑥")
 
 orange = True
+barclay = True
+counter = 0
 loading = True
-
 #LOADING SCREEN
 screen.fill("#ffffff")
 image = pygame.image.load('logo.png')
@@ -64,33 +66,46 @@ bwaydown = [gtfsSubway(),gtfsSubway()]
 #jamaicaup = [gtfsSubway(),gtfsSubway()]
 terminuslong = ("Van Cortlandt Park-242 St","137 St-City College","Eastchester-Dyre Av", "Flatbush Av-Brooklyn College", "Jamaica Center-Parsons/Archer",
                 "Ozone Park-Lefferts Blvd","Rockaway Park-Beach 116 St", "Far Rockaway-Mott Av", "Astoria-Ditmars Blvd", "Forest Hills-71 Av", "Bay Ridge-95 St",
-                "Coney Island-Stillwell Av", "Whitehall St-South Ferry", "Kew Gardens-Union Turnpike")
-terminusmed = ("Van Cortlandt Park", "137 St-Broadway", "Eastchstr-Dyre", "Brooklyn College", "Jamaica Centre", "Ozone Park", "Beach 116 St", "Far Rockaway", "Astoria", "Forest Hills", "Bay Ridge",
-               "Coney Island", "Ignore This", "Kew Gardens")
+                "Coney Island-Stillwell Av", "Whitehall St-South Ferry", "Kew Gardens-Union Turnpike", "Bedford Park Blvd-Lehman College", "Crown Heights-Utica Av")
 
+terminusmed = ("Van Cortlandt Park", "137 St-Broadway", "Eastchester-Dyre", "Brooklyn College", "Jamaica Centre", "Ozone Park", "Beach 116 St", "Far Rockaway", "Astoria", "Forest Hills", "Bay Ridge",
+               "Coney Island", "Ignore This", "Kew Gardens", "Bedford Park", "Crown Heights")
 if loading == True:
     percent_update(0.05)
-
+    
 while 1:
     t0 = time.time()
-    masterlistSUBWAY = stua.gtfsSubwayBATCHED([("137", "N", 1, 3, "NONE"), ("137", "N", 2, 3, "NONE"), ("137", "N", 3, 3, "NONE"), ("137", "N", 4, 3, "NONE"), ("137", "N", 5, 3, "NONE"),
-                                     ("137", "S", 1, 3, "NONE"), ("137", "S", 2, 3, "NONE"), ("137", "S", 3, 3, "NONE"), ("137", "S", 4, 3, "NONE"), ("137", "S", 5, 3, "NONE"),
-                                     ("A34", "N", 1, 7, "NONE"), ("A34", "N", 2, 7, "NONE"), ("A34", "N", 3, 7, "NONE"), ("A34", "N", 4, 7, "NONE"), ("A34", "N", 5, 7, "NONE"), 
-                                     ("A36", "S", 1, 5, "NONE"), ("A36", "S", 2, 5, "NONE"), ("A36", "S", 3, 5, "NONE"), ("A36", "S", 4, 5, "NONE"), ("A36", "S", 5, 5, "NONE"), 
-                                     ("R24", "N", 1, 7, "NONE"), ("R24", "N", 2, 7, "NONE"),
-                                     ("R28", "S", 1, 14, "NONE"), ("R28", "S", 2, 14, "NONE"),
-                                     ("M21", "N", 1, 10, "NONE"), ("M21", "N", 2, 10, "NONE")])
+    masterlistSUBWAY = stua.gtfsSubwayBATCHED([("137", "N", 1, 3, "NONE"), ("137", "N", 2, 3, "NONE"), ("137", "N", 3, 3, "NONE"), ("137", "N", 4, 3, "NONE"), ("137", "N", 5, 3, "NONE"), #0-4
+                                     ("137", "S", 1, 3, "NONE"), ("137", "S", 2, 3, "NONE"), ("137", "S", 3, 3, "NONE"), ("137", "S", 4, 3, "NONE"), ("137", "S", 5, 3, "NONE"), #5-9
+                                     ("A34", "N", 1, 7, "NONE"), ("A34", "N", 2, 7, "NONE"), ("A34", "N", 3, 7, "NONE"), ("A34", "N", 4, 7, "NONE"), ("A34", "N", 5, 7, "NONE"), #10-14
+                                     ("A36", "S", 1, 5, "NONE"), ("A36", "S", 2, 5, "NONE"), ("A36", "S", 3, 5, "NONE"), ("A36", "S", 4, 5, "NONE"), ("A36", "S", 5, 5, "NONE"), #15-19
+                                     ("R24", "N", 1, 7, "NONE"), ("R24", "N", 2, 7, "NONE"), #20-21
+                                     ("R28", "S", 1, 14, "NONE"), ("R28", "S", 2, 14, "NONE"), #22-23
+                                     ("M21", "N", 1, 10, "NONE"), ("M21", "N", 2, 10, "NONE"), #24-25
+                                     ("640", "N", 1, 9, "NONE"), ("640", "N", 2, 9, "NONE"), ("640", "N", 3, 9, "NONE"), ("640", "N", 4, 9, "NONE")]) #26-29
     if loading == True:
         percent_update(0.65)
-    masterlistBUS = stua.gtfsBusBATCHED([("404969", 0, 1, 2, "NONE"), ("404969", 0, 2, 2, "NONE"),
+    
+    
+    if barclay: 
+        masterlistBUS = stua.gtfsBusBATCHED([("404969", 0, 1, 1, "NONE"), ("404969", 0, 2, 1, "NONE"),
                                      ("803147", 0, 1, 2, "NONE"), ("803147", 0, 2, 2, "NONE"),
-                                     ("404238", 1, 1, 2, "SIM1"), ("404238", 1, 1, 2, "SIM1"), ("404225", 1, 1, 2, "M55"), ("905204", 1, 1, 2, "SIM2"), ("404238", 1, 2, 2, "SIM1"), ("404238", 1, 2, 2, "SIM1"), ("404225", 1, 2, 2, "M55"), ("905204", 1, 2, 2, "SIM2")])
+                                     ("404238", 1, 1, 7, "SIM1"), ("404238", 1, 2, 7, "SIM1"), ("404238", 1, 1, 7, "SIM2"), ("404238", 1, 2, 7, "SIM2"),
+                                     ("404225", 1, 1, 7, "X27"), ("404225", 1, 2, 7, "X27"), ("404225", 1, 1, 7, "X28"), ("404225", 1, 2, 7, "X28")])
+    else:
+        masterlistBUS = stua.gtfsBusBATCHED([("404969", 0, 1, 1, "NONE"), ("404969", 0, 2, 1, "NONE"),
+                                     ("803147", 0, 1, 2, "NONE"), ("803147", 0, 2, 2, "NONE"),
+                                     ("405065", 0, 1, 1, "M20"), ("405065", 0, 2, 1, "M20"), ("903013", 1, 1, 6, "SIM7"), ("903013", 1, 2, 6, "SIM7"),
+                                     ("903013", 1, 1, 6, "SIM33"), ("903013", 1, 2, 6, "SIM33"), ("404219", 1, 1, 7, "SIM34"), ("404219", 1, 2, 7, "SIM34")])
+    
+    #
     
     if loading == True:
         percent_update(1)
         time.sleep(1.5)
         percent_update(0.00)
-
+    #
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             on = False
@@ -114,20 +129,23 @@ while 1:
     pygame.draw.rect(screen, "#dddddd", (0.375*width,4*sectionfactor*height,0.125*width,sectionfactor*height))
     pygame.draw.rect(screen, "#cccccc", (0.5*width,4*sectionfactor*height,0.375*width,sectionfactor*height))
     pygame.draw.rect(screen, "#aaaaaa", (0.875*width,4*sectionfactor*height,0.125*width,sectionfactor*height))
+    """
     pygame.draw.rect(screen, "#eeeeee", (0*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
     pygame.draw.rect(screen, "#dddddd", (0.125*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
 
      # bus
-    pygame.draw.rect(screen, "#222222", (0.25*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
-    pygame.draw.rect(screen, "#222222", (0.5*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
-    pygame.draw.rect(screen, "#222222", (0.75*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
-    
+    pygame.draw.rect(screen, "#111111", (0.25*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+    pygame.draw.rect(screen, "#111111", (0.5*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+    pygame.draw.rect(screen, "#111111", (0.75*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+    """
     pygame.draw.line(screen, "#ffffff", (0,sectionfactor*height) , (width,sectionfactor*height), int(height*0.01))
     pygame.draw.line(screen, "#ffffff", (0,2*sectionfactor*height) , (width,2*sectionfactor*height), int(height*0.01))
     pygame.draw.line(screen, "#ffffff", (0,3*sectionfactor*height) , (width,3*sectionfactor*height), int(height*0.01))
     pygame.draw.line(screen, "#ffffff", (0,4*sectionfactor*height) , (width,4*sectionfactor*height), int(height*0.01))
     pygame.draw.line(screen, "#ffffff", (0,5*sectionfactor*height) , (width,5*sectionfactor*height), int(height*0.01))
+    #pygame.draw.line(screen, "#ffffff", (0,6*sectionfactor*height) , (width,6*sectionfactor*height), int(height*0.01))
     
+    print("UI drawing done")
     #
     #end of UI Drawing
     #functions begin
@@ -167,6 +185,13 @@ while 1:
             return "#f28305"
         else:
             return "#000000"
+    def colouroftextLex(trainID): #checks if train arrival time is the threshold and makes text blink yellow if yes
+        if str(trainID.route_id) == "NO TRAINS":
+            return "#000000"
+        elif str(trainID.time) == "9" and orange:
+            return "#f28305"
+        else:
+            return "#000000"
     def bulletIRT(trainID): #converts routes to bullet form (IRT lines only)
         if str(trainID.route_id) == "NO TRAINS":
             return "X"
@@ -196,8 +221,17 @@ while 1:
             return trainID.time
         
     def smalltimeIRT (trainID, offsetx, offsety, colour): #function for outputting the minor times (the ~1x1 squares)
-        standardsmall.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.1)*sectionfactor*height), bulletIRT(trainID), colour)
+        if str(trainID.route_id) == "NO TRAINS":
+            smallbulletfont.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.1)*sectionfactor*height), bulletB(trainID), colour)
+        else:
+            standardsmall.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.1)*sectionfactor*height), bulletIRT(trainID), colour)
         standardsmall.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.55)*sectionfactor*height), checktime(trainID) + "m", colouroftext(trainID))
+    def smalltimeLex (trainID, offsetx, offsety, colour): #function for outputting the minor times (the ~1x1 squares)
+        if str(trainID.route_id) == "NO TRAINS":
+            smallbulletfont.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.1)*sectionfactor*height), bulletB(trainID), colour)
+        else:
+            standardsmall.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.1)*sectionfactor*height), bulletIRT(trainID), colour)
+        standardsmall.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.55)*sectionfactor*height), checktime(trainID) + "m", colouroftextLex(trainID))
     def smalltimeIND (trainID, offsetx, colour): #function for outputting the minor times (the ~1x1 squares), offsety removed (re add if >3 lines) ONLY FOR UPTOWN 8 AV
         #standardsmall.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.1)*sectionfactor*height), trainID.route_id, colour)
         #standardsmall.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.55)*sectionfactor*height), checktime(trainID) + "m", colouroftextIND(trainID))
@@ -248,9 +282,13 @@ while 1:
         #
     #This is train #1
         #
-    standardbig.render_to(screen, (0.1*sectionfactor*height,0.1*sectionfactor*height),  bulletIRT(masterlistSUBWAY[0]) , "#ee352e")
+    if str(masterlistSUBWAY[0].route_id) == "NO TRAINS":
+        bulletfont.render_to(screen, (0.1*sectionfactor*height,0.1*sectionfactor*height),  bulletB(masterlistSUBWAY[0]) , "#ee352e")
+    else:
+        standardbig.render_to(screen, (0.1*sectionfactor*height,0.1*sectionfactor*height),  bulletIRT(masterlistSUBWAY[0]) , "#ee352e")
+        
     standardsmall.render_to(screen, (sectionfactor*height,0.1*sectionfactor*height), checktime(masterlistSUBWAY[0]) + " minutes", colouroftext(masterlistSUBWAY[0]))
-    standardsmall.render_to(screen, (sectionfactor*height,0.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[0]), "#000000")
+    standardsmall.render_to(screen, (sectionfactor*height,0.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[0]), "#222222")
     #
     #train #2-5
     smalltimeIRT(masterlistSUBWAY[1], 4, 0, "#ee352e")
@@ -258,7 +296,7 @@ while 1:
     smalltimeIRT(masterlistSUBWAY[3], 6, 0, "#ee352e")
     smalltimeIRT(masterlistSUBWAY[4], 7, 0, "#ee352e")
 
-    #print("7thUp")
+    ###print("7thUp")
     #end of 7th Av Uptown
     #start of 7th downtown
     #
@@ -277,21 +315,21 @@ while 1:
     seventhdown[2].get("137","S",position+2)
     seventhdown[3].get("137","S",position+3)
     seventhdown[4].get("137","S",position+4)
-    
     """
-
-
     #main 7 dt
-    standardbig.render_to(screen, (0.1*sectionfactor*height,1.1*sectionfactor*height),  bulletIRT(masterlistSUBWAY[5]) , "#ee352e")
+    if str(masterlistSUBWAY[5].route_id) == "NO TRAINS":
+        bulletfont.render_to(screen, (0.1*sectionfactor*height,1.1*sectionfactor*height),  bulletB(masterlistSUBWAY[5]) , "#ee352e")
+    else:
+        standardbig.render_to(screen, (0.1*sectionfactor*height,1.1*sectionfactor*height),  bulletIRT(masterlistSUBWAY[5]) , "#ee352e")
+        
     standardsmall.render_to(screen, (sectionfactor*height,1.1*sectionfactor*height), checktime(masterlistSUBWAY[5]) + " minutes", colouroftext(masterlistSUBWAY[5]))
-    standardsmall.render_to(screen, (sectionfactor*height,1.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[5]), "#000000")
+    standardsmall.render_to(screen, (sectionfactor*height,1.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[5]), "#222222")
     #
     #train #2-5
     smalltimeIRT(masterlistSUBWAY[6], 4, 1, "#ee352e")
     smalltimeIRT(masterlistSUBWAY[7], 5, 1, "#ee352e")
     smalltimeIRT(masterlistSUBWAY[8], 6, 1, "#ee352e")
     smalltimeIRT(masterlistSUBWAY[9], 7, 1, "#ee352e")
-
     #print("7thdone")
     #
     #end of 7th downtown, start of 8th uptown
@@ -318,7 +356,7 @@ while 1:
     #main 8 upt
     bulletfont.render_to(screen, (0.1*sectionfactor*height,2.1*sectionfactor*height),  bulletB(masterlistSUBWAY[10]), "#0039a6") #EIGHTH UP 
     standardsmall.render_to(screen, (sectionfactor*height,2.1*sectionfactor*height), str(checktimeIND(masterlistSUBWAY[10])-2) + " minutes", colouroftextIND(masterlistSUBWAY[10]))
-    standardsmall.render_to(screen, (sectionfactor*height,2.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[10]), "#000000")
+    standardsmall.render_to(screen, (sectionfactor*height,2.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[10]), "#222222")
     ###print("first 8th done")
     #
     #trains #2-5
@@ -326,8 +364,6 @@ while 1:
     smalltimeIND(masterlistSUBWAY[12], 5, "#0039a6")
     smalltimeIND(masterlistSUBWAY[13], 6, "#0039a6")
     smalltimeIND(masterlistSUBWAY[14], 7, "#0039a6")
-
-
     #
     ###print("8thUp")
     #end of 8 up, start of 8 down
@@ -357,7 +393,7 @@ while 1:
     #main 8 upt
     bulletfont.render_to(screen, (0.1*sectionfactor*height,3.1*sectionfactor*height),  bulletB(masterlistSUBWAY[15]), "#0039a6") #EIGHTH UP 
     standardsmall.render_to(screen, (sectionfactor*height,3.1*sectionfactor*height), str(checktimeIND(masterlistSUBWAY[15])) + " minutes", colouroftext8thDown(masterlistSUBWAY[15]))
-    standardsmall.render_to(screen, (sectionfactor*height,3.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[15]), "#000000")
+    standardsmall.render_to(screen, (sectionfactor*height,3.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[15]), "#222222")
     ###print("first 8 down done")
     #
     #trains #2-5
@@ -387,7 +423,7 @@ while 1:
     """
     bulletfont.render_to(screen, (0.1*sectionfactor*height,4.1*sectionfactor*height),  bulletB(masterlistSUBWAY[20]) , "#d9b411") #BWAY
     standardsmall.render_to(screen, (sectionfactor*height,4.1*sectionfactor*height), str(checktimeIND(masterlistSUBWAY[20])) + " minutes", colouroftextIND(masterlistSUBWAY[20]))
-    standardsmall.render_to(screen, (sectionfactor*height,4.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[20]), "#000000")
+    standardsmall.render_to(screen, (sectionfactor*height,4.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[20]), "#222222")
     ###print("first bway up done")
     #
     #trains #2
@@ -411,24 +447,32 @@ while 1:
     #fill out remaining bwy dwn trains
     #bwaydown[1].get("R28","S",position+1)
     #main 8 upt
-    bulletfont.render_to(screen, (4.1*0.125*width,4.1*sectionfactor*height),  bulletB(masterlistSUBWAY[21]) , "#d9b411") #BWAY
+    bulletfont.render_to(screen, (0.5*width+0.1*sectionfactor*height,4.1*sectionfactor*height),  bulletB(masterlistSUBWAY[21]) , "#d9b411") #BWAY
     standardsmall.render_to(screen, ((0.5*width)+(sectionfactor*height),4.1*sectionfactor*height), str(checktimeIND(masterlistSUBWAY[22])-7) + " minutes", colouroftextBwayDown(masterlistSUBWAY[22]))
-    standardsmall.render_to(screen, ((0.5*width)+(sectionfactor*height),4.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[22]), "#000000")
+    standardsmall.render_to(screen, ((0.5*width)+(sectionfactor*height),4.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[22]), "#222222")
     ###print("first bway down done")
     #
     #train #2
     smallbulletfont.render_to(screen, (7.1*0.125*width,4.1*sectionfactor*height), bulletB(masterlistSUBWAY[23]), "#d9b411")
     standardsmall.render_to(screen, (7.1*0.125*width,(4.55*sectionfactor*height)), str(checktimeIND(masterlistSUBWAY[23])-7) + "m", colouroftextIND(masterlistSUBWAY[23]))
     # end broadway downtown
-    #JAMAICA UP; M21
-    #train 1
-    smallbulletfont.render_to(screen, (0.1*0.125*width,5.1*sectionfactor*height), bulletB(masterlistSUBWAY[24]), "#996633")
-    standardsmall.render_to(screen, (0.1*0.125*width,(5.55*sectionfactor*height)), str(checktimeIND(masterlistSUBWAY[24])) + "m", colouroftextJamaica(masterlistSUBWAY[24]))
-    #train 2
-    smallbulletfont.render_to(screen, (1.1*0.125*width,5.1*sectionfactor*height), bulletB(masterlistSUBWAY[25]), "#996633")
-    standardsmall.render_to(screen, (1.1*0.125*width,(5.55*sectionfactor*height)), str(checktimeIND(masterlistSUBWAY[25])) + "m", colouroftextJamaica(masterlistSUBWAY[25]))
-    #end jamaica uptown
-    # begin buses
+    #
+    #BBCH is 640
+    #lexington uptown
+    """
+    standardbig.render_to(screen, (0.1*sectionfactor*height,5.1*sectionfactor*height),  bulletIRT(masterlistSUBWAY[26]) , "#00933C")
+    standardsmall.render_to(screen, (sectionfactor*height,5.1*sectionfactor*height), checktime(masterlistSUBWAY[26]) + " minutes", colouroftextLex(masterlistSUBWAY[5]))
+    standardsmall.render_to(screen, (sectionfactor*height,5.55*sectionfactor*height), terminusmedf(masterlistSUBWAY[26]), "#111111")
+    #
+    #train #2-5
+    smalltimeIRT(masterlistSUBWAY[27], 4, 5, "#00933C")
+    smalltimeIRT(masterlistSUBWAY[28], 5, 5, "#00933C")
+    smalltimeIRT(masterlistSUBWAY[29], 6, 5, "#00933C")
+    smalltimeIRT(masterlistSUBWAY[30], 7, 5, "#00933C")
+    """
+    #end lexington uptown
+    #
+    # begin buses, jamaica, lex 
     #bus functions
     def busname(busID): #converts routes to bullet form (IRT lines only)
         if str(busID.route_id) == "NO BUSES":
@@ -440,34 +484,110 @@ while 1:
             return "X"
         else: 
             return str(busID.time)
+    def smalltimebus(busID0, busID1, route, offsetx, offsety):
+        standardsmall.render_to(screen, ((offsetx+0.1)*0.125*width,(offsety+0.1)*sectionfactor*height), route, "#ffffff")
+        standardcond.render_to(screen, ((offsetx+0.1)*0.125*width, (offsety+0.55)*sectionfactor*height), checktimebus(busID0) + "," + checktimebus(busID1) + "m", "#ffffff")
     #M22
     ##temporary while ravindra optimizes the bustime backend
-    standardsmall.render_to(screen, (2.1*0.125*width,5.1*sectionfactor*height), "M22", "#ffffff")
-    standardcond.render_to(screen, (2.1*0.125*width,(5.55*sectionfactor*height)), checktimebus(masterlistBUS[0]) + "," + checktimebus(masterlistBUS[1]) + "m", "#ffffff")
-    #M9
-    standardsmall.render_to(screen, (3.1*0.125*width,5.1*sectionfactor*height), "M9", "#ffffff")
-    standardcond.render_to(screen, (3.1*0.125*width,(5.55*sectionfactor*height)), checktimebus(masterlistBUS[2]) + "," + checktimebus(masterlistBUS[3]) + "m", "#ffffff")
-    #expb
-    standardsmall.render_to(screen, (4.1*0.125*width,5.1*sectionfactor*height), "SIM1", "#ffffff")
-    standardcond.render_to(screen, (4.1*0.125*width,(5.55*sectionfactor*height)), checktimebus(masterlistBUS[4]) + "," + checktimebus(masterlistBUS[5]) + "m", "#ffffff")
+    if barclay:
+        #JAMAICA UP; M21
+        #train 1
+        
+        pygame.draw.rect(screen, "#eeeeee", (0*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+        pygame.draw.rect(screen, "#dddddd", (0.125*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
 
-    standardsmall.render_to(screen, (5.1*0.125*width,5.1*sectionfactor*height), "SIM4", "#ffffff")
-    standardcond.render_to(screen, (5.1*0.125*width,(5.55*sectionfactor*height)), checktimebus(masterlistBUS[6]) + "," + checktimebus(masterlistBUS[7]) + "m", "#ffffff")
+         # bus
+        pygame.draw.rect(screen, "#111111", (0.25*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+        pygame.draw.rect(screen, "#111111", (0.5*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+        pygame.draw.rect(screen, "#111111", (0.75*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+        
+        pygame.draw.line(screen, "#ffffff", (0,5*sectionfactor*height) , (width,5*sectionfactor*height), int(height*0.01))
+        
+        smallbulletfont.render_to(screen, (0.1*0.125*width,5.1*sectionfactor*height), bulletB(masterlistSUBWAY[24]), "#996633")
+        standardsmall.render_to(screen, (0.1*0.125*width,(5.55*sectionfactor*height)), str(checktimeIND(masterlistSUBWAY[24])) + "m", colouroftextJamaica(masterlistSUBWAY[24]))
+        #train 2
+        smallbulletfont.render_to(screen, (1.1*0.125*width,5.1*sectionfactor*height), bulletB(masterlistSUBWAY[25]), "#996633")
+        standardsmall.render_to(screen, (1.1*0.125*width,(5.55*sectionfactor*height)), str(checktimeIND(masterlistSUBWAY[25])) + "m", colouroftextJamaica(masterlistSUBWAY[25]))
+        #end jamaica uptown
+        smalltimebus(masterlistBUS[2], masterlistBUS[3], "M9", 2, 5)
+        smalltimebus(masterlistBUS[0], masterlistBUS[1], "M22", 3, 5)
+        smalltimebus(masterlistBUS[4], masterlistBUS[5], "SIM1", 4, 5)
+        smalltimebus(masterlistBUS[6], masterlistBUS[7], "SIM2", 5, 5)
+        smalltimebus(masterlistBUS[8], masterlistBUS[9], "X27", 6, 5)
+        smalltimebus(masterlistBUS[10], masterlistBUS[11], "X28", 7, 5)
+        #smalltimebus(masterlistBUS[], masterlistBUS[], "", , )
+        """
+        standardsmall.render_to(screen, (2.1*0.125*width,6.1*sectionfactor*height), "M9", "#ffffff")
+        standardcond.render_to(screen, (2.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[2]) + "," + checktimebus(masterlistBUS[3]) + "m", "#ffffff")
+        #M9
+        standardsmall.render_to(screen, (3.1*0.125*width,6.1*sectionfactor*height), "M22", "#ffffff")
+        standardcond.render_to(screen, (3.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[0]) + "," + checktimebus(masterlistBUS[1]) + "m", "#ffffff")
+        #expb
+        standardsmall.render_to(screen, (4.1*0.125*width,6.1*sectionfactor*height), "SIM1", "#ffffff")
+        standardcond.render_to(screen, (4.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[4]) + "," + checktimebus(masterlistBUS[5]) + "m", "#ffffff")
 
-    standardsmall.render_to(screen, (6.1*0.125*width,5.1*sectionfactor*height), "M55", "#ffffff")
-    standardcond.render_to(screen, (6.1*0.125*width,(5.55*sectionfactor*height)), checktimebus(masterlistBUS[8]) + "," + checktimebus(masterlistBUS[9]) + "m", "#ffffff")
+        standardsmall.render_to(screen, (5.1*0.125*width,6.1*sectionfactor*height), "SIM2", "#ffffff")
+        standardcond.render_to(screen, (5.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[6]) + "," + checktimebus(masterlistBUS[7]) + "m", "#ffffff")
 
-    standardsmall.render_to(screen, (7.1*0.125*width,5.1*sectionfactor*height), "SIM2", "#ffffff")
-    standardcond.render_to(screen, (7.1*0.125*width,(5.55*sectionfactor*height)), checktimebus(masterlistBUS[10]) + "," + checktimebus(masterlistBUS[11]) + "m", "#ffffff")
-    #stua.sort(bn)
-    #busprintout = busname(bn[0]) + ":" + checktimebus(bn[0]) + "," + busname(bn[1]) + ":" + checktimebus(bn[1]) + "," + busname(bn[2]) + ":" + checktimebus(bn[2]) + "," + busname(bn[3]) + ":" + checktimebus(bn[3]) 
-    #standardsmall.render_to(screen, (4.1*0.125*width,5.1*sectionfactor*height), "B'way and Barclays", "#ffffff")
-    #standardc.render_to(screen, (4.1*0.125*width,(5.55*sectionfactor*height)), busprintout , "#ffffff")
+        standardsmall.render_to(screen, (6.1*0.125*width,6.1*sectionfactor*height), "X27", "#ffffff")
+        standardcond.render_to(screen, (6.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[8]) + "," + checktimebus(masterlistBUS[9]) + "m", "#ffffff")
+
+        standardsmall.render_to(screen, (7.1*0.125*width,6.1*sectionfactor*height), "X28", "#ffffff")
+        standardcond.render_to(screen, (7.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[10]) + "," + checktimebus(masterlistBUS[11]) + "m", "#ffffff")
+        #stua.sort(bn)
+        #busprintout = busname(bn[0]) + ":" + checktimebus(bn[0]) + "," + busname(bn[1]) + ":" + checktimebus(bn[1]) + "," + busname(bn[2]) + ":" + checktimebus(bn[2]) + "," + busname(bn[3]) + ":" + checktimebus(bn[3]) 
+        #standardsmall.render_to(screen, (4.1*0.125*width,6.1*sectionfactor*height), "B'way and Barclays", "#ffffff")
+        #standardc.render_to(screen, (4.1*0.125*width,(6.55*sectionfactor*height)), busprintout , "#ffffff")
+        """
+    else:
+        pygame.draw.rect(screen, "#eeeeee", (0*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+        pygame.draw.rect(screen, "#dddddd", (0.125*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+        pygame.draw.rect(screen, "#cccccc", (0.25*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+        pygame.draw.rect(screen, "#bbbbbb", (0.375*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+         # bus
+        
+        pygame.draw.rect(screen, "#111111", (0.5*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+        pygame.draw.rect(screen, "#111111", (0.75*width,5*sectionfactor*height,0.125*width,sectionfactor*height))
+        
+        pygame.draw.line(screen, "#ffffff", (0,5*sectionfactor*height) , (width,5*sectionfactor*height), int(height*0.01))
+        
+        smalltimeIRT(masterlistSUBWAY[26], 0, 5, "#00933C")
+        smalltimeIRT(masterlistSUBWAY[27], 1, 5, "#00933C")
+        smalltimeIRT(masterlistSUBWAY[28], 2, 5, "#00933C")
+        smalltimeIRT(masterlistSUBWAY[29], 3, 5, "#00933C")
+        smalltimebus(masterlistBUS[4], masterlistBUS[5], "M20", 4, 5)
+        smalltimebus(masterlistBUS[6], masterlistBUS[7], "SIM7", 5, 5)
+        """
+        standardsmall.render_to(screen, (2.1*0.125*width,6.1*sectionfactor*height), "M9", "#ffffff")
+        standardcond.render_to(screen, (2.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[2]) + "," + checktimebus(masterlistBUS[3]) + "m", "#ffffff")
+        #M9
+        standardsmall.render_to(screen, (3.1*0.125*width,6.1*sectionfactor*height), "M22", "#ffffff")
+        standardcond.render_to(screen, (3.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[0]) + "," + checktimebus(masterlistBUS[1]) + "m", "#ffffff")
+        #expb
+        standardsmall.render_to(screen, (4.1*0.125*width,6.1*sectionfactor*height), "M20", "#ffffff")
+        standardcond.render_to(screen, (4.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[4]) + "," + checktimebus(masterlistBUS[5]) + "m", "#ffffff")
+
+        standardsmall.render_to(screen, (5.1*0.125*width,6.1*sectionfactor*height), "SIM7", "#ffffff")
+        standardcond.render_to(screen, (5.1*0.125*width,(6.55*sectionfactor*height)), checktimebus(masterlistBUS[6]) + "," + checktimebus(masterlistBUS[7]) + "m", "#ffffff")
+        """
+        
+        standardcond.render_to(screen, (6.1*0.125*width,5.1*sectionfactor*height), "SIM33", "#ffffff")
+        standardcond.render_to(screen, (6.1*0.125*width,(5.55*sectionfactor*height)), checktimebus(masterlistBUS[8]) + "," + checktimebus(masterlistBUS[9]) + "m", "#ffffff")
+
+        standardcond.render_to(screen, (7.1*0.125*width,5.1*sectionfactor*height), "SIM34", "#ffffff")
+        standardcond.render_to(screen, (7.1*0.125*width,(5.55*sectionfactor*height)), checktimebus(masterlistBUS[10]) + "," + checktimebus(masterlistBUS[11]) + "m", "#ffffff")
+        #stua.sort(bn)
+        #busprintout = busname(bn[0]) + ":" + checktimebus(bn[0]) + "," + busname(bn[1]) + ":" + checktimebus(bn[1]) + "," + busname(bn[2]) + ":" + checktimebus(bn[2]) + "," + busname(bn[3]) + ":" + checktimebus(bn[3]) 
+        #standardsmall.render_to(screen, (4.1*0.125*width,6.1*sectionfactor*height), "B'way and Barclays", "#ffffff")
+        #standardc.render_to(screen, (4.1*0.125*width,(6.55*sectionfactor*height)), busprintout , "#ffffff")
     #expresses
     #end, update screen
-
-    loading = False
     pygame.display.update()
-    #orange = not orange
+    loading = False
+    #orange = not orange ##uncomment if reload times drop below 3 seconds
+    barclay = not barclay 
     print(time.time() - t0)
+    counter += 1
+    print(counter)
 pygame.quit()
+
