@@ -7,8 +7,8 @@ from pygame import freetype
 #import dotenv, os
 
 #dotenv.load_dotenv()
-stua.keyMTA("097LcRK8Ka8Q73B5ryPl13WZZhBNcKuT5lYrDSvc")#os.getenv("NYCT"))
-stua.keyBUSTIME("3a004167-4cfc-420c-9a50-05482f6ee786")
+stua.keyMTA("")#os.getenv("NYCT"))
+stua.keyBUSTIME("")
 
 
 pygame.init()
