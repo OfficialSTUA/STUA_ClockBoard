@@ -19,11 +19,14 @@ def data():
     def generate():
         value = True
         while (value == True):
-            json_js = export.export()
-            export.render(True)
-            while (export.delay_update() != -1):
-                time.sleep(1)
-            return "data:" + json_js + "\n\n"
+            try:
+                json_js = export.export()
+                export.render(True)
+                while (export.delay_update() != -1):
+                    time.sleep(1)
+                return "data:" + json_js + "\n\n"
+            except:
+                pass
     return Response(generate(), mimetype= 'text/event-stream')
 
 @app.route('/rotate')
@@ -46,15 +49,11 @@ def refresh():
     def generate():
         value = True
         while (value == True):
-            time.sleep(0.5)
+            time.sleep(0.1)
             if (export.render() == False):
                 pass
             else:
-                delay = export.delay_update()
-                if delay == "":
-                    pass
-                else:
-                    return "data:" + str(delay) + "\n\n"
+                return "data:" + str(export.crit()) + "\n\n"
     return Response(generate(), mimetype= 'text/event-stream')
 
 if __name__ in "__main__":

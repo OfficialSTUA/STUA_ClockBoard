@@ -5,10 +5,23 @@ ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
 TIMER = True
 RENDER = False
+CRIT_RATE = [4, 9, 12, 12, 12]
 
 dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
 stua.keyBUSTIME(os.getenv("BusTime"))
+
+def crit():
+    global CRIT_RATE
+    json_string = {
+        "seventh": str(CRIT_RATE[0]),
+        "eighth": str(CRIT_RATE[1]),
+        "broadway": str(CRIT_RATE[2]),
+        "nassau": str(CRIT_RATE[3]),
+        "lexington": str(CRIT_RATE[4])
+    }
+    
+    return json.dumps(json_string)
 
 def render(change=False):
     global RENDER
@@ -125,11 +138,13 @@ def delay():
 
 def subway():
 
-    seventh_ave_crit = 4
-    eighth_avenue_crit = 9
-    broadway_crit = 12
-    nassau_crit = 12
-    lexington_avenue_crit = 12
+    global CRIT_RATE
+
+    seventh_ave_crit = CRIT_RATE[0]
+    eighth_avenue_crit = CRIT_RATE[1]
+    broadway_crit = CRIT_RATE[2]
+    nassau_crit = CRIT_RATE[3]
+    lexington_avenue_crit = CRIT_RATE[4]
 
     masterlistSUBWAY = stua.gtfsSubwayBATCHED([("137", "N", 1, seventh_ave_crit, "NONE"), ("137", "N", 2, seventh_ave_crit, "NONE"), ("137", "N", 3, seventh_ave_crit, "NONE"), ("137", "N", 4, seventh_ave_crit, "NONE"), ("137", "N", 5, seventh_ave_crit, "NONE"), #0-4
                                         ("137", "S", 1, seventh_ave_crit, "NONE"), ("137", "S", 2, seventh_ave_crit, "NONE"), ("137", "S", 3, seventh_ave_crit, "NONE"), ("137", "S", 4, seventh_ave_crit, "NONE"), ("137", "S", 5, seventh_ave_crit, "NONE"), #5-9
@@ -162,28 +177,28 @@ def export():
         "delay_count": delay_get[0],
         "left_side": {
             "uptown_seventh": {
-                "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[0].route_id).lower()}.svg' style='height: 97%;'>",
+                "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[0].route_id).lower()}.svg' style='height: 92%;'>",
                 "time": f"{masterlistSUBWAY[0].time} minutes",
                 "terminus": f"{masterlistSUBWAY[0].terminus}"
             },
             "downtown_seventh": {
-                "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[5].route_id).lower()}.svg' style='height: 97%;'>",
+                "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[5].route_id).lower()}.svg' style='height: 92%;'>",
                 "time": f"{masterlistSUBWAY[5].time} minutes",
                 "terminus": f"{masterlistSUBWAY[5].terminus}"
             },
             "uptown_eighth": {
-                "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[10].route_id).lower()}.svg' style='height: 97%;'>",
+                "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[10].route_id).lower()}.svg' style='height: 92%;'>",
                 "time": f"{masterlistSUBWAY[10].time} minutes",
                 "terminus": masterlistSUBWAY[10].terminus
             },
             "downtown_eighth": {
-                "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[15].route_id).lower()}.svg' style='height: 97%;'>",
+                "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[15].route_id).lower()}.svg' style='height: 92%;'>",
                 "time": f"{masterlistSUBWAY[15].time} minutes",
                 "terminus": masterlistSUBWAY[15].terminus
             },
             "uptown_broadway": {
                 "large": {
-                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[20].route_id).lower()}.svg' style='height: 97%;'>",
+                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[20].route_id).lower()}.svg' style='height: 92%;'>",
                     "time": f"{masterlistSUBWAY[20].time} minutes",
                     "terminus": masterlistSUBWAY[20].terminus
                 },

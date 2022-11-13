@@ -31,7 +31,7 @@ h1.bus {
 h1.terminus {
     /*white-space: nowrap;*/
     font-family: standardMedium;
-    font-size: 8vh;
+    font-size: 7vh;
     white-space: nowrap;
     /* animation: marquee 6s linear infinite; */
 }
@@ -65,4 +65,18 @@ div.animation {
     50% { transform: translateX(0%);}
     75% { transform: translateX(0%);}
     100% { transform: translateX(-25%); }
+}
+
+h1.blink {
+    animation: blink linear infinite;
+    animation-duration: 2s;
+    color: #ffffff
+}
+
+h1.blink_terminus {
+    color: #ffff00
+}
+
+@keyframes blink {
+    50% { opacity: 0%; }
 }

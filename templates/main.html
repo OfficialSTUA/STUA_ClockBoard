@@ -263,6 +263,108 @@
 	source.onmessage = function(event) {
 		console.log(event.data)
 		update()
+
+		const crit = JSON.parse(event.data);
+
+		//console.log(document.getElementById("LHS_uptown_seventh_time").innerHTML);
+		//console.log(`${crit.seventh} minutes`);
+
+		if (document.getElementById("LHS_uptown_seventh_time").innerHTML == `${crit.seventh} minutes`) {
+			document.getElementById("LHS_uptown_seventh").style.backgroundColor = "#000000";
+			document.getElementById("LHS_uptown_seventh_time_DIV").style.backgroundColor = "#000000";
+			document.getElementById("LHS_uptown_seventh_terminus_DIV").style.backgroundColor = "#000000";
+			document.getElementById("LHS_uptown_seventh_time").classList.add("blink");
+			document.getElementById("LHS_uptown_seventh_terminus_H1").classList.add("blink_terminus");
+		} else {
+			document.getElementById("LHS_uptown_seventh").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_uptown_seventh_time_DIV").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_uptown_seventh_terminus_DIV").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_uptown_seventh_time").classList.remove("blink");
+			document.getElementById("LHS_uptown_seventh_terminus_H1").classList.remove("blink_terminus");
+		}
+		if (document.getElementById("LHS_downtown_seventh_time").innerHTML == `${crit.seventh} minutes`) {
+			document.getElementById("LHS_downtown_seventh").style.backgroundColor = "#000000";
+			document.getElementById("LHS_downtown_seventh_time_DIV").style.backgroundColor = "#000000";
+			document.getElementById("LHS_downtown_seventh_terminus_DIV").style.backgroundColor = "#000000";
+			document.getElementById("LHS_downtown_seventh_time").classList.add("blink");
+			document.getElementById("LHS_downtown_seventh_terminus_H1").classList.add("blink_terminus");
+		} else {
+			document.getElementById("LHS_downtown_seventh").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_downtown_seventh_time_DIV").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_downtown_seventh_terminus_DIV").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_downtown_seventh_time").classList.remove("blink");
+			document.getElementById("LHS_downtown_seventh_terminus_H1").classList.remove("blink_terminus");
+		}
+		if (document.getElementById("LHS_uptown_eighth_time").innerHTML == `${crit.eighth} minutes`) {
+			document.getElementById("LHS_uptown_eighth").style.backgroundColor = "#000000";
+			document.getElementById("LHS_uptown_eighth_time_DIV").style.backgroundColor = "#000000";
+			document.getElementById("LHS_uptown_eighth_terminus_DIV").style.backgroundColor = "#000000";
+			document.getElementById("LHS_uptown_eighth_time").classList.add("blink");
+			document.getElementById("LHS_uptown_eighth_terminus_H1").classList.add("blink_terminus");
+		} else {
+			document.getElementById("LHS_uptown_eighth").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_uptown_eighth_time_DIV").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_uptown_eighth_terminus_DIV").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_uptown_eighth_time").classList.remove("blink");
+			document.getElementById("LHS_uptown_eighth_terminus_H1").classList.remove("blink_terminus");
+		}
+		if (document.getElementById("LHS_downtown_eighth_time").innerHTML == `${crit.eighth} minutes`) {
+			document.getElementById("LHS_downtown_eighth").style.backgroundColor = "#000000";
+			document.getElementById("LHS_downtown_eighth_time_DIV").style.backgroundColor = "#000000";
+			document.getElementById("LHS_downtown_eighth_terminus_DIV").style.backgroundColor = "#000000";
+			document.getElementById("LHS_downtown_eighth_time").classList.add("blink");
+			document.getElementById("LHS_downtown_eighth_terminus_H1").classList.add("blink_terminus");
+		} else {
+			document.getElementById("LHS_downtown_eighth").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_downtown_eighth_time_DIV").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_downtown_eighth_terminus_DIV").style.backgroundColor = "#e8e8e8";
+			document.getElementById("LHS_downtown_eighth_time").classList.remove("blink");
+			document.getElementById("LHS_downtown_eighth_terminus_H1").classList.remove("blink_terminus");
+		}
+		if (document.getElementById("LHS_uptown_broadway_time").innerHTML == `${crit.broadway} minutes`) {
+			document.getElementById("LHS_uptown_broadway").style.backgroundColor = "#111111";
+			document.getElementById("LHS_uptown_broadway_time_DIV").style.backgroundColor = "#111111";
+			document.getElementById("LHS_uptown_broadway_terminus_DIV").style.backgroundColor = "#111111";
+			document.getElementById("LHS_uptown_broadway_time").classList.add("blink");
+			document.getElementById("LHS_uptown_broadway_terminus_H1").classList.add("blink_terminus");
+		} else {
+			document.getElementById("LHS_uptown_broadway").style.backgroundColor = "#dddddd";
+			document.getElementById("LHS_uptown_broadway_time_DIV").style.backgroundColor = "#dddddd";
+			document.getElementById("LHS_uptown_broadway_terminus_DIV").style.backgroundColor = "#dddddd";
+			document.getElementById("LHS_uptown_broadway_time").classList.remove("blink");
+			document.getElementById("LHS_uptown_broadway_terminus_H1").classList.remove("blink_terminus");
+		}
+		if (document.getElementById("RHS_downtown_broadway_large_time").innerHTML == `${crit.broadway} minutes`) {
+			document.getElementById("RHS_downtown_broadway_large").style.backgroundColor = "#333333";
+			document.getElementById("RHS_downtown_broadway_time_DIV").style.backgroundColor = "#333333";
+			document.getElementById("RHS_downtown_broadway_terminus_DIV").style.backgroundColor = "#333333";
+			document.getElementById("RHS_downtown_broadway_large_time").classList.add("blink");
+			document.getElementById("RHS_downtown_broadway_terminus_H1").classList.add("blink_terminus");
+		} else {
+			document.getElementById("RHS_downtown_broadway_large_time").style.backgroundColor = "#bbbbbb";
+			document.getElementById("RHS_downtown_broadway_time_DIV").style.backgroundColor = "#bbbbbb";
+			document.getElementById("RHS_downtown_broadway_terminus_DIV").style.backgroundColor = "#bbbbbb";
+			document.getElementById("RHS_downtown_broadway_large_time").classList.remove("blink");
+			document.getElementById("RHS_downtown_broadway_terminus_H1").classList.remove("blink_terminus");
+		}
+		if (document.getElementById("uptown_jamaica_one_time").innerHTML == `${crit.nassau}m`) {
+			document.getElementById("uptown_jamaica_one").style.backgroundColor = "#111111";
+			document.getElementById("uptown_jamaica_one_time_DIV").style.backgroundColor = "#111111";
+			document.getElementById("uptown_jamaica_one_time").classList.add("blink");
+		} else {
+			document.getElementById("uptown_jamaica_one").style.backgroundColor = "#dddddd";
+			document.getElementById("uptown_jamaica_one_time_DIV").style.backgroundColor = "#dddddd";
+			document.getElementById("uptown_jamaica_one_time").classList.remove("blink");
+		}
+		if (document.getElementById("uptown_lex_one_time").innerHTML == `${crit.lexington}m`) {
+			document.getElementById("uptown_lex_one").style.backgroundColor = "#111111";
+			document.getElementById("uptown_lex_one_time_DIV").style.backgroundColor = "#111111";
+			document.getElementById("uptown_lex_one_time").classList.add("blink");
+		} else {
+			document.getElementById("uptown_lex_one").style.backgroundColor = "#dddddd";
+			document.getElementById("uptown_lex_one_time_DIV").style.backgroundColor = "#dddddd";
+			document.getElementById("uptown_lex_one_time").classList.remove("blink");
+		}
 	}
 
 	</script>
@@ -282,10 +384,10 @@
 		<div style="background-color: indigo; width: 50%; height: 100%; float: left; margin: 0%;">
 			<div style="background-color: aliceblue; width: 100%; height: 19%;">
 				<div id="LHS_uptown_seventh" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src='/static/svg/x.svg' style='height: 97%;'>
+					<img src='/static/svg/x.svg' style='height: 92%;'>
 				</div>
 				<div style="background-color: red; width: 80%; height: 100%; float: right;">
-					<div style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
+					<div id="LHS_uptown_seventh_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
 						<h1 id="LHS_uptown_seventh_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 					</div>
 					<div id="LHS_uptown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
@@ -296,10 +398,10 @@
 			<div style="background-color: #ffffff; width: 100%; height: 1%;"></div>
 			<div style="background-color: aliceblue; width: 100%; height: 19%;">
 				<div id="LHS_downtown_seventh" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/x.svg" style="height: 97%;">
+					<img src="/static/svg/x.svg" style="height: 92%;">
 				</div>
 				<div style="background-color: red; width: 80%; height: 100%; float: right;">
-					<div style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
+					<div id="LHS_downtown_seventh_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
 						<h1 id="LHS_downtown_seventh_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 					</div>
 					<div id="LHS_downtown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
@@ -310,10 +412,10 @@
 			<div style="background-color: white; width: 100%; height: 1%;"></div>
 			<div style="background-color: aliceblue; width: 100%; height: 19%;">
 				<div id="LHS_uptown_eighth" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/x.svg" style="height: 97%;">
+					<img src="/static/svg/x.svg" style="height: 92%;">
 				</div>
 				<div style="background-color: red; width: 80%; height: 100%; float: right;">
-					<div style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
+					<div id="LHS_uptown_eighth_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
 						<h1 id="LHS_uptown_eighth_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 					</div>
 					<div id="LHS_uptown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
@@ -324,10 +426,10 @@
 			<div style="background-color: white; width: 100%; height: 1%;"></div>
 			<div style="background-color: aliceblue; width: 100%; height: 19%;">
 				<div id="LHS_downtown_eighth" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/x.svg" style="height: 97%;">
+					<img src="/static/svg/x.svg" style="height: 92%;">
 				</div>
 				<div style="background-color: red; width: 80%; height: 100%; float: right;">
-					<div style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
+					<div id="LHS_downtown_eighth_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
 						<h1 id="LHS_downtown_eighth_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 					</div>
 					<div id="LHS_downtown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
@@ -338,10 +440,10 @@
 			<div style="background-color: white; width: 100%; height: 1%;"></div>
 			<div style="background-color: aliceblue; width: 100%; height: 20%;">
 				<div id="LHS_uptown_broadway" style="background-color: #dddddd; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/x.svg" style="height: 97%;">
+					<img src="/static/svg/x.svg" style="height: 92%;">
 				</div>
 				<div style="background-color: red; width: 55%; height: 100%; float: left;">
-					<div style="background-color: #dddddd; height: 50%; width: 100%; display: flex; align-items: center;">
+					<div id="LHS_uptown_broadway_time_DIV" style="background-color: #dddddd; height: 50%; width: 100%; display: flex; align-items: center;">
 						<h1 id="LHS_uptown_broadway_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 					</div>
 					<div id="LHS_uptown_broadway_terminus_DIV" style="background-color: #dddddd; height: 50%; width: 100%;">
@@ -504,7 +606,7 @@
 					<img src="/static/svg/x.svg" style="height: 97%;">
 				</div>
 				<div style="background-color: red; width: 55%; height: 100%; float: left;">
-					<div style="background-color: #bbbbbb; height: 50%; width: 100%; display: flex; align-items: center;">
+					<div id="RHS_downtown_broadway_time_DIV" style="background-color: #bbbbbb; height: 50%; width: 100%; display: flex; align-items: center;">
 						<h1 id="RHS_downtown_broadway_large_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">24 minutes</h1>
 					</div>
 					<div id="RHS_downtown_broadway_terminus_DIV" style="background-color: #bbbbbb; height: 50%; width: 100%;">
@@ -548,18 +650,18 @@
 	<div style="background-color: white; width: 100%; height: 1%; display: block;"></div>
 	<div id="bottom_one" style="background-color: blue; width: 100%; height: 14%; white-space: nowrap; display: none;">
 		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div id="uptown_jamaica_one" style="background-color: #e8e8e8; height: 45%; width: 100%; display: flex; align-items: center;">
+			<div id="uptown_jamaica_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
 				<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
 			</div>
-			<div style="background-color: #e8e8e8; height: 55%; width: 100%; display: flex; align-items: center;">
+			<div id="uptown_jamaica_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
 				<h1 id="uptown_jamaica_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
 			</div>
 		</div>
 		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div id="uptown_jamaica_two" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
+			<div id="uptown_jamaica_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
 				<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
 			</div>
-			<div style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
+			<div style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
 				<h1 id="uptown_jamaica_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
 			</div>
 		</div>
@@ -617,7 +719,7 @@
 			<div id="uptown_lex_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
 				<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
 			</div>
-			<div style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
+			<div id="uptown_lex_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
 				<h1 id="uptown_lex_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
 			</div>
 		</div>
