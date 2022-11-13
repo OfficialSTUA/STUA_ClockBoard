@@ -22,7 +22,7 @@ def data():
             json_js = export.export()
             export.render(True)
             while (export.delay_update() != -1):
-                time.sleep(0.5)
+                time.sleep(1)
             return "data:" + json_js + "\n\n"
     return Response(generate(), mimetype= 'text/event-stream')
 
