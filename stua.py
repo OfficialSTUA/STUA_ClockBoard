@@ -6,7 +6,6 @@ from abc import ABC, abstractmethod
 from xml.etree.ElementTree import fromstring, ElementTree as ET
 import gtfs_realtime_pb2, nyct_subway_pb2
 
-
 APIMTA = ""
 APIBUSTIME = ""
 
@@ -55,7 +54,7 @@ class gtfsSubway(gtfs):
         output = _transitSubway(station, direction, responses, _getAPIMTA())
         #print(output)
         if (output == "NO TRAINS"):
-            self.route_id = "NO TRAINS"
+            self.route_id = "X"
             self.terminus = "NO TRAINS"
             self.terminus_id = "NO TRAINS"
             self.station = convertSubway(station)
@@ -342,6 +341,15 @@ class gtfsPATH(gtfs):
             self.time = output[0]
             self.status = output[5]
 
+def _get_or_create_eventloop():
+    try:
+        return asyncio.get_event_loop()
+    except RuntimeError as ex:
+        if "There is no current event loop in thread" in str(ex):
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            return asyncio.get_event_loop()
+
 def _responseIndex(index):
     if (index <= 0):
         raise Exception("INVALID RESPONSES INDEX, MUST BE > 0")
@@ -505,6 +513,7 @@ def _transitSubway(stop, direction, responses, API, id="NONE"):
     for link in links:
         feed = gtfs_realtime_pb2.FeedMessage()
         feed.ParseFromString(link)
+        #print(str(feed))
         
         '''
         with open(f"logs/NYCT_GTFS/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","w") as test:
@@ -556,7 +565,7 @@ def _transitSubway(stop, direction, responses, API, id="NONE"):
 def _transitSubwayMODDED(stops, API):
     final = []
     current_time = datetime.datetime.now()
-    links = asyncio.get_event_loop().run_until_complete(_requestFeedMTA(_url(), API))
+    links = _get_or_create_eventloop().run_until_complete(_requestFeedMTA(_url(), API))
     for stop in stops:
         times = []
         destination = []
@@ -608,7 +617,7 @@ def _transitSubwayMODDED(stops, API):
         except:
             #final.append("NO TRAINS")
             train = gtfsSubway()
-            train.set("NO TRAINS", "NO TRAINS", "NO TRAINS", "NO TRAINS", stop[0], stop[1], -1, "NO TRAINS", "NO TRAINS", "NO TRAINS")
+            train.set("X", "NO TRAINS", "NO TRAINS", "NO TRAINS", stop[0], stop[1], -1, "NO TRAINS", "NO TRAINS", "NO TRAINS")
             final.append(train)
         #print(times)
     '''
@@ -752,7 +761,7 @@ def _transitBusMODDED(stops, API):
             final.append(times[stop[2]-1])
         except:
             bus = gtfsBus()
-            bus.set("NO BUSES", "NO BUSES", "NO BUSES", "NO BUSES", "NO BUSES", -1, "NO BUSES", "NO BUSES", "NO BUSES", "NO BUSES")
+            bus.set("NONE", "NO BUSES", "NO BUSES", "NO BUSES", "NO BUSES", -1, "NO BUSES", "NO BUSES", "NO BUSES", "NO BUSES")
             final.append(bus)
 
     download = []
@@ -762,7 +771,7 @@ def _transitBusMODDED(stops, API):
         download.append(item.terminus)
         #print(item.terminus_id)
     #print(download)
-    download = asyncio.get_event_loop().run_until_complete(_requestFeedBustime(download))
+    download = _get_or_create_eventloop().run_until_complete(_requestFeedBustime(download))
     #print(len(download))
     for num in range(0, len(final)):
         try:
@@ -796,13 +805,13 @@ def  _transitLIRR(stop, direction, responses, API):
     times = []
     destination = []
     #print(API)
-    links = asyncio.get_event_loop().run_until_complete(_requestFeedMTA(_url(["https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/mnr%2Fgtfs-lirr"]), API))
+    links = asyncio.get_event_loop().run_until_complete(_requestFeedMTA([f"https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr"], API))
     
     for link in links:
-    
+        #print(link)
         feed = gtfs_realtime_pb2.FeedMessage()
         feed.ParseFromString(link)
-        
+        print(feed)
         for entity in feed.entity:
             for update in entity.trip_update.stop_time_update:
                 if ((update.stop_id == stop) and (str(entity.trip_update.trip.direction_id) == str(direction))):
@@ -835,6 +844,7 @@ def  _transitLIRR(stop, direction, responses, API):
                     #print(stop)
 
                     times.append([time, route_id, terminus_id, station_id, direction, trip_id, station_id_list, station_stop_list, vehicle])
+                    #print(times)
                     #print(data["gtfs"]["stops"])
                     #for i in data["gtfs"]["stops"]:
                     #print(i["stop_id"] + " " + i["stop_name"])
@@ -979,6 +989,22 @@ def _transitFerry(stop, responses):
     '''
     return times
 
+
+#PATH STOP LIST
+#newark
+#harrison
+#journal_square
+#grove_street
+#exchange_place
+#world_trade_center
+#newport
+#hoboken
+#christopher_street
+#ninth_street
+#fourteenth_street
+#twenty_third_street
+#thirty_third_street
+
 def _transitPATH(stop, responses):
     current_time = datetime.datetime.now()
     times = []
@@ -1021,35 +1047,58 @@ def _routes(service):
             if row[0] == service:
                 return row[3], row[4], row[6]
 
-def alertsSubway():
+def alertsSubway(planned=True):
+    #print(planned)
     alerts = []
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts", headers={'x-api-key' : _getAPIMTA()})
     feed = gtfs_realtime_pb2.FeedMessage()
     feed.ParseFromString(response.content)
+    """
+    with open("logs/NYCT_GTFS/alerts.txt","w") as f:
+        f.write(str(feed))
+    """
     for entity in feed.entity:
         for start in entity.alert.active_period:
             if int(start.start) < calendar.timegm((datetime.datetime.utcnow()).utctimetuple()) < int(start.end):     
-                if (entity.alert.header_text.translation):
-                    for update in entity.alert.header_text.translation:
-                        if update.language == "en-html":
-                            alerts.append(entity.alert.header_text.translation[0].text)
+                if planned == False:
+                    if "planned_work" not in entity.id:
+                        if (entity.alert.header_text.translation):
+                            for update in entity.alert.header_text.translation:
+                                if update.language == "en-html":
+                                    alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
+                else:
+                    if (entity.alert.header_text.translation):
+                        for update in entity.alert.header_text.translation:
+                            if update.language == "en-html":
+                                alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
+    for delay in alerts:
+        delay[1] = delay[1].replace("\n", ", ")
     return alerts 
 
-def alertsLIRR():
+def alertsLIRR(planned=False):
     alerts = []
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Flirr-alerts", headers={'x-api-key' : _getAPIMTA()})
     feed = gtfs_realtime_pb2.FeedMessage()
     feed.ParseFromString(response.content)
+    with open("logs/LIRR/alerts.txt","w") as f:
+        f.write(str(feed))
     for entity in feed.entity:
         for start in entity.alert.active_period:
             if int(start.start) < calendar.timegm((datetime.datetime.utcnow()).utctimetuple()) < int(start.end):     
-                if (entity.alert.header_text.translation):
-                    for update in entity.alert.header_text.translation:
-                        if update.language == "en-html":
-                            alerts.append(entity.alert.header_text.translation[0].text)
+                if planned == False:
+                    if "planned_work" not in entity.id:
+                        if (entity.alert.header_text.translation):
+                            for update in entity.alert.header_text.translation:
+                                if update.language == "en-html":
+                                    alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
+                else:
+                    if (entity.alert.header_text.translation):
+                        for update in entity.alert.header_text.translation:
+                            if update.language == "en-html":
+                                alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
     return alerts
 
-def alertsMNR():
+def alertsMNR(planned=False):
     alerts = []
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fmnr-alerts", headers={'x-api-key' : _getAPIMTA()})
     feed = gtfs_realtime_pb2.FeedMessage()
@@ -1057,13 +1106,20 @@ def alertsMNR():
     for entity in feed.entity:
         for start in entity.alert.active_period:
             if int(start.start) < calendar.timegm((datetime.datetime.utcnow()).utctimetuple()) < int(start.end):     
-                if (entity.alert.header_text.translation):
-                    for update in entity.alert.header_text.translation:
-                        if update.language == "en-html":
-                            alerts.append(entity.alert.header_text.translation[0].text)
+                if planned == False:
+                    if "planned_work" not in entity.id:
+                        if (entity.alert.header_text.translation):
+                            for update in entity.alert.header_text.translation:
+                                if update.language == "en-html":
+                                    alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
+                else:
+                    if (entity.alert.header_text.translation):
+                        for update in entity.alert.header_text.translation:
+                            if update.language == "en-html":
+                                alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
     return alerts
 
-def alertsBus():
+def alertsBus(planned=False):
     alerts = []
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fbus-alerts", headers={'x-api-key' : _getAPIMTA()})
     feed = gtfs_realtime_pb2.FeedMessage()
@@ -1071,10 +1127,17 @@ def alertsBus():
     for entity in feed.entity:
         for start in entity.alert.active_period:
             if int(start.start) < calendar.timegm((datetime.datetime.utcnow()).utctimetuple()) < int(start.end):     
-                if (entity.alert.header_text.translation):
-                    for update in entity.alert.header_text.translation:
-                        if update.language == "en-html":
-                            alerts.append(entity.alert.header_text.translation[0].text)
+                if planned == False:
+                    if "planned_work" not in entity.id:
+                        if (entity.alert.header_text.translation):
+                            for update in entity.alert.header_text.translation:
+                                if update.language == "en-html":
+                                    alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
+                else:
+                    if (entity.alert.header_text.translation):
+                        for update in entity.alert.header_text.translation:
+                            if update.language == "en-html":
+                                alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
     return alerts
 
 def alertsFerry():

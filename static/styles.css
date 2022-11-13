@@ -1,0 +1,68 @@
+@font-face {
+    font-family: helveticaLight;
+    src: url("helvetica-light.ttf");
+}
+
+@font-face {
+    font-family: standardMediumCondensed;
+    src: url("standard-medium-condensed.otf");
+}
+
+@font-face {
+    font-family: standardMedium;
+    src: url("standard-medium.otf");
+}
+
+div.time {
+    height:50%; 
+    margin-left: 15.5vh;
+}
+
+h1.time {
+    font-family: standardMedium;
+    font-size: 6.95vh
+}
+
+h1.bus {
+    font-family: standardMediumCondensed;
+    font-size: 6.95vh;
+}
+
+h1.terminus {
+    /*white-space: nowrap;*/
+    font-family: standardMedium;
+    font-size: 8vh;
+    white-space: nowrap;
+    /* animation: marquee 6s linear infinite; */
+}
+
+h1.delay {
+    font-family: standardMedium;
+    font-size: 5vh
+}
+
+h1.branch {
+    font-family: standardMediumCondensed;
+    font-size: 5vh;
+    color: blue;
+    margin-left: 2%;
+    margin-top: 12%;
+}
+
+h1.animation {
+    white-space: nowrap;
+    animation: marquee linear infinite;
+    animation-duration: 8s;
+}
+
+div.animation {
+    overflow: hidden;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(-25%); }
+    25% { transform: translateX(-25%); }
+    50% { transform: translateX(0%);}
+    75% { transform: translateX(0%);}
+    100% { transform: translateX(-25%); }
+}
