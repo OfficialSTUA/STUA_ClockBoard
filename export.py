@@ -5,7 +5,7 @@ ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
 TIMER = True
 RENDER = False
-CRIT_RATE = [4, 9, 12, 12, 12]
+CRIT_RATE = [7, 9, 12, 15, 15]
 
 dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
@@ -301,7 +301,7 @@ def export():
             },
             "downtown_broadway": {
                 "large": {
-                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[22].route_id).lower()}.svg' style='height: 97%;'>",
+                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[22].route_id).lower()}.svg' style='height: 92%;'>",
                     "time": f"{masterlistSUBWAY[22].time} minutes",
                     "terminus": masterlistSUBWAY[22].terminus
                 },
