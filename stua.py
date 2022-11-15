@@ -60,7 +60,7 @@ class gtfsSubway(gtfs):
             self.station = convertSubway(station)
             self.station_id = station
             self.direction = direction
-            self.time = -1
+            self.time = "X"
             descriptions = "NO TRAINS"
             self.service_pattern = "NO TRAINS"
             self.service_description = "NO TRAINS"
@@ -101,7 +101,7 @@ class gtfsBus(gtfs):
             self.terminus_id = "NO BUSES"
             self.stop = stop
             self.stop_id = convertBus(stop)
-            self.time = -1
+            self.time = "X"
             self.service_pattern = "NO BUSES"
             self.direction = direction
             self.trip_id = "NO BUSES"
@@ -617,7 +617,7 @@ def _transitSubwayMODDED(stops, API):
         except:
             #final.append("NO TRAINS")
             train = gtfsSubway()
-            train.set("X", "NO TRAINS", "NO TRAINS", "NO TRAINS", stop[0], stop[1], -1, "NO TRAINS", "NO TRAINS", "NO TRAINS")
+            train.set("X", "NO TRAINS", "NO TRAINS", "NO TRAINS", stop[0], stop[1], "X", "NO TRAINS", "NO TRAINS", "NO TRAINS")
             final.append(train)
         #print(times)
     '''
@@ -761,7 +761,7 @@ def _transitBusMODDED(stops, API):
             final.append(times[stop[2]-1])
         except:
             bus = gtfsBus()
-            bus.set("NONE", "NO BUSES", "NO BUSES", "NO BUSES", "NO BUSES", -1, "NO BUSES", "NO BUSES", "NO BUSES", "NO BUSES")
+            bus.set("NONE", "NO BUSES", "NO BUSES", "NO BUSES", "NO BUSES", "X", "NO BUSES", "NO BUSES", "NO BUSES", "NO BUSES")
             final.append(bus)
 
     download = []
@@ -1053,13 +1053,14 @@ def alertsSubway(planned=True):
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts", headers={'x-api-key' : _getAPIMTA()})
     feed = gtfs_realtime_pb2.FeedMessage()
     feed.ParseFromString(response.content)
-    """
-    with open("logs/NYCT_GTFS/alerts.txt","w") as f:
+ 
+    with open("alerts.txt","w") as f:
         f.write(str(feed))
-    """
+  
     for entity in feed.entity:
         for start in entity.alert.active_period:
-            if int(start.start) < calendar.timegm((datetime.datetime.utcnow()).utctimetuple()) < int(start.end):     
+            #print(start.end)
+            if (int(start.end) == 0) or (int(start.start) < calendar.timegm((datetime.datetime.utcnow()).utctimetuple()) < int(start.end)):     
                 if planned == False:
                     if "planned_work" not in entity.id:
                         if (entity.alert.header_text.translation):

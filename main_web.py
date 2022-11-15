@@ -22,8 +22,9 @@ def data():
             try:
                 json_js = export.export()
                 export.render(True)
-                while (export.delay_update() != -1):
-                    time.sleep(1)
+                while ((export.delay_update() != -1) or (export.delay_update() != 0)):
+                    time.sleep(0.5)
+                export.delay_lock(current=True)
                 return "data:" + json_js + "\n\n"
             except:
                 pass
@@ -34,7 +35,7 @@ def rotate():
     def generate():
         value = True
         while (value == True):
-            if (export.render() == False):
+            if ((export.render() == False) or (export.delay_lock() == True)):
                 pass
             else:
                 json_str = {

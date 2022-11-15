@@ -3,6 +3,7 @@ import dotenv, os, asyncio
 
 ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
+HOLD_DELAYS = False
 TIMER = True
 RENDER = False
 CRIT_RATE = [7, 9, 12, 15, 15]
@@ -33,7 +34,7 @@ def render(change=False):
     return False
 
 def timer():
-    time.sleep(6)
+    time.sleep(8)
     global TIMER
     if TIMER == True:
         TIMER = False
@@ -51,6 +52,19 @@ def delay_update(current=False):
     else:
         return -1
 
+def delay_lock(current=False):
+    global HOLD_DELAYS
+    if current == True:
+        HOLD_DELAYS = False
+    return HOLD_DELAYS
+
+def sort_char(input):
+    ord_input = [ord(i) for i in input]
+    ord_input = sorted(ord_input)
+    input = [chr(i) for i in ord_input]
+    #print(input)
+    return input
+
 def branch(terminus):
     if terminus == "Ozone Park-Lefferts Blvd":
         return "OP"
@@ -65,9 +79,10 @@ def delay():
     global ACTIVE_DELAYS_LEN
     global TIMER
     global RENDER
+    global HOLD_DELAYS
     delays_export = []
     delays = stua.alertsSubway(planned=False)
-    #delays = delays[:2]
+    #delays.append([['D','B'], '[B][D] trains are running with delays in both directions after we restored a loss of third rail power near 145 St.'])
     if len(delays) == 0:
         ACTIVE_DELAYS_LEN = 0
         delays_export.append(len(delays))
@@ -75,7 +90,9 @@ def delay():
             delays_export.append("")
         return delays_export
     else:
-        grouped_delays = [delays[n:n+3] for n in range(0, len(delays), 3)]
+        grouped_delays = [delays[n:n+2] for n in range(0, len(delays), 2)]
+        print(len(grouped_delays))
+        print(grouped_delays)
         #print(f"ACTIVE INDEX: {ACTIVE_INDEX}")
         #print(f"LEN DELAYS: {len(grouped_delays)}")
         #ACTIVE_DELAYS_LEN = len(grouped_delays)
@@ -84,12 +101,17 @@ def delay():
         else:
             ACTIVE_INDEX = ACTIVE_INDEX + 1
         DELAYS = grouped_delays[ACTIVE_INDEX]
+        print(DELAYS)
+        #DELAYS = DELAYS[0]
+        if TIMER == False:
+            HOLD_DELAYS = True
         ACTIVE_DELAYS_LEN = len(DELAYS)
-        #print(len(DELAYS))
         if len(DELAYS) == 1:
             #print(4)
             delays_export.append(len(DELAYS))
             large_emblem_str = ""
+            #DELAYS[0][0].append(DELAYS[0][0][0])
+            DELAYS[0][0] = sort_char(DELAYS[0][0])
             for item in DELAYS[0][0]:
                 #print(4)
                 large_emblem_str += f'<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/{item.lower()}.svg" style="height: 30vh; width: 100%; flex: auto;"></div>'
@@ -166,13 +188,13 @@ def bus():
 
 def export():
     
-    delay_get = delay()
     #print(delay_get)
     #print(DELAYS)
     #print("req received")
     masterlistSUBWAY = subway()
     masterlistBUS = bus()
     #print("req parsed")
+    delay_get = delay()
     json_string = {
         "delay_count": delay_get[0],
         "left_side": {
