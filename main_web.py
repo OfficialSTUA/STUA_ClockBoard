@@ -6,6 +6,8 @@ dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
 stua.keyBUSTIME(os.getenv("BusTime"))
 
+VAR = True
+
 #print(export.export())
 
 app = Flask(__name__)
@@ -22,8 +24,8 @@ def data():
             try:
                 json_js = export.export()
                 export.render(True)
-                while ((export.delay_update() != -1)):
-                    time.sleep(0.5)
+                #while ((export.delay_update() != -1)):
+                #    time.sleep(0.5)
                 #export.delay_lock(current=True)
                 return "data:" + json_js + "\n\n"
             except:
@@ -45,12 +47,46 @@ def rotate():
                 return "data:" + str(json.dumps(json_str)) + "\n\n"
     return Response(generate(), mimetype= 'text/event-stream')
 
+@app.route('/delay')
+def delay():
+    #global VAR
+    def generate():
+        global VAR
+        value = True
+        while (value == True):
+            if (export.render() == False):
+                pass
+            else:
+                #print(VAR)
+                if (export.get_timer() == False) and (VAR == True):
+                    delay_get = export.delay()
+                    json_str = {
+                        "right_side_onedelay": {
+                            "emblem": delay_get[1],
+                            "delay": delay_get[2]
+                        },
+                        "right_side_multipledelay": {
+                            "one": delay_get[3],
+                            "two": delay_get[4],
+                            "three": delay_get[5]
+                        }
+                    }
+                    VAR = False
+                    #print(VAR)
+                    return "data:" + str(json.dumps(json_str)) + "\n\n"
+                else:
+                    pass
+
+                if export.get_timer() == True:
+                    VAR = True
+
+    return Response(generate(), mimetype= 'text/event-stream')
+
 @app.route('/refresh')
 def refresh():
     def generate():
         value = True
         while (value == True):
-            time.sleep(0.1)
             if (export.render() == False):
                 pass
             else:

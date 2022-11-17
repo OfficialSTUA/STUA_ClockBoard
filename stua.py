@@ -1072,7 +1072,7 @@ def alertsSubway(planned=True):
     for delay in alerts:
         delay[1] = delay[1].replace("\n", ", ")
 
-    print(alerts)
+    #print(alerts)
 
     delays = [i[1] for i in alerts]
     emblems = [i[0] for i in alerts]
@@ -1093,7 +1093,7 @@ def alertsSubway(planned=True):
     output = []
     for i in range(0, len(results_delays)):
         output.append([results_emblem[i], results_delays[i]])
-    print(output)
+    #print(output)
     return output
 
 def alertsLIRR(planned=False):

@@ -167,17 +167,6 @@
 
 		update()
 
-		document.getElementById("ONEDELAY_delayIMG").innerHTML = obj.right_side_onedelay.emblem;
-		//console.log(obj.right_side_onedelay.delay);
-		document.getElementById("ONEDELAY_delay").innerHTML = obj.right_side_onedelay.delay;
-
-		document.getElementById("delay_one").innerHTML = obj.right_side_multipledelay.one;
-		//console.log(obj.right_side_multipledelay.one);
-		document.getElementById("delay_two").innerHTML = obj.right_side_multipledelay.two;
-		//console.log(obj.right_side_multipledelay.two);
-		document.getElementById("delay_three").innerHTML = obj.right_side_multipledelay.three;
-		//console.log(obj.right_side_multipledelay.three);
-
 		document.getElementById("uptown_jamaica_one").innerHTML = obj.bottom_side.uptown_nassau.one.emblem;
 		document.getElementById("uptown_jamaica_one_time").innerHTML = obj.bottom_side.uptown_nassau.one.time;
 		document.getElementById("uptown_jamaica_two").innerHTML = obj.bottom_side.uptown_nassau.two.emblem;
@@ -213,6 +202,24 @@
 		document.getElementById("bus_ten").innerHTML = obj.bottom_side.bus.ten.route;
 		document.getElementById("bus_ten_time").innerHTML = obj.bottom_side.bus.ten.time;
 	
+	}
+
+	var source = new EventSource("/delay");
+	source.onmessage = function(event) {
+
+		var delay = JSON.parse(event.data);
+		console.log(delay);
+
+		document.getElementById("ONEDELAY_delayIMG").innerHTML = delay.right_side_onedelay.emblem;
+		//console.log(obj.right_side_onedelay.delay);
+		document.getElementById("ONEDELAY_delay").innerHTML = delay.right_side_onedelay.delay;
+
+		document.getElementById("delay_one").innerHTML = delay.right_side_multipledelay.one;
+		//console.log(obj.right_side_multipledelay.one);
+		document.getElementById("delay_two").innerHTML = delay.right_side_multipledelay.two;
+		//console.log(obj.right_side_multipledelay.two);
+		document.getElementById("delay_three").innerHTML = delay.right_side_multipledelay.three;
+		//console.log(obj.right_side_multipledelay.three);
 	}
 
 	var source = new EventSource("/rotate");

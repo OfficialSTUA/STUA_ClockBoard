@@ -12,6 +12,10 @@ dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
 stua.keyBUSTIME(os.getenv("BusTime"))
 
+def get_timer():
+    global TIMER
+    return TIMER
+
 def crit():
     global CRIT_RATE
     json_string = {
@@ -34,7 +38,7 @@ def render(change=False):
     return False
 
 def timer():
-    time.sleep(8)
+    time.sleep(5)
     global TIMER
     if TIMER == True:
         TIMER = False
@@ -79,6 +83,7 @@ def branch(terminus):
         return "OP"
 
 def delay():
+    #print("delay req received")
     global DELAYS
     global ACTIVE_INDEX
     global ACTIVE_DELAYS_LEN
@@ -161,6 +166,7 @@ def delay():
                 else:
                     break
             """
+            print("delays done")
             return delays_export
 
 def subway():
@@ -201,10 +207,9 @@ def export():
     masterlistBUS = bus()
     print("bus done")
     #print("req parsed")
-    delay_get = delay()
-    print("delays done")
+    #delay_get = delay()
+    #print("delays done")
     json_string = {
-        "delay_count": delay_get[0],
         "left_side": {
             "uptown_seventh": {
                 "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[0].route_id).lower()}.svg' style='height: 92%;'>",
@@ -341,15 +346,6 @@ def export():
                     "branch": branch(masterlistSUBWAY[23].terminus)
                 }
             }
-        },
-        "right_side_onedelay": {
-            "emblem": delay_get[1],
-            "delay": delay_get[2]
-        },
-        "right_side_multipledelay": {
-            "one": delay_get[3],
-            "two": delay_get[4],
-            "three": delay_get[5]
         },
         "bottom_side": {
             "uptown_nassau": {
