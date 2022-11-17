@@ -22,9 +22,9 @@ def data():
             try:
                 json_js = export.export()
                 export.render(True)
-                while ((export.delay_update() != -1) or (export.delay_update() != 0)):
+                while ((export.delay_update() != -1)):
                     time.sleep(0.5)
-                export.delay_lock(current=True)
+                #export.delay_lock(current=True)
                 return "data:" + json_js + "\n\n"
             except:
                 pass
@@ -35,7 +35,7 @@ def rotate():
     def generate():
         value = True
         while (value == True):
-            if ((export.render() == False) or (export.delay_lock() == True)):
+            if (export.render() == False):
                 pass
             else:
                 json_str = {
@@ -58,4 +58,4 @@ def refresh():
     return Response(generate(), mimetype= 'text/event-stream')
 
 if __name__ in "__main__":
-    app.run()
+    app.run(port=5500)

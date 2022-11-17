@@ -1053,9 +1053,6 @@ def alertsSubway(planned=True):
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts", headers={'x-api-key' : _getAPIMTA()})
     feed = gtfs_realtime_pb2.FeedMessage()
     feed.ParseFromString(response.content)
- 
-    with open("alerts.txt","w") as f:
-        f.write(str(feed))
   
     for entity in feed.entity:
         for start in entity.alert.active_period:
@@ -1066,7 +1063,7 @@ def alertsSubway(planned=True):
                         if (entity.alert.header_text.translation):
                             for update in entity.alert.header_text.translation:
                                 if update.language == "en-html":
-                                    alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
+                                        alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
                 else:
                     if (entity.alert.header_text.translation):
                         for update in entity.alert.header_text.translation:
@@ -1074,7 +1071,30 @@ def alertsSubway(planned=True):
                                 alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
     for delay in alerts:
         delay[1] = delay[1].replace("\n", ", ")
-    return alerts 
+
+    print(alerts)
+
+    delays = [i[1] for i in alerts]
+    emblems = [i[0] for i in alerts]
+    #print(delays)
+    results_emblem = []
+    results_delays = []
+    for i in range(0, len(delays)):
+        if delays[i] not in results_delays:
+            results_delays.append(delays[i])
+            results_emblem.append(emblems[i])
+        else:
+            for item in emblems[i]:
+                index = results_delays.index(delays[i])
+                #results_emblem[index][0].append(item)
+                #print(results_emblem)
+                results_emblem[index].append(item)
+                #results_emblem.append(emblems[delays.index(i)])
+    output = []
+    for i in range(0, len(results_delays)):
+        output.append([results_emblem[i], results_delays[i]])
+    print(output)
+    return output
 
 def alertsLIRR(planned=False):
     alerts = []

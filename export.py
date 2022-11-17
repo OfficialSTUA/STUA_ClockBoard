@@ -3,8 +3,8 @@ import dotenv, os, asyncio
 
 ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
-HOLD_DELAYS = False
-TIMER = True
+#HOLD_DELAYS = False
+TIMER = False
 RENDER = False
 CRIT_RATE = [7, 9, 12, 15, 15]
 
@@ -52,11 +52,16 @@ def delay_update(current=False):
     else:
         return -1
 
+"""
 def delay_lock(current=False):
     global HOLD_DELAYS
+    global RENDER
+    if RENDER == False:
+        return False
     if current == True:
         HOLD_DELAYS = False
     return HOLD_DELAYS
+"""
 
 def sort_char(input):
     ord_input = [ord(i) for i in input]
@@ -91,8 +96,8 @@ def delay():
         return delays_export
     else:
         grouped_delays = [delays[n:n+2] for n in range(0, len(delays), 2)]
-        print(len(grouped_delays))
-        print(grouped_delays)
+        #print(len(grouped_delays))
+        #print(grouped_delays)
         #print(f"ACTIVE INDEX: {ACTIVE_INDEX}")
         #print(f"LEN DELAYS: {len(grouped_delays)}")
         #ACTIVE_DELAYS_LEN = len(grouped_delays)
@@ -101,10 +106,10 @@ def delay():
         else:
             ACTIVE_INDEX = ACTIVE_INDEX + 1
         DELAYS = grouped_delays[ACTIVE_INDEX]
-        print(DELAYS)
+        #print(DELAYS)
         #DELAYS = DELAYS[0]
-        if TIMER == False:
-            HOLD_DELAYS = True
+        #if TIMER == False:
+            #HOLD_DELAYS = True
         ACTIVE_DELAYS_LEN = len(DELAYS)
         if len(DELAYS) == 1:
             #print(4)
@@ -192,9 +197,12 @@ def export():
     #print(DELAYS)
     #print("req received")
     masterlistSUBWAY = subway()
+    print("subway done")
     masterlistBUS = bus()
+    print("bus done")
     #print("req parsed")
     delay_get = delay()
+    print("delays done")
     json_string = {
         "delay_count": delay_get[0],
         "left_side": {
@@ -422,6 +430,8 @@ def export():
             }
         }
     }
+
+    print("exported")
 
     return json.dumps(json_string)   
 
