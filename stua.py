@@ -1053,6 +1053,7 @@ def alertsSubway(planned=True):
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts", headers={'x-api-key' : _getAPIMTA()})
     feed = gtfs_realtime_pb2.FeedMessage()
     feed.ParseFromString(response.content)
+    #print(feed)
   
     for entity in feed.entity:
         for start in entity.alert.active_period:
@@ -1069,8 +1070,8 @@ def alertsSubway(planned=True):
                         for update in entity.alert.header_text.translation:
                             if update.language == "en-html":
                                 alerts.append([[item.route_id for item in entity.alert.informed_entity if item.route_id != ""], entity.alert.header_text.translation[0].text])
-    for delay in alerts:
-        delay[1] = delay[1].replace("\n", ", ")
+    #for delay in alerts:
+        #delay[1] = delay[1].replace("\n", "")
 
     #print(alerts)
 

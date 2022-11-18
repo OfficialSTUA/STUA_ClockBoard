@@ -21,15 +21,15 @@ def data():
     def generate():
         value = True
         while (value == True):
-            try:
-                json_js = export.export()
-                export.render(True)
-                #while ((export.delay_update() != -1)):
-                #    time.sleep(0.5)
-                #export.delay_lock(current=True)
-                return "data:" + json_js + "\n\n"
-            except:
-                pass
+            #try:
+            json_js = export.export()
+            export.render(True)
+            #while ((export.delay_update() != -1)):
+            #    time.sleep(0.5)
+            #export.delay_lock(current=True)
+            return "data:" + json_js + "\n\n"
+            #except:
+                #pass
     return Response(generate(), mimetype= 'text/event-stream')
 
 @app.route('/rotate')

@@ -38,7 +38,7 @@ def render(change=False):
     return False
 
 def timer():
-    time.sleep(5)
+    time.sleep(4)
     global TIMER
     if TIMER == True:
         TIMER = False
@@ -129,6 +129,8 @@ def delay():
                 while DELAY[1].find("[") != -1:
                     index1 = DELAY[1].index("[")
                     index2 = DELAY[1].index("]")
+                    DELAY[1] = DELAY[1].replace("\n\n", "<br>")
+                    DELAY[1] = DELAY[1].replace("\n", "<br>")
                     DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 15%; margin-bottom: 1%;">')
             delays_export.append(large_emblem_str)
             delays_export.append(DELAYS[0][1])
