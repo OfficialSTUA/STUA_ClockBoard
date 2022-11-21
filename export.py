@@ -16,9 +16,21 @@ stua.keyBUSTIME(os.getenv("BusTime"))
 
 def get_annoucements():
     global ANNOUCEMENTS
+    export = []
     with open("announcements.txt","r") as f:
         f_read = f.read().split("\n")
-    return f_read
+        for item in f_read:
+            item_fin = []
+            #print(item)
+            item_front = item[0:item.index(":")].split(" ")
+            #
+            item_back = item[item.index(":")+1:]
+            item_fin.append(item_front)
+            item_fin.append(item_back)
+            export.append(item_fin)
+            #print(item)
+    #print(f_read)
+    return export
 
 def get_timer():
     global TIMER
