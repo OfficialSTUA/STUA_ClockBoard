@@ -7,10 +7,18 @@ ACTIVE_DELAYS_LEN = 0
 TIMER = False
 RENDER = False
 CRIT_RATE = [7, 9, 12, 15, 15]
+ANNOUCEMENTS = []
+ANNOUCEMENTS_INDEX = 0
 
 dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
 stua.keyBUSTIME(os.getenv("BusTime"))
+
+def get_annoucements():
+    global ANNOUCEMENTS
+    with open("announcements.txt","r") as f:
+        f_read = f.read().split("\n")
+    return f_read
 
 def get_timer():
     global TIMER
@@ -90,6 +98,8 @@ def delay():
     global TIMER
     global RENDER
     global HOLD_DELAYS
+    global ANNOUCEMENTS
+    global ANNOUCEMENTS_INDEX
     delays_export = []
     delays = stua.alertsSubway(planned=False)
     #delays.append([['D','B'], '[B][D] trains are running with delays in both directions after we restored a loss of third rail power near 145 St.'])
@@ -100,7 +110,11 @@ def delay():
             delays_export.append("")
         return delays_export
     else:
-        grouped_delays = [delays[n:n+2] for n in range(0, len(delays), 2)]
+        ANNOUCEMENTS = get_annoucements()
+        if ANNOUCEMENTS == []:
+            grouped_delays = [delays[n:n+2] for n in range(0, len(delays), 2)]
+        else:
+            grouped_delays = [delays[n:n+1] for n in range(0, len(delays), 1)]
         #print(len(grouped_delays))
         #print(grouped_delays)
         #print(f"ACTIVE INDEX: {ACTIVE_INDEX}")
@@ -111,6 +125,19 @@ def delay():
         else:
             ACTIVE_INDEX = ACTIVE_INDEX + 1
         DELAYS = grouped_delays[ACTIVE_INDEX]
+
+        print(ANNOUCEMENTS)
+        if ANNOUCEMENTS == ['']:
+            pass
+        else:
+
+            if ANNOUCEMENTS_INDEX + 1 >= len(ANNOUCEMENTS):
+                ANNOUCEMENTS_INDEX = 0
+            else:
+                ANNOUCEMENTS_INDEX = ANNOUCEMENTS_INDEX + 1
+            annoucement = ANNOUCEMENTS[ANNOUCEMENTS_INDEX]
+            DELAYS.insert(0, annoucement)
+        print(DELAYS)
         #print(DELAYS)
         #DELAYS = DELAYS[0]
         #if TIMER == False:

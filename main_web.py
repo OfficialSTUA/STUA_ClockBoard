@@ -22,6 +22,7 @@ def data():
         value = True
         while (value == True):
             #try:
+            #export.get_annoucements()
             json_js = export.export()
             export.render(True)
             #while ((export.delay_update() != -1)):
