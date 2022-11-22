@@ -17,9 +17,11 @@ stua.keyBUSTIME(os.getenv("BusTime"))
 def get_annoucements():
     global ANNOUCEMENTS
     export = []
-    with open("announcements.txt","r") as f:
+    with open("static/announcements.txt","r") as f:
         f_read = f.read().split("\n")
         for item in f_read:
+            if item[0] == "#":
+                continue
             item_fin = []
             #print(item)
             item_front = item[0:item.index(":")].split(" ")
@@ -88,11 +90,14 @@ def delay_lock(current=False):
 """
 
 def sort_char(input):
-    ord_input = [ord(i) for i in input]
+    ord_input = [ord(i) for i in input if len(i) == 1]
     ord_input = sorted(ord_input)
-    input = [chr(i) for i in ord_input]
+    output = [chr(i) for i in ord_input]
     #print(input)
-    return input
+    for i in input:
+        if i not in output:
+            output.append(i)
+    return output
 
 def branch(terminus):
     if terminus == "Ozone Park-Lefferts Blvd":
@@ -114,16 +119,19 @@ def delay():
     global ANNOUCEMENTS_INDEX
     delays_export = []
     delays = stua.alertsSubway(planned=False)
+    #delays=[]
+    ANNOUCEMENTS = get_annoucements()
+    #ANNOUCEMENTS = ['']
     #delays.append([['D','B'], '[B][D] trains are running with delays in both directions after we restored a loss of third rail power near 145 St.'])
-    if len(delays) == 0:
+    if (len(delays) == 0) and (ANNOUCEMENTS == ['']):
         ACTIVE_DELAYS_LEN = 0
         delays_export.append(len(delays))
         for i in range(5):
             delays_export.append("")
         return delays_export
     else:
-        ANNOUCEMENTS = get_annoucements()
-        if ANNOUCEMENTS == []:
+        #ANNOUCEMENTS = get_annoucements()
+        if ANNOUCEMENTS == ['']:
             grouped_delays = [delays[n:n+2] for n in range(0, len(delays), 2)]
         else:
             grouped_delays = [delays[n:n+1] for n in range(0, len(delays), 1)]
@@ -136,9 +144,14 @@ def delay():
             ACTIVE_INDEX = 0
         else:
             ACTIVE_INDEX = ACTIVE_INDEX + 1
-        DELAYS = grouped_delays[ACTIVE_INDEX]
+        #print(grouped_delays)
+        DELAYS = []
+        if len(grouped_delays) == 0:
+            DELAYS = []
+        else:
+            DELAYS = grouped_delays[ACTIVE_INDEX]
 
-        print(ANNOUCEMENTS)
+        #print(ANNOUCEMENTS)
         if ANNOUCEMENTS == ['']:
             pass
         else:
@@ -149,7 +162,7 @@ def delay():
                 ANNOUCEMENTS_INDEX = ANNOUCEMENTS_INDEX + 1
             annoucement = ANNOUCEMENTS[ANNOUCEMENTS_INDEX]
             DELAYS.insert(0, annoucement)
-        print(DELAYS)
+        #print(DELAYS)
         #print(DELAYS)
         #DELAYS = DELAYS[0]
         #if TIMER == False:
@@ -159,9 +172,12 @@ def delay():
             #print(4)
             delays_export.append(len(DELAYS))
             large_emblem_str = ""
+            #print(DELAYS[0])
             #DELAYS[0][0].append(DELAYS[0][0][0])
             DELAYS[0][0] = sort_char(DELAYS[0][0])
+            #print(DELAYS[0])
             for item in DELAYS[0][0]:
+                #print(item)
                 #print(4)
                 large_emblem_str += f'<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/{item.lower()}.svg" style="height: 30vh; width: 100%; flex: auto;"></div>'
             for DELAY in DELAYS:
