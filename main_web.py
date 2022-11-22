@@ -1,10 +1,9 @@
 import stua, time, export
-import dotenv, os, json
+import os, json
 from flask import Flask, render_template, Response
 
-dotenv.load_dotenv()
-stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
-stua.keyBUSTIME(os.getenv("BusTime"))
+stua.keyMTA("097LcRK8Ka8Q73B5ryPl13WZZhBNcKuT5lYrDSvc")#os.getenv("NYCT"))
+stua.keyBUSTIME("3a004167-4cfc-420c-9a50-05482f6ee786")
 
 VAR = True
 

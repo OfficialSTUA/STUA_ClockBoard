@@ -1,5 +1,5 @@
 import stua, json, time
-import dotenv, os, asyncio
+import os, asyncio
 
 ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
@@ -7,10 +7,33 @@ ACTIVE_DELAYS_LEN = 0
 TIMER = False
 RENDER = False
 CRIT_RATE = [7, 9, 12, 15, 15]
+ANNOUCEMENTS = []
+ANNOUCEMENTS_INDEX = 0
 
-dotenv.load_dotenv()
-stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
-stua.keyBUSTIME(os.getenv("BusTime"))
+stua.keyMTA("097LcRK8Ka8Q73B5ryPl13WZZhBNcKuT5lYrDSvc")#os.getenv("NYCT"))
+stua.keyBUSTIME("3a004167-4cfc-420c-9a50-05482f6ee786")
+
+def get_annoucements():
+    global ANNOUCEMENTS
+    export = []
+    print(os.getcwd())
+    
+    #with open("announcements.txt","r") as f:
+    f_read = "AD:[AN] Students with 9th Period Free and 10th Period Class are NOT permitted to leave the building during 9th Period"
+    f_read = f_read.split("\n")
+    for item in f_read:
+        item_fin = []
+        #print(item)
+        item_front = item[0:item.index(":")].split(" ")
+        #
+        item_back = item[item.index(":")+1:]
+        item_fin.append(item_front)
+        item_fin.append(item_back)
+        export.append(item_fin)
+        #print(item)
+    #print(f_read)
+    
+    return export
 
 def get_timer():
     global TIMER
@@ -38,7 +61,7 @@ def render(change=False):
     return False
 
 def timer():
-    time.sleep(5)
+    time.sleep(4)
     global TIMER
     if TIMER == True:
         TIMER = False
@@ -90,6 +113,8 @@ def delay():
     global TIMER
     global RENDER
     global HOLD_DELAYS
+    global ANNOUCEMENTS
+    global ANNOUCEMENTS_INDEX
     delays_export = []
     delays = stua.alertsSubway(planned=False)
     #delays.append([['D','B'], '[B][D] trains are running with delays in both directions after we restored a loss of third rail power near 145 St.'])
@@ -100,7 +125,11 @@ def delay():
             delays_export.append("")
         return delays_export
     else:
-        grouped_delays = [delays[n:n+2] for n in range(0, len(delays), 2)]
+        ANNOUCEMENTS = get_annoucements()
+        if ANNOUCEMENTS == []:
+            grouped_delays = [delays[n:n+2] for n in range(0, len(delays), 2)]
+        else:
+            grouped_delays = [delays[n:n+1] for n in range(0, len(delays), 1)]
         #print(len(grouped_delays))
         #print(grouped_delays)
         #print(f"ACTIVE INDEX: {ACTIVE_INDEX}")
@@ -111,6 +140,19 @@ def delay():
         else:
             ACTIVE_INDEX = ACTIVE_INDEX + 1
         DELAYS = grouped_delays[ACTIVE_INDEX]
+
+        print(ANNOUCEMENTS)
+        if ANNOUCEMENTS == ['']:
+            pass
+        else:
+
+            if ANNOUCEMENTS_INDEX + 1 >= len(ANNOUCEMENTS):
+                ANNOUCEMENTS_INDEX = 0
+            else:
+                ANNOUCEMENTS_INDEX = ANNOUCEMENTS_INDEX + 1
+            annoucement = ANNOUCEMENTS[ANNOUCEMENTS_INDEX]
+            DELAYS.insert(0, annoucement)
+        print(DELAYS)
         #print(DELAYS)
         #DELAYS = DELAYS[0]
         #if TIMER == False:
@@ -129,6 +171,8 @@ def delay():
                 while DELAY[1].find("[") != -1:
                     index1 = DELAY[1].index("[")
                     index2 = DELAY[1].index("]")
+                    DELAY[1] = DELAY[1].replace("\n\n", "<br>")
+                    DELAY[1] = DELAY[1].replace("\n", "<br>")
                     DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 15%; margin-bottom: 1%;">')
             delays_export.append(large_emblem_str)
             delays_export.append(DELAYS[0][1])
