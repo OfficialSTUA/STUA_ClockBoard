@@ -121,6 +121,8 @@ def delay():
     delays = stua.alertsSubway(planned=False)
     #delays=[]
     ANNOUCEMENTS = get_annoucements()
+    if ANNOUCEMENTS == []:
+        ANNOUCEMENTS = ['']
     #ANNOUCEMENTS = ['']
     #delays.append([['D','B'], '[B][D] trains are running with delays in both directions after we restored a loss of third rail power near 145 St.'])
     if (len(delays) == 0) and (ANNOUCEMENTS == ['']):
