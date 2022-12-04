@@ -8,6 +8,7 @@ TIMER = False
 RENDER = False
 CRIT_RATE = [7, 9, 12, 15, 15]
 ANNOUCEMENTS = []
+NOTICES = []
 ANNOUCEMENTS_INDEX = 0
 
 dotenv.load_dotenv()
@@ -16,11 +17,14 @@ stua.keyBUSTIME(os.getenv("BusTime"))
 
 def get_annoucements():
     global ANNOUCEMENTS
-    export = []
+    global NOTICES
+    ANNOUCEMENTS = []
+    NOTICES = []
     with open("static/announcements.txt","r") as f:
         f_read = f.read().split("\n")
         for item in f_read:
-            if item[0] == "#":
+            target = item[0]
+            if target == "#":
                 continue
             item_fin = []
             #print(item)
@@ -29,7 +33,12 @@ def get_annoucements():
             item_back = item[item.index(":")+1:]
             item_fin.append(item_front)
             item_fin.append(item_back)
-            export.append(item_fin)
+            #export.append(item_fin)
+            if target == "/":
+                ANNOUCEMENTS.append(item_fin)
+            else:
+                NOTICES.append(item_fin)
+        #ANNOUCEMENTS = export
             #print(item)
     #print(f_read)
     return export
@@ -117,10 +126,13 @@ def delay():
     global HOLD_DELAYS
     global ANNOUCEMENTS
     global ANNOUCEMENTS_INDEX
+    global NOTICES
     delays_export = []
     delays = stua.alertsSubway(planned=False)
+    for item in NOTICES:
+        delays.append(item)
     #delays=[]
-    ANNOUCEMENTS = get_annoucements()
+    get_annoucements()
     if ANNOUCEMENTS == []:
         ANNOUCEMENTS = ['']
     #ANNOUCEMENTS = ['']
@@ -130,9 +142,10 @@ def delay():
         delays_export.append(len(delays))
         for i in range(5):
             delays_export.append("")
+            print("delays done")
         return delays_export
     else:
-        #ANNOUCEMENTS = get_annoucements()
+        #get_annoucements()
         if ANNOUCEMENTS == ['']:
             grouped_delays = [delays[n:n+2] for n in range(0, len(delays), 2)]
         else:
@@ -195,6 +208,7 @@ def delay():
             for i in range(3):
                 delays_export.append("")
             #print(delays_export)
+            print("delays done")
             """
             while TIMER == True:
                 if RENDER == True:
@@ -491,4 +505,4 @@ def export():
     return json.dumps(json_string)   
 
 #print(export())
-delay()
+#delay()

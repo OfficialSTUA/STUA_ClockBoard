@@ -21,6 +21,7 @@ def data():
     def generate():
         value = True
         while (value == True):
+            t0 = time.time()
             #try:
             #export.get_annoucements()
             json_js = export.export()
@@ -28,6 +29,8 @@ def data():
             #while ((export.delay_update() != -1)):
             #    time.sleep(0.5)
             #export.delay_lock(current=True)
+            t1 = time.time() - t0
+            print(t1)
             return "data:" + json_js + "\n\n"
             #except:
                 #pass
@@ -59,6 +62,7 @@ def delay():
                 pass
             else:
                 #print(VAR)
+                #print(export.get_timer())
                 if (export.get_timer() == False) and (VAR == True):
                     delay_get = export.delay()
                     json_str = {

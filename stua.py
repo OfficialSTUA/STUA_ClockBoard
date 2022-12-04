@@ -432,7 +432,11 @@ def convertLIRR(input):
         if input == i["stop_id"]:
             output = i["stop_name"]
     #print(output)
-    return output 
+    return output
+
+def convertLIRR_route(input):
+    db = json.load(open("lirr_routes.json"))
+    return db[str(input)] 
 
 def convertMNR(input):
     output = ""
@@ -546,6 +550,7 @@ def _transitSubway(stop, direction, responses, API, id="NONE"):
                     #print(terminus_id)
                 
                     #print(stop)
+                    print([time, route_id, terminus_id, station_id, direction, trip_id])
                     times.append([time, route_id, terminus_id, station_id, direction, trip_id])
 
     #print(times)
@@ -811,14 +816,17 @@ def  _transitLIRR(stop, direction, responses, API):
         #print(link)
         feed = gtfs_realtime_pb2.FeedMessage()
         feed.ParseFromString(link)
-        print(feed)
+
+        with open("alerts.txt", "w") as f:
+            f.write(str(feed))
+        #print(feed)
         for entity in feed.entity:
             for update in entity.trip_update.stop_time_update:
                 if ((update.stop_id == stop) and (str(entity.trip_update.trip.direction_id) == str(direction))):
                     station_id = update.stop_id
-                    time = update.arrival.time
+                    time = update.departure.time
                     if (time < 0):
-                        time = update.departure.time
+                        pass
                     time = datetime.datetime.fromtimestamp(time)
                     time = math.trunc(((time - current_time).total_seconds()) / 60)
                     #print(time)
@@ -831,7 +839,7 @@ def  _transitLIRR(stop, direction, responses, API):
                     else:
                         vehicle = entity.trip_update.trip.trip_id[-4:]
                     trip_id = entity.trip_update.trip.trip_id
-                    route_id = entity.trip_update.trip.route_id
+                    route_id = convertLIRR_route(entity.trip_update.trip.route_id)
                     direction = entity.trip_update.trip.direction_id
                     station_id_list = []
                     for update in entity.trip_update.stop_time_update:
