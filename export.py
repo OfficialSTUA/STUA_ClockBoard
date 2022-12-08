@@ -54,7 +54,8 @@ def crit():
         "eighth": str(CRIT_RATE[1]),
         "broadway": str(CRIT_RATE[2]),
         "nassau": str(CRIT_RATE[3]),
-        "lexington": str(CRIT_RATE[4])
+        "lexington": str(CRIT_RATE[4]),
+        "lirr": "25"
     }
     
     return json.dumps(json_string)
@@ -287,7 +288,7 @@ def bus():
 
 def lirr():
     masterlistLIRR = stua.gtfsLIRR()
-    masterlistLIRR.get("237", "0", 1)
+    masterlistLIRR.get(("237", "0", 1, 25, []))
     return masterlistLIRR
 
 def modlirrTIME(input):
@@ -302,8 +303,9 @@ def export_lirr():
     print("lirr done")
     json_string = {
         "lirr_PENN": {
+            "penn_crit": f"{masterlistLIRR.time}",
             "penn_time": f"{modlirrTIME(masterlistLIRR.core_time)}",
-            "penn_branch": f'<img src="/static/svg/{masterlistLIRR.route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 class="branch">PENN</h1>',
+            "penn_branch": f'<img src="/static/svg/{masterlistLIRR.route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>',
             "penn_dest": f'To {masterlistLIRR.terminus}, making stops at:',
             "penn_stops": f"{' - '.join(masterlistLIRR.station_name_list)}"
         }

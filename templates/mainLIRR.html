@@ -232,6 +232,26 @@
 		document.getElementById("onetimeLIRR").innerHTML = datalirr.lirr_PENN.penn_time;
 		document.getElementById("oneterminusLIRR").innerHTML = datalirr.lirr_PENN.penn_dest;
 		document.getElementById("oneterminusLIRRani").innerHTML = datalirr.lirr_PENN.penn_stops;
+		//console.log(document.getElementById("penn").innerHTML);
+		if (datalirr.lirr_PENN.penn_crit == "25") {
+			document.getElementById("oneLIRRbranch").style.backgroundColor = "#111111";
+			document.getElementById("oneLIRRbranchtime").style.backgroundColor = "#111111";
+			document.getElementById("onetimeLIRR").classList.add("blink");
+			document.getElementById("oneterminusLIRR").classList.add("blink_terminus");
+			document.getElementById("oneterminusLIRRani").classList.add("blink_terminus");
+			document.getElementById("oneterminusLIRRdiv").style.backgroundColor = "#111111";
+			document.getElementById("oneterminusLIRRanidiv").style.backgroundColor = "#111111";
+			document.getElementById("penn").style.color = "#ffffff";
+		} else {
+			document.getElementById("oneLIRRbranch").style.backgroundColor = "#FFEBED";
+			document.getElementById("oneLIRRbranchtime").style.backgroundColor = "#FFEBED";
+			document.getElementById("oneterminusLIRRdiv").style.backgroundColor = "#FEDBE4";
+			document.getElementById("oneterminusLIRRanidiv").style.backgroundColor = "#FEDBE4";
+			document.getElementById("onetimeLIRR").classList.remove("blink");
+			document.getElementById("oneterminusLIRR").classList.remove("blink_terminus");
+			document.getElementById("oneterminusLIRRani").classList.remove("blink_terminus");
+			document.getElementById("penn").style.color = "black";
+		}
 
 	}
 
@@ -918,13 +938,13 @@
 			<div style="height: 90%; width: 100%">
 				<div style="height: 100%; width: 100%; background-color: #dddddd; display: flex; justify-content: center; flex-direction: column;">
 					<div style="background-color: #dddddd; height: auto; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2%; margin-bottom: 2%;">
-						<h1 id="delay_one" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">No Ozone Park/Far Rockaway-bound <img src="/static/svg/x.svg" style="height: 6vh; margin-bottom: 1%;"> at Spring St, Canal St, Chambers St, Fulton St and High St</h1>
+						<h1 id="delay_one" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">No Ozone Park/Far Rockaway-bound <img src="/static/svg/x.svg" style="height: 5.5vh; margin-bottom: 1%;"> at Spring St, Canal St, Chambers St, Fulton St and High St</h1>
 					</div>
 					<div style="background-color: #dddddd; height: auto; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2%; margin-bottom: 2%;">
-						<h1 id="delay_two" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;"><img src="/static/svg/x.svg" style="height: 6vh; margin-bottom: 1%;"> runs local in both directions between 21 St-Queensbridge and Jackson Hts-Roosevelt Av</h1>
+						<h1 id="delay_two" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;"><img src="/static/svg/x.svg" style="height: 5.5vh; margin-bottom: 1%;"> runs local in both directions between 21 St-Queensbridge and Jackson Hts-Roosevelt Av</h1>
 					</div>
 					<div style="background-color: #dddddd; height: auto; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2%; margin-bottom: 2%;">
-						<h1 id="delay_three" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">Uptown <img src="/static/svg/x.svg" style="height: 6vh; margin-bottom: 1%;"> skips Franklin St, Canal St, Houston St and Christopher St-Sheridan Sq</h1>
+						<h1 id="delay_three" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">Uptown <img src="/static/svg/x.svg" style="height: 5.5vh; margin-bottom: 1%;"> skips Franklin St, Canal St, Houston St and Christopher St-Sheridan Sq</h1>
 					</div>
 				</div>
 			</div>
@@ -933,17 +953,17 @@
 		<div style="background-color: aliceblue; width: 50%; height: 20%; margin: 0%; float: right;">
 			<div style="background-color: orange; float: left; height: 100%; width: 25%;">
 				<div id="oneLIRRbranch" style="background-color: #FFEBED; height: 45%; width: 100%; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/city zone.svg" style="height: 85%; margin-top: 5%;"><h1 class="branch">PENN</h1>
+					<img src="/static/svg/city zone.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>
 				</div>
-				<div style="background-color: #FFEBED; height: 55%; width: 100%; display: flex; align-items: center; justify-content: center;">
+				<div id="oneLIRRbranchtime" style="background-color: #FFEBED; height: 55%; width: 100%; display: flex; align-items: center; justify-content: center;">
 					<h1 id="onetimeLIRR" class="timeLIRR" style="float: left; margin: 0px; margin-top: 6%; white-space: nowrap;">00:00 P.M.</h1>
 				</div>
 			</div>
 			<div style="background-color: red; height: 100%; display: inline-block; width: 75%;">
-				<div style="background-color: #FEDBE4; height: 50%; width: 100%; display: flex; align-items: center; justify-content: center;">
+				<div id="oneterminusLIRRdiv" style="background-color: #FEDBE4; height: 50%; width: 100%; display: flex; align-items: center; justify-content: center;">
 					<h1 id="oneterminusLIRR" class="terminusLIRR" style="float: left; margin-left: 5px; margin-top: 2.5%;">To INITIALIZING, making stops at:</h1>
 				</div>
-				<div style="background-color: #FEDBE4; height: 50%; width: 100%; justify-content: center; display: flex; overflow: hidden;">
+				<div id="oneterminusLIRRanidiv" style="background-color: #FEDBE4; height: 50%; width: 100%; justify-content: center; display: flex; overflow: hidden;">
 					<h1 id="oneterminusLIRRani" class="terminusLIRRani" style="margin-left: 5px;"><strong>StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX</strong></h1>
 				</div>
 			</div>

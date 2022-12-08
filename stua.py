@@ -147,22 +147,22 @@ class gtfsLIRR(gtfs):
         self.vehicle = ""
         self.core_time = ""
 
-    def get(self, stop, direction, responses):
+    def get(self, input):
         _validkeySubway(_getAPIMTA())
-        _responseIndex(responses)
-        output = _transitLIRR(stop, direction, responses, _getAPIMTA())
+        _responseIndex(input[2])
+        output = _transitLIRRBOARD(input, _getAPIMTA())
         if (output == "NO TRAINS"):
             self.route_id = "NO TRAINS"
             self.terminus = "NO TRAINS"
             self.terminus_id = "NO TRAINS"
-            self.station = convertLIRR(stop)
-            self.station_id = stop
+            self.station = convertLIRR(input[0])
+            self.station_id = input[0]
             self.time = -1
             self.service_description = "NO TRAINS"
             self.service_pattern = "NO TRAINS"
             self.station_id_list = "NO TRAINS"
             self.station_name_list = "NO TRAINS"
-            self.direction = direction
+            self.direction = input[1]
             self.trip_id = "NO TRAINS"
             self.vehicle = "NO TRAINS"
             self.core_time = "NO TRAINS"
@@ -849,6 +849,84 @@ def  _transitLIRR(stop, direction, responses, API):
                         vehicle = entity.trip_update.trip.trip_id[-4:]
                     trip_id = entity.trip_update.trip.trip_id
                     route_id = convertLIRR_route(entity.trip_update.trip.route_id)
+                    direction = entity.trip_update.trip.direction_id
+                    station_id_list = []
+                    for update in entity.trip_update.stop_time_update:
+                        destination.append(update.stop_id)
+                        station_id_list.append(update.stop_id)
+                    #print(service_description)
+                    station_stop_list = [convertLIRR(i) for i in station_id_list]
+                    terminus_id = destination[-1]
+                
+                    #print(stop)
+                    
+                    times.append([time, route_id, terminus_id, station_id, direction, trip_id, station_id_list, station_stop_list, vehicle, core_time])
+                    #print(times)
+                    #print(data["gtfs"]["stops"])
+                    #for i in data["gtfs"]["stops"]:
+                    #print(i["stop_id"] + " " + i["stop_name"])
+    times.sort()
+    #times = []
+    #print(times)
+    try:
+        times = times[responses-1]
+    except:
+        return "NO TRAINS"
+        #print(times)
+    '''
+    with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
+        test.write(str(times)+ f" {datetime.datetime.now()}\n")
+    '''
+    return times 
+
+def  _transitLIRRBOARD(input, API):
+    stop = input[0]
+    direction = input[1]
+    responses = input[2]
+    minute = input[3]
+    target_routes = input[4]
+    current_time = datetime.datetime.now()
+    times = []
+    destination = []
+    #print(API)
+    links = _get_or_create_eventloop().run_until_complete(_requestFeedMTA([f"https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr"], API))
+    
+    for link in links:
+        #print(link)
+        feed = gtfs_realtime_pb2.FeedMessage()
+        feed.ParseFromString(link)
+
+        with open("alerts.txt", "w") as f:
+            f.write(str(feed))
+        #print(feed)
+        for entity in feed.entity:
+            for update in entity.trip_update.stop_time_update:
+                if ((update.stop_id == stop) and (str(entity.trip_update.trip.direction_id) == str(direction))):
+                    station_id = update.stop_id
+                    time = update.departure.time
+                    if (time < 0):
+                        pass
+                    time = datetime.datetime.fromtimestamp(time)
+                    core_time = time
+                    time = math.trunc(((time - current_time).total_seconds()) / 60)
+                    #print(time)
+                    if (time < 0):
+                        continue 
+                    if (time < minute):
+                        continue 
+                    if entity.trip_update.trip.trip_id[-2] == "_":
+                        vehicle = entity.trip_update.trip.trip_id
+                        vehicle = vehicle.replace("_","")
+                        vehicle = entity.trip_update.trip.trip_id[-6:-2]
+                    else:
+                        vehicle = entity.trip_update.trip.trip_id[-4:]
+                    trip_id = entity.trip_update.trip.trip_id
+                    route_id = convertLIRR_route(entity.trip_update.trip.route_id)
+                    if target_routes == []:
+                        pass
+                    else:
+                        if route_id not in target_routes:
+                            continue
                     direction = entity.trip_update.trip.direction_id
                     station_id_list = []
                     for update in entity.trip_update.stop_time_update:
