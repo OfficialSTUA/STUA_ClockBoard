@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('main.html')
+    return render_template('mainLIRR copy.html')
 
 @app.route('/data')
 def data():
@@ -74,7 +74,9 @@ def delay():
                             "one": delay_get[3],
                             "two": delay_get[4],
                             "three": delay_get[5]
-                        }
+                        },
+                        "delay_count": delay_get[6],
+                        "delay_num": delay_get[7]
                     }
                     VAR = False
                     #print(VAR)
@@ -95,7 +97,18 @@ def refresh():
             if (export.render() == False):
                 pass
             else:
-                return "data:" + str(export.crit()) + "\n\n"
+                return "data:" + str(export.crit()) + "\n\n" 
+    return Response(generate(), mimetype= 'text/event-stream')
+
+@app.route('/lirr')
+def lirr():
+    def generate():
+        value = True
+        while (value == True):
+            if (export.render() == False):
+                pass
+            else:
+                return "data:" + str(export.export_lirr()) + "\n\n" 
     return Response(generate(), mimetype= 'text/event-stream')
 
 if __name__ in "__main__":

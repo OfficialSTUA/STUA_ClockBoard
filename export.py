@@ -128,7 +128,16 @@ def delay():
     global ANNOUCEMENTS_INDEX
     global NOTICES
     delays_export = []
+    emblems = []
+    emblems_str = ""
     delays = stua.alertsSubway(planned=False)
+    for item in delays:
+        for pic in item[0]:
+            if pic not in emblems:
+                emblems.append(pic)
+    emblems = sort_char(emblems)
+    for item in emblems:
+        emblems_str += f'<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/{item.lower()}.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>'
     for item in NOTICES:
         delays.append(item)
     #delays=[]
@@ -140,7 +149,7 @@ def delay():
     if (len(delays) == 0) and (ANNOUCEMENTS == ['']):
         ACTIVE_DELAYS_LEN = 0
         delays_export.append(len(delays))
-        for i in range(5):
+        for i in range(7):
             delays_export.append("")
             print("delays done")
         return delays_export
@@ -194,13 +203,15 @@ def delay():
             for item in DELAYS[0][0]:
                 #print(item)
                 #print(4)
-                large_emblem_str += f'<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/{item.lower()}.svg" style="height: 30vh; width: 100%; flex: auto;"></div>'
+                large_emblem_str += f'<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/{item.lower()}.svg" style="height: 25vh; width: 100%; flex: auto;"></div>'
             for DELAY in DELAYS:
+                #print(DELAY)
                 while DELAY[1].find("[") != -1:
                     index1 = DELAY[1].index("[")
                     index2 = DELAY[1].index("]")
                     DELAY[1] = DELAY[1].replace("\n\n", "<br>")
                     DELAY[1] = DELAY[1].replace("\n", "<br>")
+                    #print(DELAY[1])
                     DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 15%; margin-bottom: 1%;">')
             delays_export.append(large_emblem_str)
             delays_export.append(DELAYS[0][1])
@@ -216,6 +227,8 @@ def delay():
                 else:
                     break
             """
+            delays_export.append(emblems_str)
+            delays_export.append(f"{ACTIVE_INDEX+1}/{len(grouped_delays)}")
             return delays_export
         else:
             delays_export.append(len(DELAYS))
@@ -223,7 +236,7 @@ def delay():
                 while DELAY[1].find("[") != -1:
                     index1 = DELAY[1].index("[")
                     index2 = DELAY[1].index("]")
-                    DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 6vh; margin-bottom: 1%;">')
+                    DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 5vh; margin-bottom: 1%;">')
             for i in range(2):
                 delays_export.append("")
             for item in DELAYS:
@@ -240,6 +253,8 @@ def delay():
                     break
             """
             print("delays done")
+            delays_export.append(emblems_str)
+            delays_export.append(f"{ACTIVE_INDEX+1}/{len(grouped_delays)}")
             return delays_export
 
 def subway():
@@ -270,6 +285,31 @@ def bus():
                                         ("903013", 1, 1, 6, "SIM33"), ("903013", 1, 2, 6, "SIM33"), ("404219", 1, 1, 7, "SIM34"), ("404219", 1, 2, 7, "SIM34")]) #16-19
     return masterlistBUS
 
+def lirr():
+    masterlistLIRR = stua.gtfsLIRR()
+    masterlistLIRR.get("237", "0", 1)
+    return masterlistLIRR
+
+def modlirrTIME(input):
+    t = input.strftime("%I:%M %p")
+    if t[0] == "0":
+        t = t[1:]
+    #print(t)
+    return t
+
+def export_lirr():
+    masterlistLIRR = lirr()
+    print("lirr done")
+    json_string = {
+        "lirr_PENN": {
+            "penn_time": f"{modlirrTIME(masterlistLIRR.core_time)}",
+            "penn_branch": f'<img src="/static/svg/{masterlistLIRR.route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 class="branch">PENN</h1>',
+            "penn_dest": f'To {masterlistLIRR.terminus}, making stops at:',
+            "penn_stops": f"{' - '.join(masterlistLIRR.station_name_list)}"
+        }
+    }
+    return json.dumps(json_string)
+
 def export():
     
     #print(delay_get)
@@ -279,6 +319,8 @@ def export():
     print("subway done")
     masterlistBUS = bus()
     print("bus done")
+    #masterlistLIRR = lirr()
+    #print("lirr done")
     #print("req parsed")
     #delay_get = delay()
     #print("delays done")

@@ -145,6 +145,7 @@ class gtfsLIRR(gtfs):
         self.station_name_list = ""
         self.trip_id = ""
         self.vehicle = ""
+        self.core_time = ""
 
     def get(self, stop, direction, responses):
         _validkeySubway(_getAPIMTA())
@@ -164,6 +165,7 @@ class gtfsLIRR(gtfs):
             self.direction = direction
             self.trip_id = "NO TRAINS"
             self.vehicle = "NO TRAINS"
+            self.core_time = "NO TRAINS"
         else:
             self.route_id = output[1]
             self.terminus = convertLIRR(output[2])
@@ -178,8 +180,9 @@ class gtfsLIRR(gtfs):
             self.direction = output[4]
             self.trip_id = output[5]
             self.vehicle = output[8]
+            self.core_time = output[9]
 
-    def set(self, route_id, terminus_id, station_id, direction, time, pattern, description, trip_id, station_id_list, vehicle):
+    def set(self, route_id, terminus_id, station_id, direction, time, pattern, description, trip_id, station_id_list, vehicle, core_time):
         self.route_id = route_id
         self.terminus = convertLIRR(terminus_id)
         self.terminus_id = terminus_id
@@ -193,6 +196,7 @@ class gtfsLIRR(gtfs):
         self.station_name_list = [convertLIRR(i) for i in station_id_list]
         self.trip_id = trip_id
         self.vehicle = vehicle
+        self.core_time = core_time
 
 class gtfsMNR(gtfs):
     def __init__(self):
@@ -435,8 +439,12 @@ def convertLIRR(input):
     return output
 
 def convertLIRR_route(input):
+    #print(input)
     db = json.load(open("lirr_routes.json"))
-    return db[str(input)] 
+    try:
+        return db[str(input)] 
+    except:
+        return "X"
 
 def convertMNR(input):
     output = ""
@@ -810,7 +818,7 @@ def  _transitLIRR(stop, direction, responses, API):
     times = []
     destination = []
     #print(API)
-    links = asyncio.get_event_loop().run_until_complete(_requestFeedMTA([f"https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr"], API))
+    links = _get_or_create_eventloop().run_until_complete(_requestFeedMTA([f"https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr"], API))
     
     for link in links:
         #print(link)
@@ -828,6 +836,78 @@ def  _transitLIRR(stop, direction, responses, API):
                     if (time < 0):
                         pass
                     time = datetime.datetime.fromtimestamp(time)
+                    core_time = time
+                    time = math.trunc(((time - current_time).total_seconds()) / 60)
+                    #print(time)
+                    if (time < 0):
+                        continue 
+                    if entity.trip_update.trip.trip_id[-2] == "_":
+                        vehicle = entity.trip_update.trip.trip_id
+                        vehicle = vehicle.replace("_","")
+                        vehicle = entity.trip_update.trip.trip_id[-6:-2]
+                    else:
+                        vehicle = entity.trip_update.trip.trip_id[-4:]
+                    trip_id = entity.trip_update.trip.trip_id
+                    route_id = convertLIRR_route(entity.trip_update.trip.route_id)
+                    direction = entity.trip_update.trip.direction_id
+                    station_id_list = []
+                    for update in entity.trip_update.stop_time_update:
+                        destination.append(update.stop_id)
+                        station_id_list.append(update.stop_id)
+                    #print(service_description)
+                    station_stop_list = [convertLIRR(i) for i in station_id_list]
+                    terminus_id = destination[-1]
+                
+                    #print(stop)
+                    
+                    times.append([time, route_id, terminus_id, station_id, direction, trip_id, station_id_list, station_stop_list, vehicle, core_time])
+                    #print(times)
+                    #print(data["gtfs"]["stops"])
+                    #for i in data["gtfs"]["stops"]:
+                    #print(i["stop_id"] + " " + i["stop_name"])
+    times.sort()
+    #times = []
+    #print(times)
+    try:
+        times = times[responses-1]
+    except:
+        return "NO TRAINS"
+        #print(times)
+    '''
+    with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
+        test.write(str(times)+ f" {datetime.datetime.now()}\n")
+    '''
+    return times 
+
+def  _transitLIRRMODDED(stops, API):
+    current_time = datetime.datetime.now()
+    final = []
+    link = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr", headers={'x-api-key' : API})
+    feed = gtfs_realtime_pb2.FeedMessage()
+    feed.ParseFromString(link.content)
+    for item in stops:
+        stop = item[0]
+        direction = item[1]
+        responses = item[2]
+        times = []
+        destination = []
+        #print(API)
+        #links = asyncio.get_event_loop().run_until_complete(_requestFeedMTA([f"https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr"], API))
+        
+            #print(link)
+
+        with open("alerts.txt", "w") as f:
+            f.write(str(feed))
+        #print(feed)
+        for entity in feed.entity:
+            for update in entity.trip_update.stop_time_update:
+                if ((update.stop_id == stop) and (str(entity.trip_update.trip.direction_id) == str(direction))):
+                    station_id = update.stop_id
+                    time = update.departure.time
+                    if (time < 0):
+                        pass
+                    time = datetime.datetime.fromtimestamp(time)
+                    core_time = time
                     time = math.trunc(((time - current_time).total_seconds()) / 60)
                     #print(time)
                     if (time < 0):
@@ -851,24 +931,28 @@ def  _transitLIRR(stop, direction, responses, API):
                 
                     #print(stop)
 
-                    times.append([time, route_id, terminus_id, station_id, direction, trip_id, station_id_list, station_stop_list, vehicle])
+                    e = gtfsLIRR()
+                    e.set(route_id, terminus_id, station_id, direction, time, route_id, route_id, trip_id, station_id_list, vehicle, core_time)
+                    times.append(e)
                     #print(times)
                     #print(data["gtfs"]["stops"])
                     #for i in data["gtfs"]["stops"]:
                     #print(i["stop_id"] + " " + i["stop_name"])
-    times.sort()
-    #times = []
-    #print(times)
-    try:
-        times = times[responses-1]
-    except:
-        return "NO TRAINS"
+        sort(times)
+        #times = []
         #print(times)
-    '''
-    with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
-        test.write(str(times)+ f" {datetime.datetime.now()}\n")
-    '''
-    return times 
+        try:
+            times = times[responses-1]
+        except:
+            times = gtfsLIRR()
+            times.set("NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS")
+            #print(times)
+        '''
+        with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
+            test.write(str(times)+ f" {datetime.datetime.now()}\n")
+        '''
+        final.append(times)
+    return final
 
 def  _transitMNR(stop, direction, responses, API):
     current_time = datetime.datetime.now()
@@ -1059,7 +1143,9 @@ def alertsSubway(planned=True):
     #print(planned)
     alerts = []
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts", headers={'x-api-key' : _getAPIMTA()})
+    #print(response.content)
     feed = gtfs_realtime_pb2.FeedMessage()
+    #print(response.content)
     feed.ParseFromString(response.content)
     #print(feed)
   
@@ -1190,4 +1276,8 @@ def gtfsSubwayBATCHED(stops):
 
 def gtfsBusBATCHED(stops):
     output = _transitBusMODDED(stops, _getAPIBUSTIME())
+    return output
+
+def gtfsLIRRMODDED(params):
+    output = _transitLIRRMODDED(params, APIMTA)
     return output

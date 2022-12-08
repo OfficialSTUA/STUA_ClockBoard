@@ -1,3 +1,7 @@
+:root {
+    --LIRRstart: 100%;
+}
+
 @font-face {
     font-family: helveticaLight;
     src: url("helvetica-light.ttf");
@@ -11,6 +15,11 @@
 @font-face {
     font-family: standardMedium;
     src: url("standard-medium.otf");
+}
+
+h1.timeLIRR {
+    font-family: standardMedium;
+    font-size: 5vh
 }
 
 div.time {
@@ -28,6 +37,24 @@ h1.bus {
     font-size: 6.95vh;
 }
 
+h1.terminusLIRR {
+    /*white-space: nowrap;*/
+    font-family: standardMedium;
+    font-size: 4vh;
+    white-space: nowrap;
+    /*animation: marquee linear infinite;*/
+    /*animation-duration: 6s;*/
+    
+}
+
+h1.terminusLIRRani {
+    font-family: standardMedium; 
+    font-size: 5.5vh;
+    white-space: nowrap;
+    animation: marqueeLIRR linear infinite;
+    animation-duration: 15s;
+}
+
 h1.terminus {
     /*white-space: nowrap;*/
     font-family: standardMedium;
@@ -38,13 +65,13 @@ h1.terminus {
 
 h1.delay {
     font-family: standardMedium;
-    font-size: 5vh
+    font-size: 4vh
 }
 
 h1.branch {
     font-family: standardMediumCondensed;
     font-size: 5vh;
-    color: blue;
+    color: black;
     margin-left: 2%;
     margin-top: 12%;
 }
@@ -67,6 +94,13 @@ div.animation {
     100% { transform: translateX(-25%); }
 }
 
+@keyframes marqueeLIRR {
+    0% { transform: translateX(var(--LIRRstart)); }
+    5% { transform: translateX(var(--LIRRstart)); }
+    95% { transform: translateX(calc(-1 * var(--LIRRstart))); }
+    100% { transform: translateX(calc(-1 * var(--LIRRstart))); }
+}
+
 h1.blink {
     animation: blink linear infinite;
     animation-duration: 2s;
@@ -80,3 +114,11 @@ h1.blink_terminus {
 @keyframes blink {
     50% { opacity: 0%; }
 }
+
+.dot {
+    height: 2vh;
+    width: 2vh;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+  }
