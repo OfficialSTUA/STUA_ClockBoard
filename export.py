@@ -29,7 +29,8 @@ def get_annoucements():
             item_fin = []
             #print(item)
             item_front = item[0:item.index(":")].split(" ")
-            #
+            item_front = [i.replace("_"," ") for i in item_front]
+            #print(item_front)
             item_back = item[item.index(":")+1:]
             item_fin.append(item_front)
             item_fin.append(item_back)
@@ -132,6 +133,10 @@ def delay():
     emblems = []
     emblems_str = ""
     delays = stua.alertsSubway(planned=False)
+    
+    for item in NOTICES:
+        delays.append(item)
+
     for item in delays:
         for pic in item[0]:
             if pic not in emblems:
@@ -139,8 +144,6 @@ def delay():
     emblems = sort_char(emblems)
     for item in emblems:
         emblems_str += f'<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/{item.lower()}.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>'
-    for item in NOTICES:
-        delays.append(item)
     #delays=[]
     get_annoucements()
     if ANNOUCEMENTS == []:
@@ -213,7 +216,7 @@ def delay():
                     DELAY[1] = DELAY[1].replace("\n\n", "<br>")
                     DELAY[1] = DELAY[1].replace("\n", "<br>")
                     #print(DELAY[1])
-                    DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 15%; margin-bottom: 1%;">')
+                    DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 17.5%; margin-bottom: 1%;">')
             delays_export.append(large_emblem_str)
             delays_export.append(DELAYS[0][1])
             #print(delays_export)
@@ -237,7 +240,7 @@ def delay():
                 while DELAY[1].find("[") != -1:
                     index1 = DELAY[1].index("[")
                     index2 = DELAY[1].index("]")
-                    DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 5vh; margin-bottom: 1%;">')
+                    DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 5.5vh; margin-bottom: 1%;">')
             for i in range(2):
                 delays_export.append("")
             for item in DELAYS:
@@ -548,5 +551,5 @@ def export():
 
     return json.dumps(json_string)   
 
-#print(export())
-#delay()
+#get_annoucements()
+#print(NOTICES)

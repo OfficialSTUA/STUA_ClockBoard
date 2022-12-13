@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('mainLIRR copy.html')
+    return render_template('mainLIRR.html')
 
 @app.route('/data')
 def data():
@@ -112,4 +112,4 @@ def lirr():
     return Response(generate(), mimetype= 'text/event-stream')
 
 if __name__ in "__main__":
-    app.run(port=5500)
+    app.run(port=5000)

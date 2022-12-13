@@ -998,6 +998,7 @@ def  _transitLIRRMODDED(stops, API):
                         vehicle = entity.trip_update.trip.trip_id[-4:]
                     trip_id = entity.trip_update.trip.trip_id
                     route_id = convertLIRR_route(entity.trip_update.trip.route_id)
+                    route_id = "_".join(route_id.split(" "))
                     direction = entity.trip_update.trip.direction_id
                     station_id_list = []
                     for update in entity.trip_update.stop_time_update:
@@ -1274,7 +1275,7 @@ def alertsLIRR(planned=False):
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Flirr-alerts", headers={'x-api-key' : _getAPIMTA()})
     feed = gtfs_realtime_pb2.FeedMessage()
     feed.ParseFromString(response.content)
-    with open("logs/LIRR/alerts.txt","w") as f:
+    with open("alerts.txt","w") as f:
         f.write(str(feed))
     for entity in feed.entity:
         for start in entity.alert.active_period:
