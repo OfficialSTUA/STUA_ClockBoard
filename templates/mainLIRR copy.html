@@ -324,7 +324,7 @@
 			}
 		}
 
-		document.getElementById("LOADING").style.display = "none";
+		//document.getElementById("LOADING").style.display = "none";
 		document.getElementById("LHS").style.display = "block";
 
 	}
@@ -337,6 +337,14 @@
 		//console.log(document.getElementById("oneterminusLIRRani").clientWidth);
 
 		const crit = JSON.parse(event.data);
+
+		if (crit.load_status == "RENDER") {
+			document.getElementById("LOADING").style.display = "flex";
+			document.getElementById("DISPLAY").style.display = "none";
+		} else if (crit.load_status == "DISPLAY") {
+			document.getElementById("DISPLAY").style.display = "block";
+			document.getElementById("LOADING").style.display = "none";
+		}
 
 		//console.log(document.getElementById("LHS_uptown_seventh_time").innerHTML);
 		//console.log(`${crit.seventh} minutes`);
@@ -658,447 +666,449 @@
 		</div>
 	</div>
 
-	<div id="LHS" style="background-color: #ffff00; width: 100%; height: 85%; display: none;">
-		<div style="background-color: indigo; width: 50%; height: 100%; float: left; margin: 0%;">
-			<div style="background-color: aliceblue; width: 100%; height: 19%;">
-				<div id="LHS_uptown_seventh" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src='/static/svg/x.svg' style='height: 92%;'>
-				</div>
-				<div style="background-color: red; width: 80%; height: 100%; float: right;">
-					<div id="LHS_uptown_seventh_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
-						<h1 id="LHS_uptown_seventh_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+	<div id="DISPLAY" style="height:100%; width:100%; display:none;">
+		<div id="LHS" style="background-color: #ffff00; width: 100%; height: 85%; display: none;">
+			<div style="background-color: indigo; width: 50%; height: 100%; float: left; margin: 0%;">
+				<div style="background-color: aliceblue; width: 100%; height: 19%;">
+					<div id="LHS_uptown_seventh" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
+						<img src='/static/svg/x.svg' style='height: 92%;'>
 					</div>
-					<div id="LHS_uptown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
-						<h1 id="LHS_uptown_seventh_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+					<div style="background-color: red; width: 80%; height: 100%; float: right;">
+						<div id="LHS_uptown_seventh_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
+							<h1 id="LHS_uptown_seventh_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+						</div>
+						<div id="LHS_uptown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
+							<h1 id="LHS_uptown_seventh_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						</div>
+					</div>
+				</div>
+				<div style="background-color: #ffffff; width: 100%; height: 1%;"></div>
+				<div style="background-color: aliceblue; width: 100%; height: 19%;">
+					<div id="LHS_downtown_seventh" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
+						<img src="/static/svg/x.svg" style="height: 92%;">
+					</div>
+					<div style="background-color: red; width: 80%; height: 100%; float: right;">
+						<div id="LHS_downtown_seventh_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
+							<h1 id="LHS_downtown_seventh_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+						</div>
+						<div id="LHS_downtown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
+							<h1 id="LHS_downtown_seventh_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						</div>
+					</div>
+				</div>
+				<div style="background-color: white; width: 100%; height: 1%;"></div>
+				<div style="background-color: aliceblue; width: 100%; height: 19%;">
+					<div id="LHS_uptown_eighth" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
+						<img src="/static/svg/x.svg" style="height: 92%;">
+					</div>
+					<div style="background-color: red; width: 80%; height: 100%; float: right;">
+						<div id="LHS_uptown_eighth_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
+							<h1 id="LHS_uptown_eighth_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+						</div>
+						<div id="LHS_uptown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
+							<h1 id="LHS_uptown_eighth_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						</div>
+					</div>
+				</div>
+				<div style="background-color: white; width: 100%; height: 1%;"></div>
+				<div style="background-color: aliceblue; width: 100%; height: 19%;">
+					<div id="LHS_downtown_eighth" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
+						<img src="/static/svg/x.svg" style="height: 92%;">
+					</div>
+					<div style="background-color: red; width: 80%; height: 100%; float: right;">
+						<div id="LHS_downtown_eighth_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
+							<h1 id="LHS_downtown_eighth_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+						</div>
+						<div id="LHS_downtown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
+							<h1 id="LHS_downtown_eighth_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						</div>
+					</div>
+				</div>
+				<div style="background-color: white; width: 100%; height: 1%;"></div>
+				<div id="UPBROAD" style="background-color: aliceblue; width: 100%; height: 20%; display: none;">
+					<div id="LHS_uptown_broadway" style="background-color: #dddddd; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
+						<img src="/static/svg/x.svg" style="height: 92%;">
+					</div>
+					<div style="background-color: red; width: 55%; height: 100%; float: left;">
+						<div id="LHS_uptown_broadway_time_DIV" style="background-color: #dddddd; height: 50%; width: 100%; display: flex; align-items: center;">
+							<h1 id="LHS_uptown_broadway_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+						</div>
+						<div id="LHS_uptown_broadway_terminus_DIV" style="background-color: #dddddd; height: 50%; width: 100%;">
+							<h1 id="LHS_uptown_broadway_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="LHS_uptown_broadway_small" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="LHS_uptown_broadway_small_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="LHS_uptown_broadway_small_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 6%;">-1m</h1>
+						</div>
+					</div>
+				</div>
+				<div id="DOWNBROAD" style="background-color: aliceblue; width: 100%; height: 20%; display: none;">
+					<div id="RHS_downtown_broadway_large" style="background-color: #bbbbbb; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
+						<img src="/static/svg/x.svg" style="height: 97%;">
+					</div>
+					<div style="background-color: red; width: 55%; height: 100%; float: left;">
+						<div id="RHS_downtown_broadway_time_DIV" style="background-color: #bbbbbb; height: 50%; width: 100%; display: flex; align-items: center;">
+							<h1 id="RHS_downtown_broadway_large_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">24 minutes</h1>
+						</div>
+						<div id="RHS_downtown_broadway_terminus_DIV" style="background-color: #bbbbbb; height: 50%; width: 100%;">
+							<h1 id="RHS_downtown_broadway_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">Bay Ridge-95 St</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="RHS_downtown_broadway_small" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="RHS_downtown_broadway_small_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="RHS_downtown_broadway_small_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 6%;">12m</h1>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div style="background-color: #ffffff; width: 100%; height: 1%;"></div>
-			<div style="background-color: aliceblue; width: 100%; height: 19%;">
-				<div id="LHS_downtown_seventh" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/x.svg" style="height: 92%;">
-				</div>
-				<div style="background-color: red; width: 80%; height: 100%; float: right;">
-					<div id="LHS_downtown_seventh_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
-						<h1 id="LHS_downtown_seventh_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+			<div id="STANDARD" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: none;">
+				<div style="background-color: blue; width: 100%; height: 24%;">
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="seventh_uptown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="seventh_uptown_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="seventh_uptown_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
+						</div>
 					</div>
-					<div id="LHS_downtown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
-						<h1 id="LHS_downtown_seventh_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="seventh_uptown_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="seventh_uptown_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="seventh_uptown_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="seventh_uptown_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="seventh_uptown_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="seventh_uptown_three_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="seventh_uptown_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="seventh_uptown_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="seventh_uptown_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
+						</div>
+					</div>
+				</div>
+				<div style="background-color: white; width: 100%; height: 1.37%;"></div>
+				<div style="background-color: blue; width: 100%; height: 24%;">
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="seventh_downtown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="seventh_downtown_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="seventh_downtown_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="seventh_downtown_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="seventh_downtown_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="seventh_downtown_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="seventh_downtown_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="seventh_downtown_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 class="time" id="seventh_downtown_three_time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="seventh_downtown_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="seventh_downtown_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="seventh_downtown_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
+						</div>
+					</div>
+				</div>
+				<div style="background-color: white; width: 100%; height: 1.37%;"></div>
+				<div style="background-color: blue; width: 100%; height: 24%;">
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="eighth_uptown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="eighth_uptown_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="eighth_uptown_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="eighth_uptown_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="eighth_uptown_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="eighth_uptown_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="eighth_uptown_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="eighth_uptown_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="eighth_uptown_three_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="eighth_uptown_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="eighth_uptown_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="eighth_uptown_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
+						</div>
+					</div>
+				</div>
+				<div style="background-color: white; width: 100%; height: 1.37%;"></div>
+				<div style="background-color: blue; width: 100%; height: 24%;">
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="eighth_downtown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="eighth_downtown_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="eighth_downtown_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="eighth_downtown_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="eighth_downtown_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="eighth_downtown_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="eighth_downtown_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="eighth_downtown_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="eighth_downtown_three_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
+						</div>
+					</div>
+					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
+						<div id="eighth_downtown_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
+							<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+						</div>
+						<div id="eighth_downtown_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
+							<h1 id="eighth_downtown_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div style="background-color: white; width: 100%; height: 1%;"></div>
-			<div style="background-color: aliceblue; width: 100%; height: 19%;">
-				<div id="LHS_uptown_eighth" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/x.svg" style="height: 92%;">
-				</div>
-				<div style="background-color: red; width: 80%; height: 100%; float: right;">
-					<div id="LHS_uptown_eighth_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
-						<h1 id="LHS_uptown_eighth_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+			<div id="ONEDELAY" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: none;">
+				<div style="height: 10%; width: 100%">
+					<div style="background-color: black; height: 100%;">
+						<div style="background-color: black; height: 100%; width: 21%; align-items: center; display: flex; float: left;">
+							<h1 id="delay_num_one" style="margin-left: 8px; white-space: nowrap; font-size: 3.5vh; margin-bottom: 6%; color: white;">1/3 Delays:</h1>
+						</div>
+						<div id="delay_header_one" style="background-color: black; height: 100%; width: 79%; align-items: center; display: flex; align-items: center;">
+							<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/e.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
+							<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/f.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
+						</div>
 					</div>
-					<div id="LHS_uptown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
-						<h1 id="LHS_uptown_eighth_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
-					</div>
 				</div>
-			</div>
-			<div style="background-color: white; width: 100%; height: 1%;"></div>
-			<div style="background-color: aliceblue; width: 100%; height: 19%;">
-				<div id="LHS_downtown_eighth" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/x.svg" style="height: 92%;">
-				</div>
-				<div style="background-color: red; width: 80%; height: 100%; float: right;">
-					<div id="LHS_downtown_eighth_time_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%; display: flex; align-items: center;">
-						<h1 id="LHS_downtown_eighth_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+				<div style="height: 90%; width: 100%">
+					<div id="ONEDELAY_delayDIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: flex-end;">
+						<div id="ONEDELAY_delayIMG" style="background-color: #dddddd; height: 80%; width: 100%; display: flex; justify-content: center; align-items: flex-end;">
+							<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/x.svg" style="height: 30vh; width: 100%; flex: auto;"></div>
+						</div>
 					</div>
-					<div id="LHS_downtown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 50%; width: 100%;">
-						<h1 id="LHS_downtown_eighth_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+					<div style="background-color: #dddddd; height: 45%; width: 100%; display: flex; justify-content: center;">
+						<h1 id="ONEDELAY_delay" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">Broad St-bound <img src="/static/svg/x.svg" style="height: 15%; margin-bottom: 1%;"> and Essex St-bound <img src="/static/svg/x.svg" style="height: 15%; margin-bottom: 1%;"> skip Flushing Av, Lorimer St and Hewes St</h1>
 					</div>
 				</div>
 			</div>
-			<div style="background-color: white; width: 100%; height: 1%;"></div>
-			<div id="UPBROAD" style="background-color: aliceblue; width: 100%; height: 20%; display: none;">
-				<div id="LHS_uptown_broadway" style="background-color: #dddddd; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/x.svg" style="height: 92%;">
-				</div>
-				<div style="background-color: red; width: 55%; height: 100%; float: left;">
-					<div id="LHS_uptown_broadway_time_DIV" style="background-color: #dddddd; height: 50%; width: 100%; display: flex; align-items: center;">
-						<h1 id="LHS_uptown_broadway_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
+			<div id="MULTIDELAY" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: none;">
+				<div style="height: 10%; width: 100%">
+					<div style="background-color: black; height: 100%;">
+						<div style="background-color: black; height: 100%; width: 21%; align-items: center; display: flex; float: left;">
+							<h1 id="delay_num_multi" style="margin-left: 8px; white-space: nowrap; font-size: 3.5vh; margin-bottom: 6%; color: white;">1/3 Delays:</h1>
+						</div>
+						<div id="delay_header_multi" style="background-color: black; height: 100%; width: 79%; align-items: center; display: flex; align-items: center;">
+							<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/e.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
+							<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/f.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
+						</div>
 					</div>
-					<div id="LHS_uptown_broadway_terminus_DIV" style="background-color: #dddddd; height: 50%; width: 100%;">
-						<h1 id="LHS_uptown_broadway_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+				</div>
+				<div style="height: 90%; width: 100%">
+					<div style="height: 100%; width: 100%; background-color: #dddddd; display: flex; justify-content: center; flex-direction: column;">
+						<div style="background-color: #dddddd; height: auto; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2%; margin-bottom: 2%;">
+							<h1 id="delay_one" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">No Ozone Park/Far Rockaway-bound <img src="/static/svg/x.svg" style="height: 5.5vh; margin-bottom: 1%;"> at Spring St, Canal St, Chambers St, Fulton St and High St</h1>
+						</div>
+						<div style="background-color: #dddddd; height: auto; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2%; margin-bottom: 2%;">
+							<h1 id="delay_two" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;"><img src="/static/svg/x.svg" style="height: 5.5vh; margin-bottom: 1%;"> runs local in both directions between 21 St-Queensbridge and Jackson Hts-Roosevelt Av</h1>
+						</div>
+						<div style="background-color: #dddddd; height: auto; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2%; margin-bottom: 2%;">
+							<h1 id="delay_three" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">Uptown <img src="/static/svg/x.svg" style="height: 5.5vh; margin-bottom: 1%;"> skips Franklin St, Canal St, Houston St and Christopher St-Sheridan Sq</h1>
+						</div>
 					</div>
 				</div>
+			</div>
+			<div style="background-color: white; width: 50%; height: 1%; margin: 0%; float: right;"></div>
+			<div style="background-color: aliceblue; width: 50%; height: 20%; margin: 0%; float: right;">
 				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="LHS_uptown_broadway_small" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+					<div id="oneLIRRbranch" style="background-color: #FFEBED; height: 45%; width: 100%; display: flex; align-items: center; justify-content: center;">
+						<img src="/static/svg/city zone.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>
 					</div>
-					<div id="LHS_uptown_broadway_small_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="LHS_uptown_broadway_small_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 6%;">-1m</h1>
-					</div>
-				</div>
-			</div>
-			<div id="DOWNBROAD" style="background-color: aliceblue; width: 100%; height: 20%; display: none;">
-				<div id="RHS_downtown_broadway_large" style="background-color: #bbbbbb; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/x.svg" style="height: 97%;">
-				</div>
-				<div style="background-color: red; width: 55%; height: 100%; float: left;">
-					<div id="RHS_downtown_broadway_time_DIV" style="background-color: #bbbbbb; height: 50%; width: 100%; display: flex; align-items: center;">
-						<h1 id="RHS_downtown_broadway_large_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">24 minutes</h1>
-					</div>
-					<div id="RHS_downtown_broadway_terminus_DIV" style="background-color: #bbbbbb; height: 50%; width: 100%;">
-						<h1 id="RHS_downtown_broadway_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">Bay Ridge-95 St</h1>
+					<div id="oneLIRRbranchtime" style="background-color: #FFEBED; height: 55%; width: 100%; display: flex; align-items: center; justify-content: center;">
+						<h1 id="onetimeLIRR" class="timeLIRR" style="float: left; margin: 0px; margin-top: 6%; white-space: nowrap;">00:00 P.M.</h1>
 					</div>
 				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="RHS_downtown_broadway_small" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+				<div style="background-color: red; height: 100%; display: inline-block; width: 75%;">
+					<div id="oneterminusLIRRdiv" style="background-color: #FEDBE4; height: 50%; width: 100%; display: flex; align-items: center; justify-content: center;">
+						<h1 id="oneterminusLIRR" class="terminusLIRR" style="float: left; margin-left: 5px; margin-top: 2.5%;">To INITIALIZING, making stops at:</h1>
 					</div>
-					<div id="RHS_downtown_broadway_small_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="RHS_downtown_broadway_small_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 6%;">12m</h1>
+					<div id="oneterminusLIRRanidiv" style="background-color: #FEDBE4; height: 50%; width: 100%; justify-content: center; display: flex; overflow: hidden;">
+						<h1 id="oneterminusLIRRani" class="terminusLIRRani" style="margin-left: 5px;"><strong>StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX</strong></h1>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div id="STANDARD" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: none;">
-			<div style="background-color: blue; width: 100%; height: 24%;">
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="seventh_uptown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="seventh_uptown_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="seventh_uptown_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
-					</div>
+		<div style="background-color: white; width: 100%; height: 1%; display: block;"></div>
+		<div id="bottom_one" style="background-color: blue; width: 100%; height: 14%; white-space: nowrap; display: none;">
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div id="uptown_jamaica_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
+					<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
 				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="seventh_uptown_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="seventh_uptown_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="seventh_uptown_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-					</div>
-				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="seventh_uptown_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="seventh_uptown_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="seventh_uptown_three_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
-					</div>
-				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="seventh_uptown_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="seventh_uptown_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="seventh_uptown_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-					</div>
+				<div id="uptown_jamaica_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="uptown_jamaica_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
 				</div>
 			</div>
-			<div style="background-color: white; width: 100%; height: 1.37%;"></div>
-			<div style="background-color: blue; width: 100%; height: 24%;">
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="seventh_downtown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="seventh_downtown_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="seventh_downtown_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
-					</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div id="uptown_jamaica_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
+					<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
 				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="seventh_downtown_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="seventh_downtown_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="seventh_downtown_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-					</div>
-				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="seventh_downtown_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="seventh_downtown_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 class="time" id="seventh_downtown_three_time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
-					</div>
-				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="seventh_downtown_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="seventh_downtown_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="seventh_downtown_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-					</div>
+				<div id="uptown_jamaica_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="uptown_jamaica_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
 				</div>
 			</div>
-			<div style="background-color: white; width: 100%; height: 1.37%;"></div>
-			<div style="background-color: blue; width: 100%; height: 24%;">
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="eighth_uptown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="eighth_uptown_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="eighth_uptown_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
-					</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_one" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q10</h1>
 				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="eighth_uptown_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="eighth_uptown_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="eighth_uptown_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-					</div>
-				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="eighth_uptown_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="eighth_uptown_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="eighth_uptown_three_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
-					</div>
-				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="eighth_uptown_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="eighth_uptown_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="eighth_uptown_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-					</div>
+				<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_one_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
 				</div>
 			</div>
-			<div style="background-color: white; width: 100%; height: 1.37%;"></div>
-			<div style="background-color: blue; width: 100%; height: 24%;">
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="eighth_downtown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="eighth_downtown_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="eighth_downtown_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
-					</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_two" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
 				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="eighth_downtown_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="eighth_downtown_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="eighth_downtown_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-					</div>
+				<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_two_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
 				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="eighth_downtown_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="eighth_downtown_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="eighth_downtown_three_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
-					</div>
+			</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_three" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q37</h1>
 				</div>
-				<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-					<div id="eighth_downtown_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
-						<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-					</div>
-					<div id="eighth_downtown_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
-						<h1 id="eighth_downtown_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-					</div>
+				<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_three_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
+				</div>
+			</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_four" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
+				</div>
+				<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_four_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
+				</div>
+			</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_five" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q37</h1>
+				</div>
+				<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_five_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
+				</div>
+			</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_six" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
+				</div>
+				<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_six_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
 				</div>
 			</div>
 		</div>
-		<div id="ONEDELAY" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: none;">
-			<div style="height: 10%; width: 100%">
-				<div style="background-color: black; height: 100%;">
-					<div style="background-color: black; height: 100%; width: 21%; align-items: center; display: flex; float: left;">
-						<h1 id="delay_num_one" style="margin-left: 8px; white-space: nowrap; font-size: 3.5vh; margin-bottom: 6%; color: white;">1/3 Delays:</h1>
-					</div>
-					<div id="delay_header_one" style="background-color: black; height: 100%; width: 79%; align-items: center; display: flex; align-items: center;">
-						<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/e.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
-						<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/f.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
-					</div>
+		<div id="bottom_two" style="background-color: blue; width: 100%; height: 14%; white-space: nowrap; display: none;">
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div id="uptown_lex_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
+					<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+				</div>
+				<div id="uptown_lex_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="uptown_lex_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
 				</div>
 			</div>
-			<div style="height: 90%; width: 100%">
-				<div id="ONEDELAY_delayDIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: flex-end;">
-					<div id="ONEDELAY_delayIMG" style="background-color: #dddddd; height: 80%; width: 100%; display: flex; justify-content: center; align-items: flex-end;">
-						<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/x.svg" style="height: 30vh; width: 100%; flex: auto;"></div>
-					</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div id="uptown_lex_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
+					<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
 				</div>
-				<div style="background-color: #dddddd; height: 45%; width: 100%; display: flex; justify-content: center;">
-					<h1 id="ONEDELAY_delay" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">Broad St-bound <img src="/static/svg/x.svg" style="height: 15%; margin-bottom: 1%;"> and Essex St-bound <img src="/static/svg/x.svg" style="height: 15%; margin-bottom: 1%;"> skip Flushing Av, Lorimer St and Hewes St</h1>
+				<div id="uptown_lex_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="uptown_lex_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
 				</div>
 			</div>
-		</div>
-		<div id="MULTIDELAY" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: none;">
-			<div style="height: 10%; width: 100%">
-				<div style="background-color: black; height: 100%;">
-					<div style="background-color: black; height: 100%; width: 21%; align-items: center; display: flex; float: left;">
-						<h1 id="delay_num_multi" style="margin-left: 8px; white-space: nowrap; font-size: 3.5vh; margin-bottom: 6%; color: white;">1/3 Delays:</h1>
-					</div>
-					<div id="delay_header_multi" style="background-color: black; height: 100%; width: 79%; align-items: center; display: flex; align-items: center;">
-						<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/e.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
-						<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/f.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
-					</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div id="uptown_lex_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
+					<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+				</div>
+				<div id="uptown_lex_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="uptown_lex_three_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
 				</div>
 			</div>
-			<div style="height: 90%; width: 100%">
-				<div style="height: 100%; width: 100%; background-color: #dddddd; display: flex; justify-content: center; flex-direction: column;">
-					<div style="background-color: #dddddd; height: auto; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2%; margin-bottom: 2%;">
-						<h1 id="delay_one" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">No Ozone Park/Far Rockaway-bound <img src="/static/svg/x.svg" style="height: 5.5vh; margin-bottom: 1%;"> at Spring St, Canal St, Chambers St, Fulton St and High St</h1>
-					</div>
-					<div style="background-color: #dddddd; height: auto; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2%; margin-bottom: 2%;">
-						<h1 id="delay_two" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;"><img src="/static/svg/x.svg" style="height: 5.5vh; margin-bottom: 1%;"> runs local in both directions between 21 St-Queensbridge and Jackson Hts-Roosevelt Av</h1>
-					</div>
-					<div style="background-color: #dddddd; height: auto; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 2%; margin-bottom: 2%;">
-						<h1 id="delay_three" class="delay" style="text-align: center; margin-top: 1%; margin-left: 2%; margin-right: 2%;">Uptown <img src="/static/svg/x.svg" style="height: 5.5vh; margin-bottom: 1%;"> skips Franklin St, Canal St, Houston St and Christopher St-Sheridan Sq</h1>
-					</div>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div id="uptown_lex_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
+					<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+				</div>
+				<div id="uptown_lex_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="uptown_lex_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
 				</div>
 			</div>
-		</div>
-		<div style="background-color: white; width: 50%; height: 1%; margin: 0%; float: right;"></div>
-		<div style="background-color: aliceblue; width: 50%; height: 20%; margin: 0%; float: right;">
-			<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-				<div id="oneLIRRbranch" style="background-color: #FFEBED; height: 45%; width: 100%; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/city zone.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_seven" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q37</h1>
 				</div>
-				<div id="oneLIRRbranchtime" style="background-color: #FFEBED; height: 55%; width: 100%; display: flex; align-items: center; justify-content: center;">
-					<h1 id="onetimeLIRR" class="timeLIRR" style="float: left; margin: 0px; margin-top: 6%; white-space: nowrap;">00:00 P.M.</h1>
+				<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_seven_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
 				</div>
 			</div>
-			<div style="background-color: red; height: 100%; display: inline-block; width: 75%;">
-				<div id="oneterminusLIRRdiv" style="background-color: #FEDBE4; height: 50%; width: 100%; display: flex; align-items: center; justify-content: center;">
-					<h1 id="oneterminusLIRR" class="terminusLIRR" style="float: left; margin-left: 5px; margin-top: 2.5%;">To INITIALIZING, making stops at:</h1>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_eight" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
 				</div>
-				<div id="oneterminusLIRRanidiv" style="background-color: #FEDBE4; height: 50%; width: 100%; justify-content: center; display: flex; overflow: hidden;">
-					<h1 id="oneterminusLIRRani" class="terminusLIRRani" style="margin-left: 5px;"><strong>StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX - StopX</strong></h1>
+				<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_eight_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div style="background-color: white; width: 100%; height: 1%; display: block;"></div>
-	<div id="bottom_one" style="background-color: blue; width: 100%; height: 14%; white-space: nowrap; display: none;">
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div id="uptown_jamaica_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
-				<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_nine" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q37</h1>
+				</div>
+				<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_nine_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
+				</div>
 			</div>
-			<div id="uptown_jamaica_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="uptown_jamaica_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">4m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div id="uptown_jamaica_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
-				<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-			</div>
-			<div id="uptown_jamaica_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="uptown_jamaica_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_one" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q10</h1>
-			</div>
-			<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_one_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_two" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
-			</div>
-			<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_two_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_three" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q37</h1>
-			</div>
-			<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_three_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_four" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
-			</div>
-			<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_four_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_five" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q37</h1>
-			</div>
-			<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_five_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_six" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
-			</div>
-			<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_six_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
-			</div>
-		</div>
-	</div>
-	<div id="bottom_two" style="background-color: blue; width: 100%; height: 14%; white-space: nowrap; display: none;">
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div id="uptown_lex_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
-				<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-			</div>
-			<div id="uptown_lex_one_time_DIV" style="background-color: #dddddd; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="uptown_lex_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div id="uptown_lex_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
-				<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-			</div>
-			<div id="uptown_lex_two_time_DIV" style="background-color: #cccccc; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="uptown_lex_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div id="uptown_lex_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
-				<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-			</div>
-			<div id="uptown_lex_three_time_DIV" style="background-color: #bbbbbb; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="uptown_lex_three_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div id="uptown_lex_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
-				<img src="/static/svg/x.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">
-			</div>
-			<div id="uptown_lex_four_time_DIV" style="background-color: #aaaaaa; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="uptown_lex_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%;">12m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_seven" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q37</h1>
-			</div>
-			<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_seven_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_eight" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
-			</div>
-			<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_eight_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_nine" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">Q37</h1>
-			</div>
-			<div style="background-color: black; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_nine_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">12, 24m</h1>
-			</div>
-		</div>
-		<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
-			<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_ten" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
-			</div>
-			<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
-				<h1 id="bus_ten_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
+			<div style="background-color: orange; float: left; height: 100%; width: 12.5%;">
+				<div style="background-color: #2b2b2b; height: 45%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_ten" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white;">M4</h1>
+				</div>
+				<div style="background-color: #2b2b2b; height: 55%; width: 100%; display: flex; align-items: center;">
+					<h1 id="bus_ten_time" class="bus" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; color: white;">2, Xm</h1>
+				</div>
 			</div>
 		</div>
 	</div>

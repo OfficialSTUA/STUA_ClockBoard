@@ -1,5 +1,5 @@
 import stua, json, time
-import dotenv, os, asyncio
+import dotenv, os, asyncio, requests
 
 ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
@@ -10,6 +10,7 @@ CRIT_RATE = [7, 9, 12, 15, 15]
 ANNOUCEMENTS = []
 NOTICES = []
 ANNOUCEMENTS_INDEX = 0
+WIFI = True
 
 dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
@@ -48,9 +49,32 @@ def get_timer():
     global TIMER
     return TIMER
 
-def crit():
+def wifi_disconnect():
+    try:
+        response = requests.get("http://web.mta.info/status/ServiceStatusSubway.xml", timeout=10)
+        return False
+    except (requests.ConnectionError, requests.Timeout):
+        return True
+    except:
+        return False
+
+def refresh():
     global CRIT_RATE
+    global WIFI
+    global RENDER
+    load_status = ""
+    if wifi_disconnect() == True:
+        load_status = "OFFLINE"
+        WIFI = False
+    elif wifi_disconnect() == False and WIFI == False:
+        WIFI = True
+        RENDER = False
+    elif render() == False:
+        load_status = "RENDER"
+    else:
+        load_status = "DISPLAY"
     json_string = {
+        "load_status": str(load_status),
         "seventh": str(CRIT_RATE[0]),
         "eighth": str(CRIT_RATE[1]),
         "broadway": str(CRIT_RATE[2]),
