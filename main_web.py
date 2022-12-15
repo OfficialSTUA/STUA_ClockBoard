@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('mainLIRR copy.html')
+    return render_template('mainLIRR.html')
 
 @app.route('/data')
 def data():

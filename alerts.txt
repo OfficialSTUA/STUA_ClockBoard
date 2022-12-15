@@ -1,7 +1,7 @@
 header {
   gtfs_realtime_version: "2.0"
   incrementality: FULL_DATASET
-  timestamp: 1671072904
+  timestamp: 1671074575
 }
 entity {
   id: "GO101A_22_2716_T"
@@ -213,7 +213,7 @@ entity {
       id: "501_2716"
       label: "501"
     }
-    timestamp: 1671072848
+    timestamp: 1671073559
   }
 }
 entity {
@@ -227,439 +227,14 @@ entity {
       latitude: 41.047108
       longitude: -71.95388
       bearing: 50.0
-      speed: 0.0097763175
+      speed: 0.05093976
     }
     current_status: STOPPED_AT
-    timestamp: 1671072848
+    timestamp: 1671073558
     stop_id: "141"
     vehicle {
       id: "501_2716"
       label: "501"
-    }
-  }
-}
-entity {
-  id: "GO101A_22_662_T"
-  trip_update {
-    trip {
-      trip_id: "GO101A_22_662"
-      start_date: "20221214"
-      schedule_relationship: SCHEDULED
-      route_id: "10"
-      direction_id: 0
-    }
-    stop_time_update {
-      stop_sequence: 1
-      departure {
-        delay: 57
-        time: 1671055977
-      }
-      stop_id: "90"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 2
-      arrival {
-        delay: 14
-        time: 1671057014
-      }
-      departure {
-        delay: 14
-        time: 1671057014
-      }
-      stop_id: "102"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 3
-      arrival {
-        delay: 93
-        time: 1671057993
-      }
-      departure {
-        delay: 93
-        time: 1671057993
-      }
-      stop_id: "132"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 4
-      arrival {
-        delay: 148
-        time: 1671059068
-      }
-      departure {
-        delay: 148
-        time: 1671059068
-      }
-      stop_id: "205"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 5
-      arrival {
-        delay: 108
-        time: 1671059448
-      }
-      departure {
-        delay: 108
-        time: 1671059448
-      }
-      stop_id: "40"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 6
-      arrival {
-        delay: 188
-        time: 1671059888
-      }
-      departure {
-        delay: 453
-        time: 1671060153
-      }
-      stop_id: "91"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 7
-      arrival {
-        delay: 293
-        time: 1671060233
-      }
-      departure {
-        delay: 293
-        time: 1671060233
-      }
-      stop_id: "78"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 8
-      arrival {
-        delay: 253
-        time: 1671060493
-      }
-      departure {
-        delay: 253
-        time: 1671060493
-      }
-      stop_id: "153"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 9
-      arrival {
-        delay: 324
-        time: 1671060864
-      }
-      departure {
-        delay: 324
-        time: 1671060864
-      }
-      stop_id: "111"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 10
-      arrival {
-        delay: 314
-        time: 1671061334
-      }
-      departure {
-        delay: 314
-        time: 1671061334
-      }
-      stop_id: "202"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 11
-      arrival {
-        delay: 278
-        time: 1671061658
-      }
-      departure {
-        delay: 278
-        time: 1671061658
-      }
-      stop_id: "193"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 12
-      arrival {
-        delay: 288
-        time: 1671062028
-      }
-      departure {
-        delay: 288
-        time: 1671062028
-      }
-      stop_id: "14"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 13
-      arrival {
-        delay: 243
-        time: 1671062643
-      }
-      stop_id: "164"
-      schedule_relationship: SCHEDULED
-    }
-    vehicle {
-      id: "401_662"
-      label: "401"
-    }
-    timestamp: 1671072873
-  }
-}
-entity {
-  id: "GO101A_22_662_V"
-  vehicle {
-    trip {
-      trip_id: "GO101A_22_662"
-      start_date: "20221214"
-    }
-    position {
-      latitude: 40.93455
-      longitude: -73.0525
-    }
-    current_status: STOPPED_AT
-    timestamp: 1671062643
-    stop_id: "164"
-    vehicle {
-      id: "401_662"
-      label: "401"
-    }
-  }
-}
-entity {
-  id: "GO101A_22_147_T"
-  trip_update {
-    trip {
-      trip_id: "GO101A_22_147"
-      start_date: "20221214"
-      schedule_relationship: SCHEDULED
-      route_id: "1"
-      direction_id: 1
-    }
-    stop_time_update {
-      stop_sequence: 1
-      stop_id: "27"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 2
-      stop_id: "117"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 3
-      stop_id: "38"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 4
-      stop_id: "8"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 5
-      stop_id: "135"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 6
-      arrival {
-        delay: 235
-        time: 1671067915
-      }
-      departure {
-        delay: 235
-        time: 1671067915
-      }
-      stop_id: "136"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 7
-      arrival {
-        delay: 193
-        time: 1671068053
-      }
-      departure {
-        delay: 193
-        time: 1671068053
-      }
-      stop_id: "187"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 8
-      arrival {
-        delay: 227
-        time: 1671068207
-      }
-      departure {
-        delay: 227
-        time: 1671068207
-      }
-      stop_id: "215"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 9
-      arrival {
-        delay: 197
-        time: 1671068357
-      }
-      departure {
-        delay: 197
-        time: 1671068357
-      }
-      stop_id: "16"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 10
-      arrival {
-        delay: 163
-        time: 1671068503
-      }
-      departure {
-        delay: 163
-        time: 1671068503
-      }
-      stop_id: "226"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 11
-      arrival {
-        delay: 157
-        time: 1671068677
-      }
-      departure {
-        delay: 157
-        time: 1671068677
-      }
-      stop_id: "64"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 12
-      arrival {
-        delay: 229
-        time: 1671068929
-      }
-      departure {
-        delay: 229
-        time: 1671068929
-      }
-      stop_id: "225"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 13
-      arrival {
-        delay: 253
-        time: 1671069133
-      }
-      departure {
-        delay: 253
-        time: 1671069133
-      }
-      stop_id: "183"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 14
-      arrival {
-        delay: 247
-        time: 1671069307
-      }
-      departure {
-        delay: 247
-        time: 1671069307
-      }
-      stop_id: "125"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 15
-      arrival {
-        delay: 99
-        time: 1671070059
-      }
-      departure {
-        delay: 99
-        time: 1671070059
-      }
-      stop_id: "102"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 16
-      arrival {
-        delay: 199
-        time: 1671070399
-      }
-      departure {
-        delay: 199
-        time: 1671070399
-      }
-      stop_id: "107"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 17
-      arrival {
-        delay: 219
-        time: 1671070539
-      }
-      departure {
-        delay: 219
-        time: 1671070539
-      }
-      stop_id: "55"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 18
-      arrival {
-        delay: 130
-        time: 1671071350
-      }
-      stop_id: "237"
-      schedule_relationship: SCHEDULED
-    }
-    vehicle {
-      id: "9107_147"
-      label: "9107"
-    }
-    timestamp: 1671072362
-  }
-}
-entity {
-  id: "GO101A_22_147_V"
-  vehicle {
-    trip {
-      trip_id: "GO101A_22_147"
-      start_date: "20221214"
-    }
-    position {
-      latitude: 40.74926
-      longitude: -73.989685
-    }
-    current_status: IN_TRANSIT_TO
-    timestamp: 1671071350
-    stop_id: "237"
-    vehicle {
-      id: "9107_147"
-      label: "9107"
     }
   }
 }
@@ -903,7 +478,7 @@ entity {
       id: "7082_182"
       label: "7082"
     }
-    timestamp: 1671072884
+    timestamp: 1671073242
   }
 }
 entity {
@@ -996,7 +571,7 @@ entity {
       id: "407_2744"
       label: "407"
     }
-    timestamp: 1671072886
+    timestamp: 1671074101
   }
 }
 entity {
@@ -1007,13 +582,13 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.821316
-      longitude: -72.70526
-      bearing: 101.0
-      speed: 0.0056599732
+      latitude: 40.799545
+      longitude: -72.85937
+      bearing: 81.0
+      speed: 0.01183449
     }
     current_status: STOPPED_AT
-    timestamp: 1671072885
+    timestamp: 1671074100
     stop_id: "198"
     vehicle {
       id: "407_2744"
@@ -1107,18 +682,22 @@ entity {
         delay: 83
         time: 1671072743
       }
+      departure {
+        delay: 83
+        time: 1671072743
+      }
       stop_id: "204"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 113
-        time: 1671073253
+        delay: 13
+        time: 1671073153
       }
       departure {
-        delay: 113
-        time: 1671073253
+        delay: 13
+        time: 1671073153
       }
       stop_id: "163"
       schedule_relationship: SCHEDULED
@@ -1126,12 +705,8 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 113
-        time: 1671073973
-      }
-      departure {
-        delay: 113
-        time: 1671073973
+        delay: 53
+        time: 1671073913
       }
       stop_id: "140"
       schedule_relationship: SCHEDULED
@@ -1139,12 +714,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 113
-        time: 1671075113
+        delay: -322
+        time: 1671074678
       }
       departure {
-        delay: 113
-        time: 1671075113
+        delay: -180
+        time: 1671074820
       }
       stop_id: "198"
       schedule_relationship: SCHEDULED
@@ -1152,12 +727,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 113
-        time: 1671075473
+        delay: -180
+        time: 1671075180
       }
       departure {
-        delay: 113
-        time: 1671075473
+        delay: -180
+        time: 1671075180
       }
       stop_id: "233"
       schedule_relationship: SCHEDULED
@@ -1165,12 +740,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 113
-        time: 1671076073
+        delay: -180
+        time: 1671075780
       }
       departure {
-        delay: 113
-        time: 1671076073
+        delay: -180
+        time: 1671075780
       }
       stop_id: "83"
       schedule_relationship: SCHEDULED
@@ -1178,12 +753,12 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 113
-        time: 1671076673
+        delay: -180
+        time: 1671076380
       }
       departure {
-        delay: 113
-        time: 1671076673
+        delay: -180
+        time: 1671076380
       }
       stop_id: "191"
       schedule_relationship: SCHEDULED
@@ -1191,12 +766,12 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 113
-        time: 1671077333
+        delay: -180
+        time: 1671077040
       }
       departure {
-        delay: 113
-        time: 1671077333
+        delay: -180
+        time: 1671077040
       }
       stop_id: "13"
       schedule_relationship: SCHEDULED
@@ -1204,12 +779,12 @@ entity {
     stop_time_update {
       stop_sequence: 15
       arrival {
-        delay: 113
-        time: 1671077993
+        delay: -180
+        time: 1671077700
       }
       departure {
-        delay: 113
-        time: 1671077993
+        delay: -180
+        time: 1671077700
       }
       stop_id: "48"
       schedule_relationship: SCHEDULED
@@ -1217,12 +792,12 @@ entity {
     stop_time_update {
       stop_sequence: 16
       arrival {
-        delay: 113
-        time: 1671078293
+        delay: -180
+        time: 1671078000
       }
       departure {
-        delay: 113
-        time: 1671078293
+        delay: -180
+        time: 1671078000
       }
       stop_id: "4"
       schedule_relationship: SCHEDULED
@@ -1230,8 +805,8 @@ entity {
     stop_time_update {
       stop_sequence: 17
       arrival {
-        delay: 113
-        time: 1671079673
+        delay: -180
+        time: 1671079380
       }
       stop_id: "141"
       schedule_relationship: SCHEDULED
@@ -1240,7 +815,7 @@ entity {
       id: "414_2720"
       label: "414"
     }
-    timestamp: 1671072903
+    timestamp: 1671074575
   }
 }
 entity {
@@ -1251,14 +826,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.74255
-      longitude: -73.07065
-      bearing: 76.0
-      speed: 19.32778
+      latitude: 40.823986
+      longitude: -72.74527
+      bearing: 32.0
+      speed: 17.531511
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072903
-    stop_id: "163"
+    timestamp: 1671074573
+    stop_id: "198"
     vehicle {
       id: "414_2720"
       label: "414"
@@ -1414,7 +989,7 @@ entity {
       id: "7374_1744"
       label: "7374"
     }
-    timestamp: 1671072875
+    timestamp: 1671073016
   }
 }
 entity {
@@ -1428,10 +1003,10 @@ entity {
       latitude: 40.85301
       longitude: -73.40952
       bearing: 64.0
-      speed: 4.939613
+      speed: 0.0
     }
     current_status: STOPPED_AT
-    timestamp: 1671072873
+    timestamp: 1671072960
     stop_id: "91"
     vehicle {
       id: "7374_1744"
@@ -1692,7 +1267,7 @@ entity {
       id: "7366_176"
       label: "7366"
     }
-    timestamp: 1671072892
+    timestamp: 1671074567
   }
 }
 entity {
@@ -1714,305 +1289,6 @@ entity {
     vehicle {
       id: "7366_176"
       label: "7366"
-    }
-  }
-}
-entity {
-  id: "GO101A_22_2086_T"
-  trip_update {
-    trip {
-      trip_id: "GO101A_22_2086"
-      start_date: "20221214"
-      schedule_relationship: SCHEDULED
-      route_id: "4"
-      direction_id: 0
-    }
-    stop_time_update {
-      stop_sequence: 1
-      departure {
-        delay: 107
-        time: 1671067007
-      }
-      stop_id: "237"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 2
-      arrival {
-        delay: 32
-        time: 1671068192
-      }
-      departure {
-        delay: 32
-        time: 1671068192
-      }
-      stop_id: "102"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 3
-      arrival {
-        delay: 78
-        time: 1671069078
-      }
-      departure {
-        delay: 78
-        time: 1671069078
-      }
-      stop_id: "132"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 4
-      arrival {
-        delay: -97
-        time: 1671069503
-      }
-      departure {
-        delay: -97
-        time: 1671069503
-      }
-      stop_id: "92"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 5
-      arrival {
-        delay: -84
-        time: 1671069816
-      }
-      departure {
-        delay: -84
-        time: 1671069816
-      }
-      stop_id: "20"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 6
-      arrival {
-        delay: -62
-        time: 1671070138
-      }
-      departure {
-        delay: -62
-        time: 1671070138
-      }
-      stop_id: "59"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 7
-      arrival {
-        delay: -86
-        time: 1671070474
-      }
-      departure {
-        delay: -86
-        time: 1671070474
-      }
-      stop_id: "220"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 8
-      arrival {
-        delay: -77
-        time: 1671070783
-      }
-      departure {
-        delay: -77
-        time: 1671070783
-      }
-      stop_id: "44"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 9
-      arrival {
-        delay: -114
-        time: 1671071046
-      }
-      departure {
-        delay: -114
-        time: 1671071046
-      }
-      stop_id: "29"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 10
-      arrival {
-        delay: -117
-        time: 1671071283
-      }
-      departure {
-        delay: -117
-        time: 1671071283
-      }
-      stop_id: "33"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 11
-      arrival {
-        delay: -144
-        time: 1671071676
-      }
-      stop_id: "179"
-      schedule_relationship: SCHEDULED
-    }
-    vehicle {
-      id: "7726_2086"
-      label: "7726"
-    }
-    timestamp: 1671072027
-  }
-}
-entity {
-  id: "GO101A_22_2086_V"
-  vehicle {
-    trip {
-      trip_id: "GO101A_22_2086"
-      start_date: "20221214"
-    }
-    position {
-      latitude: 40.808086
-      longitude: -73.10594
-      bearing: 83.0
-      speed: 6.123062
-    }
-    current_status: STOPPED_AT
-    timestamp: 1671071676
-    stop_id: "179"
-    vehicle {
-      id: "7726_2086"
-      label: "7726"
-    }
-  }
-}
-entity {
-  id: "GO101A_22_468_METS_T"
-  trip_update {
-    trip {
-      trip_id: "GO101A_22_468_METS"
-      start_date: "20221214"
-      schedule_relationship: SCHEDULED
-      route_id: "9"
-      direction_id: 0
-    }
-    stop_time_update {
-      stop_sequence: 1
-      departure {
-        delay: 82
-        time: 1671068962
-      }
-      stop_id: "237"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 2
-      stop_id: "214"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 3
-      stop_id: "199"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 4
-      stop_id: "56"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 5
-      stop_id: "130"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 6
-      stop_id: "11"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 7
-      stop_id: "2"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 8
-      stop_id: "25"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 9
-      stop_id: "42"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 10
-      stop_id: "120"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 11
-      arrival {
-        delay: 215
-        time: 1671071195
-      }
-      departure {
-        delay: 215
-        time: 1671071195
-      }
-      stop_id: "72"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 12
-      stop_id: "131"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 13
-      stop_id: "162"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 14
-      arrival {
-        delay: 169
-        time: 1671071809
-      }
-      stop_id: "171"
-      schedule_relationship: SCHEDULED
-    }
-    vehicle {
-      id: "7814_468"
-      label: "7814"
-    }
-    timestamp: 1671071810
-  }
-}
-entity {
-  id: "GO101A_22_468_METS_V"
-  vehicle {
-    trip {
-      trip_id: "GO101A_22_468_METS"
-      start_date: "20221214"
-    }
-    position {
-      latitude: 40.809208
-      longitude: -73.09344
-      bearing: 83.0
-      speed: 0.0
-    }
-    current_status: STOPPED_AT
-    timestamp: 1671071793
-    stop_id: "171"
-    vehicle {
-      id: "7814_468"
-      label: "7814"
     }
   }
 }
@@ -2133,8 +1409,8 @@ entity {
         time: 1671072826
       }
       departure {
-        delay: 0
-        time: 1671072900
+        delay: -74
+        time: 1671072826
       }
       stop_id: "59"
       schedule_relationship: SCHEDULED
@@ -2142,12 +1418,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 0
-        time: 1671073260
+        delay: -71
+        time: 1671073189
       }
       departure {
-        delay: 0
-        time: 1671073260
+        delay: -71
+        time: 1671073189
       }
       stop_id: "220"
       schedule_relationship: SCHEDULED
@@ -2155,12 +1431,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 0
-        time: 1671073560
+        delay: -84
+        time: 1671073476
       }
       departure {
-        delay: 0
-        time: 1671073560
+        delay: -84
+        time: 1671073476
       }
       stop_id: "44"
       schedule_relationship: SCHEDULED
@@ -2168,12 +1444,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 0
-        time: 1671073860
+        delay: -115
+        time: 1671073745
       }
       departure {
-        delay: 0
-        time: 1671073860
+        delay: -115
+        time: 1671073745
       }
       stop_id: "29"
       schedule_relationship: SCHEDULED
@@ -2181,12 +1457,12 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 0
-        time: 1671074100
+        delay: -92
+        time: 1671074008
       }
       departure {
-        delay: 0
-        time: 1671074100
+        delay: -92
+        time: 1671074008
       }
       stop_id: "33"
       schedule_relationship: SCHEDULED
@@ -2194,8 +1470,8 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 0
-        time: 1671074520
+        delay: -107
+        time: 1671074413
       }
       stop_id: "179"
       schedule_relationship: SCHEDULED
@@ -2204,7 +1480,7 @@ entity {
       id: "7102_2088"
       label: "7102"
     }
-    timestamp: 1671072859
+    timestamp: 1671074416
   }
 }
 entity {
@@ -2215,243 +1491,17 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.735916
-      longitude: -73.44124
-      bearing: 73.0
-      speed: 2.061774
+      latitude: 40.808086
+      longitude: -73.10594
+      bearing: 83.0
+      speed: 6.3803334
     }
     current_status: STOPPED_AT
-    timestamp: 1671072858
-    stop_id: "59"
+    timestamp: 1671074413
+    stop_id: "179"
     vehicle {
       id: "7102_2088"
       label: "7102"
-    }
-  }
-}
-entity {
-  id: "GO101A_22_2880_T"
-  trip_update {
-    trip {
-      trip_id: "GO101A_22_2880"
-      start_date: "20221214"
-      schedule_relationship: SCHEDULED
-      route_id: "7"
-      direction_id: 0
-    }
-    stop_time_update {
-      stop_sequence: 1
-      departure {
-        delay: 90
-        time: 1671068850
-      }
-      stop_id: "241"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 2
-      arrival {
-        delay: 90
-        time: 1671069210
-      }
-      departure {
-        delay: 90
-        time: 1671069210
-      }
-      stop_id: "148"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 3
-      arrival {
-        delay: -9
-        time: 1671069471
-      }
-      departure {
-        delay: -9
-        time: 1671069471
-      }
-      stop_id: "50"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 4
-      arrival {
-        delay: -6
-        time: 1671070014
-      }
-      departure {
-        delay: -6
-        time: 1671070014
-      }
-      stop_id: "102"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 5
-      arrival {
-        delay: 100
-        time: 1671070420
-      }
-      departure {
-        delay: 100
-        time: 1671070420
-      }
-      stop_id: "119"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 6
-      arrival {
-        delay: 130
-        time: 1671070570
-      }
-      departure {
-        delay: 130
-        time: 1671070570
-      }
-      stop_id: "122"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 7
-      arrival {
-        delay: 98
-        time: 1671070718
-      }
-      departure {
-        delay: 98
-        time: 1671070718
-      }
-      stop_id: "180"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 8
-      arrival {
-        delay: 49
-        time: 1671070969
-      }
-      departure {
-        delay: 49
-        time: 1671070969
-      }
-      stop_id: "211"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 9
-      arrival {
-        delay: 52
-        time: 1671071212
-      }
-      departure {
-        delay: 52
-        time: 1671071212
-      }
-      stop_id: "66"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 10
-      arrival {
-        delay: 41
-        time: 1671071381
-      }
-      departure {
-        delay: 41
-        time: 1671071381
-      }
-      stop_id: "94"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 11
-      arrival {
-        delay: -14
-        time: 1671071506
-      }
-      departure {
-        delay: -14
-        time: 1671071506
-      }
-      stop_id: "217"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 12
-      arrival {
-        delay: -44
-        time: 1671071656
-      }
-      departure {
-        delay: -44
-        time: 1671071656
-      }
-      stop_id: "32"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 13
-      arrival {
-        delay: -93
-        time: 1671071787
-      }
-      departure {
-        delay: -93
-        time: 1671071787
-      }
-      stop_id: "114"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 14
-      arrival {
-        delay: -256
-        time: 1671071924
-      }
-      departure {
-        delay: -256
-        time: 1671071924
-      }
-      stop_id: "101"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 15
-      arrival {
-        delay: -277
-        time: 1671072143
-      }
-      stop_id: "65"
-      schedule_relationship: SCHEDULED
-    }
-    vehicle {
-      id: "7152_2880"
-      label: "7152"
-    }
-    timestamp: 1671072175
-  }
-}
-entity {
-  id: "GO101A_22_2880_V"
-  vehicle {
-    trip {
-      trip_id: "GO101A_22_2880"
-      start_date: "20221214"
-    }
-    position {
-      latitude: 40.609142
-      longitude: -73.75054
-      bearing: 231.0
-      speed: 4.9910674
-    }
-    current_status: STOPPED_AT
-    timestamp: 1671072143
-    stop_id: "65"
-    vehicle {
-      id: "7152_2880"
-      label: "7152"
     }
   }
 }
@@ -2487,7 +1537,7 @@ entity {
       id: "7048_1382"
       label: "7048"
     }
-    timestamp: 1671072881
+    timestamp: 1671072945
   }
 }
 entity {
@@ -2655,8 +1705,8 @@ entity {
         time: 1671072851
       }
       departure {
-        delay: 71
-        time: 1671072851
+        delay: 169
+        time: 1671072949
       }
       stop_id: "72"
       schedule_relationship: SCHEDULED
@@ -2664,12 +1714,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 71
-        time: 1671073031
+        delay: 136
+        time: 1671073096
       }
       departure {
-        delay: 71
-        time: 1671073031
+        delay: 136
+        time: 1671073096
       }
       stop_id: "131"
       schedule_relationship: SCHEDULED
@@ -2677,12 +1727,12 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 71
-        time: 1671073151
+        delay: 166
+        time: 1671073246
       }
       departure {
-        delay: 71
-        time: 1671073151
+        delay: 166
+        time: 1671073246
       }
       stop_id: "162"
       schedule_relationship: SCHEDULED
@@ -2690,8 +1740,8 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 71
-        time: 1671073511
+        delay: 203
+        time: 1671073643
       }
       stop_id: "171"
       schedule_relationship: SCHEDULED
@@ -2700,7 +1750,7 @@ entity {
       id: "7084_470"
       label: "7084"
     }
-    timestamp: 1671072876
+    timestamp: 1671074554
   }
 }
 entity {
@@ -2711,14 +1761,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.787216
-      longitude: -73.7261
-      bearing: 65.0
-      speed: 4.013436
+      latitude: 40.829037
+      longitude: -73.6874
+      bearing: 355.0
+      speed: 0.01697992
     }
     current_status: STOPPED_AT
-    timestamp: 1671072872
-    stop_id: "72"
+    timestamp: 1671074553
+    stop_id: "171"
     vehicle {
       id: "7084_470"
       label: "7084"
@@ -2858,7 +1908,7 @@ entity {
       id: "9154_890"
       label: "9154"
     }
-    timestamp: 1671072736
+    timestamp: 1671073012
   }
 }
 entity {
@@ -2939,87 +1989,39 @@ entity {
     }
     stop_time_update {
       stop_sequence: 9
-      arrival {
-        delay: 6
-        time: 1671072846
-      }
-      departure {
-        delay: 6
-        time: 1671072846
-      }
       stop_id: "66"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 10
-      arrival {
-        delay: 6
-        time: 1671072966
-      }
-      departure {
-        delay: 6
-        time: 1671072966
-      }
       stop_id: "94"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 11
-      arrival {
-        delay: 6
-        time: 1671073086
-      }
-      departure {
-        delay: 6
-        time: 1671073086
-      }
       stop_id: "217"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 12
-      arrival {
-        delay: 6
-        time: 1671073266
-      }
-      departure {
-        delay: 6
-        time: 1671073266
-      }
       stop_id: "32"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 13
-      arrival {
-        delay: 6
-        time: 1671073386
-      }
-      departure {
-        delay: 6
-        time: 1671073386
-      }
       stop_id: "114"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 14
-      arrival {
-        delay: 6
-        time: 1671073506
-      }
-      departure {
-        delay: 6
-        time: 1671073506
-      }
       stop_id: "101"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 15
       arrival {
-        delay: 6
-        time: 1671073806
+        delay: -229
+        time: 1671073571
       }
       stop_id: "65"
       schedule_relationship: SCHEDULED
@@ -3028,7 +2030,7 @@ entity {
       id: "7334_2882"
       label: "7334"
     }
-    timestamp: 1671072891
+    timestamp: 1671074558
   }
 }
 entity {
@@ -3044,9 +2046,9 @@ entity {
       bearing: 72.0
       speed: 0.0
     }
-    current_status: IN_TRANSIT_TO
-    timestamp: 1671072889
-    stop_id: "66"
+    current_status: STOPPED_AT
+    timestamp: 1671074555
+    stop_id: "65"
     vehicle {
       id: "7334_2882"
       label: "7334"
@@ -3269,14 +2271,18 @@ entity {
         delay: 282
         time: 1671072582
       }
+      departure {
+        delay: 282
+        time: 1671072582
+      }
       stop_id: "214"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 18
       arrival {
-        delay: 255
-        time: 1671073155
+        delay: 272
+        time: 1671073172
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -3285,7 +2291,7 @@ entity {
       id: "7071_149"
       label: "7071"
     }
-    timestamp: 1671072898
+    timestamp: 1671073904
   }
 }
 entity {
@@ -3392,35 +2398,19 @@ entity {
     }
     stop_time_update {
       stop_sequence: 15
-      arrival {
-        delay: 38
-        time: 1671073118
-      }
-      departure {
-        delay: 38
-        time: 1671073118
-      }
       stop_id: "184"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 16
-      arrival {
-        delay: 38
-        time: 1671073598
-      }
-      departure {
-        delay: 38
-        time: 1671073598
-      }
       stop_id: "102"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 17
       arrival {
-        delay: 38
-        time: 1671074738
+        delay: -79
+        time: 1671074621
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -3429,7 +2419,7 @@ entity {
       id: "7113_151"
       label: "7113"
     }
-    timestamp: 1671072759
+    timestamp: 1671074369
   }
 }
 entity {
@@ -3440,228 +2430,15 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.660976
-      longitude: -73.70249
+      latitude: 40.743458
+      longitude: -73.94464
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072758
-    stop_id: "184"
+    timestamp: 1671074321
+    stop_id: "237"
     vehicle {
       id: "7113_151"
       label: "7113"
-    }
-  }
-}
-entity {
-  id: "GO101A_22_475_METS_T"
-  trip_update {
-    trip {
-      trip_id: "GO101A_22_475_METS"
-      start_date: "20221214"
-      schedule_relationship: SCHEDULED
-      route_id: "9"
-      direction_id: 1
-    }
-    stop_time_update {
-      stop_sequence: 1
-      departure {
-        delay: 224
-        time: 1671068564
-      }
-      stop_id: "171"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 2
-      arrival {
-        delay: 173
-        time: 1671068813
-      }
-      departure {
-        delay: 173
-        time: 1671068813
-      }
-      stop_id: "162"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 3
-      arrival {
-        delay: 208
-        time: 1671068968
-      }
-      departure {
-        delay: 208
-        time: 1671068968
-      }
-      stop_id: "131"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 4
-      arrival {
-        delay: 196
-        time: 1671069136
-      }
-      departure {
-        delay: 196
-        time: 1671069136
-      }
-      stop_id: "72"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 5
-      arrival {
-        delay: 268
-        time: 1671069328
-      }
-      departure {
-        delay: 268
-        time: 1671069328
-      }
-      stop_id: "120"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 6
-      arrival {
-        delay: 283
-        time: 1671069463
-      }
-      departure {
-        delay: 283
-        time: 1671069463
-      }
-      stop_id: "42"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 7
-      arrival {
-        delay: 268
-        time: 1671069628
-      }
-      departure {
-        delay: 268
-        time: 1671069628
-      }
-      stop_id: "25"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 8
-      arrival {
-        delay: 243
-        time: 1671069783
-      }
-      departure {
-        delay: 243
-        time: 1671069783
-      }
-      stop_id: "2"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 9
-      arrival {
-        delay: 233
-        time: 1671069893
-      }
-      departure {
-        delay: 233
-        time: 1671069893
-      }
-      stop_id: "11"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 10
-      arrival {
-        delay: 258
-        time: 1671070038
-      }
-      departure {
-        delay: 258
-        time: 1671070038
-      }
-      stop_id: "130"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 11
-      arrival {
-        delay: 268
-        time: 1671070168
-      }
-      departure {
-        delay: 268
-        time: 1671070168
-      }
-      stop_id: "56"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 12
-      arrival {
-        delay: 363
-        time: 1671070323
-      }
-      departure {
-        delay: 363
-        time: 1671070323
-      }
-      stop_id: "199"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 13
-      arrival {
-        delay: 348
-        time: 1671070668
-      }
-      departure {
-        delay: 348
-        time: 1671070668
-      }
-      stop_id: "214"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 14
-      arrival {
-        delay: 322
-        time: 1671071242
-      }
-      stop_id: "237"
-      schedule_relationship: SCHEDULED
-    }
-    vehicle {
-      id: "7011_475"
-      label: "7011"
-    }
-    timestamp: 1671071306
-  }
-}
-entity {
-  id: "GO101A_22_475_METS_V"
-  vehicle {
-    trip {
-      trip_id: "GO101A_22_475_METS"
-      start_date: "20221214"
-    }
-    position {
-      latitude: 40.7429
-      longitude: -73.94627
-      bearing: 245.0
-      speed: 23.051529
-    }
-    current_status: IN_TRANSIT_TO
-    timestamp: 1671071018
-    stop_id: "237"
-    vehicle {
-      id: "7011_475"
-      label: "7011"
     }
   }
 }
@@ -3837,7 +2614,7 @@ entity {
       id: "9061_477"
       label: "9061"
     }
-    timestamp: 1671072781
+    timestamp: 1671073316
   }
 }
 entity {
@@ -3848,13 +2625,11 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.7429
-      longitude: -73.94627
-      bearing: 245.0
-      speed: 18.319277
+      latitude: 40.74926
+      longitude: -73.989685
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072555
+    timestamp: 1671072779
     stop_id: "237"
     vehicle {
       id: "9061_477"
@@ -3940,18 +2715,22 @@ entity {
         delay: 54
         time: 1671072774
       }
+      departure {
+        delay: 54
+        time: 1671072774
+      }
       stop_id: "187"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 54
-        time: 1671072954
+        delay: 14
+        time: 1671072914
       }
       departure {
-        delay: 54
-        time: 1671072954
+        delay: 14
+        time: 1671072914
       }
       stop_id: "215"
       schedule_relationship: SCHEDULED
@@ -3959,12 +2738,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 54
-        time: 1671073134
+        delay: -11
+        time: 1671073069
       }
       departure {
-        delay: 54
-        time: 1671073134
+        delay: -11
+        time: 1671073069
       }
       stop_id: "16"
       schedule_relationship: SCHEDULED
@@ -3972,12 +2751,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 54
-        time: 1671073314
+        delay: -36
+        time: 1671073224
       }
       departure {
-        delay: 54
-        time: 1671073314
+        delay: -36
+        time: 1671073224
       }
       stop_id: "226"
       schedule_relationship: SCHEDULED
@@ -3985,12 +2764,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 54
-        time: 1671073494
+        delay: -41
+        time: 1671073399
       }
       departure {
-        delay: 54
-        time: 1671073494
+        delay: -41
+        time: 1671073399
       }
       stop_id: "64"
       schedule_relationship: SCHEDULED
@@ -3998,12 +2777,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 54
-        time: 1671073674
+        delay: -66
+        time: 1671073554
       }
       departure {
-        delay: 54
-        time: 1671073674
+        delay: -66
+        time: 1671073554
       }
       stop_id: "225"
       schedule_relationship: SCHEDULED
@@ -4011,12 +2790,8 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 54
-        time: 1671073854
-      }
-      departure {
-        delay: 54
-        time: 1671073854
+        delay: -31
+        time: 1671073769
       }
       stop_id: "183"
       schedule_relationship: SCHEDULED
@@ -4024,12 +2799,12 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 54
-        time: 1671074934
+        delay: -86
+        time: 1671074794
       }
       departure {
-        delay: 54
-        time: 1671074934
+        delay: 0
+        time: 1671074880
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -4037,12 +2812,12 @@ entity {
     stop_time_update {
       stop_sequence: 15
       arrival {
-        delay: 54
-        time: 1671075654
+        delay: 0
+        time: 1671075600
       }
       departure {
-        delay: 54
-        time: 1671075654
+        delay: 0
+        time: 1671075600
       }
       stop_id: "214"
       schedule_relationship: SCHEDULED
@@ -4050,8 +2825,8 @@ entity {
     stop_time_update {
       stop_sequence: 16
       arrival {
-        delay: 54
-        time: 1671076254
+        delay: 0
+        time: 1671076200
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -4060,7 +2835,7 @@ entity {
       id: "7243_153"
       label: "7243"
     }
-    timestamp: 1671072904
+    timestamp: 1671074569
   }
 }
 entity {
@@ -4071,177 +2846,17 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.673595
-      longitude: -73.50495
-      bearing: 259.0
-      speed: 23.841352
+      latitude: 40.701603
+      longitude: -73.801414
+      bearing: 241.0
+      speed: 8.368013
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072904
-    stop_id: "215"
+    timestamp: 1671074569
+    stop_id: "102"
     vehicle {
       id: "7243_153"
       label: "7243"
-    }
-  }
-}
-entity {
-  id: "GO101A_22_2069_T"
-  trip_update {
-    trip {
-      trip_id: "GO101A_22_2069"
-      start_date: "20221214"
-      schedule_relationship: SCHEDULED
-      route_id: "4"
-      direction_id: 1
-    }
-    stop_time_update {
-      stop_sequence: 1
-      stop_id: "179"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 2
-      stop_id: "33"
-      schedule_relationship: NO_DATA
-    }
-    stop_time_update {
-      stop_sequence: 3
-      arrival {
-        delay: -10
-        time: 1671066710
-      }
-      departure {
-        delay: -10
-        time: 1671066710
-      }
-      stop_id: "29"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 4
-      arrival {
-        delay: -50
-        time: 1671066970
-      }
-      departure {
-        delay: -50
-        time: 1671066970
-      }
-      stop_id: "44"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 5
-      arrival {
-        delay: -10
-        time: 1671067310
-      }
-      departure {
-        delay: -10
-        time: 1671067310
-      }
-      stop_id: "220"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 6
-      arrival {
-        delay: 22
-        time: 1671067702
-      }
-      departure {
-        delay: 22
-        time: 1671067702
-      }
-      stop_id: "59"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 7
-      arrival {
-        delay: 22
-        time: 1671068002
-      }
-      departure {
-        delay: 22
-        time: 1671068002
-      }
-      stop_id: "20"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 8
-      arrival {
-        delay: 64
-        time: 1671068344
-      }
-      departure {
-        delay: 64
-        time: 1671068344
-      }
-      stop_id: "92"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 9
-      arrival {
-        delay: 88
-        time: 1671068848
-      }
-      departure {
-        delay: 88
-        time: 1671068848
-      }
-      stop_id: "132"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 10
-      arrival {
-        delay: -6
-        time: 1671069714
-      }
-      departure {
-        delay: -6
-        time: 1671069714
-      }
-      stop_id: "102"
-      schedule_relationship: SCHEDULED
-    }
-    stop_time_update {
-      stop_sequence: 11
-      arrival {
-        delay: 100
-        time: 1671070840
-      }
-      stop_id: "237"
-      schedule_relationship: SCHEDULED
-    }
-    vehicle {
-      id: "9135_2069"
-      label: "9135"
-    }
-    timestamp: 1671071590
-  }
-}
-entity {
-  id: "GO101A_22_2069_V"
-  vehicle {
-    trip {
-      trip_id: "GO101A_22_2069"
-      start_date: "20221214"
-    }
-    position {
-      latitude: 40.74926
-      longitude: -73.989685
-    }
-    current_status: IN_TRANSIT_TO
-    timestamp: 1671070840
-    stop_id: "237"
-    vehicle {
-      id: "9135_2069"
-      label: "9135"
     }
   }
 }
@@ -4381,7 +2996,7 @@ entity {
       id: "7251_875"
       label: "7251"
     }
-    timestamp: 1671072015
+    timestamp: 1671073043
   }
 }
 entity {
@@ -4392,13 +3007,11 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.7429
-      longitude: -73.94627
-      bearing: 245.0
-      speed: 21.765171
+      latitude: 40.74926
+      longitude: -73.989685
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671071700
+    timestamp: 1671071920
     stop_id: "237"
     vehicle {
       id: "7251_875"
@@ -4419,7 +3032,7 @@ entity {
     stop_time_update {
       stop_sequence: 1
       departure {
-        delay: 33
+        delay: 93
         time: 1671072213
       }
       stop_id: "241"
@@ -4427,39 +3040,23 @@ entity {
     }
     stop_time_update {
       stop_sequence: 2
-      arrival {
-        delay: 33
-        time: 1671072513
-      }
-      departure {
-        delay: 33
-        time: 1671072513
-      }
       stop_id: "148"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 3
-      arrival {
-        delay: 33
-        time: 1671072813
-      }
-      departure {
-        delay: 33
-        time: 1671072813
-      }
       stop_id: "50"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 33
-        time: 1671073533
+        delay: -79
+        time: 1671073421
       }
       departure {
-        delay: 33
-        time: 1671073533
+        delay: -79
+        time: 1671073421
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -4467,12 +3064,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 33
-        time: 1671073953
+        delay: 157
+        time: 1671074077
       }
       departure {
-        delay: 33
-        time: 1671073953
+        delay: 157
+        time: 1671074077
       }
       stop_id: "89"
       schedule_relationship: SCHEDULED
@@ -4480,12 +3077,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 33
-        time: 1671074133
+        delay: 170
+        time: 1671074270
       }
       departure {
-        delay: 33
-        time: 1671074133
+        delay: 170
+        time: 1671074270
       }
       stop_id: "175"
       schedule_relationship: SCHEDULED
@@ -4493,12 +3090,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 33
-        time: 1671074253
+        delay: 219
+        time: 1671074439
       }
       departure {
-        delay: 33
-        time: 1671074253
+        delay: 219
+        time: 1671074439
       }
       stop_id: "23"
       schedule_relationship: SCHEDULED
@@ -4506,12 +3103,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 33
-        time: 1671074373
+        delay: 224
+        time: 1671074564
       }
       departure {
-        delay: 33
-        time: 1671074373
+        delay: 224
+        time: 1671074564
       }
       stop_id: "63"
       schedule_relationship: SCHEDULED
@@ -4519,12 +3116,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 33
-        time: 1671074553
+        delay: 224
+        time: 1671074744
       }
       departure {
-        delay: 33
-        time: 1671074553
+        delay: 224
+        time: 1671074744
       }
       stop_id: "195"
       schedule_relationship: SCHEDULED
@@ -4532,12 +3129,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 33
-        time: 1671074733
+        delay: 224
+        time: 1671074924
       }
       departure {
-        delay: 33
-        time: 1671074733
+        delay: 224
+        time: 1671074924
       }
       stop_id: "149"
       schedule_relationship: SCHEDULED
@@ -4545,12 +3142,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 33
-        time: 1671074913
+        delay: 224
+        time: 1671075104
       }
       departure {
-        delay: 33
-        time: 1671074913
+        delay: 224
+        time: 1671075104
       }
       stop_id: "68"
       schedule_relationship: SCHEDULED
@@ -4558,12 +3155,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 33
-        time: 1671075093
+        delay: 224
+        time: 1671075284
       }
       departure {
-        delay: 33
-        time: 1671075093
+        delay: 224
+        time: 1671075284
       }
       stop_id: "36"
       schedule_relationship: SCHEDULED
@@ -4571,8 +3168,8 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 33
-        time: 1671075393
+        delay: 224
+        time: 1671075584
       }
       stop_id: "84"
       schedule_relationship: SCHEDULED
@@ -4581,7 +3178,7 @@ entity {
       id: "7142_780"
       label: "7142"
     }
-    timestamp: 1671072215
+    timestamp: 1671074572
   }
 }
 entity {
@@ -4592,12 +3189,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.683598
-      longitude: -73.97567
+      latitude: 40.724636
+      longitude: -73.7064
+      bearing: 73.0
+      speed: 13.532481
     }
     current_status: STOPPED_AT
-    timestamp: 1671072213
-    stop_id: "241"
+    timestamp: 1671074570
+    stop_id: "63"
     vehicle {
       id: "7142_780"
       label: "7142"
@@ -4682,8 +3281,8 @@ entity {
         time: 1671072618
       }
       departure {
-        delay: 0
-        time: 1671072720
+        delay: -102
+        time: 1671072618
       }
       stop_id: "157"
       schedule_relationship: SCHEDULED
@@ -4691,12 +3290,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 0
-        time: 1671072960
+        delay: -27
+        time: 1671072933
       }
       departure {
-        delay: 0
-        time: 1671072960
+        delay: -27
+        time: 1671072933
       }
       stop_id: "74"
       schedule_relationship: SCHEDULED
@@ -4704,12 +3303,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 0
-        time: 1671073200
+        delay: -42
+        time: 1671073158
       }
       departure {
-        delay: 0
-        time: 1671073200
+        delay: -42
+        time: 1671073158
       }
       stop_id: "100"
       schedule_relationship: SCHEDULED
@@ -4717,12 +3316,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 0
-        time: 1671073500
+        delay: -77
+        time: 1671073423
       }
       departure {
-        delay: 0
-        time: 1671073500
+        delay: -77
+        time: 1671073423
       }
       stop_id: "26"
       schedule_relationship: SCHEDULED
@@ -4730,12 +3329,8 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 0
-        time: 1671073980
-      }
-      departure {
-        delay: 0
-        time: 1671073980
+        delay: -167
+        time: 1671073813
       }
       stop_id: "27"
       schedule_relationship: SCHEDULED
@@ -4743,8 +3338,8 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 0
-        time: 1671075960
+        delay: -129
+        time: 1671075831
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -4753,7 +3348,7 @@ entity {
       id: "508_2747"
       label: "508"
     }
-    timestamp: 1671072903
+    timestamp: 1671074574
   }
 }
 entity {
@@ -4764,14 +3359,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.741425
-      longitude: -73.163284
-      bearing: 259.0
-      speed: 20.158768
+      latitude: 40.669357
+      longitude: -73.52657
+      bearing: 253.0
+      speed: 34.558254
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072903
-    stop_id: "74"
+    timestamp: 1671074573
+    stop_id: "102"
     vehicle {
       id: "508_2747"
       label: "508"
@@ -4888,7 +3483,7 @@ entity {
       id: "420_670"
       label: "420"
     }
-    timestamp: 1671072898
+    timestamp: 1671074558
   }
 }
 entity {
@@ -4923,22 +3518,18 @@ entity {
     }
     stop_time_update {
       stop_sequence: 1
-      departure {
-        delay: 0
-        time: 1671073860
-      }
       stop_id: "102"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: 0
-        time: 1671074640
+        delay: 52
+        time: 1671074692
       }
       departure {
-        delay: 0
-        time: 1671074640
+        delay: 52
+        time: 1671074692
       }
       stop_id: "132"
       schedule_relationship: SCHEDULED
@@ -4946,12 +3537,12 @@ entity {
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 0
-        time: 1671074880
+        delay: 52
+        time: 1671074932
       }
       departure {
-        delay: 0
-        time: 1671074880
+        delay: 52
+        time: 1671074932
       }
       stop_id: "52"
       schedule_relationship: SCHEDULED
@@ -4959,12 +3550,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 0
-        time: 1671075120
+        delay: 52
+        time: 1671075172
       }
       departure {
-        delay: 0
-        time: 1671075120
+        delay: 52
+        time: 1671075172
       }
       stop_id: "1"
       schedule_relationship: SCHEDULED
@@ -4972,12 +3563,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 0
-        time: 1671075240
+        delay: 52
+        time: 1671075292
       }
       departure {
-        delay: 0
-        time: 1671075240
+        delay: 52
+        time: 1671075292
       }
       stop_id: "182"
       schedule_relationship: SCHEDULED
@@ -4985,12 +3576,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 0
-        time: 1671075480
+        delay: 52
+        time: 1671075532
       }
       departure {
-        delay: 0
-        time: 1671075480
+        delay: 52
+        time: 1671075532
       }
       stop_id: "77"
       schedule_relationship: SCHEDULED
@@ -4998,12 +3589,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 0
-        time: 1671075660
+        delay: 52
+        time: 1671075712
       }
       departure {
-        delay: 0
-        time: 1671075660
+        delay: 52
+        time: 1671075712
       }
       stop_id: "71"
       schedule_relationship: SCHEDULED
@@ -5011,12 +3602,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 0
-        time: 1671075840
+        delay: 52
+        time: 1671075892
       }
       departure {
-        delay: 0
-        time: 1671075840
+        delay: 52
+        time: 1671075892
       }
       stop_id: "185"
       schedule_relationship: SCHEDULED
@@ -5024,12 +3615,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 0
-        time: 1671075960
+        delay: 52
+        time: 1671076012
       }
       departure {
-        delay: 0
-        time: 1671075960
+        delay: 52
+        time: 1671076012
       }
       stop_id: "76"
       schedule_relationship: SCHEDULED
@@ -5037,12 +3628,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 0
-        time: 1671076140
+        delay: 52
+        time: 1671076192
       }
       departure {
-        delay: 0
-        time: 1671076140
+        delay: 52
+        time: 1671076192
       }
       stop_id: "67"
       schedule_relationship: SCHEDULED
@@ -5050,12 +3641,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 0
-        time: 1671076380
+        delay: 52
+        time: 1671076432
       }
       departure {
-        delay: 0
-        time: 1671076380
+        delay: 52
+        time: 1671076432
       }
       stop_id: "123"
       schedule_relationship: SCHEDULED
@@ -5063,13 +3654,39 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 0
-        time: 1671077040
+        delay: 52
+        time: 1671077092
       }
       stop_id: "154"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671066657
+    vehicle {
+      id: "522_572"
+      label: "522"
+    }
+    timestamp: 1671074573
+  }
+}
+entity {
+  id: "GO101A_22_572_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_572"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.727352
+      longitude: -73.695305
+      bearing: 73.0
+      speed: 28.055458
+    }
+    current_status: IN_TRANSIT_TO
+    timestamp: 1671074572
+    stop_id: "132"
+    vehicle {
+      id: "522_572"
+      label: "522"
+    }
   }
 }
 entity {
@@ -5085,8 +3702,8 @@ entity {
     stop_time_update {
       stop_sequence: 1
       departure {
-        delay: 0
-        time: 1671073440
+        delay: 41
+        time: 1671073481
       }
       stop_id: "241"
       schedule_relationship: SCHEDULED
@@ -5094,12 +3711,12 @@ entity {
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: 0
-        time: 1671073920
+        delay: -61
+        time: 1671073859
       }
       departure {
-        delay: 0
-        time: 1671073920
+        delay: -61
+        time: 1671073859
       }
       stop_id: "148"
       schedule_relationship: SCHEDULED
@@ -5107,8 +3724,8 @@ entity {
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 0
-        time: 1671074220
+        delay: -18
+        time: 1671074202
       }
       departure {
         delay: 0
@@ -5269,7 +3886,33 @@ entity {
       stop_id: "65"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671067179
+    vehicle {
+      id: "7720_2884"
+      label: "7720"
+    }
+    timestamp: 1671074572
+  }
+}
+entity {
+  id: "GO101A_22_2884_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_2884"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.695583
+      longitude: -73.82276
+      bearing: 70.0
+      speed: 6.071608
+    }
+    current_status: IN_TRANSIT_TO
+    timestamp: 1671074570
+    stop_id: "102"
+    vehicle {
+      id: "7720_2884"
+      label: "7720"
+    }
   }
 }
 entity {
@@ -5285,8 +3928,8 @@ entity {
     stop_time_update {
       stop_sequence: 1
       departure {
-        delay: 0
-        time: 1671074160
+        delay: 94
+        time: 1671074254
       }
       stop_id: "113"
       schedule_relationship: SCHEDULED
@@ -5294,12 +3937,12 @@ entity {
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: 0
-        time: 1671074520
+        delay: 2
+        time: 1671074522
       }
       departure {
-        delay: 0
-        time: 1671074520
+        delay: 2
+        time: 1671074522
       }
       stop_id: "99"
       schedule_relationship: SCHEDULED
@@ -5307,12 +3950,12 @@ entity {
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 0
-        time: 1671074760
+        delay: 2
+        time: 1671074762
       }
       departure {
-        delay: 0
-        time: 1671074760
+        delay: 2
+        time: 1671074762
       }
       stop_id: "155"
       schedule_relationship: SCHEDULED
@@ -5320,12 +3963,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 0
-        time: 1671074880
+        delay: 2
+        time: 1671074882
       }
       departure {
-        delay: 0
-        time: 1671074880
+        delay: 2
+        time: 1671074882
       }
       stop_id: "51"
       schedule_relationship: SCHEDULED
@@ -5333,12 +3976,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 0
-        time: 1671075000
+        delay: 2
+        time: 1671075002
       }
       departure {
-        delay: 0
-        time: 1671075000
+        delay: 2
+        time: 1671075002
       }
       stop_id: "31"
       schedule_relationship: SCHEDULED
@@ -5346,12 +3989,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 0
-        time: 1671075180
+        delay: 2
+        time: 1671075182
       }
       departure {
-        delay: 0
-        time: 1671075180
+        delay: 2
+        time: 1671075182
       }
       stop_id: "125"
       schedule_relationship: SCHEDULED
@@ -5359,12 +4002,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 0
-        time: 1671075360
+        delay: 2
+        time: 1671075362
       }
       departure {
-        delay: 0
-        time: 1671075360
+        delay: 2
+        time: 1671075362
       }
       stop_id: "211"
       schedule_relationship: SCHEDULED
@@ -5372,12 +4015,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 0
-        time: 1671076080
+        delay: 2
+        time: 1671076082
       }
       departure {
-        delay: 0
-        time: 1671076080
+        delay: 2
+        time: 1671076082
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -5385,12 +4028,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 0
-        time: 1671076320
+        delay: 2
+        time: 1671076322
       }
       departure {
-        delay: 0
-        time: 1671076320
+        delay: 2
+        time: 1671076322
       }
       stop_id: "107"
       schedule_relationship: SCHEDULED
@@ -5398,12 +4041,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 0
-        time: 1671076440
+        delay: 2
+        time: 1671076442
       }
       departure {
-        delay: 0
-        time: 1671076440
+        delay: 2
+        time: 1671076442
       }
       stop_id: "55"
       schedule_relationship: SCHEDULED
@@ -5411,13 +4054,39 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 0
-        time: 1671077280
+        delay: 2
+        time: 1671077282
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671067525
+    vehicle {
+      id: "7107_877"
+      label: "7107"
+    }
+    timestamp: 1671074548
+  }
+}
+entity {
+  id: "GO101A_22_877_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_877"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.6013
+      longitude: -73.65474
+      bearing: 41.0
+      speed: 1.15412
+    }
+    current_status: STOPPED_AT
+    timestamp: 1671074547
+    stop_id: "99"
+    vehicle {
+      id: "7107_877"
+      label: "7107"
+    }
   }
 }
 entity {
@@ -5943,8 +4612,8 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: -36
-        time: 1671073404
+        delay: 182
+        time: 1671073622
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -5953,7 +4622,7 @@ entity {
       id: "7575_1723"
       label: "7575"
     }
-    timestamp: 1671072904
+    timestamp: 1671074049
   }
 }
 entity {
@@ -5964,13 +4633,11 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.749588
-      longitude: -73.90753
-      bearing: 304.0
-      speed: 19.00825
+      latitude: 40.74926
+      longitude: -73.989685
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072904
+    timestamp: 1671073622
     stop_id: "237"
     vehicle {
       id: "7575_1723"
@@ -6000,12 +4667,12 @@ entity {
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: -4
-        time: 1671073136
+        delay: -30
+        time: 1671073110
       }
       departure {
-        delay: 0
-        time: 1671073140
+        delay: -30
+        time: 1671073110
       }
       stop_id: "214"
       schedule_relationship: SCHEDULED
@@ -6013,12 +4680,12 @@ entity {
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 0
-        time: 1671073560
+        delay: -80
+        time: 1671073480
       }
       departure {
-        delay: 0
-        time: 1671073560
+        delay: -80
+        time: 1671073480
       }
       stop_id: "199"
       schedule_relationship: SCHEDULED
@@ -6026,12 +4693,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 0
-        time: 1671073620
+        delay: 24
+        time: 1671073644
       }
       departure {
-        delay: 0
-        time: 1671073620
+        delay: 24
+        time: 1671073644
       }
       stop_id: "56"
       schedule_relationship: SCHEDULED
@@ -6039,12 +4706,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 0
-        time: 1671073740
+        delay: 48
+        time: 1671073788
       }
       departure {
-        delay: 0
-        time: 1671073740
+        delay: 48
+        time: 1671073788
       }
       stop_id: "130"
       schedule_relationship: SCHEDULED
@@ -6052,12 +4719,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 0
-        time: 1671073860
+        delay: 54
+        time: 1671073914
       }
       departure {
-        delay: 0
-        time: 1671073860
+        delay: 54
+        time: 1671073914
       }
       stop_id: "11"
       schedule_relationship: SCHEDULED
@@ -6065,12 +4732,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 0
-        time: 1671073980
+        delay: 48
+        time: 1671074028
       }
       departure {
-        delay: 0
-        time: 1671073980
+        delay: 48
+        time: 1671074028
       }
       stop_id: "2"
       schedule_relationship: SCHEDULED
@@ -6078,12 +4745,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 0
-        time: 1671074100
+        delay: 70
+        time: 1671074170
       }
       departure {
-        delay: 0
-        time: 1671074100
+        delay: 70
+        time: 1671074170
       }
       stop_id: "25"
       schedule_relationship: SCHEDULED
@@ -6091,12 +4758,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 0
-        time: 1671074280
+        delay: 72
+        time: 1671074352
       }
       departure {
-        delay: 0
-        time: 1671074280
+        delay: 72
+        time: 1671074352
       }
       stop_id: "42"
       schedule_relationship: SCHEDULED
@@ -6104,12 +4771,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 0
-        time: 1671074400
+        delay: 70
+        time: 1671074470
       }
       departure {
-        delay: 0
-        time: 1671074400
+        delay: 70
+        time: 1671074470
       }
       stop_id: "120"
       schedule_relationship: SCHEDULED
@@ -6117,12 +4784,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 0
-        time: 1671074580
+        delay: 70
+        time: 1671074650
       }
       departure {
-        delay: 0
-        time: 1671074580
+        delay: 70
+        time: 1671074650
       }
       stop_id: "72"
       schedule_relationship: SCHEDULED
@@ -6130,12 +4797,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 0
-        time: 1671074760
+        delay: 70
+        time: 1671074830
       }
       departure {
-        delay: 0
-        time: 1671074760
+        delay: 70
+        time: 1671074830
       }
       stop_id: "131"
       schedule_relationship: SCHEDULED
@@ -6143,12 +4810,12 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 0
-        time: 1671074880
+        delay: 70
+        time: 1671074950
       }
       departure {
-        delay: 0
-        time: 1671074880
+        delay: 70
+        time: 1671074950
       }
       stop_id: "162"
       schedule_relationship: SCHEDULED
@@ -6156,8 +4823,8 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 0
-        time: 1671075240
+        delay: 70
+        time: 1671075310
       }
       stop_id: "171"
       schedule_relationship: SCHEDULED
@@ -6166,7 +4833,7 @@ entity {
       id: "9064_472"
       label: "9064"
     }
-    timestamp: 1671072888
+    timestamp: 1671074575
   }
 }
 entity {
@@ -6177,14 +4844,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.74445
-      longitude: -73.94246
-      bearing: 61.0
-      speed: 16.394884
+      latitude: 40.7781
+      longitude: -73.736824
+      bearing: 44.0
+      speed: 18.543102
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072884
-    stop_id: "214"
+    timestamp: 1671074570
+    stop_id: "72"
     vehicle {
       id: "9064_472"
       label: "9064"
@@ -6204,8 +4871,8 @@ entity {
     stop_time_update {
       stop_sequence: 1
       departure {
-        delay: 0
-        time: 1671072780
+        delay: 191
+        time: 1671072971
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -6213,12 +4880,12 @@ entity {
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: 0
-        time: 1671073500
+        delay: 17
+        time: 1671073517
       }
       departure {
-        delay: 0
-        time: 1671073500
+        delay: 17
+        time: 1671073517
       }
       stop_id: "214"
       schedule_relationship: SCHEDULED
@@ -6226,12 +4893,8 @@ entity {
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 0
-        time: 1671074160
-      }
-      departure {
-        delay: 0
-        time: 1671074160
+        delay: -31
+        time: 1671074129
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -6239,12 +4902,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 0
-        time: 1671074940
+        delay: 154
+        time: 1671075094
       }
       departure {
-        delay: 0
-        time: 1671074940
+        delay: 154
+        time: 1671075094
       }
       stop_id: "132"
       schedule_relationship: SCHEDULED
@@ -6252,12 +4915,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 0
-        time: 1671075540
+        delay: 154
+        time: 1671075694
       }
       departure {
-        delay: 0
-        time: 1671075540
+        delay: 154
+        time: 1671075694
       }
       stop_id: "92"
       schedule_relationship: SCHEDULED
@@ -6265,12 +4928,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 0
-        time: 1671075900
+        delay: 154
+        time: 1671076054
       }
       departure {
-        delay: 0
-        time: 1671075900
+        delay: 154
+        time: 1671076054
       }
       stop_id: "20"
       schedule_relationship: SCHEDULED
@@ -6278,12 +4941,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 0
-        time: 1671076200
+        delay: 154
+        time: 1671076354
       }
       departure {
-        delay: 0
-        time: 1671076200
+        delay: 154
+        time: 1671076354
       }
       stop_id: "59"
       schedule_relationship: SCHEDULED
@@ -6291,12 +4954,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 0
-        time: 1671076560
+        delay: 154
+        time: 1671076714
       }
       departure {
-        delay: 0
-        time: 1671076560
+        delay: 154
+        time: 1671076714
       }
       stop_id: "220"
       schedule_relationship: SCHEDULED
@@ -6304,12 +4967,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 0
-        time: 1671076860
+        delay: 154
+        time: 1671077014
       }
       departure {
-        delay: 0
-        time: 1671076860
+        delay: 154
+        time: 1671077014
       }
       stop_id: "44"
       schedule_relationship: SCHEDULED
@@ -6317,12 +4980,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 0
-        time: 1671077160
+        delay: 154
+        time: 1671077314
       }
       departure {
-        delay: 0
-        time: 1671077160
+        delay: 154
+        time: 1671077314
       }
       stop_id: "29"
       schedule_relationship: SCHEDULED
@@ -6330,12 +4993,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 0
-        time: 1671077400
+        delay: 154
+        time: 1671077554
       }
       departure {
-        delay: 0
-        time: 1671077400
+        delay: 154
+        time: 1671077554
       }
       stop_id: "33"
       schedule_relationship: SCHEDULED
@@ -6343,8 +5006,8 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 0
-        time: 1671077820
+        delay: 154
+        time: 1671077974
       }
       stop_id: "179"
       schedule_relationship: SCHEDULED
@@ -6353,7 +5016,7 @@ entity {
       id: "7632_2090"
       label: "7632"
     }
-    timestamp: 1671072298
+    timestamp: 1671074569
   }
 }
 entity {
@@ -6364,12 +5027,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.752167
-      longitude: -73.997284
+      latitude: 40.708015
+      longitude: -73.775795
+      bearing: 72.0
+      speed: 10.1364975
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072296
-    stop_id: "237"
+    timestamp: 1671074567
+    stop_id: "132"
     vehicle {
       id: "7632_2090"
       label: "7632"
@@ -6389,8 +5054,8 @@ entity {
     stop_time_update {
       stop_sequence: 1
       departure {
-        delay: 0
-        time: 1671073860
+        delay: 75
+        time: 1671073935
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -6398,12 +5063,8 @@ entity {
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: 0
-        time: 1671074520
-      }
-      departure {
-        delay: 0
-        time: 1671074520
+        delay: -59
+        time: 1671074461
       }
       stop_id: "214"
       schedule_relationship: SCHEDULED
@@ -6411,12 +5072,12 @@ entity {
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 0
-        time: 1671074940
+        delay: 42
+        time: 1671074982
       }
       departure {
-        delay: 0
-        time: 1671074940
+        delay: 42
+        time: 1671074982
       }
       stop_id: "199"
       schedule_relationship: SCHEDULED
@@ -6424,12 +5085,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 0
-        time: 1671075000
+        delay: 42
+        time: 1671075042
       }
       departure {
-        delay: 0
-        time: 1671075000
+        delay: 42
+        time: 1671075042
       }
       stop_id: "56"
       schedule_relationship: SCHEDULED
@@ -6437,12 +5098,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 0
-        time: 1671075120
+        delay: 42
+        time: 1671075162
       }
       departure {
-        delay: 0
-        time: 1671075120
+        delay: 42
+        time: 1671075162
       }
       stop_id: "130"
       schedule_relationship: SCHEDULED
@@ -6450,12 +5111,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 0
-        time: 1671075240
+        delay: 42
+        time: 1671075282
       }
       departure {
-        delay: 0
-        time: 1671075240
+        delay: 42
+        time: 1671075282
       }
       stop_id: "11"
       schedule_relationship: SCHEDULED
@@ -6463,12 +5124,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 0
-        time: 1671075360
+        delay: 42
+        time: 1671075402
       }
       departure {
-        delay: 0
-        time: 1671075360
+        delay: 42
+        time: 1671075402
       }
       stop_id: "2"
       schedule_relationship: SCHEDULED
@@ -6476,12 +5137,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 0
-        time: 1671075480
+        delay: 42
+        time: 1671075522
       }
       departure {
-        delay: 0
-        time: 1671075480
+        delay: 42
+        time: 1671075522
       }
       stop_id: "25"
       schedule_relationship: SCHEDULED
@@ -6489,12 +5150,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 0
-        time: 1671075660
+        delay: 42
+        time: 1671075702
       }
       departure {
-        delay: 0
-        time: 1671075660
+        delay: 42
+        time: 1671075702
       }
       stop_id: "42"
       schedule_relationship: SCHEDULED
@@ -6502,12 +5163,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 0
-        time: 1671075780
+        delay: 42
+        time: 1671075822
       }
       departure {
-        delay: 0
-        time: 1671075780
+        delay: 42
+        time: 1671075822
       }
       stop_id: "120"
       schedule_relationship: SCHEDULED
@@ -6515,12 +5176,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 0
-        time: 1671075960
+        delay: 42
+        time: 1671076002
       }
       departure {
-        delay: 0
-        time: 1671075960
+        delay: 42
+        time: 1671076002
       }
       stop_id: "72"
       schedule_relationship: SCHEDULED
@@ -6528,12 +5189,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 0
-        time: 1671076140
+        delay: 42
+        time: 1671076182
       }
       departure {
-        delay: 0
-        time: 1671076140
+        delay: 42
+        time: 1671076182
       }
       stop_id: "131"
       schedule_relationship: SCHEDULED
@@ -6541,12 +5202,12 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 0
-        time: 1671076260
+        delay: 42
+        time: 1671076302
       }
       departure {
-        delay: 0
-        time: 1671076260
+        delay: 42
+        time: 1671076302
       }
       stop_id: "162"
       schedule_relationship: SCHEDULED
@@ -6554,13 +5215,39 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 0
-        time: 1671076680
+        delay: 42
+        time: 1671076722
       }
       stop_id: "171"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671068989
+    vehicle {
+      id: "7566_474"
+      label: "7566"
+    }
+    timestamp: 1671074575
+  }
+}
+entity {
+  id: "GO101A_22_474_METS_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_474_METS"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.7406
+      longitude: -73.89714
+      bearing: 140.0
+      speed: 16.548735
+    }
+    current_status: IN_TRANSIT_TO
+    timestamp: 1671074574
+    stop_id: "199"
+    vehicle {
+      id: "7566_474"
+      label: "7566"
+    }
   }
 }
 entity {
@@ -6747,7 +5434,7 @@ entity {
       stop_id: "171"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671069008
+    timestamp: 1671074062
   }
 }
 entity {
@@ -6960,7 +5647,7 @@ entity {
       stop_id: "27"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671069057
+    timestamp: 1671074065
   }
 }
 entity {
@@ -6995,12 +5682,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 208
-        time: 1671073588
+        delay: -40
+        time: 1671073340
       }
       departure {
-        delay: 208
-        time: 1671073588
+        delay: 0
+        time: 1671073380
       }
       stop_id: "125"
       schedule_relationship: SCHEDULED
@@ -7008,12 +5695,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 208
-        time: 1671074068
+        delay: 0
+        time: 1671073860
       }
       departure {
-        delay: 208
-        time: 1671074068
+        delay: 0
+        time: 1671073860
       }
       stop_id: "64"
       schedule_relationship: SCHEDULED
@@ -7021,8 +5708,8 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 208
-        time: 1671075028
+        delay: 600
+        time: 1671075420
       }
       stop_id: "27"
       schedule_relationship: SCHEDULED
@@ -7031,7 +5718,7 @@ entity {
       id: "7820_184"
       label: "7820"
     }
-    timestamp: 1671072809
+    timestamp: 1671074280
   }
 }
 entity {
@@ -7042,11 +5729,11 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.7
-      longitude: -73.80598
+      latitude: 40.660976
+      longitude: -73.70249
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072808
+    timestamp: 1671073220
     stop_id: "125"
     vehicle {
       id: "7820_184"
@@ -7115,12 +5802,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 38
-        time: 1671073178
+        delay: 112
+        time: 1671073252
       }
       departure {
-        delay: 38
-        time: 1671073178
+        delay: 112
+        time: 1671073252
       }
       stop_id: "184"
       schedule_relationship: SCHEDULED
@@ -7128,12 +5815,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 38
-        time: 1671073718
+        delay: 114
+        time: 1671073794
       }
       departure {
-        delay: 38
-        time: 1671073718
+        delay: 114
+        time: 1671073794
       }
       stop_id: "183"
       schedule_relationship: SCHEDULED
@@ -7141,12 +5828,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 38
-        time: 1671073898
+        delay: 138
+        time: 1671073998
       }
       departure {
-        delay: 38
-        time: 1671073898
+        delay: 138
+        time: 1671073998
       }
       stop_id: "225"
       schedule_relationship: SCHEDULED
@@ -7154,12 +5841,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 38
-        time: 1671074078
+        delay: 120
+        time: 1671074160
       }
       departure {
-        delay: 38
-        time: 1671074078
+        delay: 120
+        time: 1671074160
       }
       stop_id: "64"
       schedule_relationship: SCHEDULED
@@ -7167,12 +5854,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 38
-        time: 1671074258
+        delay: 124
+        time: 1671074344
       }
       departure {
-        delay: 38
-        time: 1671074258
+        delay: 124
+        time: 1671074344
       }
       stop_id: "226"
       schedule_relationship: SCHEDULED
@@ -7180,12 +5867,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 38
-        time: 1671074438
+        delay: 104
+        time: 1671074504
       }
       departure {
-        delay: 38
-        time: 1671074438
+        delay: 104
+        time: 1671074504
       }
       stop_id: "16"
       schedule_relationship: SCHEDULED
@@ -7193,12 +5880,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 38
-        time: 1671074618
+        delay: 104
+        time: 1671074684
       }
       departure {
-        delay: 38
-        time: 1671074618
+        delay: 104
+        time: 1671074684
       }
       stop_id: "215"
       schedule_relationship: SCHEDULED
@@ -7206,12 +5893,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 38
-        time: 1671074798
+        delay: 104
+        time: 1671074864
       }
       departure {
-        delay: 38
-        time: 1671074798
+        delay: 104
+        time: 1671074864
       }
       stop_id: "187"
       schedule_relationship: SCHEDULED
@@ -7219,12 +5906,12 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 38
-        time: 1671074918
+        delay: 104
+        time: 1671074984
       }
       departure {
-        delay: 38
-        time: 1671074918
+        delay: 104
+        time: 1671074984
       }
       stop_id: "136"
       schedule_relationship: SCHEDULED
@@ -7232,12 +5919,12 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 38
-        time: 1671075038
+        delay: 104
+        time: 1671075104
       }
       departure {
-        delay: 38
-        time: 1671075038
+        delay: 104
+        time: 1671075104
       }
       stop_id: "135"
       schedule_relationship: SCHEDULED
@@ -7245,12 +5932,12 @@ entity {
     stop_time_update {
       stop_sequence: 15
       arrival {
-        delay: 38
-        time: 1671075218
+        delay: 104
+        time: 1671075284
       }
       departure {
-        delay: 38
-        time: 1671075218
+        delay: 104
+        time: 1671075284
       }
       stop_id: "8"
       schedule_relationship: SCHEDULED
@@ -7258,12 +5945,12 @@ entity {
     stop_time_update {
       stop_sequence: 16
       arrival {
-        delay: 38
-        time: 1671075398
+        delay: 104
+        time: 1671075464
       }
       departure {
-        delay: 38
-        time: 1671075398
+        delay: 104
+        time: 1671075464
       }
       stop_id: "38"
       schedule_relationship: SCHEDULED
@@ -7271,12 +5958,12 @@ entity {
     stop_time_update {
       stop_sequence: 17
       arrival {
-        delay: 38
-        time: 1671075578
+        delay: 104
+        time: 1671075644
       }
       departure {
-        delay: 38
-        time: 1671075578
+        delay: 104
+        time: 1671075644
       }
       stop_id: "117"
       schedule_relationship: SCHEDULED
@@ -7284,8 +5971,8 @@ entity {
     stop_time_update {
       stop_sequence: 18
       arrival {
-        delay: 38
-        time: 1671075878
+        delay: 104
+        time: 1671075944
       }
       stop_id: "27"
       schedule_relationship: SCHEDULED
@@ -7294,7 +5981,7 @@ entity {
       id: "9098_186"
       label: "9098"
     }
-    timestamp: 1671072904
+    timestamp: 1671074573
   }
 }
 entity {
@@ -7305,14 +5992,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.699608
-      longitude: -73.80853
-      bearing: 70.0
-      speed: 0.03241621
+      latitude: 40.6688
+      longitude: -73.52886
+      bearing: 73.0
+      speed: 0.0113199465
     }
     current_status: STOPPED_AT
-    timestamp: 1671072902
-    stop_id: "102"
+    timestamp: 1671074570
+    stop_id: "16"
     vehicle {
       id: "9098_186"
       label: "9098"
@@ -7341,12 +6028,12 @@ entity {
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: 145
-        time: 1671072985
+        delay: 65
+        time: 1671072905
       }
       departure {
-        delay: 145
-        time: 1671072985
+        delay: 65
+        time: 1671072905
       }
       stop_id: "214"
       schedule_relationship: SCHEDULED
@@ -7354,12 +6041,12 @@ entity {
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 145
-        time: 1671073705
+        delay: 17
+        time: 1671073577
       }
       departure {
-        delay: 145
-        time: 1671073705
+        delay: 17
+        time: 1671073577
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -7367,12 +6054,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 145
-        time: 1671074305
+        delay: 119
+        time: 1671074279
       }
       departure {
-        delay: 145
-        time: 1671074305
+        delay: 119
+        time: 1671074279
       }
       stop_id: "152"
       schedule_relationship: SCHEDULED
@@ -7380,12 +6067,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 145
-        time: 1671074425
+        delay: 131
+        time: 1671074411
       }
       departure {
-        delay: 145
-        time: 1671074425
+        delay: 131
+        time: 1671074411
       }
       stop_id: "127"
       schedule_relationship: SCHEDULED
@@ -7393,12 +6080,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 145
-        time: 1671074545
+        delay: 169
+        time: 1671074569
       }
       departure {
-        delay: 145
-        time: 1671074545
+        delay: 169
+        time: 1671074569
       }
       stop_id: "132"
       schedule_relationship: SCHEDULED
@@ -7406,12 +6093,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 145
-        time: 1671074785
+        delay: 169
+        time: 1671074809
       }
       departure {
-        delay: 145
-        time: 1671074785
+        delay: 169
+        time: 1671074809
       }
       stop_id: "39"
       schedule_relationship: SCHEDULED
@@ -7419,12 +6106,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 145
-        time: 1671074905
+        delay: 169
+        time: 1671074929
       }
       departure {
-        delay: 145
-        time: 1671074905
+        delay: 169
+        time: 1671074929
       }
       stop_id: "213"
       schedule_relationship: SCHEDULED
@@ -7432,12 +6119,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 145
-        time: 1671075205
+        delay: 169
+        time: 1671075229
       }
       departure {
-        delay: 145
-        time: 1671075205
+        delay: 169
+        time: 1671075229
       }
       stop_id: "92"
       schedule_relationship: SCHEDULED
@@ -7445,12 +6132,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 145
-        time: 1671075685
+        delay: 169
+        time: 1671075709
       }
       departure {
-        delay: 145
-        time: 1671075685
+        delay: 169
+        time: 1671075709
       }
       stop_id: "205"
       schedule_relationship: SCHEDULED
@@ -7458,12 +6145,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 145
-        time: 1671075985
+        delay: 169
+        time: 1671076009
       }
       departure {
-        delay: 145
-        time: 1671075985
+        delay: 169
+        time: 1671076009
       }
       stop_id: "40"
       schedule_relationship: SCHEDULED
@@ -7471,8 +6158,8 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 145
-        time: 1671076405
+        delay: 169
+        time: 1671076429
       }
       stop_id: "91"
       schedule_relationship: SCHEDULED
@@ -7481,7 +6168,7 @@ entity {
       id: "9068_1746"
       label: "9068"
     }
-    timestamp: 1671072892
+    timestamp: 1671074573
   }
 }
 entity {
@@ -7492,14 +6179,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.74891
-      longitude: -73.906395
-      bearing: 133.0
-      speed: 25.115875
+      latitude: 40.73968
+      longitude: -73.64366
+      bearing: 72.0
+      speed: 16.425243
     }
-    current_status: INCOMING_AT
-    timestamp: 1671072889
-    stop_id: "214"
+    current_status: STOPPED_AT
+    timestamp: 1671074569
+    stop_id: "132"
     vehicle {
       id: "9068_1746"
       label: "9068"
@@ -7519,8 +6206,8 @@ entity {
     stop_time_update {
       stop_sequence: 1
       departure {
-        delay: 0
-        time: 1671072960
+        delay: 115
+        time: 1671073075
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -7528,12 +6215,8 @@ entity {
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: 0
-        time: 1671074340
-      }
-      departure {
-        delay: 0
-        time: 1671074340
+        delay: -29
+        time: 1671074311
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -7541,12 +6224,12 @@ entity {
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 0
-        time: 1671074940
+        delay: 74
+        time: 1671075014
       }
       departure {
-        delay: 0
-        time: 1671074940
+        delay: 74
+        time: 1671075014
       }
       stop_id: "211"
       schedule_relationship: SCHEDULED
@@ -7554,12 +6237,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 0
-        time: 1671075120
+        delay: 74
+        time: 1671075194
       }
       departure {
-        delay: 0
-        time: 1671075120
+        delay: 74
+        time: 1671075194
       }
       stop_id: "125"
       schedule_relationship: SCHEDULED
@@ -7567,12 +6250,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 0
-        time: 1671075240
+        delay: 74
+        time: 1671075314
       }
       departure {
-        delay: 0
-        time: 1671075240
+        delay: 74
+        time: 1671075314
       }
       stop_id: "31"
       schedule_relationship: SCHEDULED
@@ -7580,12 +6263,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 0
-        time: 1671075360
+        delay: 74
+        time: 1671075434
       }
       departure {
-        delay: 0
-        time: 1671075360
+        delay: 74
+        time: 1671075434
       }
       stop_id: "51"
       schedule_relationship: SCHEDULED
@@ -7593,12 +6276,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 0
-        time: 1671075480
+        delay: 74
+        time: 1671075554
       }
       departure {
-        delay: 0
-        time: 1671075480
+        delay: 74
+        time: 1671075554
       }
       stop_id: "155"
       schedule_relationship: SCHEDULED
@@ -7606,12 +6289,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 0
-        time: 1671075720
+        delay: 74
+        time: 1671075794
       }
       departure {
-        delay: 0
-        time: 1671075720
+        delay: 74
+        time: 1671075794
       }
       stop_id: "99"
       schedule_relationship: SCHEDULED
@@ -7619,13 +6302,39 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 0
-        time: 1671076140
+        delay: 74
+        time: 1671076214
       }
       stop_id: "113"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671072015
+    vehicle {
+      id: "7430_892"
+      label: "7430"
+    }
+    timestamp: 1671074571
+  }
+}
+entity {
+  id: "GO101A_22_892_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_892"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.69956
+      longitude: -73.799706
+      bearing: 129.0
+      speed: 12.777647
+    }
+    current_status: IN_TRANSIT_TO
+    timestamp: 1671074570
+    stop_id: "211"
+    vehicle {
+      id: "7430_892"
+      label: "7430"
+    }
   }
 }
 entity {
@@ -7641,8 +6350,8 @@ entity {
     stop_time_update {
       stop_sequence: 1
       departure {
-        delay: 0
-        time: 1671073440
+        delay: 264
+        time: 1671073704
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -7650,12 +6359,12 @@ entity {
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: 0
-        time: 1671074100
+        delay: 127
+        time: 1671074227
       }
       departure {
-        delay: 0
-        time: 1671074100
+        delay: 127
+        time: 1671074227
       }
       stop_id: "214"
       schedule_relationship: SCHEDULED
@@ -7663,12 +6372,12 @@ entity {
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 0
-        time: 1671074400
+        delay: 151
+        time: 1671074551
       }
       departure {
-        delay: 0
-        time: 1671074400
+        delay: 151
+        time: 1671074551
       }
       stop_id: "55"
       schedule_relationship: SCHEDULED
@@ -7676,12 +6385,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 0
-        time: 1671074520
+        delay: 151
+        time: 1671074671
       }
       departure {
-        delay: 0
-        time: 1671074520
+        delay: 151
+        time: 1671074671
       }
       stop_id: "107"
       schedule_relationship: SCHEDULED
@@ -7689,12 +6398,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 0
-        time: 1671074940
+        delay: 151
+        time: 1671075091
       }
       departure {
-        delay: 0
-        time: 1671074940
+        delay: 151
+        time: 1671075091
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -7702,12 +6411,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 0
-        time: 1671075720
+        delay: 151
+        time: 1671075871
       }
       departure {
-        delay: 0
-        time: 1671075720
+        delay: 151
+        time: 1671075871
       }
       stop_id: "125"
       schedule_relationship: SCHEDULED
@@ -7715,12 +6424,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 0
-        time: 1671075900
+        delay: 151
+        time: 1671076051
       }
       departure {
-        delay: 0
-        time: 1671075900
+        delay: 151
+        time: 1671076051
       }
       stop_id: "183"
       schedule_relationship: SCHEDULED
@@ -7728,12 +6437,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 0
-        time: 1671076080
+        delay: 151
+        time: 1671076231
       }
       departure {
-        delay: 0
-        time: 1671076080
+        delay: 151
+        time: 1671076231
       }
       stop_id: "225"
       schedule_relationship: SCHEDULED
@@ -7741,12 +6450,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 0
-        time: 1671076260
+        delay: 151
+        time: 1671076411
       }
       departure {
-        delay: 0
-        time: 1671076260
+        delay: 151
+        time: 1671076411
       }
       stop_id: "64"
       schedule_relationship: SCHEDULED
@@ -7754,12 +6463,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 0
-        time: 1671076380
+        delay: 151
+        time: 1671076531
       }
       departure {
-        delay: 0
-        time: 1671076380
+        delay: 151
+        time: 1671076531
       }
       stop_id: "226"
       schedule_relationship: SCHEDULED
@@ -7767,12 +6476,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 0
-        time: 1671076620
+        delay: 151
+        time: 1671076771
       }
       departure {
-        delay: 0
-        time: 1671076620
+        delay: 151
+        time: 1671076771
       }
       stop_id: "16"
       schedule_relationship: SCHEDULED
@@ -7780,12 +6489,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 0
-        time: 1671076800
+        delay: 151
+        time: 1671076951
       }
       departure {
-        delay: 0
-        time: 1671076800
+        delay: 151
+        time: 1671076951
       }
       stop_id: "215"
       schedule_relationship: SCHEDULED
@@ -7793,12 +6502,12 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 0
-        time: 1671076980
+        delay: 151
+        time: 1671077131
       }
       departure {
-        delay: 0
-        time: 1671076980
+        delay: 151
+        time: 1671077131
       }
       stop_id: "187"
       schedule_relationship: SCHEDULED
@@ -7806,12 +6515,12 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 0
-        time: 1671077100
+        delay: 151
+        time: 1671077251
       }
       departure {
-        delay: 0
-        time: 1671077100
+        delay: 151
+        time: 1671077251
       }
       stop_id: "136"
       schedule_relationship: SCHEDULED
@@ -7819,12 +6528,12 @@ entity {
     stop_time_update {
       stop_sequence: 15
       arrival {
-        delay: 0
-        time: 1671077220
+        delay: 151
+        time: 1671077371
       }
       departure {
-        delay: 0
-        time: 1671077220
+        delay: 151
+        time: 1671077371
       }
       stop_id: "135"
       schedule_relationship: SCHEDULED
@@ -7832,12 +6541,12 @@ entity {
     stop_time_update {
       stop_sequence: 16
       arrival {
-        delay: 0
-        time: 1671077400
+        delay: 151
+        time: 1671077551
       }
       departure {
-        delay: 0
-        time: 1671077400
+        delay: 151
+        time: 1671077551
       }
       stop_id: "8"
       schedule_relationship: SCHEDULED
@@ -7845,12 +6554,12 @@ entity {
     stop_time_update {
       stop_sequence: 17
       arrival {
-        delay: 0
-        time: 1671077580
+        delay: 151
+        time: 1671077731
       }
       departure {
-        delay: 0
-        time: 1671077580
+        delay: 151
+        time: 1671077731
       }
       stop_id: "38"
       schedule_relationship: SCHEDULED
@@ -7858,12 +6567,12 @@ entity {
     stop_time_update {
       stop_sequence: 18
       arrival {
-        delay: 0
-        time: 1671077760
+        delay: 151
+        time: 1671077911
       }
       departure {
-        delay: 0
-        time: 1671077760
+        delay: 151
+        time: 1671077911
       }
       stop_id: "117"
       schedule_relationship: SCHEDULED
@@ -7871,13 +6580,39 @@ entity {
     stop_time_update {
       stop_sequence: 19
       arrival {
-        delay: 0
-        time: 1671078060
+        delay: 151
+        time: 1671078211
       }
       stop_id: "27"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671071306
+    vehicle {
+      id: "7684_188"
+      label: "7684"
+    }
+    timestamp: 1671074572
+  }
+}
+entity {
+  id: "GO101A_22_188_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_188"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.719574
+      longitude: -73.84481
+      bearing: 116.0
+      speed: 0.97763175
+    }
+    current_status: STOPPED_AT
+    timestamp: 1671074570
+    stop_id: "55"
+    vehicle {
+      id: "7684_188"
+      label: "7684"
+    }
   }
 }
 entity {
@@ -8160,7 +6895,31 @@ entity {
       stop_id: "27"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671069104
+    vehicle {
+      id: "7048_190"
+      label: "7048"
+    }
+    timestamp: 1671073978
+  }
+}
+entity {
+  id: "GO101A_22_190_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_190"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.752167
+      longitude: -73.997284
+    }
+    current_status: IN_TRANSIT_TO
+    timestamp: 1671073975
+    stop_id: "237"
+    vehicle {
+      id: "7048_190"
+      label: "7048"
+    }
   }
 }
 entity {
@@ -8308,7 +7067,7 @@ entity {
       stop_id: "113"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671069110
+    timestamp: 1671074541
   }
 }
 entity {
@@ -8559,8 +7318,8 @@ entity {
         time: 1671072595
       }
       departure {
-        delay: 0
-        time: 1671072600
+        delay: -5
+        time: 1671072595
       }
       stop_id: "92"
       schedule_relationship: SCHEDULED
@@ -8568,12 +7327,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 0
-        time: 1671073200
+        delay: 255
+        time: 1671073455
       }
       departure {
-        delay: 0
-        time: 1671073200
+        delay: 255
+        time: 1671073455
       }
       stop_id: "132"
       schedule_relationship: SCHEDULED
@@ -8581,12 +7340,8 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 0
-        time: 1671074100
-      }
-      departure {
-        delay: 0
-        time: 1671074100
+        delay: 250
+        time: 1671074350
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -8594,12 +7349,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 0
-        time: 1671074700
+        delay: 369
+        time: 1671075069
       }
       departure {
-        delay: 0
-        time: 1671074700
+        delay: 369
+        time: 1671075069
       }
       stop_id: "214"
       schedule_relationship: SCHEDULED
@@ -8607,8 +7362,8 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 0
-        time: 1671075300
+        delay: 369
+        time: 1671075669
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -8617,7 +7372,7 @@ entity {
       id: "7489_2071"
       label: "7489"
     }
-    timestamp: 1671072901
+    timestamp: 1671074570
   }
 }
 entity {
@@ -8628,14 +7383,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.764587
-      longitude: -73.53895
-      bearing: 253.0
-      speed: 14.218883
+      latitude: 40.698387
+      longitude: -73.81559
+      bearing: 280.0
+      speed: 6.8830423
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072900
-    stop_id: "132"
+    timestamp: 1671074570
+    stop_id: "214"
     vehicle {
       id: "7489_2071"
       label: "7489"
@@ -8799,8 +7554,8 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 203
-        time: 1671072983
+        delay: 143
+        time: 1671072923
       }
       stop_id: "241"
       schedule_relationship: SCHEDULED
@@ -8809,7 +7564,7 @@ entity {
       id: "7367_773"
       label: "7367"
     }
-    timestamp: 1671072675
+    timestamp: 1671072925
   }
 }
 entity {
@@ -8825,7 +7580,7 @@ entity {
       bearing: 285.0
       speed: 8.846539
     }
-    current_status: IN_TRANSIT_TO
+    current_status: STOPPED_AT
     timestamp: 1671072674
     stop_id: "241"
     vehicle {
@@ -8914,7 +7669,7 @@ entity {
       id: "7446_968"
       label: "7446"
     }
-    timestamp: 1671072876
+    timestamp: 1671072963
   }
 }
 entity {
@@ -8925,13 +7680,13 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.66152
-      longitude: -73.70476
-      bearing: 27.0
-      speed: 0.0
+      latitude: 40.660778
+      longitude: -73.70167
+      bearing: 110.0
+      speed: 4.78525
     }
     current_status: STOPPED_AT
-    timestamp: 1671072874
+    timestamp: 1671072962
     stop_id: "216"
     vehicle {
       id: "7446_968"
@@ -9052,12 +7807,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 131
-        time: 1671073031
+        delay: 151
+        time: 1671073051
       }
       departure {
-        delay: 131
-        time: 1671073031
+        delay: 151
+        time: 1671073051
       }
       stop_id: "1"
       schedule_relationship: SCHEDULED
@@ -9065,12 +7820,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 131
-        time: 1671073211
+        delay: 136
+        time: 1671073216
       }
       departure {
-        delay: 131
-        time: 1671073211
+        delay: 136
+        time: 1671073216
       }
       stop_id: "52"
       schedule_relationship: SCHEDULED
@@ -9078,12 +7833,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 131
-        time: 1671073571
+        delay: 202
+        time: 1671073642
       }
       departure {
-        delay: 131
-        time: 1671073571
+        delay: 202
+        time: 1671073642
       }
       stop_id: "132"
       schedule_relationship: SCHEDULED
@@ -9091,8 +7846,8 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 131
-        time: 1671074411
+        delay: 182
+        time: 1671074462
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -9101,7 +7856,7 @@ entity {
       id: "5022_563"
       label: "5022"
     }
-    timestamp: 1671072884
+    timestamp: 1671074464
   }
 }
 entity {
@@ -9112,14 +7867,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.790478
-      longitude: -73.643265
-      bearing: 172.0
-      speed: 0.0082326885
+      latitude: 40.699608
+      longitude: -73.80853
+      bearing: 250.0
+      speed: 7.180963
     }
     current_status: STOPPED_AT
-    timestamp: 1671072884
-    stop_id: "182"
+    timestamp: 1671074462
+    stop_id: "102"
     vehicle {
       id: "5022_563"
       label: "5022"
@@ -9374,12 +8129,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 36
-        time: 1671072996
+        delay: 11
+        time: 1671072971
       }
       departure {
-        delay: 36
-        time: 1671072996
+        delay: 11
+        time: 1671072971
       }
       stop_id: "25"
       schedule_relationship: SCHEDULED
@@ -9387,12 +8142,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 36
-        time: 1671073176
+        delay: -24
+        time: 1671073116
       }
       departure {
-        delay: 36
-        time: 1671073176
+        delay: -24
+        time: 1671073116
       }
       stop_id: "2"
       schedule_relationship: SCHEDULED
@@ -9400,12 +8155,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 36
-        time: 1671073296
+        delay: -34
+        time: 1671073226
       }
       departure {
-        delay: 36
-        time: 1671073296
+        delay: -34
+        time: 1671073226
       }
       stop_id: "11"
       schedule_relationship: SCHEDULED
@@ -9413,12 +8168,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 36
-        time: 1671073416
+        delay: -31
+        time: 1671073349
       }
       departure {
-        delay: 36
-        time: 1671073416
+        delay: -31
+        time: 1671073349
       }
       stop_id: "130"
       schedule_relationship: SCHEDULED
@@ -9426,12 +8181,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 36
-        time: 1671073536
+        delay: -33
+        time: 1671073467
       }
       departure {
-        delay: 36
-        time: 1671073536
+        delay: -33
+        time: 1671073467
       }
       stop_id: "56"
       schedule_relationship: SCHEDULED
@@ -9439,12 +8194,12 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 36
-        time: 1671073596
+        delay: 26
+        time: 1671073586
       }
       departure {
-        delay: 36
-        time: 1671073596
+        delay: 26
+        time: 1671073586
       }
       stop_id: "199"
       schedule_relationship: SCHEDULED
@@ -9452,12 +8207,12 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 36
-        time: 1671073956
+        delay: -4
+        time: 1671073916
       }
       departure {
-        delay: 36
-        time: 1671073956
+        delay: -4
+        time: 1671073916
       }
       stop_id: "214"
       schedule_relationship: SCHEDULED
@@ -9465,8 +8220,8 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 36
-        time: 1671074556
+        delay: -78
+        time: 1671074442
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -9475,7 +8230,7 @@ entity {
       id: "7521_479"
       label: "7521"
     }
-    timestamp: 1671072902
+    timestamp: 1671074541
   }
 }
 entity {
@@ -9486,14 +8241,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.764874
-      longitude: -73.75498
-      bearing: 253.0
-      speed: 17.18831
+      latitude: 40.7429
+      longitude: -73.94627
+      bearing: 245.0
+      speed: 19.449728
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072901
-    stop_id: "25"
+    timestamp: 1671074232
+    stop_id: "237"
     vehicle {
       id: "7521_479"
       label: "7521"
@@ -9712,18 +8467,22 @@ entity {
         delay: 40
         time: 1671072700
       }
+      departure {
+        delay: 40
+        time: 1671072700
+      }
       stop_id: "190"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 3
       arrival {
-        delay: 35
-        time: 1671073415
+        delay: 130
+        time: 1671073510
       }
       departure {
-        delay: 35
-        time: 1671073415
+        delay: 130
+        time: 1671073510
       }
       stop_id: "126"
       schedule_relationship: SCHEDULED
@@ -9731,12 +8490,12 @@ entity {
     stop_time_update {
       stop_sequence: 4
       arrival {
-        delay: 35
-        time: 1671074375
+        delay: 185
+        time: 1671074525
       }
       departure {
-        delay: 35
-        time: 1671074375
+        delay: 185
+        time: 1671074525
       }
       stop_id: "176"
       schedule_relationship: SCHEDULED
@@ -9744,12 +8503,12 @@ entity {
     stop_time_update {
       stop_sequence: 5
       arrival {
-        delay: 35
-        time: 1671075875
+        delay: 185
+        time: 1671076025
       }
       departure {
-        delay: 35
-        time: 1671075875
+        delay: 185
+        time: 1671076025
       }
       stop_id: "223"
       schedule_relationship: SCHEDULED
@@ -9757,12 +8516,12 @@ entity {
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 35
-        time: 1671076355
+        delay: 185
+        time: 1671076505
       }
       departure {
-        delay: 35
-        time: 1671076355
+        delay: 185
+        time: 1671076505
       }
       stop_id: "129"
       schedule_relationship: SCHEDULED
@@ -9770,8 +8529,8 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 35
-        time: 1671077075
+        delay: 185
+        time: 1671077225
       }
       stop_id: "179"
       schedule_relationship: SCHEDULED
@@ -9780,7 +8539,7 @@ entity {
       id: "5018_257"
       label: "5018"
     }
-    timestamp: 1671072903
+    timestamp: 1671074545
   }
 }
 entity {
@@ -9791,14 +8550,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 41.054394
-      longitude: -72.45044
-      bearing: 227.0
-      speed: 16.477213
+      latitude: 40.919838
+      longitude: -72.66691
+      bearing: 264.0
+      speed: 0.903023
     }
-    current_status: IN_TRANSIT_TO
-    timestamp: 1671072902
-    stop_id: "126"
+    current_status: STOPPED_AT
+    timestamp: 1671074545
+    stop_id: "176"
     vehicle {
       id: "5018_257"
       label: "5018"
@@ -9859,7 +8618,7 @@ entity {
       id: "7135_871"
       label: "7135"
     }
-    timestamp: 1671072854
+    timestamp: 1671074565
   }
 }
 entity {
@@ -9870,11 +8629,13 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.683598
-      longitude: -73.97567
+      latitude: 40.60926
+      longitude: -73.75045
+      bearing: 42.0
+      speed: 0.0
     }
     current_status: STOPPED_AT
-    timestamp: 1671067900
+    timestamp: 1671074563
     stop_id: "241"
     vehicle {
       id: "7135_871"
@@ -9913,65 +8674,33 @@ entity {
     }
     stop_time_update {
       stop_sequence: 4
-      arrival {
-        delay: 24
-        time: 1671072444
-      }
-      departure {
-        delay: 24
-        time: 1671072444
-      }
       stop_id: "92"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 5
-      arrival {
-        delay: 24
-        time: 1671072744
-      }
-      departure {
-        delay: 24
-        time: 1671072744
-      }
       stop_id: "213"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 6
-      arrival {
-        delay: 24
-        time: 1671073044
-      }
-      departure {
-        delay: 24
-        time: 1671073044
-      }
       stop_id: "132"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 7
-      arrival {
-        delay: 24
-        time: 1671073944
-      }
-      departure {
-        delay: 24
-        time: 1671073944
-      }
       stop_id: "102"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 24
-        time: 1671074184
+        delay: 107
+        time: 1671074267
       }
       departure {
-        delay: 24
-        time: 1671074184
+        delay: 107
+        time: 1671074267
       }
       stop_id: "107"
       schedule_relationship: SCHEDULED
@@ -9979,12 +8708,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 24
-        time: 1671074304
+        delay: 107
+        time: 1671074387
       }
       departure {
-        delay: 24
-        time: 1671074304
+        delay: 107
+        time: 1671074387
       }
       stop_id: "55"
       schedule_relationship: SCHEDULED
@@ -9992,8 +8721,8 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 24
-        time: 1671075144
+        delay: 107
+        time: 1671075227
       }
       stop_id: "237"
       schedule_relationship: SCHEDULED
@@ -10002,7 +8731,7 @@ entity {
       id: "7029_1725"
       label: "7029"
     }
-    timestamp: 1671072328
+    timestamp: 1671074088
   }
 }
 entity {
@@ -10013,12 +8742,12 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.768253
-      longitude: -73.523674
+      latitude: 40.698734
+      longitude: -73.81234
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072324
-    stop_id: "92"
+    timestamp: 1671074087
+    stop_id: "107"
     vehicle {
       id: "7029_1725"
       label: "7029"
@@ -10298,104 +9027,48 @@ entity {
     }
     stop_time_update {
       stop_sequence: 2
-      arrival {
-        delay: 87
-        time: 1671072267
-      }
-      departure {
-        delay: 87
-        time: 1671072267
-      }
       stop_id: "101"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 3
-      arrival {
-        delay: 87
-        time: 1671072387
-      }
-      departure {
-        delay: 87
-        time: 1671072387
-      }
       stop_id: "114"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 4
-      arrival {
-        delay: 87
-        time: 1671072507
-      }
-      departure {
-        delay: 87
-        time: 1671072507
-      }
       stop_id: "32"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 5
-      arrival {
-        delay: 87
-        time: 1671072687
-      }
-      departure {
-        delay: 87
-        time: 1671072687
-      }
       stop_id: "217"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 6
-      arrival {
-        delay: 87
-        time: 1671072807
-      }
-      departure {
-        delay: 87
-        time: 1671072807
-      }
       stop_id: "94"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 7
-      arrival {
-        delay: 87
-        time: 1671072987
-      }
-      departure {
-        delay: 87
-        time: 1671072987
-      }
       stop_id: "66"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 8
-      arrival {
-        delay: 87
-        time: 1671073227
-      }
-      departure {
-        delay: 87
-        time: 1671073227
-      }
       stop_id: "211"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 87
-        time: 1671073407
+        delay: 64
+        time: 1671073384
       }
       departure {
-        delay: 87
-        time: 1671073407
+        delay: 64
+        time: 1671073384
       }
       stop_id: "180"
       schedule_relationship: SCHEDULED
@@ -10403,12 +9076,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 87
-        time: 1671073527
+        delay: 79
+        time: 1671073519
       }
       departure {
-        delay: 87
-        time: 1671073527
+        delay: 79
+        time: 1671073519
       }
       stop_id: "122"
       schedule_relationship: SCHEDULED
@@ -10416,12 +9089,12 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 87
-        time: 1671073647
+        delay: 74
+        time: 1671073634
       }
       departure {
-        delay: 87
-        time: 1671073647
+        delay: 74
+        time: 1671073634
       }
       stop_id: "119"
       schedule_relationship: SCHEDULED
@@ -10429,12 +9102,8 @@ entity {
     stop_time_update {
       stop_sequence: 12
       arrival {
-        delay: 87
-        time: 1671074187
-      }
-      departure {
-        delay: 87
-        time: 1671074187
+        delay: -111
+        time: 1671073989
       }
       stop_id: "102"
       schedule_relationship: SCHEDULED
@@ -10442,12 +9111,12 @@ entity {
     stop_time_update {
       stop_sequence: 13
       arrival {
-        delay: 87
-        time: 1671074667
+        delay: 344
+        time: 1671074924
       }
       departure {
-        delay: 87
-        time: 1671074667
+        delay: 344
+        time: 1671074924
       }
       stop_id: "50"
       schedule_relationship: SCHEDULED
@@ -10455,12 +9124,12 @@ entity {
     stop_time_update {
       stop_sequence: 14
       arrival {
-        delay: 87
-        time: 1671074967
+        delay: 344
+        time: 1671075224
       }
       departure {
-        delay: 87
-        time: 1671074967
+        delay: 344
+        time: 1671075224
       }
       stop_id: "148"
       schedule_relationship: SCHEDULED
@@ -10468,8 +9137,8 @@ entity {
     stop_time_update {
       stop_sequence: 15
       arrival {
-        delay: 87
-        time: 1671075387
+        delay: 344
+        time: 1671075644
       }
       stop_id: "241"
       schedule_relationship: SCHEDULED
@@ -10478,7 +9147,7 @@ entity {
       id: "7347_2873"
       label: "7347"
     }
-    timestamp: 1671071969
+    timestamp: 1671074575
   }
 }
 entity {
@@ -10489,12 +9158,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.609142
-      longitude: -73.75054
+      latitude: 40.695965
+      longitude: -73.82141
+      bearing: 249.0
+      speed: 11.238134
     }
-    current_status: STOPPED_AT
-    timestamp: 1671071967
-    stop_id: "65"
+    current_status: IN_TRANSIT_TO
+    timestamp: 1671074574
+    stop_id: "50"
     vehicle {
       id: "7347_2873"
       label: "7347"
@@ -10714,8 +9385,8 @@ entity {
     stop_time_update {
       stop_sequence: 1
       departure {
-        delay: 0
-        time: 1671073140
+        delay: 185
+        time: 1671073325
       }
       stop_id: "198"
       schedule_relationship: SCHEDULED
@@ -10723,8 +9394,8 @@ entity {
     stop_time_update {
       stop_sequence: 2
       arrival {
-        delay: 0
-        time: 1671074460
+        delay: -6
+        time: 1671074454
       }
       departure {
         delay: 0
@@ -10820,7 +9491,33 @@ entity {
       stop_id: "27"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671071786
+    vehicle {
+      id: "407_2749"
+      label: "407"
+    }
+    timestamp: 1671074575
+  }
+}
+entity {
+  id: "GO101A_22_2749_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_2749"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.798023
+      longitude: -72.87295
+      bearing: 262.0
+      speed: 20.3687
+    }
+    current_status: IN_TRANSIT_TO
+    timestamp: 1671074574
+    stop_id: "163"
+    vehicle {
+      id: "407_2749"
+      label: "407"
+    }
   }
 }
 entity {
@@ -10840,65 +9537,33 @@ entity {
     }
     stop_time_update {
       stop_sequence: 2
-      arrival {
-        delay: 134
-        time: 1671072974
-      }
-      departure {
-        delay: 134
-        time: 1671072974
-      }
       stop_id: "14"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 3
-      arrival {
-        delay: 134
-        time: 1671073334
-      }
-      departure {
-        delay: 134
-        time: 1671073334
-      }
       stop_id: "193"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 4
-      arrival {
-        delay: 134
-        time: 1671073694
-      }
-      departure {
-        delay: 134
-        time: 1671073694
-      }
       stop_id: "202"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 5
-      arrival {
-        delay: 134
-        time: 1671074294
-      }
-      departure {
-        delay: 134
-        time: 1671074294
-      }
       stop_id: "111"
-      schedule_relationship: SCHEDULED
+      schedule_relationship: NO_DATA
     }
     stop_time_update {
       stop_sequence: 6
       arrival {
-        delay: 134
-        time: 1671074654
+        delay: 166
+        time: 1671074686
       }
       departure {
-        delay: 134
-        time: 1671074654
+        delay: 166
+        time: 1671074686
       }
       stop_id: "153"
       schedule_relationship: SCHEDULED
@@ -10906,12 +9571,12 @@ entity {
     stop_time_update {
       stop_sequence: 7
       arrival {
-        delay: 134
-        time: 1671074954
+        delay: 166
+        time: 1671074986
       }
       departure {
-        delay: 134
-        time: 1671074954
+        delay: 166
+        time: 1671074986
       }
       stop_id: "78"
       schedule_relationship: SCHEDULED
@@ -10919,12 +9584,12 @@ entity {
     stop_time_update {
       stop_sequence: 8
       arrival {
-        delay: 134
-        time: 1671075314
+        delay: 166
+        time: 1671075346
       }
       departure {
-        delay: 134
-        time: 1671075314
+        delay: 166
+        time: 1671075346
       }
       stop_id: "91"
       schedule_relationship: SCHEDULED
@@ -10932,12 +9597,12 @@ entity {
     stop_time_update {
       stop_sequence: 9
       arrival {
-        delay: 134
-        time: 1671075674
+        delay: 166
+        time: 1671075706
       }
       departure {
-        delay: 134
-        time: 1671075674
+        delay: 166
+        time: 1671075706
       }
       stop_id: "40"
       schedule_relationship: SCHEDULED
@@ -10945,12 +9610,12 @@ entity {
     stop_time_update {
       stop_sequence: 10
       arrival {
-        delay: 134
-        time: 1671075974
+        delay: 166
+        time: 1671076006
       }
       departure {
-        delay: 134
-        time: 1671075974
+        delay: 166
+        time: 1671076006
       }
       stop_id: "205"
       schedule_relationship: SCHEDULED
@@ -10958,8 +9623,8 @@ entity {
     stop_time_update {
       stop_sequence: 11
       arrival {
-        delay: 134
-        time: 1671076394
+        delay: 166
+        time: 1671076426
       }
       stop_id: "92"
       schedule_relationship: SCHEDULED
@@ -10968,7 +9633,7 @@ entity {
       id: "5017_663"
       label: "5017"
     }
-    timestamp: 1671072496
+    timestamp: 1671074575
   }
 }
 entity {
@@ -10979,12 +9644,14 @@ entity {
       start_date: "20221214"
     }
     position {
-      latitude: 40.933804
-      longitude: -73.060234
+      latitude: 40.88108
+      longitude: -73.31819
+      bearing: 267.0
+      speed: 21.361254
     }
     current_status: IN_TRANSIT_TO
-    timestamp: 1671072494
-    stop_id: "14"
+    timestamp: 1671074574
+    stop_id: "153"
     vehicle {
       id: "5017_663"
       label: "5017"
@@ -11783,8 +10450,2303 @@ entity {
     stop_time_update {
       stop_sequence: 1
       departure {
+        delay: 325
+        time: 1671073465
+      }
+      stop_id: "91"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      stop_id: "78"
+      schedule_relationship: NO_DATA
+    }
+    stop_time_update {
+      stop_sequence: 3
+      stop_id: "153"
+      schedule_relationship: NO_DATA
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 82
+        time: 1671074242
+      }
+      stop_id: "111"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 98
+        time: 1671074738
+      }
+      departure {
+        delay: 98
+        time: 1671074738
+      }
+      stop_id: "202"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 98
+        time: 1671075098
+      }
+      departure {
+        delay: 98
+        time: 1671075098
+      }
+      stop_id: "193"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 98
+        time: 1671075458
+      }
+      departure {
+        delay: 98
+        time: 1671075458
+      }
+      stop_id: "14"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 98
+        time: 1671076058
+      }
+      stop_id: "164"
+      schedule_relationship: SCHEDULED
+    }
+    vehicle {
+      id: "419_672"
+      label: "419"
+    }
+    timestamp: 1671074573
+  }
+}
+entity {
+  id: "GO101A_22_672_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_672"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.864307
+      longitude: -73.22338
+      bearing: 133.0
+      speed: 15.117274
+    }
+    current_status: IN_TRANSIT_TO
+    timestamp: 1671074572
+    stop_id: "202"
+    vehicle {
+      id: "419_672"
+      label: "419"
+    }
+  }
+}
+entity {
+  id: "GO101A_22_970_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_970"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "8"
+      direction_id: 0
+    }
+    stop_time_update {
+      stop_sequence: 1
+      stop_id: "211"
+      schedule_relationship: NO_DATA
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 9
+        time: 1671073149
+      }
+      departure {
+        delay: 9
+        time: 1671073149
+      }
+      stop_id: "219"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 51
+        time: 1671073311
+      }
+      departure {
+        delay: 51
+        time: 1671073311
+      }
+      stop_id: "142"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 112
+        time: 1671073492
+      }
+      departure {
+        delay: 112
+        time: 1671073492
+      }
+      stop_id: "124"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 130
+        time: 1671073630
+      }
+      departure {
+        delay: 130
+        time: 1671073630
+      }
+      stop_id: "85"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 24
+        time: 1671073824
+      }
+      stop_id: "216"
+      schedule_relationship: SCHEDULED
+    }
+    vehicle {
+      id: "7446_970"
+      label: "7446"
+    }
+    timestamp: 1671073826
+  }
+}
+entity {
+  id: "GO101A_22_970_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_970"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.70196
+      longitude: -73.64165
+      bearing: 27.0
+      speed: 4.270707
+    }
+    current_status: STOPPED_AT
+    timestamp: 1671073824
+    stop_id: "216"
+    vehicle {
+      id: "7446_970"
+      label: "7446"
+    }
+  }
+}
+entity {
+  id: "GO101A_22_2711_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_2711"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "5"
+      direction_id: 1
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 186
+        time: 1671073686
+      }
+      stop_id: "141"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 186
+        time: 1671074826
+      }
+      departure {
+        delay: 186
+        time: 1671074826
+      }
+      stop_id: "4"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 186
+        time: 1671075126
+      }
+      departure {
+        delay: 186
+        time: 1671075126
+      }
+      stop_id: "48"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 186
+        time: 1671075966
+      }
+      departure {
+        delay: 186
+        time: 1671075966
+      }
+      stop_id: "13"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 186
+        time: 1671076866
+      }
+      departure {
+        delay: 186
+        time: 1671076866
+      }
+      stop_id: "191"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 186
+        time: 1671077466
+      }
+      departure {
+        delay: 186
+        time: 1671077466
+      }
+      stop_id: "83"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 186
+        time: 1671078006
+      }
+      departure {
+        delay: 186
+        time: 1671078006
+      }
+      stop_id: "233"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 186
+        time: 1671078486
+      }
+      departure {
+        delay: 186
+        time: 1671078486
+      }
+      stop_id: "198"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 186
+        time: 1671079386
+      }
+      departure {
+        delay: 186
+        time: 1671079386
+      }
+      stop_id: "140"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 186
+        time: 1671079746
+      }
+      departure {
+        delay: 186
+        time: 1671079746
+      }
+      stop_id: "21"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 186
+        time: 1671080106
+      }
+      departure {
+        delay: 186
+        time: 1671080106
+      }
+      stop_id: "163"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 186
+        time: 1671080586
+      }
+      departure {
+        delay: 186
+        time: 1671080586
+      }
+      stop_id: "204"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 13
+      arrival {
+        delay: 186
+        time: 1671080886
+      }
+      departure {
+        delay: 186
+        time: 1671080886
+      }
+      stop_id: "157"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 14
+      arrival {
+        delay: 186
+        time: 1671081126
+      }
+      departure {
+        delay: 186
+        time: 1671081126
+      }
+      stop_id: "74"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 15
+      arrival {
+        delay: 186
+        time: 1671081366
+      }
+      departure {
+        delay: 186
+        time: 1671081366
+      }
+      stop_id: "100"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 16
+      arrival {
+        delay: 186
+        time: 1671081666
+      }
+      departure {
+        delay: 186
+        time: 1671081666
+      }
+      stop_id: "26"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 17
+      arrival {
+        delay: 186
+        time: 1671082086
+      }
+      departure {
+        delay: 186
+        time: 1671082086
+      }
+      stop_id: "27"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 18
+      arrival {
+        delay: 186
+        time: 1671084306
+      }
+      stop_id: "102"
+      schedule_relationship: SCHEDULED
+    }
+    vehicle {
+      id: "5007_2711"
+      label: "5007"
+    }
+    timestamp: 1671074575
+  }
+}
+entity {
+  id: "GO101A_22_2711_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_2711"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.97988
+      longitude: -72.121895
+      bearing: 271.0
+      speed: 25.500753
+    }
+    current_status: STOPPED_AT
+    timestamp: 1671074574
+    stop_id: "141"
+    vehicle {
+      id: "5007_2711"
+      label: "5007"
+    }
+  }
+}
+entity {
+  id: "GO101A_22_2073_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_2073"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "4"
+      direction_id: 1
+    }
+    stop_time_update {
+      stop_sequence: 1
+      stop_id: "179"
+      schedule_relationship: NO_DATA
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 12
+        time: 1671074472
+      }
+      departure {
+        delay: 12
+        time: 1671074472
+      }
+      stop_id: "33"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 12
+        time: 1671074772
+      }
+      departure {
+        delay: 12
+        time: 1671074772
+      }
+      stop_id: "29"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 12
+        time: 1671075072
+      }
+      departure {
+        delay: 12
+        time: 1671075072
+      }
+      stop_id: "44"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 12
+        time: 1671075372
+      }
+      departure {
+        delay: 12
+        time: 1671075372
+      }
+      stop_id: "220"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 12
+        time: 1671075732
+      }
+      departure {
+        delay: 12
+        time: 1671075732
+      }
+      stop_id: "59"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 12
+        time: 1671076152
+      }
+      departure {
+        delay: 12
+        time: 1671076152
+      }
+      stop_id: "20"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 12
+        time: 1671076452
+      }
+      departure {
+        delay: 12
+        time: 1671076452
+      }
+      stop_id: "92"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 12
+        time: 1671076992
+      }
+      departure {
+        delay: 12
+        time: 1671076992
+      }
+      stop_id: "132"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 12
+        time: 1671078012
+      }
+      departure {
+        delay: 12
+        time: 1671078012
+      }
+      stop_id: "102"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 12
+        time: 1671078612
+      }
+      departure {
+        delay: 12
+        time: 1671078612
+      }
+      stop_id: "214"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 12
+        time: 1671079212
+      }
+      stop_id: "237"
+      schedule_relationship: SCHEDULED
+    }
+    vehicle {
+      id: "7583_2073"
+      label: "7583"
+    }
+    timestamp: 1671074573
+  }
+}
+entity {
+  id: "GO101A_22_2073_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_2073"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.79098
+      longitude: -73.198845
+      bearing: 253.0
+      speed: 6.327336
+    }
+    current_status: STOPPED_AT
+    timestamp: 1671074572
+    stop_id: "33"
+    vehicle {
+      id: "7583_2073"
+      label: "7583"
+    }
+  }
+}
+entity {
+  id: "GO101A_22_475_METS_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_475_METS"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "9"
+      direction_id: 1
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 224
+        time: 1671068564
+      }
+      stop_id: "171"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 173
+        time: 1671068813
+      }
+      departure {
+        delay: 173
+        time: 1671068813
+      }
+      stop_id: "162"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 208
+        time: 1671068968
+      }
+      departure {
+        delay: 208
+        time: 1671068968
+      }
+      stop_id: "131"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 196
+        time: 1671069136
+      }
+      departure {
+        delay: 196
+        time: 1671069136
+      }
+      stop_id: "72"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 268
+        time: 1671069328
+      }
+      departure {
+        delay: 268
+        time: 1671069328
+      }
+      stop_id: "120"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 283
+        time: 1671069463
+      }
+      departure {
+        delay: 283
+        time: 1671069463
+      }
+      stop_id: "42"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 268
+        time: 1671069628
+      }
+      departure {
+        delay: 268
+        time: 1671069628
+      }
+      stop_id: "25"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 243
+        time: 1671069783
+      }
+      departure {
+        delay: 243
+        time: 1671069783
+      }
+      stop_id: "2"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 233
+        time: 1671069893
+      }
+      departure {
+        delay: 233
+        time: 1671069893
+      }
+      stop_id: "11"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 258
+        time: 1671070038
+      }
+      departure {
+        delay: 258
+        time: 1671070038
+      }
+      stop_id: "130"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 268
+        time: 1671070168
+      }
+      departure {
+        delay: 268
+        time: 1671070168
+      }
+      stop_id: "56"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 363
+        time: 1671070323
+      }
+      departure {
+        delay: 363
+        time: 1671070323
+      }
+      stop_id: "199"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 13
+      arrival {
+        delay: 348
+        time: 1671070668
+      }
+      departure {
+        delay: 348
+        time: 1671070668
+      }
+      stop_id: "214"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 14
+      arrival {
+        delay: 322
+        time: 1671071242
+      }
+      stop_id: "237"
+      schedule_relationship: SCHEDULED
+    }
+    vehicle {
+      id: "7011_475"
+      label: "7011"
+    }
+    timestamp: 1671073707
+  }
+}
+entity {
+  id: "GO101A_22_475_METS_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_475_METS"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.74926
+      longitude: -73.989685
+    }
+    current_status: IN_TRANSIT_TO
+    timestamp: 1671071242
+    stop_id: "237"
+    vehicle {
+      id: "7011_475"
+      label: "7011"
+    }
+  }
+}
+entity {
+  id: "GO101A_22_481_METS_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_481_METS"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "9"
+      direction_id: 1
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 65
+        time: 1671074165
+      }
+      stop_id: "171"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 65
+        time: 1671074465
+      }
+      departure {
+        delay: 65
+        time: 1671074465
+      }
+      stop_id: "162"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 65
+        time: 1671074585
+      }
+      departure {
+        delay: 65
+        time: 1671074585
+      }
+      stop_id: "131"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 65
+        time: 1671074765
+      }
+      departure {
+        delay: 65
+        time: 1671074765
+      }
+      stop_id: "72"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 65
+        time: 1671074885
+      }
+      departure {
+        delay: 65
+        time: 1671074885
+      }
+      stop_id: "120"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 65
+        time: 1671075005
+      }
+      departure {
+        delay: 65
+        time: 1671075005
+      }
+      stop_id: "42"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 65
+        time: 1671075185
+      }
+      departure {
+        delay: 65
+        time: 1671075185
+      }
+      stop_id: "25"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 65
+        time: 1671075365
+      }
+      departure {
+        delay: 65
+        time: 1671075365
+      }
+      stop_id: "2"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 65
+        time: 1671075485
+      }
+      departure {
+        delay: 65
+        time: 1671075485
+      }
+      stop_id: "11"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 65
+        time: 1671075605
+      }
+      departure {
+        delay: 65
+        time: 1671075605
+      }
+      stop_id: "130"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 65
+        time: 1671075725
+      }
+      departure {
+        delay: 65
+        time: 1671075725
+      }
+      stop_id: "56"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 65
+        time: 1671075785
+      }
+      departure {
+        delay: 65
+        time: 1671075785
+      }
+      stop_id: "199"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 13
+      arrival {
+        delay: 65
+        time: 1671076145
+      }
+      departure {
+        delay: 65
+        time: 1671076145
+      }
+      stop_id: "214"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 14
+      arrival {
+        delay: 65
+        time: 1671076805
+      }
+      stop_id: "237"
+      schedule_relationship: SCHEDULED
+    }
+    vehicle {
+      id: "7547_481"
+      label: "7547"
+    }
+    timestamp: 1671074255
+  }
+}
+entity {
+  id: "GO101A_22_481_METS_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_481_METS"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.829037
+      longitude: -73.6874
+    }
+    current_status: STOPPED_AT
+    timestamp: 1671074165
+    stop_id: "171"
+    vehicle {
+      id: "7547_481"
+      label: "7547"
+    }
+  }
+}
+entity {
+  id: "GO101A_22_485_METS_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_485_METS"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "9"
+      direction_id: 1
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
         delay: 0
-        time: 1671073140
+        time: 1671079080
+      }
+      stop_id: "171"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 0
+        time: 1671079380
+      }
+      departure {
+        delay: 0
+        time: 1671079380
+      }
+      stop_id: "162"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 0
+        time: 1671079500
+      }
+      departure {
+        delay: 0
+        time: 1671079500
+      }
+      stop_id: "131"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 0
+        time: 1671079680
+      }
+      departure {
+        delay: 0
+        time: 1671079680
+      }
+      stop_id: "72"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 0
+        time: 1671079800
+      }
+      departure {
+        delay: 0
+        time: 1671079800
+      }
+      stop_id: "120"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 0
+        time: 1671079920
+      }
+      departure {
+        delay: 0
+        time: 1671079920
+      }
+      stop_id: "42"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 0
+        time: 1671080100
+      }
+      departure {
+        delay: 0
+        time: 1671080100
+      }
+      stop_id: "25"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 0
+        time: 1671080280
+      }
+      departure {
+        delay: 0
+        time: 1671080280
+      }
+      stop_id: "2"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 0
+        time: 1671080400
+      }
+      departure {
+        delay: 0
+        time: 1671080400
+      }
+      stop_id: "11"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 0
+        time: 1671080520
+      }
+      departure {
+        delay: 0
+        time: 1671080520
+      }
+      stop_id: "130"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 0
+        time: 1671080640
+      }
+      departure {
+        delay: 0
+        time: 1671080640
+      }
+      stop_id: "56"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 0
+        time: 1671080700
+      }
+      departure {
+        delay: 0
+        time: 1671080700
+      }
+      stop_id: "199"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 13
+      arrival {
+        delay: 0
+        time: 1671081060
+      }
+      departure {
+        delay: 0
+        time: 1671081060
+      }
+      stop_id: "214"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 14
+      arrival {
+        delay: 0
+        time: 1671081720
+      }
+      stop_id: "237"
+      schedule_relationship: SCHEDULED
+    }
+    timestamp: 1671073963
+  }
+}
+entity {
+  id: "GO101A_22_775_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_775"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "2"
+      direction_id: 1
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 113
+        time: 1671074273
+      }
+      stop_id: "84"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 16
+        time: 1671074356
+      }
+      departure {
+        delay: 16
+        time: 1671074356
+      }
+      stop_id: "36"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 21
+        time: 1671074541
+      }
+      departure {
+        delay: 21
+        time: 1671074541
+      }
+      stop_id: "68"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 21
+        time: 1671074661
+      }
+      departure {
+        delay: 21
+        time: 1671074661
+      }
+      stop_id: "149"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 21
+        time: 1671074841
+      }
+      departure {
+        delay: 21
+        time: 1671074841
+      }
+      stop_id: "195"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 21
+        time: 1671075021
+      }
+      departure {
+        delay: 21
+        time: 1671075021
+      }
+      stop_id: "63"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 21
+        time: 1671075141
+      }
+      departure {
+        delay: 21
+        time: 1671075141
+      }
+      stop_id: "23"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 21
+        time: 1671075441
+      }
+      departure {
+        delay: 21
+        time: 1671075441
+      }
+      stop_id: "175"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 21
+        time: 1671075561
+      }
+      departure {
+        delay: 21
+        time: 1671075561
+      }
+      stop_id: "89"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 21
+        time: 1671076101
+      }
+      departure {
+        delay: 21
+        time: 1671076101
+      }
+      stop_id: "102"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 21
+        time: 1671076521
+      }
+      departure {
+        delay: 21
+        time: 1671076521
+      }
+      stop_id: "50"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 21
+        time: 1671076821
+      }
+      departure {
+        delay: 21
+        time: 1671076821
+      }
+      stop_id: "148"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 13
+      arrival {
+        delay: 21
+        time: 1671077241
+      }
+      stop_id: "241"
+      schedule_relationship: SCHEDULED
+    }
+    vehicle {
+      id: "7353_775"
+      label: "7353"
+    }
+    timestamp: 1671074572
+  }
+}
+entity {
+  id: "GO101A_22_775_V"
+  vehicle {
+    trip {
+      trip_id: "GO101A_22_775"
+      start_date: "20221214"
+    }
+    position {
+      latitude: 40.723103
+      longitude: -73.64036
+      bearing: 254.0
+      speed: 1.1819054
+    }
+    current_status: STOPPED_AT
+    timestamp: 1671074571
+    stop_id: "68"
+    vehicle {
+      id: "7353_775"
+      label: "7353"
+    }
+  }
+}
+entity {
+  id: "GO101A_22_478_METS_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_478_METS"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "9"
+      direction_id: 0
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 0
+        time: 1671077460
+      }
+      stop_id: "237"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 0
+        time: 1671078120
+      }
+      departure {
+        delay: 0
+        time: 1671078120
+      }
+      stop_id: "214"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 0
+        time: 1671078540
+      }
+      departure {
+        delay: 0
+        time: 1671078540
+      }
+      stop_id: "199"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 0
+        time: 1671078600
+      }
+      departure {
+        delay: 0
+        time: 1671078600
+      }
+      stop_id: "56"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 0
+        time: 1671078720
+      }
+      departure {
+        delay: 0
+        time: 1671078720
+      }
+      stop_id: "130"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 0
+        time: 1671078840
+      }
+      departure {
+        delay: 0
+        time: 1671078840
+      }
+      stop_id: "11"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 0
+        time: 1671078960
+      }
+      departure {
+        delay: 0
+        time: 1671078960
+      }
+      stop_id: "2"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 0
+        time: 1671079080
+      }
+      departure {
+        delay: 0
+        time: 1671079080
+      }
+      stop_id: "25"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 0
+        time: 1671079260
+      }
+      departure {
+        delay: 0
+        time: 1671079260
+      }
+      stop_id: "42"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 0
+        time: 1671079380
+      }
+      departure {
+        delay: 0
+        time: 1671079380
+      }
+      stop_id: "120"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 0
+        time: 1671079560
+      }
+      departure {
+        delay: 0
+        time: 1671079560
+      }
+      stop_id: "72"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 0
+        time: 1671079740
+      }
+      departure {
+        delay: 0
+        time: 1671079740
+      }
+      stop_id: "131"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 13
+      arrival {
+        delay: 0
+        time: 1671079860
+      }
+      departure {
+        delay: 0
+        time: 1671079860
+      }
+      stop_id: "162"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 14
+      arrival {
+        delay: 0
+        time: 1671080280
+      }
+      stop_id: "171"
+      schedule_relationship: SCHEDULED
+    }
+    timestamp: 1671074094
+  }
+}
+entity {
+  id: "GO101A_22_1754_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_1754"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "10"
+      direction_id: 0
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 0
+        time: 1671079140
+      }
+      stop_id: "237"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 0
+        time: 1671079860
+      }
+      departure {
+        delay: 0
+        time: 1671079860
+      }
+      stop_id: "214"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 0
+        time: 1671080520
+      }
+      departure {
+        delay: 0
+        time: 1671080520
+      }
+      stop_id: "102"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 0
+        time: 1671081240
+      }
+      departure {
+        delay: 0
+        time: 1671081240
+      }
+      stop_id: "152"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 0
+        time: 1671081360
+      }
+      departure {
+        delay: 0
+        time: 1671081360
+      }
+      stop_id: "127"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 0
+        time: 1671081480
+      }
+      departure {
+        delay: 0
+        time: 1671081480
+      }
+      stop_id: "132"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 0
+        time: 1671081660
+      }
+      departure {
+        delay: 0
+        time: 1671081660
+      }
+      stop_id: "39"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 0
+        time: 1671081780
+      }
+      departure {
+        delay: 0
+        time: 1671081780
+      }
+      stop_id: "213"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 0
+        time: 1671082080
+      }
+      departure {
+        delay: 0
+        time: 1671082080
+      }
+      stop_id: "92"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 0
+        time: 1671082620
+      }
+      departure {
+        delay: 0
+        time: 1671082620
+      }
+      stop_id: "205"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 0
+        time: 1671082920
+      }
+      departure {
+        delay: 0
+        time: 1671082920
+      }
+      stop_id: "40"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 0
+        time: 1671083340
+      }
+      stop_id: "91"
+      schedule_relationship: SCHEDULED
+    }
+    timestamp: 1671074106
+  }
+}
+entity {
+  id: "GO101A_22_898_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_898"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "6"
+      direction_id: 0
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 0
+        time: 1671080220
+      }
+      stop_id: "237"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 0
+        time: 1671080940
+      }
+      departure {
+        delay: 0
+        time: 1671080940
+      }
+      stop_id: "214"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 0
+        time: 1671081840
+      }
+      departure {
+        delay: 0
+        time: 1671081840
+      }
+      stop_id: "102"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 0
+        time: 1671082140
+      }
+      departure {
+        delay: 0
+        time: 1671082140
+      }
+      stop_id: "119"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 0
+        time: 1671082260
+      }
+      departure {
+        delay: 0
+        time: 1671082260
+      }
+      stop_id: "122"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 0
+        time: 1671082440
+      }
+      departure {
+        delay: 0
+        time: 1671082440
+      }
+      stop_id: "180"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 0
+        time: 1671082680
+      }
+      departure {
+        delay: 0
+        time: 1671082680
+      }
+      stop_id: "211"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 0
+        time: 1671082860
+      }
+      departure {
+        delay: 0
+        time: 1671082860
+      }
+      stop_id: "125"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 0
+        time: 1671082980
+      }
+      departure {
+        delay: 0
+        time: 1671082980
+      }
+      stop_id: "31"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 0
+        time: 1671083100
+      }
+      departure {
+        delay: 0
+        time: 1671083100
+      }
+      stop_id: "51"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 0
+        time: 1671083220
+      }
+      departure {
+        delay: 0
+        time: 1671083220
+      }
+      stop_id: "155"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 0
+        time: 1671083460
+      }
+      departure {
+        delay: 0
+        time: 1671083460
+      }
+      stop_id: "99"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 13
+      arrival {
+        delay: 0
+        time: 1671083880
+      }
+      stop_id: "113"
+      schedule_relationship: SCHEDULED
+    }
+    timestamp: 1671074114
+  }
+}
+entity {
+  id: "GO101A_22_2800_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_2800"
+      start_date: "20221215"
+      schedule_relationship: SCHEDULED
+      route_id: "7"
+      direction_id: 0
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 0
+        time: 1671081240
+      }
+      stop_id: "241"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 0
+        time: 1671081600
+      }
+      departure {
+        delay: 0
+        time: 1671081600
+      }
+      stop_id: "148"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 0
+        time: 1671081840
+      }
+      departure {
+        delay: 0
+        time: 1671081840
+      }
+      stop_id: "50"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 0
+        time: 1671082560
+      }
+      departure {
+        delay: 0
+        time: 1671082560
+      }
+      stop_id: "102"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 0
+        time: 1671082860
+      }
+      departure {
+        delay: 0
+        time: 1671082860
+      }
+      stop_id: "119"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 0
+        time: 1671082980
+      }
+      departure {
+        delay: 0
+        time: 1671082980
+      }
+      stop_id: "122"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 0
+        time: 1671083160
+      }
+      departure {
+        delay: 0
+        time: 1671083160
+      }
+      stop_id: "180"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 8
+      arrival {
+        delay: 0
+        time: 1671083400
+      }
+      departure {
+        delay: 0
+        time: 1671083400
+      }
+      stop_id: "211"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 0
+        time: 1671083640
+      }
+      departure {
+        delay: 0
+        time: 1671083640
+      }
+      stop_id: "66"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 0
+        time: 1671083820
+      }
+      departure {
+        delay: 0
+        time: 1671083820
+      }
+      stop_id: "94"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 0
+        time: 1671083940
+      }
+      departure {
+        delay: 0
+        time: 1671083940
+      }
+      stop_id: "217"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 0
+        time: 1671084120
+      }
+      departure {
+        delay: 0
+        time: 1671084120
+      }
+      stop_id: "32"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 13
+      arrival {
+        delay: 0
+        time: 1671084240
+      }
+      departure {
+        delay: 0
+        time: 1671084240
+      }
+      stop_id: "114"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 14
+      arrival {
+        delay: 0
+        time: 1671084420
+      }
+      departure {
+        delay: 0
+        time: 1671084420
+      }
+      stop_id: "101"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 15
+      arrival {
+        delay: 0
+        time: 1671084720
+      }
+      stop_id: "65"
+      schedule_relationship: SCHEDULED
+    }
+    timestamp: 1671074116
+  }
+}
+entity {
+  id: "GO101A_22_2782_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_2782"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "5"
+      direction_id: 0
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 0
+        time: 1671075000
+      }
+      stop_id: "27"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 2
+      arrival {
+        delay: 0
+        time: 1671075360
+      }
+      departure {
+        delay: 0
+        time: 1671075360
+      }
+      stop_id: "26"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 3
+      arrival {
+        delay: 0
+        time: 1671075660
+      }
+      departure {
+        delay: 0
+        time: 1671075660
+      }
+      stop_id: "100"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 4
+      arrival {
+        delay: 0
+        time: 1671075840
+      }
+      departure {
+        delay: 0
+        time: 1671075840
+      }
+      stop_id: "74"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 5
+      arrival {
+        delay: 0
+        time: 1671076080
+      }
+      departure {
+        delay: 0
+        time: 1671076080
+      }
+      stop_id: "157"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 6
+      arrival {
+        delay: 0
+        time: 1671076380
+      }
+      departure {
+        delay: 0
+        time: 1671076380
+      }
+      stop_id: "204"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 7
+      arrival {
+        delay: 0
+        time: 1671076800
+      }
+      stop_id: "163"
+      schedule_relationship: SCHEDULED
+    }
+    timestamp: 1671074210
+  }
+}
+entity {
+  id: "GO101A_22_1727_T"
+  trip_update {
+    trip {
+      trip_id: "GO101A_22_1727"
+      start_date: "20221214"
+      schedule_relationship: SCHEDULED
+      route_id: "10"
+      direction_id: 1
+    }
+    stop_time_update {
+      stop_sequence: 1
+      departure {
+        delay: 0
+        time: 1671074700
       }
       stop_id: "91"
       schedule_relationship: SCHEDULED
@@ -11793,89 +12755,141 @@ entity {
       stop_sequence: 2
       arrival {
         delay: 0
-        time: 1671073440
+        time: 1671075000
       }
       departure {
         delay: 0
-        time: 1671073440
+        time: 1671075000
       }
-      stop_id: "78"
+      stop_id: "40"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 3
       arrival {
         delay: 0
-        time: 1671073740
+        time: 1671075360
       }
       departure {
         delay: 0
-        time: 1671073740
+        time: 1671075360
       }
-      stop_id: "153"
+      stop_id: "205"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 4
       arrival {
         delay: 0
-        time: 1671074160
+        time: 1671075720
       }
       departure {
         delay: 0
-        time: 1671074160
+        time: 1671075720
       }
-      stop_id: "111"
+      stop_id: "92"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 5
       arrival {
         delay: 0
-        time: 1671074640
+        time: 1671076020
       }
       departure {
         delay: 0
-        time: 1671074640
+        time: 1671076020
       }
-      stop_id: "202"
+      stop_id: "213"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 6
       arrival {
         delay: 0
-        time: 1671075000
+        time: 1671076140
       }
       departure {
         delay: 0
-        time: 1671075000
+        time: 1671076140
       }
-      stop_id: "193"
+      stop_id: "39"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 7
       arrival {
         delay: 0
-        time: 1671075360
+        time: 1671076320
       }
       departure {
         delay: 0
-        time: 1671075360
+        time: 1671076320
       }
-      stop_id: "14"
+      stop_id: "132"
       schedule_relationship: SCHEDULED
     }
     stop_time_update {
       stop_sequence: 8
       arrival {
         delay: 0
-        time: 1671075960
+        time: 1671076500
       }
-      stop_id: "164"
+      departure {
+        delay: 0
+        time: 1671076500
+      }
+      stop_id: "127"
       schedule_relationship: SCHEDULED
     }
-    timestamp: 1671072755
+    stop_time_update {
+      stop_sequence: 9
+      arrival {
+        delay: 0
+        time: 1671076620
+      }
+      departure {
+        delay: 0
+        time: 1671076620
+      }
+      stop_id: "152"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 10
+      arrival {
+        delay: 0
+        time: 1671077460
+      }
+      departure {
+        delay: 0
+        time: 1671077460
+      }
+      stop_id: "102"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 11
+      arrival {
+        delay: 0
+        time: 1671078060
+      }
+      departure {
+        delay: 0
+        time: 1671078060
+      }
+      stop_id: "214"
+      schedule_relationship: SCHEDULED
+    }
+    stop_time_update {
+      stop_sequence: 12
+      arrival {
+        delay: 0
+        time: 1671078660
+      }
+      stop_id: "237"
+      schedule_relationship: SCHEDULED
+    }
+    timestamp: 1671074510
   }
 }
