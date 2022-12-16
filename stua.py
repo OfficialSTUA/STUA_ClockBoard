@@ -525,6 +525,7 @@ def _transitSubway(stop, direction, responses, API, id="NONE"):
 
     for link in links:
         feed = gtfs_realtime_pb2.FeedMessage()
+        #print(link)
         feed.ParseFromString(link)
         #print(str(feed))
         
@@ -580,13 +581,17 @@ def _transitSubwayMODDED(stops, API):
     final = []
     current_time = datetime.datetime.now()
     links = _get_or_create_eventloop().run_until_complete(_requestFeedMTA(_url(), API))
+    num = len(stops)
+    cur = 0
     for stop in stops:
+        cur += 1
+        
         times = []
         destination = []
         for link in links:
             feed = gtfs_realtime_pb2.FeedMessage()
             feed.ParseFromString(link)
-            
+            #print(link)
             '''
             with open(f"logs/NYCT_GTFS/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","w") as test:
                 test.write(str(feed)+ f" {datetime.datetime.now()}\n")
@@ -634,9 +639,11 @@ def _transitSubwayMODDED(stops, API):
             train.set("X", "NO TRAINS", "NO TRAINS", "NO TRAINS", stop[0], stop[1], "X", "NO TRAINS", "NO TRAINS", "NO TRAINS")
             final.append(train)
         #print(times)
+        print(f"RENDER PROGRESS: {cur}/{num}")
     '''
     with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
         test.write(str(times)+ f" {datetime.datetime.now()}\n")
+        
     '''
     return final
     

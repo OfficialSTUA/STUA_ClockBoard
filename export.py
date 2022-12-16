@@ -3,6 +3,7 @@ import dotenv, os, asyncio, requests
 
 ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
+#DEBUG = True 
 #HOLD_DELAYS = False
 TIMER = False
 RENDER = False
