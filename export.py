@@ -319,7 +319,7 @@ def bus():
 def lirr():
     print("lirr")
     masterlistLIRR = stua.gtfsLIRR()
-    masterlistLIRR.get(("237", "0", 1, 25, []))
+    masterlistLIRR.get(("237", "0", 1, 25, ["Port Washington", "Hempstead"]))
     return masterlistLIRR
 
 def modlirrTIME(input):
