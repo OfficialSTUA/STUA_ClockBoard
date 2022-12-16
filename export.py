@@ -1,4 +1,4 @@
-import stua, json, time
+import stua, json, time, datetime, traceback
 import dotenv, os, asyncio, requests
 
 ACTIVE_INDEX = 0
@@ -53,10 +53,12 @@ def wifi_disconnect():
     try:
         response = requests.get("http://web.mta.info/status/ServiceStatusSubway.xml", timeout=10)
         return False
-    except (requests.ConnectionError, requests.Timeout):
+    
+    except Exception as e:
+        #print(e.message)
+        with open("errors.txt", "a") as f:
+            f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
         return True
-    except:
-        return False
 
 def refresh():
     global CRIT_RATE
@@ -314,11 +316,14 @@ def bus():
     return masterlistBUS
 
 def lirr():
+    print("lirr")
     masterlistLIRR = stua.gtfsLIRR()
     masterlistLIRR.get(("237", "0", 1, 25, []))
     return masterlistLIRR
 
 def modlirrTIME(input):
+    if type(input) == str:
+        return "00:00"
     t = input.strftime("%I:%M %p")
     if t[0] == "0":
         t = t[1:]
@@ -327,7 +332,7 @@ def modlirrTIME(input):
 
 def export_lirr():
     masterlistLIRR = lirr()
-    print("lirr done")
+    #print("lirr done")
     json_string = {
         "lirr_PENN": {
             "penn_crit": f"{masterlistLIRR.time}",

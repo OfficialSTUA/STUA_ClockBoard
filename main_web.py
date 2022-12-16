@@ -1,5 +1,5 @@
 import stua, time, export, datetime
-import dotenv, os, json, requests
+import dotenv, os, json, requests, traceback
 from flask import Flask, render_template, Response, redirect
 
 dotenv.load_dotenv()
@@ -30,10 +30,11 @@ def data():
                 t1 = time.time() - t0
                 print(t1)
                 return "data:" + json_js + "\n\n"
+            
             except Exception as e:
-                #print(type(e))
+                #print(e.message)
                 with open("errors.txt", "a") as f:
-                    f.write(f"{datetime.datetime.now()}: {e}\n")
+                    f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
     return Response(generate(), mimetype= 'text/event-stream')
 
 @app.route('/rotate')
@@ -87,10 +88,13 @@ def delay():
 
                     if export.get_timer() == True:
                         VAR = True
+                
                 except Exception as e:
-                    print(e)
+                    #print(e)
+                    #print(e.message)
+                    
                     with open("errors.txt", "a") as f:
-                        f.write(f"{datetime.datetime.now()}: {e}\n")
+                        f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
 
     return Response(generate(), mimetype= 'text/event-stream')
 
@@ -113,10 +117,12 @@ def lirr():
                     pass
                 else:
                     return "data:" + str(export.export_lirr()) + "\n\n" 
+            
             except Exception as e:
-                print(e)
+                #print(e)
+                #print(e.message)
                 with open("errors.txt", "a") as f:
-                    f.write(f"{datetime.datetime.now()}: {e}\n")
+                    f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
     return Response(generate(), mimetype= 'text/event-stream')
 
 if __name__ in "__main__":
