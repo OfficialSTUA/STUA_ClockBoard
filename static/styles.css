@@ -115,10 +115,29 @@ h1.blink_terminus {
     50% { opacity: 0%; }
 }
 
-.dot {
-    height: 2vh;
-    width: 2vh;
+#progressbar {
     background-color: black;
-    border-radius: 50%;
-    display: inline-block;
-  }
+    border-radius: 0px;
+    /* (height of inner div) / 2 + padding */
+    padding: 5px;
+    width: 80%;
+    margin: auto;
+    /*height: 10%;*/
+}
+
+#progressbarouter {
+    background-color: white;
+    border-radius: 0px;
+    /* (height of inner div) / 2 + padding */
+    padding: 3px;
+    
+}
+  
+#progressbarinner {
+    background-color: black;
+    width: 0%;
+    /* Adjust with JavaScript */
+    height: 20px;
+    border-radius: 0px;
+    
+}

@@ -338,14 +338,18 @@
 
 		const crit = JSON.parse(event.data);
 
+		document.getElementById("progressbarinner").style.width = `${crit.load_progress}%`;
+
 		if (crit.load_status == "RENDER") {
-			document.getElementById("LOADING").style.display = "block";
+			//document.getElementById("LOADING").style.display = "block";
 			document.getElementById("DISPLAY").style.display = "none";
 			document.getElementById("OFFLINE").style.display = "none";
+			document.getElementById("LOADING").style.display = "block";
 		} else if (crit.load_status == "DISPLAY") {
-			document.getElementById("DISPLAY").style.display = "block";
+			//document.getElementById("DISPLAY").style.display = "block";
 			document.getElementById("LOADING").style.display = "none";
 			document.getElementById("OFFLINE").style.display = "none";
+			document.getElementById("DISPLAY").style.display = "block";
 		} else if (crit.load_status == "OFFLINE") {
 			document.getElementById("DISPLAY").style.display = "none";
 			document.getElementById("LOADING").style.display = "none";
@@ -680,8 +684,12 @@
         </div>
         <div style="height: 40%; width: 100%">
             <div style="background-color: white; height: 100%; width: 100%; display: block;">
-                <h1 style="font-size: 7vh; text-align: center;">WIFI CONNECTION ESTABLISHED: RENDERING</h1>
-                <p style="font-size: 7vh; text-align: center; margin-top: -2vh;">First-Run Startup Time: 7-8 Minutes</h1>
+                <h1 style="font-size: 7vh; text-align: center; margin-bottom: 5%;">WIFI CONNECTION ESTABLISHED: RENDERING</h1>
+                <div id="progressbar">
+					<div id="progressbarouter">
+						<div id="progressbarinner"></div>
+					</div>
+				</div>
             </div>
         </div>
 	</div>

@@ -1,5 +1,4 @@
 import aiohttp, asyncio
-#import ray
 import requests, csv, datetime, math, os, json, calendar
 import time as te
 from abc import ABC, abstractmethod
@@ -8,6 +7,18 @@ import gtfs_realtime_pb2, nyct_subway_pb2
 
 APIMTA = ""
 APIBUSTIME = ""
+
+TOTAL = 50
+PROGRESS = 0
+
+def loading_bar():
+    global PROGRESS
+    PROGRESS += 1
+
+def get_loading_bar():
+    global PROGRESS
+    global TOTAL
+    return float(PROGRESS)*100/float(TOTAL) 
 
 class gtfs(ABC):
 
@@ -640,6 +651,7 @@ def _transitSubwayMODDED(stops, API):
             final.append(train)
         #print(times)
         print(f"RENDER PROGRESS: {cur}/{num}")
+        loading_bar()
     '''
     with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
         test.write(str(times)+ f" {datetime.datetime.now()}\n")
@@ -776,7 +788,8 @@ def _transitBusMODDED(stops, API):
                     bus = gtfsBus()
                     bus.set(route_id, f'http://bustime.mta.info/api/where/stop/MTA_{terminus_id}.xml?key={API}', terminus_id, f'http://bustime.mta.info/api/where/stop/MTA_{stop_id}.xml?key={API}', stop_id, time, "", direction, trip_id, vehicle)
                     times.append(bus)
-                    
+        
+        loading_bar()
         sort(times)
         try:
             final.append(times[stop[2]-1])
@@ -814,7 +827,6 @@ def _transitBusMODDED(stops, API):
             final[num].stop = "NO BUSES"
             final[num].service_pattern = "NO BUSES"
             final[num].terminus = "NO BUSES"
-
     '''
     with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
         test.write(str(times)+ f" {datetime.datetime.now()}\n")
@@ -833,8 +845,8 @@ def  _transitLIRR(stop, direction, responses, API):
         feed = gtfs_realtime_pb2.FeedMessage()
         feed.ParseFromString(link)
 
-        with open("alerts.txt", "w") as f:
-            f.write(str(feed))
+        #with open("alerts.txt", "w") as f:
+            #f.write(str(feed))
         #print(feed)
         for entity in feed.entity:
             for update in entity.trip_update.stop_time_update:
@@ -905,8 +917,8 @@ def  _transitLIRRBOARD(input, API):
         feed = gtfs_realtime_pb2.FeedMessage()
         feed.ParseFromString(link)
 
-        with open("alerts.txt", "w") as f:
-            f.write(str(feed))
+        #with open("alerts.txt", "w") as f:
+            #f.write(str(feed))
         #print(feed)
         for entity in feed.entity:
             for update in entity.trip_update.stop_time_update:
@@ -983,8 +995,8 @@ def  _transitLIRRMODDED(stops, API):
         
             #print(link)
 
-        with open("alerts.txt", "w") as f:
-            f.write(str(feed))
+        #with open("alerts.txt", "w") as f:
+            #f.write(str(feed))
         #print(feed)
         for entity in feed.entity:
             for update in entity.trip_update.stop_time_update:
@@ -1284,8 +1296,8 @@ def alertsLIRR(planned=False):
     response = requests.get("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Flirr-alerts", headers={'x-api-key' : _getAPIMTA()})
     feed = gtfs_realtime_pb2.FeedMessage()
     feed.ParseFromString(response.content)
-    with open("alerts.txt","w") as f:
-        f.write(str(feed))
+    #with open("alerts.txt","w") as f:
+        #f.write(str(feed))
     for entity in feed.entity:
         for start in entity.alert.active_period:
             if int(start.start) < calendar.timegm((datetime.datetime.utcnow()).utctimetuple()) < int(start.end):     

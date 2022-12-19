@@ -65,6 +65,7 @@ def refresh():
     global CRIT_RATE
     global WIFI
     global RENDER
+    global PROGRESS
     load_status = ""
     if wifi_disconnect() == True:
         load_status = "OFFLINE"
@@ -72,12 +73,14 @@ def refresh():
     elif wifi_disconnect() == False and WIFI == False:
         WIFI = True
         RENDER = False
+        PROGRESS = 0
     elif render() == False:
         load_status = "RENDER"
     else:
         load_status = "DISPLAY"
     json_string = {
         "load_status": str(load_status),
+        "load_progress": str(stua.get_loading_bar()),
         "seventh": str(CRIT_RATE[0]),
         "eighth": str(CRIT_RATE[1]),
         "broadway": str(CRIT_RATE[2]),
@@ -317,7 +320,7 @@ def bus():
     return masterlistBUS
 
 def lirr():
-    print("lirr")
+    print("lirr done")
     masterlistLIRR = stua.gtfsLIRR()
     masterlistLIRR.get(("237", "0", 1, 25, ["Port Washington", "Hempstead"]))
     return masterlistLIRR

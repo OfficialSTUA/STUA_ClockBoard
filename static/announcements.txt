@@ -1,1 +1,3 @@
-#Port_Washington:[AN] Students with 9th Period Free and 10th Period Class are NOT permitted to leave the building during 9th Period
+Penn_Port_Washington GCT_Port_Washington Penn_Hempstead GCT_Hempstead:[Port Washington][Hempstead] trains are running with new schedules due to the opening of Grand Central Madison.
+#Penn_Hempstead GCT_Hempstead:[Hempstead] trains are running with new schedules due to the opening of Grand Central Madison.
+ATLN_Hempstead:[Hempstead] trains are no longer running to Atlantic Terminal due to the opening of Grand Central Madison. 15-20 [City Zone] Shuttle trains will run instead.

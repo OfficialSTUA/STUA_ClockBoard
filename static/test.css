@@ -1,0 +1,26 @@
+#progressbar {
+    background-color: black;
+    border-radius: 0px;
+    /* (height of inner div) / 2 + padding */
+    padding: 5px;
+    width: 80%;
+    margin: auto;
+    height: 10%;
+}
+
+#progressbarouter {
+    background-color: white;
+    border-radius: 0px;
+    /* (height of inner div) / 2 + padding */
+    padding: 3px;
+    height: 80%;
+}
+  
+#progressbarinner {
+    background-color: black;
+    width: 60%;
+    /* Adjust with JavaScript */
+    height: 20px;
+    border-radius: 0px;
+    height: 100%;
+}
