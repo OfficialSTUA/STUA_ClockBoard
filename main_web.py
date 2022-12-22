@@ -1,6 +1,6 @@
 import stua, time, export, datetime
 import dotenv, os, json, requests, traceback
-from flask import Flask, render_template, Response, redirect
+from api import Flask, render_template, Response, redirect
 
 dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
