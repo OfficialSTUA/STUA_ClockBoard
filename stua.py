@@ -571,7 +571,7 @@ def _transitSubway(stop, direction, responses, API, id="NONE"):
                     #print(terminus_id)
                 
                     #print(stop)
-                    print([time, route_id, terminus_id, station_id, direction, trip_id])
+                    #print([time, route_id, terminus_id, station_id, direction, trip_id])
                     times.append([time, route_id, terminus_id, station_id, direction, trip_id])
 
     #print(times)

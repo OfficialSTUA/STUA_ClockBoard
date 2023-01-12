@@ -111,6 +111,22 @@ h1.blink_terminus {
     color: #ffff00
 }
 
+p.gym {
+    margin: 0px; 
+    color: white; 
+    font-size: 60vh;
+    font-family: standardMedium;
+    caret-color: transparent;
+}
+
+p.sch {
+    margin: 0px;
+    color: white;
+    font-family: standardMedium;
+    font-size: 7.5vh;
+    caret-color: transparent;
+}
+
 @keyframes blink {
     50% { opacity: 0%; }
 }
