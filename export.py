@@ -1,5 +1,5 @@
 import stua, json, time, datetime, traceback
-import dotenv, os, asyncio, requests
+import dotenv, os, asyncio, requests, csv
 
 ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
@@ -7,15 +7,66 @@ ACTIVE_DELAYS_LEN = 0
 #HOLD_DELAYS = False
 TIMER = False
 RENDER = False
-CRIT_RATE = [7, 9, 12, 15, 15]
+CRIT_RATE = [6, 9, 12, 15, 15]
 ANNOUCEMENTS = []
 NOTICES = []
 ANNOUCEMENTS_INDEX = 0
 WIFI = True
+TEST = True
 
 dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
 stua.keyBUSTIME(os.getenv("BusTime"))
+
+def get_weekday(num):
+    calend = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    return calend[num]
+
+def get_schedule():
+    response = requests.get("https://pserb-web.vercel.app/api/weekly-schedule")
+    with open("sch.json","w") as f:
+       f.write(response.text)
+
+def export_schedule():
+    output = []
+    today = datetime.datetime.now()
+    strday = today.strftime("%B %d, %Y")
+    strtime = today.strftime("%H:%M")
+    #print(strtime)
+    if (today.weekday() == 0):
+        get_schedule()
+    with open("sch.json","r") as f:
+        json_obj = json.load(f)
+        for day in json_obj["days"]:
+            if day["day"] == strday:
+                #print(True)
+                output.append(f'{day["day"]} - {get_weekday(today.weekday())}')
+                output.append(day["block"])
+                output.append(day["testing"])
+                output.append(day["bell"]["scheduleName"])
+                for time in day["bell"]["schedule"]:
+                    if (today <= datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M")):
+                        #print(today)
+                        #print(datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M"))
+                        #print(datetime.datetime.now())
+                        #day["bell"]["schedule"].index(time)
+                        output.append(day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
+                        break
+                #print(output)
+                output.append(day["day"])
+                output.append(day["bell"]["schedule"][-1]["startTime"])
+    if output == []:
+        output.append(f'{strday} - {get_weekday(today.weekday())}')
+        output.append("N/A")
+        output.append("No Testing")
+        output.append("No School/Special Schedule")
+        output.append("Welcome to Stuyveant High School!")
+        output.append(strday)
+        output.append("12:00")
+    return output
+        
+
+print(export_schedule())
 
 def get_annoucements():
     global ANNOUCEMENTS
@@ -44,7 +95,6 @@ def get_annoucements():
         #ANNOUCEMENTS = export
             #print(item)
     #print(f_read)
-    return export
 
 def get_timer():
     global TIMER
@@ -66,6 +116,8 @@ def refresh():
     global WIFI
     global RENDER
     global PROGRESS
+    global TEST
+    sch = export_schedule()
     load_status = ""
     if wifi_disconnect() == True:
         load_status = "OFFLINE"
@@ -77,7 +129,10 @@ def refresh():
     elif render() == False:
         load_status = "RENDER"
     else:
-        load_status = "DISPLAY"
+        if (datetime.datetime.today() < datetime.datetime.strptime(f"{sch[5]} {sch[6]}", "%B %d, %Y %H:%M")) and (TEST == False):
+            load_status = "SCH"
+        else:
+            load_status = "DISPLAY"
     json_string = {
         "load_status": str(load_status),
         "load_progress": str(stua.get_loading_bar()),
@@ -86,7 +141,11 @@ def refresh():
         "broadway": str(CRIT_RATE[2]),
         "nassau": str(CRIT_RATE[3]),
         "lexington": str(CRIT_RATE[4]),
-        "lirr": "25"
+        "lirr": "25",
+        "sch_day": sch[0],
+        "sch_block": sch[1],
+        "sch_testing": sch[2],
+        "sch_sch": sch[3]
     }
     
     return json.dumps(json_string)
@@ -163,7 +222,7 @@ def delay():
     emblems = []
     emblems_str = ""
     delays = stua.alertsSubway(planned=False)
-    
+    #delays = []
     for item in NOTICES:
         delays.append(item)
 
@@ -173,7 +232,7 @@ def delay():
                 emblems.append(pic)
     emblems = sort_char(emblems)
     for item in emblems:
-        emblems_str += f'<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/{item.lower()}.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>'
+        emblems_str += f'<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/{item.lower()}.svg" style="height: inherit;"></div>'
     #delays=[]
     get_annoucements()
     if ANNOUCEMENTS == []:
@@ -291,6 +350,8 @@ def delay():
             delays_export.append(f"{ACTIVE_INDEX+1}/{len(grouped_delays)}")
             return delays_export
 
+#print(delay())
+
 def subway():
 
     global CRIT_RATE
@@ -322,8 +383,10 @@ def bus():
 def lirr():
     print("lirr done")
     masterlistLIRR = stua.gtfsLIRR()
-    masterlistLIRR.get(("237", "0", 1, 25, ["Port Washington", "Hempstead"]))
+    masterlistLIRR.get(("237", "0", 1, 25, []))
     return masterlistLIRR
+
+#print(lirr())
 
 def modlirrTIME(input):
     if type(input) == str:
@@ -347,6 +410,8 @@ def export_lirr():
         }
     }
     return json.dumps(json_string)
+
+print(export_lirr())
 
 def export():
     

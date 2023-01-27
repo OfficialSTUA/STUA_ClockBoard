@@ -1,7 +1,3 @@
-:root {
-    --LIRRstart: 100%;
-}
-
 @font-face {
     font-family: helveticaLight;
     src: url("helvetica-light.ttf");
@@ -51,8 +47,8 @@ h1.terminusLIRRani {
     font-family: standardMedium; 
     font-size: 5.5vh;
     white-space: nowrap;
-    animation: marqueeLIRR linear infinite;
-    animation-duration: 15s;
+    /*animation: marqueeLIRR linear infinite;
+    animation-duration: 15s;*/
 }
 
 h1.terminus {

@@ -1,3 +1,4 @@
-Penn_Port_Washington GCT_Port_Washington Penn_Hempstead GCT_Hempstead:[Port Washington][Hempstead] trains are running with new schedules due to the opening of Grand Central Madison.
+#Penn_Port_Washington GCT_Port_Washington Penn_Hempstead GCT_Hempstead:[Port Washington][Hempstead] trains are running with new schedules due to the opening of Grand Central Madison.
 #Penn_Hempstead GCT_Hempstead:[Hempstead] trains are running with new schedules due to the opening of Grand Central Madison.
-ATLN_Hempstead:[Hempstead] trains are no longer running to Atlantic Terminal due to the opening of Grand Central Madison. 15-20 [City Zone] Shuttle trains will run instead.
+#ATLN_Hempstead:[Hempstead] trains are no longer running to Atlantic Terminal due to the opening of Grand Central Madison. 15-20 [City Zone] Shuttle trains will run instead.
+#Penn_City_Zone:[City Zone] trains may encounter delays as they share tracks with non-revenue test trains bound for Grand Central Terminal.  

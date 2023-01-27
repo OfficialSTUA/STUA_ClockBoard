@@ -4,7 +4,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/test.css">
 	<!-- <script src="scripts.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- <script>
@@ -97,13 +97,15 @@
 			</div>
 		</div>
 		<div style="height: 10%; width: 50%; float: right; margin: 0%;">
-			<div style="background-color: black; height: 100%;">
-				<div style="background-color: black; height: 100%; width: 21%; align-items: center; display: flex; float: left;">
-					<h1 style="margin-left: 8px; white-space: nowrap; font-size: 3.5vh; margin-bottom: 6%; color: white;">1/3 Delays:</h1>
-				</div>
-				<div style="background-color: black; height: 100%; width: 79%; align-items: center; display: flex; align-items: center;">
-					<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/e.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
-					<div style="margin-bottom: 2%; margin-left: 1%; margin-right: 1%;"><img src="/static/svg/f.svg" style="height: 5vh; width: 100%; flex: auto; margin-top: 10%;"></div>
+			<div style="background-color: blanchedalmond; height: 100%; width: 100%; display: block;">
+				<div style="margin: 0px; background-color: white; height: inherit; width: inherit; display: flex; align-items: center;">
+					<div style="background-color: black; height: 100%; width: fit-content; align-items: center; display: flex; float: left;">
+						<h1 style="margin-left: 8px; white-space: nowrap; font-size: 3.5vh; color: white; margin-right: 4px;">1/3 Delays:</h1>
+					</div>
+					<div style="background-color: black; height: 100%; width: 100%; align-items: center; display: flex;">
+						<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/e.svg" style="height: inherit"></div>
+						<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/penn city zone.svg" style="height: inherit"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -120,21 +122,21 @@
 			</div>
 		</div>
 		<div style="background-color: white; width: 50%; height: 1%; float: right; margin: 0%;"></div>
-		<div style="background-color: aliceblue; width: 50%; height: 20%; float: right; margin: 0%;">
+		<div style="background-color: aliceblue; width: 50%; height: 20%; margin: 0%; float: right;">
 			<div style="background-color: orange; float: left; height: 100%; width: 25%;">
-				<div style="background-color: #FFEBED; height: 45%; width: 100%; display: flex; align-items: center; justify-content: center;">
-					<img src="/static/svg/port washington.svg" style="height: 85%; margin-top: 5%;"><h1 class="branch">PENN</h1>
+				<div id="oneLIRRbranch" style="background-color: #FFE6ED; height: 45%; width: 100%; display: flex; align-items: center; justify-content: center;">
+					<img src="/static/svg/city zone.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>
 				</div>
-				<div style="background-color: #FFEBED; height: 55%; width: 100%; display: flex; align-items: center; justify-content: center;">
-					<h1 class="timeLIRR" style="float: left; margin: 0px; margin-top: 6%; white-space: nowrap;">6:47 P.M.</h1>
+				<div id="oneLIRRbranchtime" style="background-color: #FFE6ED; height: 55%; width: 100%; display: flex; align-items: center; justify-content: center;">
+					<h1 id="onetimeLIRR" class="timeLIRR" style="float: left; margin: 0px; margin-top: 6%; white-space: nowrap;">00:00 P.M.</h1>
 				</div>
 			</div>
 			<div style="background-color: red; height: 100%; display: inline-block; width: 75%;">
-				<div style="background-color: #FEDBE4; height: 50%; width: 100%; display: flex; align-items: center; justify-content: center;">
-					<h1 class="terminusLIRR" style="float: left; margin-left: 5px; margin-top: 2.5%;">To Great Neck, making stops at:</h1>
+				<div id="oneterminusLIRRdiv" style="background-color: #FEDBE4; height: 50%; width: 100%; display: flex; align-items: center; justify-content: center;">
+					<h1 id="oneterminusLIRR" class="terminusLIRR" style="float: left; margin-left: 5px; margin-top: 2.5%;">To INITIALIZING, making stops at:</h1>
 				</div>
-				<div id="uptown_broadway_terminus_DIV" style="background-color: #FEDBE4; height: 50%; width: 100%; justify-content: center; display: flex; overflow: hidden;">
-					<h1 id="test" class="terminusLIRRani" style="margin-left: 5px;"><strong>Penn Station - Woodside - Mets-Willets Point - Flushing-Main Street - Murray Hill - Auburndale - Broadway - Bayside - Little Neck - Great Neck</strong></h1>
+				<div id="oneterminusLIRRanidiv" style="background-color: #FEDBE4; height: 50%; width: 100%; display: flex; overflow: hidden; position: relative;">
+					<h1 id="oneterminusLIRRani" class="terminusLIRRani" style="margin-left: 5px; position: absolute;"><strong>Penn Station - Woodside - Mets Willets Point - Flushing Main Street - Murray Hill - Broadway - Great Neck</strong></h1>
 				</div>
 			</div>
 		</div>
@@ -210,8 +212,41 @@
 
 <script type="text/javascript">
 
-document.documentElement.style.setProperty('--LIRRstart', `${((document.getElementById('terminusLIRRani').clientWidth)/240)+31.03}%`);
-document.getElementById('uptown_seventh_terminus_H1').innerHTML = getComputedStyle(document.documentElement).getPropertyValue('--LIRRstart');
+function sleep(milliseconds) {
+	const date = Date.now();
+	let currentDate = null;
+	do {
+		currentDate = Date.now();
+	} while (currentDate - date < milliseconds);
+}
+
+		
+var elem = document.getElementById("oneterminusLIRRani");
+var elemdiv = document.getElementById("oneterminusLIRRanidiv");
+var pos = 10;
+
+function frame() {
+	if (pos <= -(elem.clientWidth-elemdiv.clientWidth)-20) {
+		sleep(1000);
+		pos = 10;
+		//sleep(1000);
+	} else {
+		
+		pos -= 3;
+		console.log(pos);
+		elem.style.left = pos + 'px';
+
+		if (pos == 4) {
+			sleep(1000);
+		}
+	}
+	//console.log(pos);
+	requestAnimationFrame(frame);
+}
+		
+let frameID = requestAnimationFrame(frame);
+//document.documentElement.style.setProperty('--LIRRstart', `${((document.getElementById('terminusLIRRani').clientWidth)/240)+31.03}%`);
+//document.getElementById('uptown_seventh_terminus_H1').innerHTML = getComputedStyle(document.documentElement).getPropertyValue('--LIRRstart');
 
 </script>
 
@@ -239,6 +274,7 @@ document.getElementById('uptown_seventh_terminus_H1').innerHTML = getComputedSty
 	var divWidth = document.getElementById("delayDIV")
 
 	function fixSizing(textWidth, divWidth) {
+		//document.documentElement.style.setProperty('--LIRRstart', `${((document.getElementById("oneterminusLIRRani").clientWidth)/2)-(((document.getElementById("oneterminusLIRRani").clientWidth)/2)*0.12)}px`);
 
 		if ((textWidth.clientWidth > divWidth.clientWidth) && (Math.abs(textWidth.clientWidth-divWidth.clientWidth) > 10)) {
 			console.log("Overflow " + textWidth.clientWidth + " " + divWidth.clientWidth);
