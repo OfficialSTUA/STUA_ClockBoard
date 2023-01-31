@@ -12,7 +12,8 @@ ANNOUCEMENTS = []
 NOTICES = []
 ANNOUCEMENTS_INDEX = 0
 WIFI = True
-TEST = True
+TEST = False
+SCHMON = ["06:00", "06:30", "07:00", "07:30", "07:40", "07:50", "08:00", "08:10", "08:20", "08:30", "08:40", "09:00", "10:00", "11:00", "12:00"]
 
 dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
@@ -28,13 +29,14 @@ def get_schedule():
        f.write(response.text)
 
 def export_schedule():
+    global SCHMON
     output = []
     today = datetime.datetime.now()
     strday = today.strftime("%B %d, %Y")
     strtime = today.strftime("%H:%M")
-    #print(strtime)
-    if (today.weekday() == 0):
-        get_schedule()
+    for i in SCHMON:
+        if i == strtime:
+            get_schedule()
     with open("sch.json","r") as f:
         json_obj = json.load(f)
         for day in json_obj["days"]:
@@ -54,7 +56,9 @@ def export_schedule():
                         break
                 #print(output)
                 output.append(day["day"])
-                output.append(day["bell"]["schedule"][-1]["startTime"])
+                #output.append(day["bell"]["schedule"][-9]["startTime"])
+                output.append("20:00")
+            #print(day["bell"]["schedule"][-9]["startTime"])
     if output == []:
         output.append(f'{strday} - {get_weekday(today.weekday())}')
         output.append("N/A")
@@ -62,7 +66,7 @@ def export_schedule():
         output.append("No School/Special Schedule")
         output.append("Welcome to Stuyveant High School!")
         output.append(strday)
-        output.append("12:00")
+        output.append("20:00")
     return output
         
 
@@ -382,8 +386,14 @@ def bus():
 
 def lirr():
     print("lirr done")
-    masterlistLIRR = stua.gtfsLIRR()
-    masterlistLIRR.get(("237", "0", 1, 25, []))
+    masterlistLIRR = []
+    for i in range(3):
+        masterlistLIRR.append(stua.gtfsLIRR())
+
+    masterlistLIRR[0].get(("237", "0", 1, 25, []))
+    masterlistLIRR[1].get(("241", "0", 1, 25, []))
+    masterlistLIRR[2].get(("349", "0", 1, 25, []))
+
     return masterlistLIRR
 
 #print(lirr())
@@ -401,17 +411,17 @@ def export_lirr():
     masterlistLIRR = lirr()
     #print("lirr done")
     json_string = {
-        "lirr_PENN": {
-            "penn_crit": f"{masterlistLIRR.time}",
-            "penn_time": f"{modlirrTIME(masterlistLIRR.core_time)}",
-            "penn_branch": f'<img src="/static/svg/{masterlistLIRR.route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>',
-            "penn_dest": f'To {masterlistLIRR.terminus}, making stops at:',
-            "penn_stops": f"{' - '.join(masterlistLIRR.station_name_list)}"
+        "lirr": {
+            "crit": [f"{masterlistLIRR[0].time}", f"{masterlistLIRR[1].time}", f"{masterlistLIRR[2].time}"],
+            "time": [f"{modlirrTIME(masterlistLIRR[0].core_time)}", f"{modlirrTIME(masterlistLIRR[1].core_time)}", f"{modlirrTIME(masterlistLIRR[2].core_time)}"],
+            "branch": [f'<img src="/static/svg/{masterlistLIRR[0].route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>', f'<img src="/static/svg/{masterlistLIRR[1].route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">ATLN</h1>', f'<img src="/static/svg/{masterlistLIRR[2].route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">GCTM</h1>'],
+            "dest": [f'To {masterlistLIRR[0].terminus}, making stops at:', f'To {masterlistLIRR[1].terminus}, making stops at:', f'To {masterlistLIRR[2].terminus}, making stops at:'],
+            "stops": [f"{' - '.join(masterlistLIRR[0].station_name_list)}", f"{' - '.join(masterlistLIRR[1].station_name_list)}", f"{' - '.join(masterlistLIRR[2].station_name_list)}"]
         }
     }
     return json.dumps(json_string)
 
-print(export_lirr())
+#print(export_lirr())
 
 def export():
     

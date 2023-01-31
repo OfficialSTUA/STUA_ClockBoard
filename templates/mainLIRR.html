@@ -225,20 +225,60 @@
 	}
 
 	
-	
+	var lirrinit = false;
+	var lirrindex = 0;
+	var lirrarr = new Array(3).fill(false);
+	var datalirrm = null;
 
-	var source = new EventSource("/lirr");
-	source.onmessage = function(event) {
+	function colorLIRR() {
+		console.log(document.getElementById("penn").outerHTML);
+		if (lirrindex == 0) {
+			//console.log("COLORLIRRP");
+			document.getElementById("oneLIRRbranch").style.backgroundColor = "#FFE6ED";
+			document.getElementById("oneLIRRbranchtime").style.backgroundColor = "#FFE6ED";
+			document.getElementById("oneterminusLIRRdiv").style.backgroundColor = "#FEDBE4";
+			document.getElementById("oneterminusLIRRanidiv").style.backgroundColor = "#FEDBE4";
+			document.getElementById("onetimeLIRR").classList.remove("blink");
+			document.getElementById("oneterminusLIRR").classList.remove("blink_terminus");
+			document.getElementById("oneterminusLIRRani").classList.remove("blink_terminus");
+			document.getElementById("penn").style.color = "black";
+		} else if (lirrindex == 1) {
+			//console.log("COLORLIRRA");
+			document.getElementById("oneLIRRbranch").style.backgroundColor = "#DEFFE0";
+			document.getElementById("oneLIRRbranchtime").style.backgroundColor = "#DEFFE0";
+			document.getElementById("oneterminusLIRRdiv").style.backgroundColor = "#D0FFD3";
+			document.getElementById("oneterminusLIRRanidiv").style.backgroundColor = "#D0FFD3";
+			document.getElementById("onetimeLIRR").classList.remove("blink");
+			document.getElementById("oneterminusLIRR").classList.remove("blink_terminus");
+			document.getElementById("oneterminusLIRRani").classList.remove("blink_terminus");
+			document.getElementById("penn").style.color = "black";
+		} else if (lirrindex == 2) {
+			//console.log("COLORLIRRG");
+			document.getElementById("oneLIRRbranch").style.backgroundColor = "#DAF3FF";
+			document.getElementById("oneLIRRbranchtime").style.backgroundColor = "#DAF3FF";
+			document.getElementById("oneterminusLIRRdiv").style.backgroundColor = "#C9ECFE";
+			document.getElementById("oneterminusLIRRanidiv").style.backgroundColor = "#C9ECFE";
+			document.getElementById("onetimeLIRR").classList.remove("blink");
+			document.getElementById("oneterminusLIRR").classList.remove("blink_terminus");
+			document.getElementById("oneterminusLIRRani").classList.remove("blink_terminus");
+			document.getElementById("penn").style.color = "black";
+		}
+	}
 
-		var datalirr = JSON.parse(event.data);
-		console.log(datalirr);
-
-		document.getElementById("oneLIRRbranch").innerHTML = datalirr.lirr_PENN.penn_branch;
-		document.getElementById("onetimeLIRR").innerHTML = datalirr.lirr_PENN.penn_time;
-		document.getElementById("oneterminusLIRR").innerHTML = datalirr.lirr_PENN.penn_dest;
-		document.getElementById("oneterminusLIRRani").innerHTML = datalirr.lirr_PENN.penn_stops;
+	function updateLIRR() {
+		console.log(datalirrm.lirr.branch[lirrindex]);
+		document.getElementById("oneLIRRbranch").innerHTML = datalirrm.lirr.branch[lirrindex];
+		document.getElementById("onetimeLIRR").innerHTML = datalirrm.lirr.time[lirrindex];
+		document.getElementById("oneterminusLIRR").innerHTML = datalirrm.lirr.dest[lirrindex];
+		document.getElementById("oneterminusLIRRani").innerHTML = datalirrm.lirr.stops[lirrindex];
 		//console.log(document.getElementById("penn").innerHTML);
-		if (datalirr.lirr_PENN.penn_crit == "25") {
+	}
+
+
+	function critlirr() {
+
+		if (lirrarr[lirrindex] == true) {
+			//console.log("CRITLIRRT");
 			document.getElementById("oneLIRRbranch").style.backgroundColor = "#111111";
 			document.getElementById("oneLIRRbranchtime").style.backgroundColor = "#111111";
 			document.getElementById("onetimeLIRR").classList.add("blink");
@@ -248,14 +288,54 @@
 			document.getElementById("oneterminusLIRRanidiv").style.backgroundColor = "#111111";
 			document.getElementById("penn").style.color = "#ffffff";
 		} else {
-			document.getElementById("oneLIRRbranch").style.backgroundColor = "#FFE6ED";
-			document.getElementById("oneLIRRbranchtime").style.backgroundColor = "#FFE6ED";
-			document.getElementById("oneterminusLIRRdiv").style.backgroundColor = "#FEDBE4";
-			document.getElementById("oneterminusLIRRanidiv").style.backgroundColor = "#FEDBE4";
-			document.getElementById("onetimeLIRR").classList.remove("blink");
-			document.getElementById("oneterminusLIRR").classList.remove("blink_terminus");
-			document.getElementById("oneterminusLIRRani").classList.remove("blink_terminus");
-			document.getElementById("penn").style.color = "black";
+			//console.log("CRITLIRRF");
+			colorLIRR();
+			//document.getElementById("oneLIRRbranch").style.backgroundColor = "#FFE6ED";
+			//document.getElementById("oneLIRRbranchtime").style.backgroundColor = "#FFE6ED";
+			//document.getElementById("oneterminusLIRRdiv").style.backgroundColor = "#FEDBE4";
+			//document.getElementById("oneterminusLIRRanidiv").style.backgroundColor = "#FEDBE4";
+			//document.getElementById("onetimeLIRR").classList.remove("blink");
+			//document.getElementById("oneterminusLIRR").classList.remove("blink_terminus");
+			//document.getElementById("oneterminusLIRRani").classList.remove("blink_terminus");
+			//document.getElementById("penn").style.color = "black";
+		}
+
+	}
+
+	function advLIRR() {
+		//console.log("ADVLIRR");
+		while (true) {
+			lirrindex += 1;
+			if (lirrindex >= 3) {
+				lirrindex = 0;
+			}
+			if (datalirrm.lirr.crit[lirrindex] != "-1") {
+				break;
+			}
+		}
+		updateLIRR();
+		critlirr();
+	}
+
+	var source = new EventSource("/lirr");
+	source.onmessage = function(event) {
+
+		datalirrm = JSON.parse(event.data);
+		console.log(datalirrm);
+		lirrinit = true;
+
+		//document.getElementById("oneLIRRbranch").innerHTML = datalirr.lirr_PENN.penn_branch;
+		//document.getElementById("onetimeLIRR").innerHTML = datalirr.lirr_PENN.penn_time;
+		//document.getElementById("oneterminusLIRR").innerHTML = datalirr.lirr_PENN.penn_dest;
+		//document.getElementById("oneterminusLIRRani").innerHTML = datalirr.lirr_PENN.penn_stops;
+		//console.log(document.getElementById("penn").innerHTML);
+
+		for (let i = 0; i < datalirrm.lirr.crit.length; i++) {
+			if (datalirrm.lirr.crit[i] == "25") {
+				lirrarr[i] = true;
+			} else {
+				lirrarr[i] = false;
+			}
 		}
 
 		
@@ -690,7 +770,7 @@
 </head>
 
 
-<body style="background-color: white; height: 100vh; width: 100vw; margin: 0px; overflow: hidden;">
+<body style="background-color: white; height: 100vh; width: 100vw; margin: 0px; overflow: hidden; cursor: none;">
     
 	<div id="OFFLINE" style="background-color: black; height: 100%; display: none; width: 100%;">
 		<div style="display: block; height: 100%; width: 100%">
@@ -1045,7 +1125,7 @@
 						<img src="/static/svg/city zone.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>
 					</div>
 					<div id="oneLIRRbranchtime" style="background-color: #FFE6ED; height: 55%; width: 100%; display: flex; align-items: center; justify-content: center;">
-						<h1 id="onetimeLIRR" class="timeLIRR" style="float: left; margin: 0px; margin-top: 6%; white-space: nowrap;">00:00 P.M.</h1>
+						<h1 id="onetimeLIRR" class="timeLIRR" style="float: left; margin: 0px; margin-top: 6%; white-space: nowrap;">00:00 PM</h1>
 					</div>
 				</div>
 				<div style="background-color: red; height: 100%; display: inline-block; width: 75%;">
@@ -1210,10 +1290,21 @@ var elemdiv = document.getElementById("oneterminusLIRRanidiv");
 var pos = 10;
 
 function frame() {
-	if (pos <= -(elem.clientWidth-elemdiv.clientWidth)-20) {
+	if (elem.clientWidth < elemdiv.clientWidth) {
+		sleep(6000);
+		advLIRR();
+	} else if (pos <= -(elem.clientWidth-elemdiv.clientWidth)-20) {
 		sleep(1000);
-		pos = 10;
 		//sleep(1000);
+		//console.log(lirrinit);
+		pos = 10;
+		if (lirrinit == true) {
+			advLIRR();
+			//console.log("ADVLIRRREST");
+		} else {
+			sleep(1000);
+			//console.log("ADVLIRRRESF");
+		}
 	} else {
 		
 		pos -= 3;
