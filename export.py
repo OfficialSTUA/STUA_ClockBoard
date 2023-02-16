@@ -28,12 +28,19 @@ def get_schedule():
     with open("sch.json","w") as f:
        f.write(response.text)
 
+get_schedule()
+
 def export_schedule():
     global SCHMON
     output = []
     today = datetime.datetime.now()
-    strday = today.strftime("%B %d, %Y")
+    strday = today.strftime("%B p, %Y")
+    strtemp = today.strftime("%d")
+    if strtemp[0] == "0":
+        strtemp = strtemp[1]
+    strday = strday.replace("p", strtemp)
     strtime = today.strftime("%H:%M")
+    #get_schedule()
     for i in SCHMON:
         if i == strtime:
             get_schedule()
@@ -46,19 +53,26 @@ def export_schedule():
                 output.append(day["block"])
                 output.append(day["testing"])
                 output.append(day["bell"]["scheduleName"])
+                
+                period = None
+
                 for time in day["bell"]["schedule"]:
                     if (today <= datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M")):
                         #print(today)
                         #print(datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M"))
                         #print(datetime.datetime.now())
                         #day["bell"]["schedule"].index(time)
-                        output.append(day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
+                        period = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
                         break
                 #print(output)
+                if period == None:
+                    period = "After School"
+                
+                output.append(period)
                 output.append(day["day"])
-                #output.append(day["bell"]["schedule"][-9]["startTime"])
-                output.append("20:00")
-            #print(day["bell"]["schedule"][-9]["startTime"])
+                output.append(day["bell"]["schedule"][-8]["startTime"])
+                #output.append("21:15")
+                #print(day["bell"]["schedule"][-8])
     if output == []:
         output.append(f'{strday} - {get_weekday(today.weekday())}')
         output.append("N/A")
@@ -66,7 +80,7 @@ def export_schedule():
         output.append("No School/Special Schedule")
         output.append("Welcome to Stuyveant High School!")
         output.append(strday)
-        output.append("20:00")
+        output.append("12:00")
     return output
         
 
@@ -129,7 +143,8 @@ def refresh():
     elif wifi_disconnect() == False and WIFI == False:
         WIFI = True
         RENDER = False
-        PROGRESS = 0
+        #PROGRESS = 0.0
+        stua.reset_loading_bar()
     elif render() == False:
         load_status = "RENDER"
     else:

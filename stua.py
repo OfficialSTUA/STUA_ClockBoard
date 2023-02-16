@@ -15,6 +15,10 @@ def loading_bar():
     global PROGRESS
     PROGRESS += 1
 
+def reset_loading_bar():
+    global PROGRESS
+    PROGRESS = 0
+
 def get_loading_bar():
     global PROGRESS
     global TOTAL
@@ -596,56 +600,57 @@ def _transitSubwayMODDED(stops, API):
     cur = 0
     for stop in stops:
         cur += 1
-        
-        times = []
-        destination = []
-        for link in links:
-            feed = gtfs_realtime_pb2.FeedMessage()
-            feed.ParseFromString(link)
-            #print(link)
-            '''
-            with open(f"logs/NYCT_GTFS/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","w") as test:
-                test.write(str(feed)+ f" {datetime.datetime.now()}\n")
-            '''
-            #print(str(feed))
-            
-            for entity in feed.entity:
-                #print(entity)
-                for update in entity.trip_update.stop_time_update:
-                    if (update.stop_id == stop[0]+stop[1]):
-                        station_id = update.stop_id[:-1]
-                        direction = update.stop_id[-1]
-                        time = update.arrival.time
-                        if (time < 0):
-                            time = update.departure.time
-                        time = datetime.datetime.fromtimestamp(time)
-                        time = math.trunc(((time - current_time).total_seconds()) / 60)
-                        #print(time)
-                        if (time < stop[3]):
-                            continue 
-                        trip_id = entity.trip_update.trip.trip_id
-                        route_id = entity.trip_update.trip.route_id
-                        if (stop[4] != "NONE" and stop[4] != route_id):
-                            continue
-                        for update in entity.trip_update.stop_time_update:
-                            destination.append(update.stop_id)
-                        #print(service_description)
-                        terminus_id = destination[-1][:-1]
-                        
-                        #print(stop)
-                        #times.append([time, route_id, terminus_id, station_id, direction, trip_id])
-                        train = gtfsSubway()
-                        description = _routes(route_id)
-                        train.set(route_id, convertSubway(terminus_id), terminus_id, convertSubway(station_id), station_id, direction, time, description[0], description[1], trip_id)
-                        times.append(train)
-
-    #print(times)
-        sort(times)
-        #times = []
         try:
+            times = []
+            destination = []
+            for link in links:
+                #try:
+                feed = gtfs_realtime_pb2.FeedMessage()
+                feed.ParseFromString(link)
+                #print(link)
+                '''
+                with open(f"logs/NYCT_GTFS/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","w") as test:
+                    test.write(str(feed)+ f" {datetime.datetime.now()}\n")
+                '''
+                #print(str(feed))
+                
+                for entity in feed.entity:
+                    #print(entity)
+                    for update in entity.trip_update.stop_time_update:
+                        if (update.stop_id == stop[0]+stop[1]):
+                            station_id = update.stop_id[:-1]
+                            direction = update.stop_id[-1]
+                            time = update.arrival.time
+                            if (time < 0):
+                                time = update.departure.time
+                            time = datetime.datetime.fromtimestamp(time)
+                            time = math.trunc(((time - current_time).total_seconds()) / 60)
+                            #print(time)
+                            if (time < stop[3]):
+                                continue 
+                            trip_id = entity.trip_update.trip.trip_id
+                            route_id = entity.trip_update.trip.route_id
+                            if (stop[4] != "NONE" and stop[4] != route_id):
+                                continue
+                            for update in entity.trip_update.stop_time_update:
+                                destination.append(update.stop_id)
+                            #print(service_description)
+                            terminus_id = destination[-1][:-1]
+                            
+                            #print(stop)
+                            #times.append([time, route_id, terminus_id, station_id, direction, trip_id])
+                            train = gtfsSubway()
+                            description = _routes(route_id)
+                            train.set(route_id, convertSubway(terminus_id), terminus_id, convertSubway(station_id), station_id, direction, time, description[0], description[1], trip_id)
+                            times.append(train)
+
+        #print(times)
+            sort(times)
+            #times = []
+            
             final.append(times[stop[2]-1])
         except:
-            #final.append("NO TRAINS")
+                #final.append("NO TRAINS")
             train = gtfsSubway()
             train.set("X", "NO TRAINS", "NO TRAINS", "NO TRAINS", stop[0], stop[1], "X", "NO TRAINS", "NO TRAINS", "NO TRAINS")
             final.append(train)
@@ -734,64 +739,65 @@ def _transitBusMODDED(stops, API):
     feed = gtfs_realtime_pb2.FeedMessage()
     feed.ParseFromString(link.content)
     for stop in stops:
-        times = []
-        destination = []
-       
-        for entity in feed.entity:
-            for update in entity.trip_update.stop_time_update:
-        
-                if ((update.stop_id == stop[0]) and (str(entity.trip_update.trip.direction_id) == str(stop[1]))):
-                    time = update.arrival.time
-                    if (time < 0):
-                        time = update.departure.time
-                    time = datetime.datetime.fromtimestamp(time)
-                    time = math.trunc(((time - current_time).total_seconds()) / 60)
-                    if (time < stop[3]):
-                        continue 
-                    trip_id = entity.trip_update.trip.trip_id
-                    route_id = entity.trip_update.trip.route_id
-                    if (stop[4] != "NONE" and stop[4] != route_id):
-                        continue
-                    vehicle = entity.trip_update.vehicle.id[-4:]
-                    stop_id = update.stop_id
-                    for update in entity.trip_update.stop_time_update:
-                        destination.append(update.stop_id)
-                    terminus_id = destination[-1]
-                    #print(terminus_id)
-                    direction = entity.trip_update.trip.direction_id
-            
-                    
-                    
-                    """
-                    responsestop = requests.get(f'http://bustime.mta.info/api/where/stop/MTA_{stop}.xml?key={API}')
-                    #filenamevar = f"bustime.xml"
-            
-                    #with open(filenamevar,"wb") as f:
-                    #    f.write(responsestop.content)
-                    tree = ET(fromstring(responsestop.content))
-                    # tree = ET.parse(filenamevar)
-                    root = tree.getroot()
-                    stop_name = root[4][4].text
-                    for item in root[4][7]:
-                        if (item[1].text == route_id):
-                            service_pattern = item[3].text
-                    responsestop = requests.get(f'http://bustime.mta.info/api/where/stop/MTA_{terminus_id}.xml?key={API}')
-                    #filenamevar = f"logs/Bustime/{(datetime.datetime.now()).strftime('%d%m%Y')}.xml"
-                    #filenamevar = f"bustime.xml"
-                    tree = ET(fromstring(responsestop.content))
-                    # tree = ET.parse(filenamevar)
-                    root = tree.getroot()
-                    root = tree.getroot()
-                    terminus_name = root[4][4].text
-                    """
-
-                    bus = gtfsBus()
-                    bus.set(route_id, f'http://bustime.mta.info/api/where/stop/MTA_{terminus_id}.xml?key={API}', terminus_id, f'http://bustime.mta.info/api/where/stop/MTA_{stop_id}.xml?key={API}', stop_id, time, "", direction, trip_id, vehicle)
-                    times.append(bus)
-        
-        loading_bar()
-        sort(times)
         try:
+            times = []
+            destination = []
+        
+            for entity in feed.entity:
+                for update in entity.trip_update.stop_time_update:
+            
+                    if ((update.stop_id == stop[0]) and (str(entity.trip_update.trip.direction_id) == str(stop[1]))):
+                        time = update.arrival.time
+                        if (time < 0):
+                            time = update.departure.time
+                        time = datetime.datetime.fromtimestamp(time)
+                        time = math.trunc(((time - current_time).total_seconds()) / 60)
+                        if (time < stop[3]):
+                            continue 
+                        trip_id = entity.trip_update.trip.trip_id
+                        route_id = entity.trip_update.trip.route_id
+                        if (stop[4] != "NONE" and stop[4] != route_id):
+                            continue
+                        vehicle = entity.trip_update.vehicle.id[-4:]
+                        stop_id = update.stop_id
+                        for update in entity.trip_update.stop_time_update:
+                            destination.append(update.stop_id)
+                        terminus_id = destination[-1]
+                        #print(terminus_id)
+                        direction = entity.trip_update.trip.direction_id
+                
+                        
+                        
+                        """
+                        responsestop = requests.get(f'http://bustime.mta.info/api/where/stop/MTA_{stop}.xml?key={API}')
+                        #filenamevar = f"bustime.xml"
+                
+                        #with open(filenamevar,"wb") as f:
+                        #    f.write(responsestop.content)
+                        tree = ET(fromstring(responsestop.content))
+                        # tree = ET.parse(filenamevar)
+                        root = tree.getroot()
+                        stop_name = root[4][4].text
+                        for item in root[4][7]:
+                            if (item[1].text == route_id):
+                                service_pattern = item[3].text
+                        responsestop = requests.get(f'http://bustime.mta.info/api/where/stop/MTA_{terminus_id}.xml?key={API}')
+                        #filenamevar = f"logs/Bustime/{(datetime.datetime.now()).strftime('%d%m%Y')}.xml"
+                        #filenamevar = f"bustime.xml"
+                        tree = ET(fromstring(responsestop.content))
+                        # tree = ET.parse(filenamevar)
+                        root = tree.getroot()
+                        root = tree.getroot()
+                        terminus_name = root[4][4].text
+                        """
+
+                        bus = gtfsBus()
+                        bus.set(route_id, f'http://bustime.mta.info/api/where/stop/MTA_{terminus_id}.xml?key={API}', terminus_id, f'http://bustime.mta.info/api/where/stop/MTA_{stop_id}.xml?key={API}', stop_id, time, "", direction, trip_id, vehicle)
+                        times.append(bus)
+            
+            loading_bar()
+            sort(times)
+        #try:
             final.append(times[stop[2]-1])
         except:
             bus = gtfsBus()
@@ -910,70 +916,70 @@ def  _transitLIRRBOARD(input, API):
     destination = []
     #print(API)
     links = _get_or_create_eventloop().run_until_complete(_requestFeedMTA([f"https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/lirr%2Fgtfs-lirr"], API))
-    
-    for link in links:
-        #print(link)
-        #print(link)
-        feed = gtfs_realtime_pb2.FeedMessage()
-        feed.ParseFromString(link)
-
-        with open("alerts.txt", "w") as f:
-            f.write(str(feed))
-        #print(feed)
-        for entity in feed.entity:
-            for update in entity.trip_update.stop_time_update:
-                if str(entity.trip_update.trip.schedule_relationship) == "3":
-                    continue
-                if ((update.stop_id == stop) and (str(entity.trip_update.trip.direction_id) == str(direction))):
-                    station_id = update.stop_id
-                    time = update.departure.time
-                    if (time < 0):
-                        pass
-                    time = datetime.datetime.fromtimestamp(time)
-                    core_time = time
-                    time = math.trunc(((time - current_time).total_seconds()) / 60)
-                    #print(time)
-                    if (time < 0):
-                        continue 
-                    if (time < minute):
-                        continue 
-                    if entity.trip_update.trip.trip_id[-2] == "_":
-                        vehicle = entity.trip_update.trip.trip_id
-                        vehicle = vehicle.replace("_","")
-                        vehicle = entity.trip_update.trip.trip_id[-6:-2]
-                    else:
-                        vehicle = entity.trip_update.trip.trip_id[-4:]
-                    trip_id = entity.trip_update.trip.trip_id
-                    route_id = convertLIRR_route(entity.trip_update.trip.route_id)
-                    if target_routes == []:
-                        pass
-                    else:
-                        if route_id not in target_routes:
-                            continue
-                    direction = entity.trip_update.trip.direction_id
-                    station_id_list = []
-                    for update in entity.trip_update.stop_time_update:
-                        destination.append(update.stop_id)
-                        station_id_list.append(update.stop_id)
-                    #print(service_description)
-                    station_stop_list = [convertLIRR(i) for i in station_id_list]
-                    #print(station_stop_list)
-                    #print(trip_id)
-                    #print(str(entity.trip_update.trip.schedule_relationship))
-                    #print(direction)
-                    terminus_id = destination[-1]
-                
-                    #print(stop)
-                    
-                    times.append([time, route_id, terminus_id, station_id, direction, trip_id, station_id_list, station_stop_list, vehicle, core_time])
-                    #print(times)
-                    #print(data["gtfs"]["stops"])
-                    #for i in data["gtfs"]["stops"]:
-                    #print(i["stop_id"] + " " + i["stop_name"])
-    times.sort()
-    #times = []
-    #print(times)
     try:
+        for link in links:
+            #print(link)
+            #print(link)
+            feed = gtfs_realtime_pb2.FeedMessage()
+            feed.ParseFromString(link)
+
+            with open("alerts.txt", "w") as f:
+                f.write(str(feed))
+            #print(feed)
+            for entity in feed.entity:
+                for update in entity.trip_update.stop_time_update:
+                    if str(entity.trip_update.trip.schedule_relationship) == "3":
+                        continue
+                    if ((update.stop_id == stop) and (str(entity.trip_update.trip.direction_id) == str(direction))):
+                        station_id = update.stop_id
+                        time = update.departure.time
+                        if (time < 0):
+                            pass
+                        time = datetime.datetime.fromtimestamp(time)
+                        core_time = time
+                        time = math.trunc(((time - current_time).total_seconds()) / 60)
+                        #print(time)
+                        if (time < 0):
+                            continue 
+                        if (time < minute):
+                            continue 
+                        if entity.trip_update.trip.trip_id[-2] == "_":
+                            vehicle = entity.trip_update.trip.trip_id
+                            vehicle = vehicle.replace("_","")
+                            vehicle = entity.trip_update.trip.trip_id[-6:-2]
+                        else:
+                            vehicle = entity.trip_update.trip.trip_id[-4:]
+                        trip_id = entity.trip_update.trip.trip_id
+                        route_id = convertLIRR_route(entity.trip_update.trip.route_id)
+                        if target_routes == []:
+                            pass
+                        else:
+                            if route_id not in target_routes:
+                                continue
+                        direction = entity.trip_update.trip.direction_id
+                        station_id_list = []
+                        for update in entity.trip_update.stop_time_update:
+                            destination.append(update.stop_id)
+                            station_id_list.append(update.stop_id)
+                        #print(service_description)
+                        station_stop_list = [convertLIRR(i) for i in station_id_list]
+                        #print(station_stop_list)
+                        #print(trip_id)
+                        #print(str(entity.trip_update.trip.schedule_relationship))
+                        #print(direction)
+                        terminus_id = destination[-1]
+                    
+                        #print(stop)
+                        
+                        times.append([time, route_id, terminus_id, station_id, direction, trip_id, station_id_list, station_stop_list, vehicle, core_time])
+                        #print(times)
+                        #print(data["gtfs"]["stops"])
+                        #for i in data["gtfs"]["stops"]:
+                        #print(i["stop_id"] + " " + i["stop_name"])
+        times.sort()
+        #times = []
+        #print(times)
+        #try:
         times = times[responses-1]
     except:
         return "NO TRAINS"
