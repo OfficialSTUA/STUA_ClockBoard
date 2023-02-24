@@ -697,8 +697,10 @@ def _transitBus(stop, direction, responses, API, id="NONE"):
                     terminus_id = destination[-1]
                     direction = entity.trip_update.trip.direction_id
                     stop_id = update.stop_id
-            
+
+                    #print(API)
                     responsestop = requests.get(f'http://bustime.mta.info/api/where/stop/MTA_{stop}.xml?key={API}')
+                    #print(responsestop.content)
                     #filenamevar = f"bustime.xml"
             
                     #with open(filenamevar,"wb") as f:

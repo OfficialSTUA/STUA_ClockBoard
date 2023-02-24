@@ -13,6 +13,7 @@ NOTICES = []
 ANNOUCEMENTS_INDEX = 0
 WIFI = True
 TEST = False
+SCH = False
 SCHMON = ["06:00", "06:30", "07:00", "07:30", "07:40", "07:50", "08:00", "08:10", "08:20", "08:30", "08:40", "09:00", "10:00", "11:00", "12:00"]
 
 dotenv.load_dotenv()
@@ -32,6 +33,7 @@ get_schedule()
 
 def export_schedule():
     global SCHMON
+    global SCH
     output = []
     today = datetime.datetime.now()
     strday = today.strftime("%B p, %Y")
@@ -41,9 +43,20 @@ def export_schedule():
     strday = strday.replace("p", strtemp)
     strtime = today.strftime("%H:%M")
     #get_schedule()
+    multiplier = 0
+
     for i in SCHMON:
-        if i == strtime:
+        if i == strtime and SCH == False:
             get_schedule()
+            SCH = True
+            multiplier = 0
+            break
+        else:
+            multiplier += 1
+
+    if multiplier > 0:
+        SCH = False
+
     with open("sch.json","r") as f:
         json_obj = json.load(f)
         for day in json_obj["days"]:
@@ -58,11 +71,20 @@ def export_schedule():
 
                 for time in day["bell"]["schedule"]:
                     if (today <= datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M")):
+                        right = str(int((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60))
+                        left = str(int(day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["duration"]) - int(right))
+                        #print(left)
+                        #print(right)
+                        #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60)
+                        #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today))
                         #print(today)
                         #print(datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M"))
                         #print(datetime.datetime.now())
                         #day["bell"]["schedule"].index(time)
                         period = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
+                        periodt = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)]["startTime"])
+                        #print(periodt)
+                        #print(period)
                         break
                 #print(output)
                 if period == None:
@@ -71,6 +93,10 @@ def export_schedule():
                 output.append(period)
                 output.append(day["day"])
                 output.append(day["bell"]["schedule"][-8]["startTime"])
+                output.append(left)
+                output.append(right)
+                output.append(periodt)
+                #print(left)
                 #output.append("21:15")
                 #print(day["bell"]["schedule"][-8])
     if output == []:
@@ -78,9 +104,12 @@ def export_schedule():
         output.append("N/A")
         output.append("No Testing")
         output.append("No School/Special Schedule")
-        output.append("Welcome to Stuyveant High School!")
+        output.append("Period --")
         output.append(strday)
         output.append("12:00")
+        output.append("--")
+        output.append("--")
+        output.append("No School")
     return output
         
 
@@ -122,7 +151,6 @@ def wifi_disconnect():
     try:
         response = requests.get("http://web.mta.info/status/ServiceStatusSubway.xml", timeout=10)
         return False
-    
     except Exception as e:
         #print(e.message)
         with open("errors.txt", "a") as f:
@@ -164,7 +192,11 @@ def refresh():
         "sch_day": sch[0],
         "sch_block": sch[1],
         "sch_testing": sch[2],
-        "sch_sch": sch[3]
+        "sch_sch": sch[3],
+        "sch_period": f'This Period is: <strong>{sch[4]}</strong>',
+        "sch_left": f'<strong>{sch[7]}</strong>',
+        "sch_right": f'<strong>{sch[8]}</strong>',
+        "sch_end": f'Ending At: <strong>{sch[9]}</strong>'
     }
     
     return json.dumps(json_string)
@@ -429,7 +461,7 @@ def export_lirr():
         "lirr": {
             "crit": [f"{masterlistLIRR[0].time}", f"{masterlistLIRR[1].time}", f"{masterlistLIRR[2].time}"],
             "time": [f"{modlirrTIME(masterlistLIRR[0].core_time)}", f"{modlirrTIME(masterlistLIRR[1].core_time)}", f"{modlirrTIME(masterlistLIRR[2].core_time)}"],
-            "branch": [f'<img src="/static/svg/{masterlistLIRR[0].route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>', f'<img src="/static/svg/{masterlistLIRR[1].route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">ATLN</h1>', f'<img src="/static/svg/{masterlistLIRR[2].route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">GCTM</h1>'],
+            "branch": [f'<img src="/static/svg/{masterlistLIRR[0].route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">PENN</h1>', f'<img src="/static/svg/{masterlistLIRR[1].route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">ATLN</h1>', f'<img src="/static/svg/{masterlistLIRR[2].route_id}.svg" style="height: 85%; margin-top: 5%;"><h1 id="penn" class="branch">GCM</h1>'],
             "dest": [f'To {masterlistLIRR[0].terminus}, making stops at:', f'To {masterlistLIRR[1].terminus}, making stops at:', f'To {masterlistLIRR[2].terminus}, making stops at:'],
             "stops": [f"{' - '.join(masterlistLIRR[0].station_name_list)}", f"{' - '.join(masterlistLIRR[1].station_name_list)}", f"{' - '.join(masterlistLIRR[2].station_name_list)}"]
         }
@@ -593,34 +625,34 @@ def export():
         "bottom_side": {
             "uptown_nassau": {
                 "one": {
-                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[24].route_id).lower()}.svg' style='height: 90%; margin-left: 7px; margin-top: 5%;'>",
+                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[24].route_id).lower()}.svg' style='height: 75%; margin-left: 7px; margin-top: 6%;'>",
                     "time": f"{masterlistSUBWAY[24].time}m",
                     "branch": branch(masterlistSUBWAY[24].terminus)
                 },
                 "two": {
-                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[25].route_id).lower()}.svg' style='height: 90%; margin-left: 7px; margin-top: 5%;'>",
+                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[25].route_id).lower()}.svg' style='height: 75%; margin-left: 7px; margin-top: 5.5%;'>",
                     "time": f"{masterlistSUBWAY[25].time}m",
                     "branch": branch(masterlistSUBWAY[25].terminus)
                 }
             },
             "uptown_lex": {
                 "one": {
-                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[26].route_id).lower()}.svg' style='height: 90%; margin-left: 7px; margin-top: 5%;'>",
+                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[26].route_id).lower()}.svg' style='height: 75%; margin-left: 7px; margin-top: 6%;'>",
                     "time": f"{masterlistSUBWAY[26].time}m",
                     "branch": branch(masterlistSUBWAY[26].terminus)
                 },
                 "two": {
-                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[27].route_id).lower()}.svg' style='height: 90%; margin-left: 7px; margin-top: 5%;'>",
+                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[27].route_id).lower()}.svg' style='height: 75%; margin-left: 7px; margin-top: 5.5%;'>",
                     "time": f"{masterlistSUBWAY[27].time}m",
                     "branch": branch(masterlistSUBWAY[27].terminus)
                 },
                 "three": {
-                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[28].route_id).lower()}.svg' style='height: 90%; margin-left: 7px; margin-top: 5%;'>",
+                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[28].route_id).lower()}.svg' style='height: 75%; margin-left: 7px; margin-top: 5.5%;'>",
                     "time": f"{masterlistSUBWAY[28].time}m",
                     "branch": branch(masterlistSUBWAY[28].terminus)
                 },
                 "four": {
-                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[29].route_id).lower()}.svg' style='height: 90%; margin-left: 7px; margin-top: 5%;'>",
+                    "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[29].route_id).lower()}.svg' style='height: 75%; margin-left: 7px; margin-top: 5.5%;'>",
                     "time": f"{masterlistSUBWAY[29].time}m",
                     "branch": branch(masterlistSUBWAY[29].terminus)
                 }

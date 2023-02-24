@@ -54,7 +54,7 @@ h1.terminusLIRRani {
 h1.terminus {
     /*white-space: nowrap;*/
     font-family: standardMedium;
-    font-size: 7vh;
+    font-size: 6vh;
     white-space: nowrap;
     /* animation: marquee 6s linear infinite; */
 }
@@ -80,6 +80,14 @@ h1.animation {
 
 div.animation {
     overflow: hidden;
+}
+
+h1.terminusX {
+    /*white-space: nowrap;*/
+    font-family: helveticaLight;
+    font-size: 3vh;
+    white-space: nowrap;
+    /* animation: marquee 6s linear infinite; */
 }
 
 @keyframes marquee {
