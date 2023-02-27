@@ -416,6 +416,34 @@
 
 	}
 
+	var anonindex = 0;
+	var anon_list = [];
+
+	//console.log(anon_list[0]);
+	//console.log(anon_list.length);
+
+	function advANON() {
+		//console.log("ADVLIRR");
+		
+		anonindex += 1;
+		if (anonindex >= anon_list.length) {
+			anonindex = 0;
+		}
+		//console.log(anonindex)
+	}
+
+	function updateANON() {
+		advANON();
+		//console.log(anon_list.length);
+		if (anon_list.length == 0) {
+			document.getElementById("anon").innerHTML = "--";
+		} else {
+			document.getElementById("anon").innerHTML = anon_list[anonindex][1];
+		}
+	}
+
+	//updateANON();
+
 	var source = new EventSource("/refresh");
 	source.onmessage = function(event) {
 		console.log(event.data)
@@ -435,7 +463,11 @@
 		document.getElementById("right").innerHTML = crit.sch_right;
 		document.getElementById("sch_period").innerHTML = crit.sch_period;
 		document.getElementById("sch_time").innerHTML = crit.sch_end;
+		
 		console.log(crit.sch_block);
+
+		anon_list = crit.sch_anon;
+		updateANON();
 
 		if (crit.load_status == "RENDER") {
 			//document.getElementById("LOADING").style.display = "block";
@@ -830,7 +862,7 @@
 		</div>
 	</div>
 
-	<div id="SCH" style="background-color: black; height: 100%; display: none; width: 100%;">
+	<div id="SCH" style="background-color: black; height: 100%; display: block; width: 100%;">
 		<div style="background-color: black; height: 100%; width: 100%;">
             <div style="background-color: black; width: 100%; height: 5%;"></div>  
             <div style="background-color: white; width: 100%; height: 2.5%"></div>
@@ -895,8 +927,21 @@
 						</div>
 					</div>
 				</div>
-				<div style="background-color:black; height: 50%; width: 100%;">
-
+				<div style="background-color:darkblue; height: 50%; width: 100%;">
+					<div style="background-color:black; width: 100%; height: 25%;">
+						<div style="display: flex; justify-content: center; align-items:flex-end; height: 100%; width: 100%;">
+							<div style="background-color: black; width: 80%; height: 60%; text-align: center;">
+								<p style="color: white; font-size: 4vh; padding: 0; margin: -0%;"><strong>Announcements</strong></p>
+							</div>
+						</div>
+					</div>
+					<div style="background-color:black; width: 100%; height: 75%;">
+						<div style="display: flex; justify-content: center; align-items:center; height: 100%; width: 100%;">
+							<div id="anon_div" style="background-color: black; width: 80%; height: 80%; text-align: center;">
+								<p id="anon" style="color: white; font-size: 4vh; padding: 0; margin: -0%;">--</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
             <div style="background-color: black; width: 100%; height: 3%;"></div>
@@ -922,7 +967,7 @@
 	</div>
 
 	<div id="DISPLAY" style="height:100%; width:100%; display: none;">
-		<div id="LHS" style="background-color: #ffff00; width: 100%; height: 85%; display: none;">
+		<div id="LHS" style="background-color: #ffff00; width: 100%; height: 85%; display: block;">
 			<div style="background-color: indigo; width: 50%; height: 100%; float: left; margin: 0%;">
 				<div style="background-color: aliceblue; width: 100%; height: 19%;">
 					<div style="background-color: #490275; width: 3%; height: 100%; float: left; display: flex; justify-content: center; align-items: center;">
@@ -1060,7 +1105,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="STANDARD" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: none;">
+			<div id="STANDARD" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: block;">
 				<div style="background-color: blue; width: 100%; height: 24%;">
 					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
 						<div id="seventh_uptown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
@@ -1275,7 +1320,7 @@
 			</div>
 		</div>
 		<div style="background-color: white; width: 100%; height: 1%; display: block;"></div>
-		<div id="bottom_one" style="background-color: blue; width: 100%; height: 14%; white-space: nowrap; display: none;">
+		<div id="bottom_one" style="background-color: blue; width: 100%; height: 14%; white-space: nowrap; display: block;">
 			<div style="background-color: #490275; width: 1.5%; height: 100%; float: left; display: flex; justify-content: center; align-items: center;">
 				<h1 style="writing-mode: vertical-rl; text-orientation: upright; font-size: 1.65vh; color: white; margin-top: 0.8vh; margin-right: 0.6vw;">UPTOWN</h1>
 			</div>
@@ -1285,7 +1330,7 @@
 					<h1 id="jamaicaname1" class="terminusX" style="float: left; margin-left: 5px; margin-top: 12%; font-size: 2.5vh;">CHAMBERS ST</h1>
 				</div>
 				<div id="uptown_jamaica_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
-					<img src="/static/svg/z.svg" style="height: 75%; margin-left: 7px; margin-top: 6%;">
+					<img src="/static/svg/x.svg" style="height: 75%; margin-left: 7px; margin-top: 6%;">
 				</div>
 				<div id="uptown_jamaica_one_time_DIV" style="background-color: #dddddd; height: 40%; width: 100%; display: flex; align-items: center;">
 					<h1 id="uptown_jamaica_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.75%; font-size: 6vh;">4m</h1>
@@ -1297,7 +1342,7 @@
 					<h1 id="jamaicaname2" class="terminusX" style="float: left; margin-left: 5px; margin-top: 9.75%; font-size: 2.5vh;">CHAMBERS ST</h1>
 				</div>
 				<div id="uptown_jamaica_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
-					<img src="/static/svg/j.svg" style="height: 75%; margin-left: 7px; margin-top: 5.5%;">
+					<img src="/static/svg/x.svg" style="height: 75%; margin-left: 7px; margin-top: 5.5%;">
 				</div>
 				<div id="uptown_jamaica_two_time_DIV" style="background-color: #cccccc; height: 40%; width: 100%; display: flex; align-items: center;">
 					<h1 id="uptown_jamaica_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; font-size: 6vh;">4m</h1>
@@ -1380,7 +1425,7 @@
 					<h1 id="lexname1" class="terminusX" style="float: left; margin-left: 5px; margin-top: 11%; font-size: 2.5vh;">BKLYN. BRIDGE</h1>
 				</div>
 				<div id="uptown_lex_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
-					<img src="/static/svg/5.svg" style="height: 75%; margin-left: 7px; margin-top: 6%;">
+					<img src="/static/svg/x.svg" style="height: 75%; margin-left: 7px; margin-top: 6%;">
 				</div>
 				<div id="uptown_lex_one_time_DIV" style="background-color: #dddddd; height: 40%; width: 100%; display: flex; align-items: center;">
 					<h1 id="uptown_lex_one_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.75%; font-size: 6vh;">4m</h1>
@@ -1392,7 +1437,7 @@
 					<h1 id="lexname2" class="terminusX" style="float: left; margin-left: 5px; margin-top: 9.75%; font-size: 2.5vh;">BKLYN. BRIDGE</h1>
 				</div>
 				<div id="uptown_lex_two" style="background-color: #cccccc; height: 45%; width: 100%; display: flex; align-items: center;">
-					<img src="/static/svg/4.svg" style="height: 75%; margin-left: 7px; margin-top: 5.5%;">
+					<img src="/static/svg/x.svg" style="height: 75%; margin-left: 7px; margin-top: 5.5%;">
 				</div>
 				<div id="uptown_lex_two_time_DIV" style="background-color: #cccccc; height: 40%; width: 100%; display: flex; align-items: center;">
 					<h1 id="uptown_lex_two_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; font-size: 6vh;">4m</h1>
@@ -1403,7 +1448,7 @@
 					<h1 id="lexname3" class="terminusX" style="float: left; margin-left: 5px; margin-top: 9.75%; font-size: 2.5vh;">BKLYN. BRIDGE</h1>
 				</div>
 				<div id="uptown_lex_three" style="background-color: #bbbbbb; height: 45%; width: 100%; display: flex; align-items: center;">
-					<img src="/static/svg/4.svg" style="height: 75%; margin-left: 7px; margin-top: 5.5%;">
+					<img src="/static/svg/x.svg" style="height: 75%; margin-left: 7px; margin-top: 5.5%;">
 				</div>
 				<div id="uptown_lex_three_time_DIV" style="background-color: #bbbbbb; height: 40%; width: 100%; display: flex; align-items: center;">
 					<h1 id="uptown_lex_three_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; font-size: 6vh;">4m</h1>
@@ -1414,7 +1459,7 @@
 					<h1 id="lexname4" class="terminusX" style="float: left; margin-left: 5px; margin-top: 9.75%; font-size: 2.5vh;">BKLYN. BRIDGE</h1>
 				</div>
 				<div id="uptown_lex_four" style="background-color: #aaaaaa; height: 45%; width: 100%; display: flex; align-items: center;">
-					<img src="/static/svg/6.svg" style="height: 75%; margin-left: 7px; margin-top: 5.5%;">
+					<img src="/static/svg/x.svg" style="height: 75%; margin-left: 7px; margin-top: 5.5%;">
 				</div>
 				<div id="uptown_lex_four_time_DIV" style="background-color: #aaaaaa; height: 40%; width: 100%; display: flex; align-items: center;">
 					<h1 id="uptown_lex_four_time" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 3.5%; font-size: 6vh;">4m</h1>
@@ -1470,25 +1515,20 @@
 
 <script type="text/javascript">
 
-function sleep(milliseconds) {
-	const date = Date.now();
-	let currentDate = null;
-	do {
-		currentDate = Date.now();
-	} while (currentDate - date < milliseconds);
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 
 var elem = document.getElementById("oneterminusLIRRani");
 var elemdiv = document.getElementById("oneterminusLIRRanidiv");
 var pos = 10;
 
-function frame() {
+async function frame() {
 	if (elem.clientWidth < elemdiv.clientWidth) {
-		sleep(6000);
+		await sleep(6000);
 		advLIRR();
 	} else if (pos <= -(elem.clientWidth-elemdiv.clientWidth)-20) {
-		sleep(1000);
+		await sleep(1000);
 		//sleep(1000);
 		//console.log(lirrinit);
 		pos = 10;
@@ -1496,7 +1536,7 @@ function frame() {
 			advLIRR();
 			//console.log("ADVLIRRREST");
 		} else {
-			sleep(1000);
+			await sleep(1000);
 			//setTimeout(frame, 1000);
 			//console.log("ADVLIRRRESF");
 		}
@@ -1507,7 +1547,7 @@ function frame() {
 		elem.style.left = pos + 'px';
 
 		if (pos == 4) {
-			sleep(1000);
+			await sleep(1000);
 		}
 	}
 	//console.log(pos);
@@ -1520,7 +1560,32 @@ let frameID = requestAnimationFrame(frame);
 //document.documentElement.style.setProperty('--LIRRstart', `${((document.getElementById('oneterminusLIRRani').clientWidth)/240)+31.03}%`);
 //document.documentElement.style.setProperty('--LIRRstart', `${((document.getElementById('multiterminusLIRRani').clientWidth)/240)+31.03}%`);
 //document.getElementById('uptown_seventh_terminus_H1').innerHTML = getComputedStyle(document.documentElement).getPropertyValue('--LIRRstart');
-	
+async function sizeANON() {
+	while (true) {
+		updateANON();
+		var def = 4.0;
+		document.getElementById("anon").style.fontSize = `${def}vh`;
+		while (true) {
+			if (document.getElementById("anon").clientHeight > document.getElementById("anon_div").clientHeight) {
+				def -= 0.1;
+				document.getElementById("anon").style.fontSize = `${def}vh`;
+
+				//console.log(def);
+				//console.log(document.getElementById("anon").style.fontSize);
+				//console.log(document.getElementById("anon").clientHeight);
+				//console.log(document.getElementById("anon_div").clientHeight);
+			} else {
+				break;
+			}
+		}
+		await sleep(8000);
+		//console.log("check");
+
+	}
+}
+
+sizeANON();
+
 </script>
 
 

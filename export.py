@@ -1,5 +1,6 @@
-import stua, json, time, datetime, traceback
+import json, time, datetime, traceback
 import dotenv, os, asyncio, requests, csv
+import stua_test as stua
 
 ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
@@ -27,7 +28,7 @@ def get_weekday(num):
 def get_schedule():
     response = requests.get("https://pserb-web.vercel.app/api/weekly-schedule")
     with open("sch.json","w") as f:
-       f.write(response.text)
+        f.write(response.text)
 
 get_schedule()
 
@@ -89,6 +90,9 @@ def export_schedule():
                 #print(output)
                 if period == None:
                     period = "After School"
+                    left = "--"
+                    right = "--"
+                    periodt = "--"
                 
                 output.append(period)
                 output.append(day["day"])
@@ -141,6 +145,7 @@ def get_annoucements():
                 NOTICES.append(item_fin)
         #ANNOUCEMENTS = export
             #print(item)
+        #print(str(ANNOUCEMENTS) + " GET")
     #print(f_read)
 
 def get_timer():
@@ -149,7 +154,9 @@ def get_timer():
 
 def wifi_disconnect():
     try:
-        response = requests.get("http://web.mta.info/status/ServiceStatusSubway.xml", timeout=10)
+        #print("WAIT")
+        response = requests.get("https://new.mta.info/", timeout=50)
+        #print("CLEAR")
         return False
     except Exception as e:
         #print(e.message)
@@ -163,6 +170,7 @@ def refresh():
     global RENDER
     global PROGRESS
     global TEST
+    global ANNOUCEMENTS
     sch = export_schedule()
     load_status = ""
     if wifi_disconnect() == True:
@@ -180,6 +188,19 @@ def refresh():
             load_status = "SCH"
         else:
             load_status = "DISPLAY"
+
+    copyANON = [i.copy() for i in ANNOUCEMENTS]
+    #print(str(ANNOUCEMENTS) + " REF")
+    #copyANON = [""]
+    if copyANON == [""]:
+        copyANON = []
+
+    for item in copyANON:
+        while item[1].find("[") != -1:
+            index1 = item[1].index("[")
+            index2 = item[1].index("]")
+            item[1] = item[1].replace(item[1][index1:index2+1], f'<img src="/static/svg/{item[1][index1+1:index2].lower()}.svg" style="height: 5.5vh; margin-bottom: 1%;">')
+
     json_string = {
         "load_status": str(load_status),
         "load_progress": str(stua.get_loading_bar()),
@@ -196,7 +217,8 @@ def refresh():
         "sch_period": f'This Period is: <strong>{sch[4]}</strong>',
         "sch_left": f'<strong>{sch[7]}</strong>',
         "sch_right": f'<strong>{sch[8]}</strong>',
-        "sch_end": f'Ending At: <strong>{sch[9]}</strong>'
+        "sch_end": f'Ending At: <strong>{sch[9]}</strong>',
+        "sch_anon": copyANON
     }
     
     return json.dumps(json_string)
@@ -320,6 +342,7 @@ def delay():
             DELAYS = grouped_delays[ACTIVE_INDEX]
 
         #print(ANNOUCEMENTS)
+        #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
         if ANNOUCEMENTS == ['']:
             pass
         else:
@@ -328,14 +351,22 @@ def delay():
                 ANNOUCEMENTS_INDEX = 0
             else:
                 ANNOUCEMENTS_INDEX = ANNOUCEMENTS_INDEX + 1
-            annoucement = ANNOUCEMENTS[ANNOUCEMENTS_INDEX]
-            DELAYS.insert(0, annoucement)
+            #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
+            annoucement = [i.copy() for i in ANNOUCEMENTS]
+            #print(id(annoucement[ANNOUCEMENTS_INDEX]))
+            #print(id(ANNOUCEMENTS[ANNOUCEMENTS_INDEX]))
+            #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
+            DELAYS.insert(0, annoucement[ANNOUCEMENTS_INDEX])
+        #print(DELAYS)
+        #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
         #print(DELAYS)
         #print(DELAYS)
         #DELAYS = DELAYS[0]
+        #print(str(ANNOUCEMENTS) + " DEL")
         #if TIMER == False:
             #HOLD_DELAYS = True
         ACTIVE_DELAYS_LEN = len(DELAYS)
+        #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
         if len(DELAYS) == 1:
             #print(4)
             delays_export.append(len(DELAYS))
@@ -371,16 +402,21 @@ def delay():
                 else:
                     break
             """
+            #print(str(ANNOUCEMENTS) + " DEL FIN1")
             delays_export.append(emblems_str)
             delays_export.append(f"{ACTIVE_INDEX+1}/{len(grouped_delays)}")
             return delays_export
         else:
+            #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
             delays_export.append(len(DELAYS))
+            #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
+            #print(ANNOUCEMENTS)
             for DELAY in DELAYS:
                 while DELAY[1].find("[") != -1:
                     index1 = DELAY[1].index("[")
                     index2 = DELAY[1].index("]")
                     DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 5.5vh; margin-bottom: 1%;">')
+            #print(ANNOUCEMENTS)
             for i in range(2):
                 delays_export.append("")
             for item in DELAYS:
@@ -396,12 +432,13 @@ def delay():
                 else:
                     break
             """
+            #print(str(ANNOUCEMENTS) + " DEL FIN2")
             print("delays done")
             delays_export.append(emblems_str)
             delays_export.append(f"{ACTIVE_INDEX+1}/{len(grouped_delays)}")
             return delays_export
 
-#print(delay())
+#delay()
 
 def subway():
 
@@ -437,9 +474,9 @@ def lirr():
     for i in range(3):
         masterlistLIRR.append(stua.gtfsLIRR())
 
-    masterlistLIRR[0].get(("237", "0", 1, 25, []))
+    masterlistLIRR[0].get(("237", "0", 1, 25, ["Port Washington", "Hempstead"]))
     masterlistLIRR[1].get(("241", "0", 1, 25, []))
-    masterlistLIRR[2].get(("349", "0", 1, 25, []))
+    masterlistLIRR[2].get(("349", "0", 1, 25, ["Port Washington", "Hempstead"]))
 
     return masterlistLIRR
 
@@ -708,3 +745,4 @@ def export():
 
 #get_annoucements()
 #print(NOTICES)
+

@@ -1,21 +1,22 @@
-import stua, time, export, datetime
+import stua, time, export, datetime, time, threading
 import dotenv, os, json, requests, traceback
 from flask import Flask, render_template, Response, redirect
 
-dotenv.load_dotenv()
-stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
-stua.keyBUSTIME(os.getenv("BusTime"))
-
 VAR = True
+DATA = True
+LIRR = True
+REFRESH = True
+DELAY = True
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('mainLIRR copy.html')
+    return render_template('mainLIRR.html')
 
 @app.route('/data')
 def data():
+    global DATA
     def generate():
         value = True
         while (value == True):
@@ -33,6 +34,7 @@ def data():
             
             except Exception as e:
                 #print(e.message)
+                DATA = False
                 with open("errors.txt", "a") as f:
                     f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
     return Response(generate(), mimetype= 'text/event-stream')
@@ -54,6 +56,7 @@ def rotate():
 
 @app.route('/delay')
 def delay():
+    global DELAY
     #global VAR
     def generate():
         global VAR
@@ -92,6 +95,7 @@ def delay():
                 except Exception as e:
                     #print(e)
                     #print(e.message)
+                    DELAY = False
                     
                     with open("errors.txt", "a") as f:
                         f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
@@ -100,15 +104,27 @@ def delay():
 
 @app.route('/refresh')
 def refresh():
+    global REFRESH
     def generate():
         value = True
         while (value == True):
-            return "data:" + str(export.refresh()) + "\n\n" 
+            try:
+                return "data:" + str(export.refresh()) + "\n\n"
+            except Exception as e:
+                print(str(traceback.format_exc()))
+                REFRESH = False
+                #print(e)
+                #print(e.message)
+                with open("errors.txt", "a") as f:
+                    f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
+                #refresh()
 
     return Response(generate(), mimetype= 'text/event-stream')
 
 @app.route('/lirr')
 def lirr():
+    global LIRR
+    #print("ACT")
     def generate():
         value = True
         while (value == True):
@@ -119,11 +135,37 @@ def lirr():
                     return "data:" + str(export.export_lirr()) + "\n\n" 
             
             except Exception as e:
+                LIRR = False
                 #print(e)
                 #print(e.message)
                 with open("errors.txt", "a") as f:
                     f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
     return Response(generate(), mimetype= 'text/event-stream')
+
+def start():
+    global LIRR
+    global REFRESH
+    global DATA
+    global DELAY
+    
+    while True:
+        if LIRR == False:
+            lirr()
+            LIRR = True
+        if REFRESH == False:
+            refresh()
+            REFRESH = True
+        if DATA == False:
+            data()
+            DATA = True
+        if DELAY == False:
+            delay()
+            DELAY = True
+        #print("BRUH")
+        time.sleep(5)
+
+#daemon = threading.Thread(target=start, daemon=True, name='Monitor')
+#daemon.start()
 
 if __name__ in "__main__":
     app.run(port=5000)
