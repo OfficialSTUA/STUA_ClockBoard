@@ -133,7 +133,7 @@ def lirr():
                     pass
                 else:
                     f = str(export.export_lirr())
-                    print(f)
+                    #print(f)
                     return "data:" + str(f) + "\n\n" 
             
             except Exception as e:

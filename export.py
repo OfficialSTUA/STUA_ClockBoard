@@ -477,11 +477,11 @@ def lirr():
         masterlistLIRR.append(stua.gtfsLIRR())
 
     print("Penn")
-    masterlistLIRR[0].get(("237", "0", 1, 0, []))
+    masterlistLIRR[0].get(("237", "0", 1, 0, ["Port Washington", "Hempstead"]))
     print("Atln")
     masterlistLIRR[1].get(("241", "0", 1, 0, []))
     print("Gctm")
-    masterlistLIRR[2].get(("349", "0", 1, 0, []))
+    masterlistLIRR[2].get(("349", "0", 1, 0, ["Port Washington", "Hempstead"]))
 
     return masterlistLIRR
 

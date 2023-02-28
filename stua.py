@@ -176,12 +176,12 @@ class gtfsLIRR(gtfs):
             self.time = -1
             self.service_description = "NO TRAINS"
             self.service_pattern = "NO TRAINS"
-            self.station_id_list = "NO TRAINS"
-            self.station_name_list = "NO TRAINS"
+            self.station_id_list = ["NO TRAINS"]
+            self.station_name_list = ["NO TRAINS"]
             self.direction = input[1]
             self.trip_id = "NO TRAINS"
             self.vehicle = "NO TRAINS"
-            self.core_time = "NO TRAINS"
+            self.core_time = "00:00 XM"
         else:
             self.route_id = output[1]
             self.terminus = convertLIRR(output[2])
@@ -1009,7 +1009,7 @@ def  _transitLIRRBOARD(input, API):
     
     except:
         
-        times = [-1,"NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","00:00 XM"]
+        times = "NO TRAINS"
         #print(times)
     '''
     with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
