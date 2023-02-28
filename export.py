@@ -1,6 +1,6 @@
 import json, time, datetime, traceback
 import dotenv, os, asyncio, requests, csv
-import stua_test as stua
+import stua
 
 ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
@@ -12,8 +12,8 @@ CRIT_RATE = [6, 9, 12, 15, 15]
 ANNOUCEMENTS = []
 NOTICES = []
 ANNOUCEMENTS_INDEX = 0
-WIFI = True
-TEST = False
+WIFI = False
+TEST = True
 SCH = False
 SCHMON = ["06:00", "06:30", "07:00", "07:30", "07:40", "07:50", "08:00", "08:10", "08:20", "08:30", "08:40", "09:00", "10:00", "11:00", "12:00"]
 
@@ -154,9 +154,9 @@ def get_timer():
 
 def wifi_disconnect():
     try:
-        #print("WAIT")
+        print("WAIT")
         response = requests.get("https://new.mta.info/", timeout=50)
-        #print("CLEAR")
+        print("CLEAR")
         return False
     except Exception as e:
         #print(e.message)
@@ -201,6 +201,8 @@ def refresh():
             index2 = item[1].index("]")
             item[1] = item[1].replace(item[1][index1:index2+1], f'<img src="/static/svg/{item[1][index1+1:index2].lower()}.svg" style="height: 5.5vh; margin-bottom: 1%;">')
 
+    #print(str(ANNOUCEMENTS) + " REF")
+
     json_string = {
         "load_status": str(load_status),
         "load_progress": str(stua.get_loading_bar()),
@@ -220,7 +222,7 @@ def refresh():
         "sch_end": f'Ending At: <strong>{sch[9]}</strong>',
         "sch_anon": copyANON
     }
-    
+    #print(json.dumps(json_string))
     return json.dumps(json_string)
 
 def render(change=False):
@@ -474,13 +476,16 @@ def lirr():
     for i in range(3):
         masterlistLIRR.append(stua.gtfsLIRR())
 
-    masterlistLIRR[0].get(("237", "0", 1, 25, ["Port Washington", "Hempstead"]))
-    masterlistLIRR[1].get(("241", "0", 1, 25, []))
-    masterlistLIRR[2].get(("349", "0", 1, 25, ["Port Washington", "Hempstead"]))
+    print("Penn")
+    masterlistLIRR[0].get(("237", "0", 1, 0, []))
+    print("Atln")
+    masterlistLIRR[1].get(("241", "0", 1, 0, []))
+    print("Gctm")
+    masterlistLIRR[2].get(("349", "0", 1, 0, []))
 
     return masterlistLIRR
 
-#print(lirr())
+#print([i.route for i in lirr()])
 
 def modlirrTIME(input):
     if type(input) == str:

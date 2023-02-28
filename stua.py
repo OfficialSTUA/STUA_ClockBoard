@@ -928,6 +928,7 @@ def  _transitLIRR(stop, direction, responses, API):
 
 def  _transitLIRRBOARD(input, API):
     stop = input[0]
+    #print(stop)
     direction = input[1]
     responses = input[2]
     minute = input[3]
@@ -951,12 +952,14 @@ def  _transitLIRRBOARD(input, API):
                 for update in entity.trip_update.stop_time_update:
                     if str(entity.trip_update.trip.schedule_relationship) == "3":
                         continue
+                    #print("ok")
                     if ((update.stop_id == stop) and (str(entity.trip_update.trip.direction_id) == str(direction))):
+                        #print("ok")
                         station_id = update.stop_id
                         time = update.departure.time
-                        if (time < 0):
-                            pass
+                        #print(time)
                         time = datetime.datetime.fromtimestamp(time)
+                        #print(time)
                         core_time = time
                         time = math.trunc(((time - current_time).total_seconds()) / 60)
                         #print(time)
@@ -972,6 +975,7 @@ def  _transitLIRRBOARD(input, API):
                             vehicle = entity.trip_update.trip.trip_id[-4:]
                         trip_id = entity.trip_update.trip.trip_id
                         route_id = convertLIRR_route(entity.trip_update.trip.route_id)
+                        #print(route_id)
                         if target_routes == []:
                             pass
                         else:
@@ -1002,8 +1006,10 @@ def  _transitLIRRBOARD(input, API):
         #print(times)
         #try:
         times = times[responses-1]
+    
     except:
-        return "NO TRAINS"
+        
+        times = [-1,"NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","00:00 XM"]
         #print(times)
     '''
     with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
@@ -1028,9 +1034,9 @@ def  _transitLIRRMODDED(stops, API):
         
             #print(link)
 
-        #with open("alerts.txt", "w") as f:
-            #f.write(str(feed))
-        #print(feed)
+        with open("alerts.txt", "w") as f:
+            f.write(str(feed))
+            print(feed)
         for entity in feed.entity:
             for update in entity.trip_update.stop_time_update:
                 if ((update.stop_id == stop) and (str(entity.trip_update.trip.direction_id) == str(direction))):
@@ -1078,7 +1084,7 @@ def  _transitLIRRMODDED(stops, API):
             times = times[responses-1]
         except:
             times = gtfsLIRR()
-            times.set("NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS")
+            times.set("NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","NO TRAINS","00:00 XM")
             #print(times)
         '''
         with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:

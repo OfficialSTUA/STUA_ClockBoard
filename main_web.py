@@ -108,16 +108,16 @@ def refresh():
     def generate():
         value = True
         while (value == True):
-            try:
-                return "data:" + str(export.refresh()) + "\n\n"
-            except Exception as e:
-                print(str(traceback.format_exc()))
-                REFRESH = False
-                #print(e)
-                #print(e.message)
-                with open("errors.txt", "a") as f:
-                    f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
-                #refresh()
+            #try:
+            return "data:" + str(export.refresh()) + "\n\n"
+            #except Exception as e:
+            #print(str(traceback.format_exc()))
+            #REFRESH = False
+            #print(e)
+            #print(e.message)
+            #with open("errors.txt", "a") as f:
+            #    f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
+            #refresh()
 
     return Response(generate(), mimetype= 'text/event-stream')
 
@@ -132,7 +132,9 @@ def lirr():
                 if (export.render() == False):
                     pass
                 else:
-                    return "data:" + str(export.export_lirr()) + "\n\n" 
+                    f = str(export.export_lirr())
+                    print(f)
+                    return "data:" + str(f) + "\n\n" 
             
             except Exception as e:
                 LIRR = False
