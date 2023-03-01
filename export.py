@@ -15,6 +15,7 @@ ANNOUCEMENTS_INDEX = 0
 WIFI = False
 TEST = True
 SCH = False
+JSON = ""
 SCHMON = ["06:00", "06:30", "07:00", "07:30", "07:40", "07:50", "08:00", "08:10", "08:20", "08:30", "08:40", "09:00", "10:00", "11:00", "12:00"]
 
 dotenv.load_dotenv()
@@ -26,13 +27,14 @@ def get_weekday(num):
     return calend[num]
 
 def get_schedule():
+    global JSON
     response = requests.get("https://pserb-web.vercel.app/api/weekly-schedule")
-    with open("sch.json","w") as f:
-        f.write(response.text)
+    JSON = response.text
 
 get_schedule()
 
 def export_schedule():
+    global JSON
     global SCHMON
     global SCH
     output = []
@@ -58,51 +60,50 @@ def export_schedule():
     if multiplier > 0:
         SCH = False
 
-    with open("sch.json","r") as f:
-        json_obj = json.load(f)
-        for day in json_obj["days"]:
-            if day["day"] == strday:
-                #print(True)
-                output.append(f'{day["day"]} - {get_weekday(today.weekday())}')
-                output.append(day["block"])
-                output.append(day["testing"])
-                output.append(day["bell"]["scheduleName"])
-                
-                period = None
+    json_obj = json.loads(JSON)
+    for day in json_obj["days"]:
+        if day["day"] == strday:
+            #print(True)
+            output.append(f'{day["day"]} - {get_weekday(today.weekday())}')
+            output.append(day["block"])
+            output.append(day["testing"])
+            output.append(day["bell"]["scheduleName"])
+            
+            period = None
 
-                for time in day["bell"]["schedule"]:
-                    if (today <= datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M")):
-                        right = str(int((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60))
-                        left = str(int(day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["duration"]) - int(right))
-                        #print(left)
-                        #print(right)
-                        #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60)
-                        #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today))
-                        #print(today)
-                        #print(datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M"))
-                        #print(datetime.datetime.now())
-                        #day["bell"]["schedule"].index(time)
-                        period = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
-                        periodt = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)]["startTime"])
-                        #print(periodt)
-                        #print(period)
-                        break
-                #print(output)
-                if period == None:
-                    period = "After School"
-                    left = "--"
-                    right = "--"
-                    periodt = "--"
-                
-                output.append(period)
-                output.append(day["day"])
-                output.append(day["bell"]["schedule"][-8]["startTime"])
-                output.append(left)
-                output.append(right)
-                output.append(periodt)
-                #print(left)
-                #output.append("21:15")
-                #print(day["bell"]["schedule"][-8])
+            for time in day["bell"]["schedule"]:
+                if (today <= datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M")):
+                    right = str(int((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60))
+                    left = str(int(day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["duration"]) - int(right))
+                    #print(left)
+                    #print(right)
+                    #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60)
+                    #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today))
+                    #print(today)
+                    #print(datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M"))
+                    #print(datetime.datetime.now())
+                    #day["bell"]["schedule"].index(time)
+                    period = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
+                    periodt = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)]["startTime"])
+                    #print(periodt)
+                    #print(period)
+                    break
+            #print(output)
+            if period == None:
+                period = "After School"
+                left = "--"
+                right = "--"
+                periodt = "--"
+            
+            output.append(period)
+            output.append(day["day"])
+            output.append(day["bell"]["schedule"][-8]["startTime"])
+            output.append(left)
+            output.append(right)
+            output.append(periodt)
+            #print(left)
+            #output.append("21:15")
+            #print(day["bell"]["schedule"][-8])
     if output == []:
         output.append(f'{strday} - {get_weekday(today.weekday())}')
         output.append("N/A")
@@ -124,7 +125,7 @@ def get_annoucements():
     global NOTICES
     ANNOUCEMENTS = []
     NOTICES = []
-    with open("static/announcements.txt","r") as f:
+    with open("/STUA_ClockBoard/static/announcements.txt","r") as f:
         f_read = f.read().split("\n")
         for item in f_read:
             target = item[0]

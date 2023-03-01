@@ -945,8 +945,7 @@ def  _transitLIRRBOARD(input, API):
             feed = gtfs_realtime_pb2.FeedMessage()
             feed.ParseFromString(link)
 
-            with open("alerts.txt", "w") as f:
-                f.write(str(feed))
+           
             #print(feed)
             for entity in feed.entity:
                 for update in entity.trip_update.stop_time_update:
@@ -1034,9 +1033,9 @@ def  _transitLIRRMODDED(stops, API):
         
             #print(link)
 
-        with open("alerts.txt", "w") as f:
-            f.write(str(feed))
-            print(feed)
+        # with open("alerts.txt", "w") as f:
+        #     f.write(str(feed))
+        #     print(feed)
         for entity in feed.entity:
             for update in entity.trip_update.stop_time_update:
                 if ((update.stop_id == stop) and (str(entity.trip_update.trip.direction_id) == str(direction))):

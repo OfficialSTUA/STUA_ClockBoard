@@ -446,7 +446,7 @@ def convertLIRR(input):
     if (type(input) == type(0)):
         input = str(input)
     #print(input)
-    f = open("lirr_gtfs.json")
+    f = open("/STUA_ClockBoard/lirr_gtfs.json")
     data = json.load(f)
     #print(data["gtfs"]["stops"])
     for i in data["gtfs"]["stops"]:
@@ -482,7 +482,7 @@ def convertFerry(input):
     if type(input) != type(""):
         raise Exception("INVALID CLASS: This method requires a String")
     output = []
-    with open('ferry_stops.txt','r') as csv_file:
+    with open('/STUA_ClockBoard/ferry_stops.txt','r') as csv_file:
         csv_file = csv.reader(csv_file)
         for row in csv_file:
             if row[0] == input:
