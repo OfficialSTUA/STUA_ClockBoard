@@ -1,6 +1,9 @@
 import stua, time, export, datetime, time, threading
 import dotenv, os, json, requests, traceback
 from flask import Flask, render_template, Response, redirect
+import logging
+
+log = logging.getLogger()
 
 VAR = True
 DATA = True
@@ -22,6 +25,7 @@ def data():
         while (value == True):
             t0 = time.time()
             try:
+                log.debug("LETSGO")
                 #export.get_annoucements()
                 json_js = export.export()
                 export.render(True)

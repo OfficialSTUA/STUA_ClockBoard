@@ -13,7 +13,7 @@ ANNOUCEMENTS = []
 NOTICES = []
 ANNOUCEMENTS_INDEX = 0
 WIFI = False
-TEST = True
+TEST = False
 SCH = False
 JSON = ""
 SCHMON = ["06:00", "06:30", "07:00", "07:30", "07:40", "07:50", "08:00", "08:10", "08:20", "08:30", "08:40", "09:00", "10:00", "11:00", "12:00"]
@@ -39,6 +39,7 @@ def export_schedule():
     global SCH
     output = []
     today = datetime.datetime.now()
+    #today = datetime.datetime.strptime(f'{datetime.datetime.now().strftime("%B %d, %Y")} 11:02', "%B %d, %Y %H:%M")
     strday = today.strftime("%B p, %Y")
     strtemp = today.strftime("%d")
     if strtemp[0] == "0":
@@ -70,30 +71,38 @@ def export_schedule():
             output.append(day["bell"]["scheduleName"])
             
             period = None
-
-            for time in day["bell"]["schedule"]:
-                if (today <= datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M")):
-                    right = str(int((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60))
-                    left = str(int(day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["duration"]) - int(right))
-                    #print(left)
-                    #print(right)
-                    #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60)
-                    #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today))
-                    #print(today)
-                    #print(datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M"))
-                    #print(datetime.datetime.now())
-                    #day["bell"]["schedule"].index(time)
-                    period = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
-                    periodt = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)]["startTime"])
-                    #print(periodt)
-                    #print(period)
-                    break
-            #print(output)
-            if period == None:
-                period = "After School"
-                left = "--"
+            #print(strday)
+            if (today <= datetime.datetime.strptime(f"{day['day']} 8:00", '%B %d, %Y %H:%M')):
                 right = "--"
-                periodt = "--"
+                left = "--"
+                period = "Before School"
+                periodt = "8:00 AM"
+
+            else:
+
+                for time in day["bell"]["schedule"]:
+                    if (today < datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M")):
+                        right = str(int((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60))
+                        left = str(int(day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["duration"]) - int(right))
+                        #print(left)
+                        #print(right)
+                        #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60)
+                        #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today))
+                        #print(today)
+                        #print(datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M"))
+                        #print(datetime.datetime.now())
+                        #day["bell"]["schedule"].index(time)
+                        period = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
+                        periodt = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)]["startTime"])
+                        #print(periodt)
+                        #print(period)
+                        break
+                #print(output)
+                if period == None:
+                    period = "After School"
+                    left = "--"
+                    right = "--"
+                    periodt = "--"
             
             output.append(period)
             output.append(day["day"])
