@@ -52,7 +52,7 @@ class gtfsSubway(gtfs):
         self.service_description = ""
         self.trip_id = ""
 
-    def set(self, route_id, terminus, terminus_id, station, station_id, direction, time, pattern, description, trip_id):
+    def set(self, route_id, terminus, terminus_id, station, station_id, direction, time, pattern, description, trip_id, current_id, current_stop):
         self.route_id = route_id
         self.terminus = terminus#_id)
         self.terminus_id = terminus_id
@@ -63,6 +63,8 @@ class gtfsSubway(gtfs):
         self.service_pattern = pattern
         self.service_description = description
         self.trip_id = trip_id
+        self.current_id = current_id
+        self.current_stop = current_stop
 
     def get(self, station, direction, responses, batched=False):
         _validkeySubway(_getAPIMTA())
@@ -81,6 +83,7 @@ class gtfsSubway(gtfs):
             self.service_pattern = "NO TRAINS"
             self.service_description = "NO TRAINS"
             self.trip_id = "NO TRAINS"
+            self.current = "NO TRAINS"
         else:
             self.route_id = output[1]
             self.terminus = convertSubway(output[2][:-1])
@@ -93,6 +96,7 @@ class gtfsSubway(gtfs):
             self.service_pattern = descriptions[0]
             self.service_description = descriptions[1]
             self.trip_id = output[5]
+            self.current = output[6]
 
 class gtfsBus(gtfs):
     def __init__(self):
@@ -535,7 +539,7 @@ def _url():
 
 def _transitSubway(stop, direction, responses, API, id="NONE"):
     times = []
-    destination = []
+    #destination = []
     current_time = datetime.datetime.now()
     links = asyncio.get_event_loop().run_until_complete(_requestFeedMTA(_url(), API))
 
@@ -552,6 +556,7 @@ def _transitSubway(stop, direction, responses, API, id="NONE"):
         #print(str(feed))
         
         for entity in feed.entity:
+            destination = []
             #print(entity)
             for update in entity.trip_update.stop_time_update:
                 if (update.stop_id == stop+direction):
@@ -572,12 +577,13 @@ def _transitSubway(stop, direction, responses, API, id="NONE"):
                     for update in entity.trip_update.stop_time_update:
                         destination.append(update.stop_id)
                     #print(service_description)
+                    e = [convertSubway(i[:-1]) for i in destination]
                     terminus_id = destination[-1]
                     #print(terminus_id)
                 
                     #print(stop)
                     #print([time, route_id, terminus_id, station_id, direction, trip_id])
-                    times.append([time, route_id, terminus_id, station_id, direction, trip_id])
+                    times.append([time, route_id, terminus_id, station_id, direction, trip_id, e])
 
     #print(times)
     times.sort()
@@ -598,7 +604,7 @@ def TESTT(stop, links, current_time, final, cur):
     try:
         #print(stop)
         times = []
-        destination = []
+        #destination = []
         for link in links:
             #try:
             feed = gtfs_realtime_pb2.FeedMessage()
@@ -612,6 +618,7 @@ def TESTT(stop, links, current_time, final, cur):
             
             for entity in feed.entity:
                 #print(entity)
+                destination = []
                 for update in entity.trip_update.stop_time_update:
                     if (update.stop_id == stop[0]+stop[1]):
                         station_id = update.stop_id[:-1]
@@ -632,12 +639,15 @@ def TESTT(stop, links, current_time, final, cur):
                             destination.append(update.stop_id)
                         #print(service_description)
                         terminus_id = destination[-1][:-1]
-                        
+                        current_id = destination[0][:-1]
+                        current_stop = convertSubway(current_id)
+                        #gee = [convertSubway(i[:-1]) for i in destination]
+                        #print(gee)
                         #print(stop)
                         #times.append([time, route_id, terminus_id, station_id, direction, trip_id])
                         train = gtfsSubway()
                         description = _routes(route_id)
-                        train.set(route_id, convertSubway(terminus_id), terminus_id, convertSubway(station_id), station_id, direction, time, description[0], description[1], trip_id)
+                        train.set(route_id, convertSubway(terminus_id), terminus_id, convertSubway(station_id), station_id, direction, time, description[0], description[1], trip_id, current_id, current_stop)
                         times.append(train)
 
     #print(times)
@@ -648,7 +658,7 @@ def TESTT(stop, links, current_time, final, cur):
     except Exception as e:
             #final.append("NO TRAINS")
         train = gtfsSubway()
-        train.set("X", "NO TRAINS", "NO TRAINS", "NO TRAINS", stop[0], stop[1], "X", "NO TRAINS", "NO TRAINS", "NO TRAINS")
+        train.set("X", "NO TRAINS", "NO TRAINS", "NO TRAINS", stop[0], stop[1], "X", "NO TRAINS", "NO TRAINS", "NO TRAINS", "NO TRAINS", "NO TRAINS")
         final.append([cur, train])
         
         

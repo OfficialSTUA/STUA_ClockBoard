@@ -3,7 +3,7 @@ import dotenv, os, json, requests, traceback
 from flask import Flask, render_template, Response, redirect
 import logging
 
-log = logging.getLogger()
+#log = logging.getLogger()
 
 VAR = True
 DATA = True
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('mainLIRR.html')
+    return render_template('mainLIRR copy.html')
 
 @app.route('/data')
 def data():
@@ -25,7 +25,7 @@ def data():
         while (value == True):
             t0 = time.time()
             try:
-                log.debug("LETSGO")
+                #log.debug("LETSGO")
                 #export.get_annoucements()
                 json_js = export.export()
                 export.render(True)

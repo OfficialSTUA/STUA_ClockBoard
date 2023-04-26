@@ -461,14 +461,16 @@
 		document.getElementById("schtest").innerHTML = crit.sch_testing;
 
 		document.getElementById("left").innerHTML = crit.sch_left;
-		if (crit.sch_left.includes("Before")) {
-			document.getElementById("left").style.color = "lightblue";
+		document.getElementById("sch_period").innerHTML = crit.sch_period;
+
+		if (crit.sch_period.includes("Before")) {
+			document.getElementById("right").style.color = "lightblue";
 		} else {
-			document.getElementById("left").style.color = "lightgreen";
+			document.getElementById("right").style.color = "lightcoral";
 		}
 
 		document.getElementById("right").innerHTML = crit.sch_right;
-		document.getElementById("sch_period").innerHTML = crit.sch_period;
+		
 		document.getElementById("sch_time").innerHTML = crit.sch_end;
 		
 		console.log(crit.sch_block);

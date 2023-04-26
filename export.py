@@ -10,10 +10,12 @@ TIMER = False
 RENDER = False
 CRIT_RATE = [6, 9, 12, 15, 15]
 ANNOUCEMENTS = []
+POSTER = []
 NOTICES = []
+POSTER_NOTICES = []
 ANNOUCEMENTS_INDEX = 0
 WIFI = False
-TEST = False
+TEST = True
 SCH = False
 JSON = ""
 SCHMON = ["06:00", "06:30", "07:00", "07:30", "07:40", "07:50", "08:00", "08:10", "08:20", "08:30", "08:40", "09:00", "10:00", "11:00", "12:00"]
@@ -40,11 +42,11 @@ def export_schedule():
     output = []
     today = datetime.datetime.now()
     #today = datetime.datetime.strptime(f'{datetime.datetime.now().strftime("%B %d, %Y")} 11:02', "%B %d, %Y %H:%M")
-    strday = today.strftime("%B p, %Y")
+    strday = today.strftime("%B ;;, %Y")
     strtemp = today.strftime("%d")
     if strtemp[0] == "0":
         strtemp = strtemp[1]
-    strday = strday.replace("p", strtemp)
+    strday = strday.replace(";;", strtemp)
     strtime = today.strftime("%H:%M")
     #get_schedule()
     multiplier = 0
@@ -62,57 +64,60 @@ def export_schedule():
         SCH = False
 
     json_obj = json.loads(JSON)
-    for day in json_obj["days"]:
-        if day["day"] == strday:
-            #print(True)
-            output.append(f'{day["day"]} - {get_weekday(today.weekday())}')
-            output.append(day["block"])
-            output.append(day["testing"])
-            output.append(day["bell"]["scheduleName"])
-            
-            period = None
-            #print(strday)
-            if (today <= datetime.datetime.strptime(f"{day['day']} 8:00", '%B %d, %Y %H:%M')):
-                right = "--"
-                left = "--"
-                period = "Before School"
-                periodt = "8:00 AM"
-
-            else:
-
-                for time in day["bell"]["schedule"]:
-                    if (today < datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M")):
-                        right = str(int((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60))
-                        left = str(int(day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["duration"]) - int(right))
-                        #print(left)
-                        #print(right)
-                        #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60)
-                        #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today))
-                        #print(today)
-                        #print(datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M"))
-                        #print(datetime.datetime.now())
-                        #day["bell"]["schedule"].index(time)
-                        period = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
-                        periodt = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)]["startTime"])
-                        #print(periodt)
-                        #print(period)
-                        break
-                #print(output)
-                if period == None:
-                    period = "After School"
-                    left = "--"
+    try:
+        for day in json_obj["days"]:
+            if day["day"] == strday:
+                #print(True)
+                output.append(f'{day["day"]} - {get_weekday(today.weekday())}')
+                output.append(day["block"])
+                output.append(day["testing"])
+                output.append(day["bell"]["scheduleName"])
+                
+                period = None
+                #print(strday)
+                if (today <= datetime.datetime.strptime(f"{day['day']} 8:00", '%B %d, %Y %H:%M')):
                     right = "--"
-                    periodt = "--"
-            
-            output.append(period)
-            output.append(day["day"])
-            output.append(day["bell"]["schedule"][-8]["startTime"])
-            output.append(left)
-            output.append(right)
-            output.append(periodt)
-            #print(left)
-            #output.append("21:15")
-            #print(day["bell"]["schedule"][-8])
+                    left = "--"
+                    period = "Before School"
+                    periodt = "8:00 AM"
+
+                else:
+
+                    for time in day["bell"]["schedule"]:
+                        if (today < datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M")):
+                            right = str(int((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60))
+                            left = str(int(day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["duration"]) - int(right))
+                            #print(left)
+                            #print(right)
+                            #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today).total_seconds()/60)
+                            #print((datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M") - today))
+                            #print(today)
+                            #print(datetime.datetime.strptime(f'{day["day"]} {time["startTime"]}', "%B %d, %Y %H:%M"))
+                            #print(datetime.datetime.now())
+                            #day["bell"]["schedule"].index(time)
+                            period = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)-1]["name"])
+                            periodt = (day["bell"]["schedule"][day["bell"]["schedule"].index(time)]["startTime"])
+                            #print(periodt)
+                            #print(period)
+                            break
+                    #print(output)
+                    if period == None:
+                        period = "After School"
+                        left = "--"
+                        right = "--"
+                        periodt = "--"
+                
+                output.append(period)
+                output.append(day["day"])
+                output.append(day["bell"]["schedule"][-8]["startTime"])
+                output.append(left)
+                output.append(right)
+                output.append(periodt)
+                #print(left)
+                #output.append("21:15")
+                #print(day["bell"]["schedule"][-8])
+    except:
+        output = []
     if output == []:
         output.append(f'{strday} - {get_weekday(today.weekday())}')
         output.append("N/A")
@@ -127,14 +132,16 @@ def export_schedule():
     return output
         
 
-print(export_schedule())
+#print(export_schedule())
 
 def get_annoucements():
     global ANNOUCEMENTS
     global NOTICES
+    global POSTER
     ANNOUCEMENTS = []
+    POSTER = []
     NOTICES = []
-    with open("/STUA_ClockBoard/static/announcements.txt","r") as f:
+    with open("static/announcements.txt","r") as f:
         f_read = f.read().split("\n")
         for item in f_read:
             target = item[0]
@@ -151,12 +158,18 @@ def get_annoucements():
             #export.append(item_fin)
             if target == "/":
                 ANNOUCEMENTS.append(item_fin)
+            elif target == "@":
+                POSTER.append(item_fin)
+            elif target == "~":
+                POSTER_NOTICES.append(item_fin)
             else:
                 NOTICES.append(item_fin)
         #ANNOUCEMENTS = export
             #print(item)
-        #print(str(ANNOUCEMENTS) + " GET")
+        print(str(POSTER) + " GET")
     #print(f_read)
+
+get_annoucements()
 
 def get_timer():
     global TIMER
@@ -180,7 +193,9 @@ def refresh():
     global RENDER
     global PROGRESS
     global TEST
+    global POSTER
     global ANNOUCEMENTS
+    global POSTER_NOTICES
     sch = export_schedule()
     load_status = ""
     if wifi_disconnect() == True:
@@ -199,11 +214,19 @@ def refresh():
         else:
             load_status = "DISPLAY"
 
-    copyANON = [i.copy() for i in ANNOUCEMENTS]
+    
     #print(str(ANNOUCEMENTS) + " REF")
     #copyANON = [""]
-    if copyANON == [""]:
+    if ANNOUCEMENTS == [""] or ANNOUCEMENTS == []:
         copyANON = []
+    else:
+        copyANON = [i.copy() for i in ANNOUCEMENTS]
+
+    if POSTER != [""] or POSTER != []:
+        copyANON += [i.copy() for i in POSTER]
+
+    if POSTER_NOTICES != [""] or POSTER_NOTICES != []:
+        copyANON += [i.copy() for i in POSTER_NOTICES]
 
     for item in copyANON:
         while item[1].find("[") != -1:
@@ -291,6 +314,8 @@ def branch(terminus):
         return "FR"
     elif terminus == "Rockaway Park-Beach 116 St":
         return "OP"
+    elif terminus == "Jamaica-179 St":
+        return "179"
 
 def delay():
     #print("delay req received")
@@ -303,12 +328,16 @@ def delay():
     global ANNOUCEMENTS
     global ANNOUCEMENTS_INDEX
     global NOTICES
+    global POSTER_NOTICES
     delays_export = []
     emblems = []
     emblems_str = ""
     delays = stua.alertsSubway(planned=False)
     #delays = []
     for item in NOTICES:
+        delays.append(item)
+
+    for item in POSTER_NOTICES:
         delays.append(item)
 
     for item in delays:
@@ -487,11 +516,12 @@ def lirr():
         masterlistLIRR.append(stua.gtfsLIRR())
 
     print("Penn")
-    masterlistLIRR[0].get(("237", "0", 1, 0, ["Port Washington", "Hempstead"]))
+    masterlistLIRR[0].get(("237", "0", 1, 25, ["Port Washington", "Hempstead"]))
     print("Atln")
-    masterlistLIRR[1].get(("241", "0", 1, 0, []))
+    masterlistLIRR[1].get(("241", "0", 1, 25, []))
     print("Gctm")
-    masterlistLIRR[2].get(("349", "0", 1, 0, ["Port Washington", "Hempstead"]))
+    masterlistLIRR[2].get(("349", "0", 1, 25, ["Port Washington", "Hempstead"]))
+    print(masterlistLIRR[2].station_id_list)
 
     return masterlistLIRR
 
@@ -541,28 +571,28 @@ def export():
             "uptown_seventh": {
                 "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[0].route_id).lower()}.svg' style='height: 92%;'>",
                 "time": f"{masterlistSUBWAY[0].time} minutes",
-                "terminus": f"{masterlistSUBWAY[0].terminus}"
+                "terminus": [f"To: {masterlistSUBWAY[0].terminus}", f"At: {masterlistSUBWAY[0].current_stop}"]
             },
             "downtown_seventh": {
                 "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[5].route_id).lower()}.svg' style='height: 92%;'>",
                 "time": f"{masterlistSUBWAY[5].time} minutes",
-                "terminus": f"{masterlistSUBWAY[5].terminus}"
+                "terminus": [f"To: {masterlistSUBWAY[5].terminus}", f"At: {masterlistSUBWAY[5].current_stop}"]
             },
             "uptown_eighth": {
                 "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[10].route_id).lower()}.svg' style='height: 92%;'>",
                 "time": f"{masterlistSUBWAY[10].time} minutes",
-                "terminus": masterlistSUBWAY[10].terminus
+                "terminus": [f"To: {masterlistSUBWAY[10].terminus}", f"At: {masterlistSUBWAY[10].current_stop}"]
             },
             "downtown_eighth": {
                 "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[15].route_id).lower()}.svg' style='height: 92%;'>",
                 "time": f"{masterlistSUBWAY[15].time} minutes",
-                "terminus": masterlistSUBWAY[15].terminus
+                "terminus": [f"To: {masterlistSUBWAY[15].terminus}", f"At: {masterlistSUBWAY[15].current_stop}"]
             },
             "uptown_broadway": {
                 "large": {
                     "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[20].route_id).lower()}.svg' style='height: 92%;'>",
                     "time": f"{masterlistSUBWAY[20].time} minutes",
-                    "terminus": masterlistSUBWAY[20].terminus
+                    "terminus": [f"To: {masterlistSUBWAY[20].terminus}", f"At: {masterlistSUBWAY[20].current_stop}"]
                 },
                 "small": {
                     "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[21].route_id).lower()}.svg' style='height: 90%; margin-left: 7px; margin-top: 5%;'>",
@@ -665,7 +695,7 @@ def export():
                 "large": {
                     "emblem": f"<img src='/static/svg/{(masterlistSUBWAY[22].route_id).lower()}.svg' style='height: 92%;'>",
                     "time": f"{masterlistSUBWAY[22].time} minutes",
-                    "terminus": masterlistSUBWAY[22].terminus
+                    "terminus": [f"To: {masterlistSUBWAY[22].terminus}", f"At: {masterlistSUBWAY[22].current_stop}"]
                 },
                 "small": {
                     "emblem": f'<img src="/static/svg/{(masterlistSUBWAY[23].route_id).lower()}.svg" style="height: 90%; margin-left: 7px; margin-top: 5%;">',

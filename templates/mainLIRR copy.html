@@ -16,70 +16,72 @@
 		//document.documentElement.style.setProperty('--LIRRstart', `${(document.getElementById("oneterminusLIRRani").clientWidth)/2}px`);
 		//document.documentElement.style.setProperty('--LIRRstart', `${((document.getElementById("oneterminusLIRRani").clientWidth)/2)-(((document.getElementById("oneterminusLIRRani").clientWidth)/2)*0.12)}px`);
 
-		var textWidth_uptown_seventh = document.getElementById("LHS_uptown_seventh_terminus_H1");
-		var divWidth_uptown_seventh = document.getElementById("LHS_uptown_seventh_terminus_DIV");
-		var textWidth_downtown_seventh = document.getElementById("LHS_downtown_seventh_terminus_H1");
-		var divWidth_downtown_seventh = document.getElementById("LHS_downtown_seventh_terminus_DIV");
-		var textWidth_uptown_eighth = document.getElementById("LHS_uptown_eighth_terminus_H1");
-		var divWidth_uptown_eighth = document.getElementById("LHS_uptown_eighth_terminus_DIV");
-		var textWidth_downtown_eighth = document.getElementById("LHS_downtown_eighth_terminus_H1");
-		var divWidth_downtown_eighth = document.getElementById("LHS_downtown_eighth_terminus_DIV");
+		// var textWidth_uptown_seventh = document.getElementById("LHS_uptown_seventh_terminus_H1");
+		// var divWidth_uptown_seventh = document.getElementById("LHS_uptown_seventh_terminus_DIV");
+		// var textWidth_downtown_seventh = document.getElementById("LHS_downtown_seventh_terminus_H1");
+		// var divWidth_downtown_seventh = document.getElementById("LHS_downtown_seventh_terminus_DIV");
+		// var textWidth_uptown_eighth = document.getElementById("LHS_uptown_eighth_terminus_H1");
+		// var divWidth_uptown_eighth = document.getElementById("LHS_uptown_eighth_terminus_DIV");
+		// var textWidth_downtown_eighth = document.getElementById("LHS_downtown_eighth_terminus_H1");
+		// var divWidth_downtown_eighth = document.getElementById("LHS_downtown_eighth_terminus_DIV");
 		
-		var textWidth_uptown_broadway = document.getElementById("LHS_uptown_broadway_terminus_H1");
-		var divWidth_uptown_broadway = document.getElementById("LHS_uptown_broadway_terminus_DIV");
+		// var textWidth_uptown_broadway = document.getElementById("LHS_uptown_broadway_terminus_H1");
+		// var divWidth_uptown_broadway = document.getElementById("LHS_uptown_broadway_terminus_DIV");
 
-		var textWidth_downtown_broadway = document.getElementById("RHS_downtown_broadway_terminus_H1");
-		var divWidth_downtown_broadway = document.getElementById("RHS_downtown_broadway_terminus_DIV");
+		// var textWidth_downtown_broadway = document.getElementById("RHS_downtown_broadway_terminus_H1");
+		// var divWidth_downtown_broadway = document.getElementById("RHS_downtown_broadway_terminus_DIV");
 
-		function fixSizing(textWidth, divWidth) {
-			if ((textWidth.clientWidth > divWidth.clientWidth) && (Math.abs(textWidth.clientWidth-divWidth.clientWidth) > 20)) {
-				//console.log("Overflow " + textWidth.clientWidth + " " + divWidth.clientWidth);
-				textWidth.classList.add("animation")
-				divWidth.classList.add("animation")
-			} else {
-				//console.log("Fine " + textWidth.clientWidth + " " + divWidth.clientWidth);
-				textWidth.classList.remove("animation")
-				divWidth.classList.remove("animation")
-			}
-		}	
+		// function fixSizing(textWidth, divWidth) {
+		// 	if ((textWidth.clientWidth > divWidth.clientWidth) && (Math.abs(textWidth.clientWidth-divWidth.clientWidth) > 20)) {
+		// 		//console.log("Overflow " + textWidth.clientWidth + " " + divWidth.clientWidth);
+		// 		textWidth.classList.add("animation")
+		// 		divWidth.classList.add("animation")
+		// 	} else {
+		// 		//console.log("Fine " + textWidth.clientWidth + " " + divWidth.clientWidth);
+		// 		textWidth.classList.remove("animation")
+		// 		divWidth.classList.remove("animation")
+		// 	}
+		// }	
 
-		fixSizing(textWidth_uptown_seventh, divWidth_uptown_seventh)
-		fixSizing(textWidth_downtown_seventh, divWidth_downtown_seventh)
-		fixSizing(textWidth_uptown_eighth, divWidth_uptown_eighth)
-		fixSizing(textWidth_downtown_eighth, divWidth_downtown_eighth)
-		fixSizing(textWidth_uptown_broadway, divWidth_uptown_broadway)
-		fixSizing(textWidth_downtown_broadway, divWidth_downtown_broadway)
+		// fixSizing(textWidth_uptown_seventh, divWidth_uptown_seventh)
+		// fixSizing(textWidth_downtown_seventh, divWidth_downtown_seventh)
+		// fixSizing(textWidth_uptown_eighth, divWidth_uptown_eighth)
+		// fixSizing(textWidth_downtown_eighth, divWidth_downtown_eighth)
+		// fixSizing(textWidth_uptown_broadway, divWidth_uptown_broadway)
+		// fixSizing(textWidth_downtown_broadway, divWidth_downtown_broadway)
 
 		
 
 	}
 
+	var incoming = false;
+	var swapobj = {"left_side": {"uptown_seventh": {"terminus":["NO TRAINS", "NO TRAINS"]}, "downtown_seventh": {"terminus":["NO TRAINS", "NO TRAINS"]}, "uptown_eighth": {"terminus":["NO TRAINS", "NO TRAINS"]}, "downtown_eighth": {"terminus":["NO TRAINS", "NO TRAINS"]}, "uptown_broadway": {"large": {"terminus":["NO TRAINS", "NO TRAINS"]}}}, "right_side_standard": {"downtown_broadway": {"large": {"terminus": ["NO TRAINS", "NO TRAINS"]}}}};
 	var source = new EventSource("/data");
 	source.onmessage = function(event) {
 
 		var obj = JSON.parse(event.data);
 		console.log(obj);
+		swapobj = obj;
+		incoming = true;
 
 		document.getElementById("LHS_uptown_seventh").innerHTML = obj.left_side.uptown_seventh.emblem;
 		document.getElementById("LHS_uptown_seventh_time").innerHTML = obj.left_side.uptown_seventh.time;
-		document.getElementById("LHS_uptown_seventh_terminus_H1").innerHTML = obj.left_side.uptown_seventh.terminus;
+		//document.getElementById("LHS_uptown_seventh_terminus_H1").innerHTML = obj.left_side.uptown_seventh.terminus;
 		document.getElementById("LHS_downtown_seventh").innerHTML = obj.left_side.downtown_seventh.emblem;
 		document.getElementById("LHS_downtown_seventh_time").innerHTML = obj.left_side.downtown_seventh.time;
-		document.getElementById("LHS_downtown_seventh_terminus_H1").innerHTML = obj.left_side.downtown_seventh.terminus;
+		//document.getElementById("LHS_downtown_seventh_terminus_H1").innerHTML = obj.left_side.downtown_seventh.terminus;
 		document.getElementById("LHS_uptown_eighth").innerHTML = obj.left_side.uptown_eighth.emblem;
 		document.getElementById("LHS_uptown_eighth_time").innerHTML = obj.left_side.uptown_eighth.time;
-		document.getElementById("LHS_uptown_eighth_terminus_H1").innerHTML = obj.left_side.uptown_eighth.terminus;
+		//document.getElementById("LHS_uptown_eighth_terminus_H1").innerHTML = obj.left_side.uptown_eighth.terminus;
 		document.getElementById("LHS_downtown_eighth").innerHTML = obj.left_side.downtown_eighth.emblem;
 		document.getElementById("LHS_downtown_eighth_time").innerHTML = obj.left_side.downtown_eighth.time;
-		document.getElementById("LHS_downtown_eighth_terminus_H1").innerHTML = obj.left_side.downtown_eighth.terminus;
+		//document.getElementById("LHS_downtown_eighth_terminus_H1").innerHTML = obj.left_side.downtown_eighth.terminus;
 
 		document.getElementById("LHS_uptown_broadway").innerHTML = obj.left_side.uptown_broadway.large.emblem;
 		document.getElementById("LHS_uptown_broadway_time").innerHTML = obj.left_side.uptown_broadway.large.time;
-		document.getElementById("LHS_uptown_broadway_terminus_H1").innerHTML = obj.left_side.uptown_broadway.large.terminus;
+		//document.getElementById("LHS_uptown_broadway_terminus_H1").innerHTML = obj.left_side.uptown_broadway.large.terminus;
 		document.getElementById("LHS_uptown_broadway_small").innerHTML = obj.left_side.uptown_broadway.small.emblem;
 		document.getElementById("LHS_uptown_broadway_small_time").innerHTML = obj.left_side.uptown_broadway.small.time;
-
-		update()
 
 		document.getElementById("seventh_uptown_one").innerHTML = obj.right_side_standard.uptown_seventh.one.emblem;
 		document.getElementById("seventh_uptown_one_time").innerHTML = obj.right_side_standard.uptown_seventh.one.time;
@@ -169,7 +171,7 @@
 
 		document.getElementById("RHS_downtown_broadway_large").innerHTML = obj.right_side_standard.downtown_broadway.large.emblem;
 		document.getElementById("RHS_downtown_broadway_large_time").innerHTML = obj.right_side_standard.downtown_broadway.large.time;
-		document.getElementById("RHS_downtown_broadway_terminus_H1").innerHTML = obj.right_side_standard.downtown_broadway.large.terminus;
+		//document.getElementById("RHS_downtown_broadway_terminus_H1").innerHTML = obj.right_side_standard.downtown_broadway.large.terminus[0];
 
 		document.getElementById("RHS_downtown_broadway_small").innerHTML = obj.right_side_standard.downtown_broadway.small.emblem;
 		document.getElementById("RHS_downtown_broadway_small_time").innerHTML = obj.right_side_standard.downtown_broadway.small.time;
@@ -348,8 +350,8 @@
 		var delay = JSON.parse(event.data);
 		console.log(delay);
 
-		document.getElementById("delay_header_one").innerHTML = delay.delay_count;
-		document.getElementById("delay_header_multi").innerHTML = delay.delay_count;
+		document.getElementById("delay_header_one_in").innerHTML = delay.delay_count;
+		document.getElementById("delay_header_multi_in").innerHTML = delay.delay_count;
 		document.getElementById("delay_num_one").innerHTML = `${delay.delay_num} Delays:`;
 		document.getElementById("delay_num_multi").innerHTML = `${delay.delay_num} Delays:`;
 
@@ -376,8 +378,8 @@
 		document.getElementById("MULTIDELAY").style.display = "none";
 		document.getElementById("bottom_one").style.display = "none";
 		document.getElementById("bottom_two").style.display = "none";
-		document.getElementById("UPBROAD").style.display = "none";
-		document.getElementById("DOWNBROAD").style.display = "none";
+		//document.getElementById("UPBROAD").style.display = "none";
+		//document.getElementById("DOWNBROAD").style.display = "none";
 		//console.log(document.getElementById("STANDARD").style.display);
 		//console.log(document.getElementById("ONEDELAY").style.display);
 		//console.log(document.getElementById("MULTIDELAY").style.display);
@@ -385,28 +387,28 @@
 		if (update.timer == "False") {
 			document.getElementById("STANDARD").style.display = "block";
 			document.getElementById("bottom_one").style.display = "block";
-			document.getElementById("DOWNBROAD").style.display = "block";
+			//document.getElementById("DOWNBROAD").style.display = "block";
 			console.log("IS FALSE")
 		} else {
 			document.getElementById("bottom_two").style.display = "block";
 			if (update.delay_count == "-1") {
 				document.getElementById("STANDARD").style.display = "block";
-				document.getElementById("DOWNBROAD").style.display = "block";
+				//document.getElementById("DOWNBROAD").style.display = "block";
 				//console.log("IS TRUE FALSE GUARD")
 			}
 			else if (update.delay_count == "0") {
 				document.getElementById("STANDARD").style.display = "block";
-				document.getElementById("UPBROAD").style.display = "block";
+				//document.getElementById("UPBROAD").style.display = "block";
 				console.log("IS TRUE ZERO")
 			}
 			else if (update.delay_count == "1") {
 				document.getElementById("ONEDELAY").style.display = "block";
-				document.getElementById("UPBROAD").style.display = "block";
+				//document.getElementById("UPBROAD").style.display = "block";
 				console.log("IS TRUE ONE")
 			}
 			else {
 				document.getElementById("MULTIDELAY").style.display = "block";
-				document.getElementById("UPBROAD").style.display = "block";
+				//document.getElementById("UPBROAD").style.display = "block";
 				console.log("IS TRUE MANY")
 			}
 		}
@@ -433,7 +435,7 @@
 	}
 
 	function updateANON() {
-		advANON();
+		//advANON();
 		//console.log(anon_list.length);
 		if (anon_list.length == 0) {
 			document.getElementById("anon").innerHTML = "--";
@@ -459,9 +461,18 @@
 		document.getElementById("schday").innerHTML = crit.sch_day;
 		document.getElementById("schsch").innerHTML = crit.sch_sch;
 		document.getElementById("schtest").innerHTML = crit.sch_testing;
+
 		document.getElementById("left").innerHTML = crit.sch_left;
-		document.getElementById("right").innerHTML = crit.sch_right;
 		document.getElementById("sch_period").innerHTML = crit.sch_period;
+
+		if (crit.sch_period.includes("Before")) {
+			document.getElementById("right").style.color = "lightblue";
+		} else {
+			document.getElementById("right").style.color = "lightcoral";
+		}
+
+		document.getElementById("right").innerHTML = crit.sch_right;
+		
 		document.getElementById("sch_time").innerHTML = crit.sch_end;
 		
 		console.log(crit.sch_block);
@@ -566,20 +577,20 @@
 			document.getElementById("downtown8name").style.color = "#000000";
 		}
 		if (document.getElementById("RHS_downtown_broadway_large_time").innerHTML == `${crit.broadway} minutes`) {
-			document.getElementById("RHS_downtown_broadway_large").style.backgroundColor = "#444444";
-			document.getElementById("RHS_downtown_broadway_time_DIV").style.backgroundColor = "#444444";
-			document.getElementById("RHS_downtown_broadway_terminus_DIV").style.backgroundColor = "#444444";
+			document.getElementById("RHS_downtown_broadway_large").style.backgroundColor = "#222222";
+			document.getElementById("RHS_downtown_broadway_time_DIV").style.backgroundColor = "#222222";
+			document.getElementById("RHS_downtown_broadway_terminus_DIV").style.backgroundColor = "#222222";
 			document.getElementById("RHS_downtown_broadway_large_time").classList.add("blink");
 			document.getElementById("RHS_downtown_broadway_terminus_H1").classList.add("blink_terminus");
-			document.getElementById("downtownbwaynamediv").style.backgroundColor = "#444444";
+			document.getElementById("downtownbwaynamediv").style.backgroundColor = "#222222";
 			document.getElementById("downtownbwayname").style.color = "#ffffff";
 		} else {
-			document.getElementById("RHS_downtown_broadway_time_DIV").style.backgroundColor = "#bbbbbb";
-			document.getElementById("RHS_downtown_broadway_large").style.backgroundColor = "#bbbbbb";
-			document.getElementById("RHS_downtown_broadway_terminus_DIV").style.backgroundColor = "#bbbbbb";
+			document.getElementById("RHS_downtown_broadway_time_DIV").style.backgroundColor = "#dddddd";
+			document.getElementById("RHS_downtown_broadway_large").style.backgroundColor = "#dddddd";
+			document.getElementById("RHS_downtown_broadway_terminus_DIV").style.backgroundColor = "#dddddd";
 			document.getElementById("RHS_downtown_broadway_large_time").classList.remove("blink");
 			document.getElementById("RHS_downtown_broadway_terminus_H1").classList.remove("blink_terminus");
-			document.getElementById("downtownbwaynamediv").style.backgroundColor = "#bbbbbb";
+			document.getElementById("downtownbwaynamediv").style.backgroundColor = "#dddddd";
 			document.getElementById("downtownbwayname").style.color = "#000000";
 		}
 		if (document.getElementById("uptown_jamaica_one_time").innerHTML == `${crit.nassau}m`) {
@@ -595,19 +606,6 @@
 			document.getElementById("jamaicanamediv1").style.backgroundColor = "#dddddd";
 			document.getElementById("jamaicaname1").style.color = "#000000";
 		}
-		if (document.getElementById("uptown_jamaica_two_time").innerHTML == `${crit.nassau}m`) {
-			document.getElementById("uptown_jamaica_two").style.backgroundColor = "#333333";
-			document.getElementById("uptown_jamaica_two_time_DIV").style.backgroundColor = "#333333";
-			document.getElementById("uptown_jamaica_two_time").classList.add("blink");
-			document.getElementById("jamaicanamediv2").style.backgroundColor = "#333333";
-			document.getElementById("jamaicaname2").style.color = "#ffffff";
-		} else {
-			document.getElementById("uptown_jamaica_two").style.backgroundColor = "#cccccc";
-			document.getElementById("uptown_jamaica_two_time_DIV").style.backgroundColor = "#cccccc";
-			document.getElementById("uptown_jamaica_two_time").classList.remove("blink");
-			document.getElementById("jamaicanamediv2").style.backgroundColor = "#cccccc";
-			document.getElementById("jamaicaname2").style.color = "#000000";
-		}
 		if (document.getElementById("uptown_lex_one_time").innerHTML == `${crit.lexington}m`) {
 			document.getElementById("uptown_lex_one").style.backgroundColor = "#222222";
 			document.getElementById("uptown_lex_one_time_DIV").style.backgroundColor = "#222222";
@@ -621,194 +619,7 @@
 			document.getElementById("lexnamediv1").style.backgroundColor = "#dddddd";
 			document.getElementById("lexname1").style.color = "#000000";
 		}
-		if (document.getElementById("uptown_lex_two_time").innerHTML == `${crit.lexington}m`) {
-			document.getElementById("uptown_lex_two").style.backgroundColor = "#333333";
-			document.getElementById("uptown_lex_two_time_DIV").style.backgroundColor = "#333333";
-			document.getElementById("uptown_lex_two_time").classList.add("blink");
-			document.getElementById("lexnamediv2").style.backgroundColor = "#333333";
-			document.getElementById("lexname2").style.color = "#ffffff";
-		} else {
-			document.getElementById("uptown_lex_two").style.backgroundColor = "#cccccc";
-			document.getElementById("uptown_lex_two_time_DIV").style.backgroundColor = "#cccccc";
-			document.getElementById("uptown_lex_two_time").classList.remove("blink");
-			document.getElementById("lexnamediv2").style.backgroundColor = "#cccccc";
-			document.getElementById("lexname2").style.color = "#000000";
-		}
-		if (document.getElementById("uptown_lex_three_time").innerHTML == `${crit.lexington}m`) {
-			document.getElementById("uptown_lex_three").style.backgroundColor = "#444444";
-			document.getElementById("uptown_lex_three_time_DIV").style.backgroundColor = "#444444";
-			document.getElementById("uptown_lex_three_time").classList.add("blink");
-			document.getElementById("lexnamediv3").style.backgroundColor = "#444444";
-			document.getElementById("lexname3").style.color = "#ffffff";
-		} else {
-			document.getElementById("uptown_lex_three").style.backgroundColor = "#bbbbbb";
-			document.getElementById("uptown_lex_three_time_DIV").style.backgroundColor = "#bbbbbb";
-			document.getElementById("uptown_lex_three_time").classList.remove("blink");
-			document.getElementById("lexnamediv3").style.backgroundColor = "#bbbbbb";
-			document.getElementById("lexname3").style.color = "#000000";
-		}
-		if (document.getElementById("uptown_lex_four_time").innerHTML == `${crit.lexington}m`) {
-			document.getElementById("uptown_lex_four").style.backgroundColor = "#555555";
-			document.getElementById("uptown_lex_four_time_DIV").style.backgroundColor = "#555555";
-			document.getElementById("uptown_lex_four_time").classList.add("blink");
-			document.getElementById("lexnamediv4").style.backgroundColor = "#555555";
-			document.getElementById("lexname4").style.color = "#ffffff";
-		} else {
-			document.getElementById("uptown_lex_four").style.backgroundColor = "#aaaaaa";
-			document.getElementById("uptown_lex_four_time_DIV").style.backgroundColor = "#aaaaaa";
-			document.getElementById("uptown_lex_four_time").classList.remove("blink");
-			document.getElementById("lexnamediv4").style.backgroundColor = "#aaaaaa";
-			document.getElementById("lexname4").style.color = "#000000";
-		}
-
-		if (document.getElementById("seventh_uptown_one_time").innerHTML == `${crit.seventh}m`) {
-			document.getElementById("seventh_uptown_one").style.backgroundColor = "#222222";
-			document.getElementById("seventh_uptown_one_time_DIV").style.backgroundColor = "#222222";
-			document.getElementById("seventh_uptown_one_time").classList.add("blink");
-		} else {
-			document.getElementById("seventh_uptown_one").style.backgroundColor = "#dddddd";
-			document.getElementById("seventh_uptown_one_time_DIV").style.backgroundColor = "#dddddd";
-			document.getElementById("seventh_uptown_one_time").classList.remove("blink");
-		}
-		if (document.getElementById("seventh_uptown_two_time").innerHTML == `${crit.seventh}m`) {
-			document.getElementById("seventh_uptown_two").style.backgroundColor = "#333333";
-			document.getElementById("seventh_uptown_two_time_DIV").style.backgroundColor = "#333333";
-			document.getElementById("seventh_uptown_two_time").classList.add("blink");
-		} else {
-			document.getElementById("seventh_uptown_two").style.backgroundColor = "#cccccc";
-			document.getElementById("seventh_uptown_two_time_DIV").style.backgroundColor = "#cccccc";
-			document.getElementById("seventh_uptown_two_time").classList.remove("blink");
-		}
-		if (document.getElementById("seventh_uptown_three_time").innerHTML == `${crit.seventh}m`) {
-			document.getElementById("seventh_uptown_three").style.backgroundColor = "#444444";
-			document.getElementById("seventh_uptown_three_time_DIV").style.backgroundColor = "#444444";
-			document.getElementById("seventh_uptown_three_time").classList.add("blink");
-		} else {
-			document.getElementById("seventh_uptown_three").style.backgroundColor = "#bbbbbb";
-			document.getElementById("seventh_uptown_three_time_DIV").style.backgroundColor = "#bbbbbb";
-			document.getElementById("seventh_uptown_three_time").classList.remove("blink");
-		}
-		if (document.getElementById("seventh_uptown_four_time").innerHTML == `${crit.seventh}m`) {
-			document.getElementById("seventh_uptown_four").style.backgroundColor = "#555555";
-			document.getElementById("seventh_uptown_four_time_DIV").style.backgroundColor = "#555555";
-			document.getElementById("seventh_uptown_four_time").classList.add("blink");
-		} else {
-			document.getElementById("seventh_uptown_four").style.backgroundColor = "#aaaaaa";
-			document.getElementById("seventh_uptown_four_time_DIV").style.backgroundColor = "#aaaaaa";
-			document.getElementById("seventh_uptown_four_time").classList.remove("blink");
-		}
-
-		if (document.getElementById("seventh_downtown_one_time").innerHTML == `${crit.seventh}m`) {
-			document.getElementById("seventh_downtown_one").style.backgroundColor = "#222222";
-			document.getElementById("seventh_downtown_one_time_DIV").style.backgroundColor = "#222222";
-			document.getElementById("seventh_downtown_one_time").classList.add("blink");
-		} else {
-			document.getElementById("seventh_downtown_one").style.backgroundColor = "#dddddd";
-			document.getElementById("seventh_downtown_one_time_DIV").style.backgroundColor = "#dddddd";
-			document.getElementById("seventh_downtown_one_time").classList.remove("blink");
-		}
-		if (document.getElementById("seventh_downtown_two_time").innerHTML == `${crit.seventh}m`) {
-			document.getElementById("seventh_downtown_two").style.backgroundColor = "#333333";
-			document.getElementById("seventh_downtown_two_time_DIV").style.backgroundColor = "#333333";
-			document.getElementById("seventh_downtown_two_time").classList.add("blink");
-		} else {
-			document.getElementById("seventh_downtown_two").style.backgroundColor = "#cccccc";
-			document.getElementById("seventh_downtown_two_time_DIV").style.backgroundColor = "#cccccc";
-			document.getElementById("seventh_downtown_two_time").classList.remove("blink");
-		}
-		if (document.getElementById("seventh_downtown_three_time").innerHTML == `${crit.seventh}m`) {
-			document.getElementById("seventh_downtown_three").style.backgroundColor = "#444444";
-			document.getElementById("seventh_downtown_three_time_DIV").style.backgroundColor = "#444444";
-			document.getElementById("seventh_downtown_three_time").classList.add("blink");
-		} else {
-			document.getElementById("seventh_downtown_three").style.backgroundColor = "#bbbbbb";
-			document.getElementById("seventh_downtown_three_time_DIV").style.backgroundColor = "#bbbbbb";
-			document.getElementById("seventh_downtown_three_time").classList.remove("blink");
-		}
-		if (document.getElementById("seventh_downtown_four_time").innerHTML == `${crit.seventh}m`) {
-			document.getElementById("seventh_downtown_four").style.backgroundColor = "#555555";
-			document.getElementById("seventh_downtown_four_time_DIV").style.backgroundColor = "#555555";
-			document.getElementById("seventh_downtown_four_time").classList.add("blink");
-		} else {
-			document.getElementById("seventh_downtown_four").style.backgroundColor = "#aaaaaa";
-			document.getElementById("seventh_downtown_four_time_DIV").style.backgroundColor = "#aaaaaa";
-			document.getElementById("seventh_downtown_four_time").classList.remove("blink");
-		}
-
-		if (document.getElementById("eighth_uptown_one_time").innerHTML == `${crit.eighth}m`) {
-			document.getElementById("eighth_uptown_one").style.backgroundColor = "#222222";
-			document.getElementById("eighth_uptown_one_time_DIV").style.backgroundColor = "#222222";
-			document.getElementById("eighth_uptown_one_time").classList.add("blink");
-		} else {
-			document.getElementById("eighth_uptown_one").style.backgroundColor = "#dddddd";
-			document.getElementById("eighth_uptown_one_time_DIV").style.backgroundColor = "#dddddd";
-			document.getElementById("eighth_uptown_one_time").classList.remove("blink");
-		}
-		if (document.getElementById("eighth_uptown_two_time").innerHTML == `${crit.eighth}m`) {
-			document.getElementById("eighth_uptown_two").style.backgroundColor = "#333333";
-			document.getElementById("eighth_uptown_two_time_DIV").style.backgroundColor = "#333333";
-			document.getElementById("eighth_uptown_two_time").classList.add("blink");
-		} else {
-			document.getElementById("eighth_uptown_two").style.backgroundColor = "#cccccc";
-			document.getElementById("eighth_uptown_two_time_DIV").style.backgroundColor = "#cccccc";
-			document.getElementById("eighth_uptown_two_time").classList.remove("blink");
-		}
-		if (document.getElementById("eighth_uptown_three_time").innerHTML == `${crit.eighth}m`) {
-			document.getElementById("eighth_uptown_three").style.backgroundColor = "#444444";
-			document.getElementById("eighth_uptown_three_time_DIV").style.backgroundColor = "#444444";
-			document.getElementById("eighth_uptown_three_time").classList.add("blink");
-		} else {
-			document.getElementById("eighth_uptown_three").style.backgroundColor = "#bbbbbb";
-			document.getElementById("eighth_uptown_three_time_DIV").style.backgroundColor = "#bbbbbb";
-			document.getElementById("eighth_uptown_three_time").classList.remove("blink");
-		}
-		if (document.getElementById("eighth_uptown_four_time").innerHTML == `${crit.eighth}m`) {
-			document.getElementById("eighth_uptown_four").style.backgroundColor = "#555555";
-			document.getElementById("eighth_uptown_four_time_DIV").style.backgroundColor = "#555555";
-			document.getElementById("eighth_uptown_four_time").classList.add("blink");
-		} else {
-			document.getElementById("eighth_uptown_four").style.backgroundColor = "#aaaaaa";
-			document.getElementById("eighth_uptown_four_time_DIV").style.backgroundColor = "#aaaaaa";
-			document.getElementById("eighth_uptown_four_time").classList.remove("blink");
-		}
-
-		if (document.getElementById("eighth_downtown_one_time").innerHTML == `${crit.eighth}m`) {
-			document.getElementById("eighth_downtown_one").style.backgroundColor = "#222222";
-			document.getElementById("eighth_downtown_one_time_DIV").style.backgroundColor = "#222222";
-			document.getElementById("eighth_downtown_one_time").classList.add("blink");
-		} else {
-			document.getElementById("eighth_downtown_one").style.backgroundColor = "#dddddd";
-			document.getElementById("eighth_downtown_one_time_DIV").style.backgroundColor = "#dddddd";
-			document.getElementById("eighth_downtown_one_time").classList.remove("blink");
-		}
-		if (document.getElementById("eighth_downtown_two_time").innerHTML == `${crit.eighth}m`) {
-			document.getElementById("eighth_downtown_two").style.backgroundColor = "#333333";
-			document.getElementById("eighth_downtown_two_time_DIV").style.backgroundColor = "#333333";
-			document.getElementById("eighth_downtown_two_time").classList.add("blink");
-		} else {
-			document.getElementById("eighth_downtown_two").style.backgroundColor = "#cccccc";
-			document.getElementById("eighth_downtown_two_time_DIV").style.backgroundColor = "#cccccc";
-			document.getElementById("eighth_downtown_two_time").classList.remove("blink");
-		}
-		if (document.getElementById("eighth_downtown_three_time").innerHTML == `${crit.eighth}m`) {
-			document.getElementById("eighth_downtown_three").style.backgroundColor = "#444444";
-			document.getElementById("eighth_downtown_three_time_DIV").style.backgroundColor = "#444444";
-			document.getElementById("eighth_downtown_three_time").classList.add("blink");
-		} else {
-			document.getElementById("eighth_downtown_three").style.backgroundColor = "#bbbbbb";
-			document.getElementById("eighth_downtown_three_time_DIV").style.backgroundColor = "#bbbbbb";
-			document.getElementById("eighth_downtown_three_time").classList.remove("blink");
-		}
-		if (document.getElementById("eighth_downtown_four_time").innerHTML == `${crit.eighth}m`) {
-			document.getElementById("eighth_downtown_four").style.backgroundColor = "#555555";
-			document.getElementById("eighth_downtown_four_time_DIV").style.backgroundColor = "#555555";
-			document.getElementById("eighth_downtown_four_time").classList.add("blink");
-		} else {
-			document.getElementById("eighth_downtown_four").style.backgroundColor = "#aaaaaa";
-			document.getElementById("eighth_downtown_four_time_DIV").style.backgroundColor = "#aaaaaa";
-			document.getElementById("eighth_downtown_four_time").classList.remove("blink");
-		}
-
+		
 		if (document.getElementById("LHS_uptown_broadway_time").innerHTML == `${crit.broadway} minutes`) {
 			document.getElementById("LHS_uptown_broadway").style.backgroundColor = "#222222";
 			document.getElementById("LHS_uptown_broadway_time_DIV").style.backgroundColor = "#222222";
@@ -837,12 +648,12 @@
 		}
 
 		if (document.getElementById("RHS_downtown_broadway_small_time").innerHTML == `${crit.broadway}m`) {
-			document.getElementById("RHS_downtown_broadway_small").style.backgroundColor = "#555555";
-			document.getElementById("RHS_downtown_broadway_small_time_DIV").style.backgroundColor = "#555555";
+			document.getElementById("RHS_downtown_broadway_small").style.backgroundColor = "#333333";
+			document.getElementById("RHS_downtown_broadway_small_time_DIV").style.backgroundColor = "#333333";
 			document.getElementById("RHS_downtown_broadway_small_time").classList.add("blink");
 		} else {
-			document.getElementById("RHS_downtown_broadway_small").style.backgroundColor = "#aaaaaa";
-			document.getElementById("RHS_downtown_broadway_small_time_DIV").style.backgroundColor = "#aaaaaa";
+			document.getElementById("RHS_downtown_broadway_small").style.backgroundColor = "#cccccc";
+			document.getElementById("RHS_downtown_broadway_small_time_DIV").style.backgroundColor = "#cccccc";
 			document.getElementById("RHS_downtown_broadway_small_time").classList.remove("blink");
 		}
 		
@@ -862,7 +673,7 @@
 		</div>
 	</div>
 
-	<div id="SCH" style="background-color: black; height: 100%; display: block; width: 100%;">
+	<div id="SCH" style="background-color: black; height: 100%; display: none; width: 100%;">
 		<div style="background-color: black; height: 100%; width: 100%;">
             <div style="background-color: black; width: 100%; height: 5%;"></div>  
             <div style="background-color: white; width: 100%; height: 2.5%"></div>
@@ -921,7 +732,7 @@
 					<div style="background-color: darkgreen; height: 40%; width: 100%;">
 						<div style="background-color:black; height: 100%; width: 100%; display: flex; justify-content: center; align-items: flex-start;">
 							<div style="background-color: black; height: 40%; width: 80%; margin-top: 2%; text-align: center;">
-								<p id="sch_period" style="color: white; font-size: 3.5vh; padding: 0; margin: 0;">This Period Is: <strong>Period 5</strong></p>
+								<p id="sch_period" style="color: white; font-size: 3.5vh; padding: 0; margin: 0;">This Period Is: <strong>Before Period 5</strong></p>
 								<p id="sch_time" style="color: white; font-size: 3.5vh; padding: 0; margin: -2%;">Ending At: <strong>12:31 PM</strong></p>
 							</div>
 						</div>
@@ -948,7 +759,7 @@
         </div>
 	</div>
 
-	<div id="LOADING" style="background-color: white; height: 100%; width: 100%; display: none;">
+	<div id="LOADING" style="background-color: white; height: 100%; width: 100%; display: block;">
 		<div style="height: 60%; width: 100%">
             <div style="background-color: white; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;">
                 <img src="/static/svg/loading.png" style="height: 25vw; margin-bottom: -5%;">
@@ -983,8 +794,8 @@
 						<div id="LHS_uptown_seventh_time_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%; display: flex; align-items: center;">
 							<h1 id="LHS_uptown_seventh_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 						</div>
-						<div id="LHS_uptown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%;">
-							<h1 id="LHS_uptown_seventh_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						<div id="LHS_uptown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%; overflow: hidden; position: relative;">
+							<h1 id="LHS_uptown_seventh_terminus_H1" class="terminus" style="float: left; margin-left: 5px; overflow: hidden; position: absolute;">NO TRAINS</h1>
 						</div>
 					</div>
 					
@@ -1004,8 +815,8 @@
 						<div id="LHS_downtown_seventh_time_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%; display: flex; align-items: center;">
 							<h1 id="LHS_downtown_seventh_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 						</div>
-						<div id="LHS_downtown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%;">
-							<h1 id="LHS_downtown_seventh_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						<div id="LHS_downtown_seventh_terminus_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%; overflow: hidden; position: relative;">
+							<h1 id="LHS_downtown_seventh_terminus_H1" class="terminus" style="margin-left: 5px; overflow: hidden; position: absolute;">NO TRAINS</h1>
 						</div>
 					</div>
 				</div>
@@ -1015,7 +826,7 @@
 						<h1 style="writing-mode: vertical-rl; text-orientation: upright; font-size: 1.8vh; color: white; margin-top: 0.8vh; margin-right: 0.75vw;">UPTOWN</h1>
 					</div>
 					<div id="LHS_uptown_eighth" style="background-color: #e8e8e8; width: 20%; height: 100%; float: left; display: flex; align-items: center; justify-content: center;">
-						<img src="/static/svg/x.svg" style="height: 92%;">
+						<img src="/static/svg/e.svg" style="height: 92%;">
 					</div>
 					<div style="background-color: #e8e8e8; width: 77%; height: 100%; float: left;">
 						<div id="uptown8namediv" style="background-color: inherit; height: 20%; width: 100%; display: flex; align-items: center;">
@@ -1024,8 +835,8 @@
 						<div id="LHS_uptown_eighth_time_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%; display: flex; align-items: center;">
 							<h1 id="LHS_uptown_eighth_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 						</div>
-						<div id="LHS_uptown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%;">
-							<h1 id="LHS_uptown_eighth_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						<div id="LHS_uptown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%; overflow: hidden; position: relative;">
+							<h1 id="LHS_uptown_eighth_terminus_H1" class="terminus" style="float: left; margin-left: 5px; overflow: hidden; position: absolute;">NO TRAINS</h1>
 						</div>
 					</div>
 				</div>
@@ -1044,13 +855,13 @@
 						<div id="LHS_downtown_eighth_time_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%; display: flex; align-items: center;">
 							<h1 id="LHS_downtown_eighth_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 						</div>
-						<div id="LHS_downtown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%;">
-							<h1 id="LHS_downtown_eighth_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						<div id="LHS_downtown_eighth_terminus_DIV" style="background-color: #e8e8e8; height: 40%; width: 100%; overflow: hidden; position: relative;">
+							<h1 id="LHS_downtown_eighth_terminus_H1" class="terminus" style="float: left; margin-left: 5px; overflow: hidden; position: absolute;">NO TRAINS</h1>
 						</div>
 					</div>
 				</div>
 				<div style="background-color: white; width: 100%; height: 1%;"></div>
-				<div id="UPBROAD" style="background-color: aliceblue; width: 100%; height: 20%; display: block;">
+				<div id="UPBROAD" style="background-color: aliceblue; width: 100%; height: 20%; display: none;">
 					<div style="background-color: #490275; width: 3%; height: 100%; float: left; display: flex; justify-content: center; align-items: center;">
 						<h1 style="writing-mode: vertical-rl; text-orientation: upright; font-size: 1.8vh; color: white; margin-top: 0.8vh; margin-right: 0.75vw;">UPTOWN</h1>
 					</div>
@@ -1064,8 +875,8 @@
 						<div id="LHS_uptown_broadway_time_DIV" style="background-color: #dddddd; height: 40%; width: 100%; display: flex; align-items: center;">
 							<h1 id="LHS_uptown_broadway_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 						</div>
-						<div id="LHS_uptown_broadway_terminus_DIV" style="background-color: #dddddd; height: 40%; width: 100%;">
-							<h1 id="LHS_uptown_broadway_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						<div id="LHS_uptown_broadway_terminus_DIV" style="background-color: #dddddd; height: 40%; width: 100%; overflow: hidden; position: relative;">
+							<h1 id="LHS_uptown_broadway_terminus_H1" class="terminus" style="float: left; margin-left: 5px; overflow: hidden; position: absolute;">NO TRAINS</h1>
 						</div>
 					</div>
 					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
@@ -1077,7 +888,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="DOWNBROAD" style="background-color: aliceblue; width: 100%; height: 20%; display: none;">
+				<div id="DOWNBROAD" style="background-color: aliceblue; width: 100%; height: 20%; display: block;">
 					<div style="background-color: #014214; width: 3%; height: 100%; float: left; display: flex; justify-content: center; align-items: center;">
 						<h1 style="writing-mode: vertical-rl; text-orientation: upright; font-size: 1.5vh; color: white; margin-top: 0.8vh;">DOWNTOWN</h1>
 					</div>
@@ -1091,8 +902,8 @@
 						<div id="RHS_downtown_broadway_time_DIV" style="background-color: #bbbbbb; height: 40%; width: 100%; display: flex; align-items: center;">
 							<h1 id="RHS_downtown_broadway_large_time" class="terminus" style="float: left; margin-left: 5px; margin-top: 2.5%;">-1 minutes</h1>
 						</div>
-						<div id="RHS_downtown_broadway_terminus_DIV" style="background-color: #bbbbbb; height: 40%; width: 100%;">
-							<h1 id="RHS_downtown_broadway_terminus_H1" class="terminus" style="float: left; margin-left: 5px;">NO TRAINS</h1>
+						<div id="RHS_downtown_broadway_terminus_DIV" style="background-color: #bbbbbb; height: 40%; width: 100%; overflow: hidden; position: relative;">
+							<h1 id="RHS_downtown_broadway_terminus_H1" class="terminus" style="float: left; margin-left: 5px; overflow: hidden; position: absolute;">NO TRAINS</h1>
 						</div>
 					</div>
 					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
@@ -1105,7 +916,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="STANDARD" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: block;">
+			<div id="STANDARD" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display:none;">
 				<div style="background-color: blue; width: 100%; height: 24%;">
 					<div style="background-color: orange; float: left; height: 100%; width: 25%;">
 						<div id="seventh_uptown_one" style="background-color: #dddddd; height: 45%; width: 100%; display: flex; align-items: center;">
@@ -1248,14 +1059,16 @@
 			</div>
 			<div id="ONEDELAY" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: none;">
 				<div style="height: 10%; width: 100%">
-					<div style="background-color: blanchedalmond; height: 100%; width: 100%; display: block;">
-						<div style="margin: 0px; background-color: white; height: inherit; width: inherit; display: flex; align-items: center;">
+					<div id="delay_count_out_one" style="background-color: blanchedalmond; height: 100%; width: 100%; display: block; overflow: hidden; position: relative;">
+						<div id="delay_count_in_one" style="margin: 0px; background-color: white; height: inherit; width: inherit; display: flex; align-items: center; overflow: hidden; position: absolute;">
 							<div style="background-color: black; height: 100%; width: fit-content; align-items: center; display: flex; float: left;">
 								<h1 id="delay_num_one" style="margin-left: 8px; white-space: nowrap; font-size: 3.5vh; color: white; margin-right: 4px;">1/3 Delays:</h1>
 							</div>
-							<div id="delay_header_one" style="background-color: black; height: 100%; width: 100%; align-items: center; display: flex;">
-								<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/penn city zone.svg" style="height: inherit"></div>
-								<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/penn city zone.svg" style="height: inherit"></div>
+							<div id="delay_header_one" style="background-color: black; height: 100%; width: 100%; display: block;">
+								<div id="delay_header_one_in" style="background-color: black; height: 100%; width: fit-content; align-items: center; display: flex;">
+									<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/penn city zone.svg" style="height: inherit"></div>
+									<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/penn city zone.svg" style="height: inherit"></div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1271,16 +1084,18 @@
 					</div>
 				</div>
 			</div>
-			<div id="MULTIDELAY" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: none;">
+			<div id="MULTIDELAY" style="background-color: lawngreen; width: 50%; height: 79%; float: right; margin: 0%; display: block;">
 				<div style="height: 10%; width: 100%">
-					<div style="background-color: blanchedalmond; height: 100%; width: 100%; display: block;">
-						<div style="margin: 0px; background-color: white; height: inherit; width: inherit; display: flex; align-items: center;">
+					<div id="delay_count_out_multi" style="background-color: blanchedalmond; height: 100%; width: 100%; display: block; overflow: hidden; position: relative;">
+						<div id="delay_count_in_multi" style="margin: 0px; background-color: white; height: inherit; width: inherit; display: flex; align-items: center; overflow: hidden; position: absolute;">
 							<div style="background-color: black; height: 100%; width: fit-content; align-items: center; display: flex; float: left;">
 								<h1 id="delay_num_multi" style="margin-left: 8px; white-space: nowrap; font-size: 3.5vh; color: white; margin-right: 4px;">1/3 Delays:</h1>
 							</div>
-							<div id="delay_header_multi" style="background-color: black; height: 100%; width: 100%; align-items: center; display: flex;">
-								<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/penn city zone.svg" style="height: inherit"></div>
-								<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/penn city zone.svg" style="height: inherit"></div>
+							<div id="delay_header_multi" style="background-color: black; height: 100%; width: 100%; display: block;">
+								<div id="delay_header_multi_in" style="background-color: black; height: 100%; width: fit-content; align-items: center; display: flex;">
+									<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/penn city zone.svg" style="height: inherit"></div>
+									<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/penn city zone.svg" style="height: inherit"></div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1467,7 +1282,7 @@
 			</div>
 			<div style="background-color: black; float: left; height: 100%; width: 12.5%;">
 				<div style="background-color: inherit; height: 15%; width: 100%; display: flex; align-items: center;">
-					<h1 class="terminusX" style="float: left; margin-left: 5px; margin-top: 9.75%; font-size: 1.75vh; color: white;">WEST ST/CHAMBERS</h1>
+					<h1 class="terminusX" style="float: left; margin-left: 5px; margin-top: 9.75%; font-size: 1.75vh; color: white;">WEST ST/NORTH END AV</h1>
 				</div>
 				<div style="background-color: black; height: 45%; width: 100%; display: flex; align-items: center;">
 					<h1 id="bus_seven" class="time" style="float: left; margin: 0px; margin-left: 10px; margin-top: 8%; color: white; font-size: 5vh;">Q37</h1>
@@ -1519,11 +1334,26 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-var elem = document.getElementById("oneterminusLIRRani");
-var elemdiv = document.getElementById("oneterminusLIRRanidiv");
-var pos = 10;
+// var elem = document.getElementById("oneterminusLIRRani");
+// var elemdiv = document.getElementById("oneterminusLIRRanidiv");
+// var pos = 10;
 
-async function frame() {
+// var textWidth_uptown_seventh = document.getElementById("LHS_uptown_seventh_terminus_H1");
+// var divWidth_uptown_seventh = document.getElementById("LHS_uptown_seventh_terminus_DIV");
+// var textWidth_downtown_seventh = document.getElementById("LHS_downtown_seventh_terminus_H1");
+// var divWidth_downtown_seventh = document.getElementById("LHS_downtown_seventh_terminus_DIV");
+// var textWidth_uptown_eighth = document.getElementById("LHS_uptown_eighth_terminus_H1");
+// var divWidth_uptown_eighth = document.getElementById("LHS_uptown_eighth_terminus_DIV");
+// var textWidth_downtown_eighth = document.getElementById("LHS_downtown_eighth_terminus_H1");
+// var divWidth_downtown_eighth = document.getElementById("LHS_downtown_eighth_terminus_DIV");
+
+// var textWidth_uptown_broadway = document.getElementById("LHS_uptown_broadway_terminus_H1");
+// var divWidth_uptown_broadway = document.getElementById("LHS_uptown_broadway_terminus_DIV");
+
+// var textWidth_downtown_broadway = document.getElementById("RHS_downtown_broadway_terminus_H1");
+// var divWidth_downtown_broadway = document.getElementById("RHS_downtown_broadway_terminus_DIV");
+
+async function frameLIRR(elem, elemdiv, org, inc, pos) {
 	if (elem.clientWidth < elemdiv.clientWidth) {
 		await sleep(6000);
 		advLIRR();
@@ -1531,7 +1361,7 @@ async function frame() {
 		await sleep(1000);
 		//sleep(1000);
 		//console.log(lirrinit);
-		pos = 10;
+		pos = org;
 		if (lirrinit == true) {
 			advLIRR();
 			//console.log("ADVLIRRREST");
@@ -1542,29 +1372,125 @@ async function frame() {
 		}
 	} else {
 		
-		pos -= 3;
+		pos -= inc;
 		//console.log(pos);
+		//console.log(-(elem.clientWidth-elemdiv.clientWidth)-20);
 		elem.style.left = pos + 'px';
 
-		if (pos == 4) {
+		if (pos == org - (2*inc)) {
 			await sleep(1000);
 		}
 	}
 	//console.log(pos);
-	requestAnimationFrame(frame);
+	requestAnimationFrame(() => {
+		this.frameLIRR(elem, elemdiv, org, inc, pos)
+	})
 }
-		
-let frameID = requestAnimationFrame(frame);
 
+async function swap(elem, alt, num) {
+	//var swapnum = 0;
+	
+	//num += 1;
+	// if (num > 1) {
+	// 	num = 0;
+	// }
+	//console.log(num);
+	if (incoming == true) {
+		//console.log(swapobj);
+		//console.log(eval(`swapobj.${alt}`)[num]);
+		elem.innerHTML = eval(`swapobj.${alt}`)[num];
+	}
+	//await sleep(7000);
+}
+
+//swap()
+
+async function frame(elem, elemdiv, org, inc, pos, alt, num) {
+	if (elem.clientWidth < elemdiv.clientWidth) {
+		elem.style.left = 0 + 'px';
+		await sleep(5000);
+		await swap(elem, alt, num);
+	} else if (pos <= -(elem.clientWidth-elemdiv.clientWidth)-20) {
+		await sleep(2000);
+		//sleep(1000);
+		//console.log(`${elem} | ${num}`);
+		pos = org;
+		await swap(elem, alt, num);
+		
+	} else {
+		
+		pos -= inc;
+		//console.log(pos);
+		//console.log(-(elem.clientWidth-elemdiv.clientWidth)-20);
+		elem.style.left = pos + 'px';
+
+		if (pos == org - (2*inc)) {
+			//await swap(elem, alt, num);
+			await sleep(2000);
+		}
+	}
+	//console.log(pos);
+	//console.log(`${elem.innerHTML}: ${elem.clientWidth} | ${elemdiv.clientWidth} | ${pos} ${inc}`)
+	num += 1;
+	if (num > 1) {
+		num = 0;
+	}
+	requestAnimationFrame(() => {
+		this.frame(elem, elemdiv, org, inc, pos, alt, num)
+	})
+}
+
+async function framedelay(elem, elemdiv, org, inc, pos) {
+	if (elem.clientWidth < elemdiv.clientWidth) {
+		elem.style.left = 0 + 'px';
+		await sleep(5000);
+		//await swap(elem, alt, num);
+	} else if (pos <= -(elem.clientWidth-elemdiv.clientWidth)-20) {
+		await sleep(2000);
+		//sleep(1000);
+		console.log(`${elem} | ${pos}`);
+		pos = org;
+		//await swap(elem, alt, num);
+		
+	} else {
+		
+		pos -= inc;
+		//console.log(pos);
+		//console.log(-(elem.clientWidth-elemdiv.clientWidth)-20);
+		elem.style.left = pos + 'px';
+
+		if (pos == org - (2*inc)) {
+			//await swap(elem, alt, num);
+			await sleep(2000);
+		}
+	}
+	//console.log(pos);
+	//console.log(`${elem.innerHTML}: ${elem.clientWidth} | ${elemdiv.clientWidth} | ${pos} ${inc}`)
+	
+	requestAnimationFrame(() => {
+		this.framedelay(elem, elemdiv, org, inc, pos)
+	})
+}
+
+frameLIRR(document.getElementById("oneterminusLIRRani"), document.getElementById("oneterminusLIRRanidiv"), 10, 3, 10);
+frame(document.getElementById("LHS_uptown_seventh_terminus_H1"), document.getElementById("LHS_uptown_seventh_terminus_DIV"), 0, 1.5, 0, "left_side.uptown_seventh.terminus", 0);
+frame(document.getElementById("LHS_downtown_seventh_terminus_H1"), document.getElementById("LHS_downtown_seventh_terminus_DIV"), 0, 1.5, 0, "left_side.downtown_seventh.terminus", 0);
+frame(document.getElementById("LHS_uptown_eighth_terminus_H1"), document.getElementById("LHS_uptown_eighth_terminus_DIV"), 0, 1.5, 0, "left_side.uptown_eighth.terminus", 0);
+frame(document.getElementById("LHS_downtown_eighth_terminus_H1"), document.getElementById("LHS_downtown_eighth_terminus_DIV"), 0, 1.5, 0, "left_side.downtown_eighth.terminus", 0);
+frame(document.getElementById("LHS_uptown_broadway_terminus_H1"), document.getElementById("LHS_uptown_broadway_terminus_DIV"), 0, 1.5, 0, "left_side.uptown_broadway.large.terminus", 0);
+frame(document.getElementById("RHS_downtown_broadway_terminus_H1"), document.getElementById("RHS_downtown_broadway_terminus_DIV"), 0, 1.5, 0, "right_side_standard.downtown_broadway.large.terminus", 0);
+framedelay(document.getElementById("delay_header_one_in"), document.getElementById("delay_header_one"), 0, 1.5, 0);
+framedelay(document.getElementById("delay_header_multi_in"), document.getElementById("delay_header_multi"), 0, 1.5, 0);
+//frame(document.getElementById("delay_count_in_one"), document.getElementById("delay_count_out_one"), 0, 1.5, 0);
+//frame(document.getElementById("delay_count_in_multi"), document.getElementById("delay_count_out_multi"), 0, 1.5, 0);
 //document.documentElement.style.setProperty('--LIRRstart', '100%');
 //document.documentElement.style.setProperty('--LIRRstart', `${((document.getElementById('oneterminusLIRRani').clientWidth)/240)+31.03}%`);
 //document.documentElement.style.setProperty('--LIRRstart', `${((document.getElementById('multiterminusLIRRani').clientWidth)/240)+31.03}%`);
 //document.getElementById('uptown_seventh_terminus_H1').innerHTML = getComputedStyle(document.documentElement).getPropertyValue('--LIRRstart');
 async function sizeANON() {
 	while (true) {
-		updateANON();
 		var def = 4.0;
-		document.getElementById("anon").style.fontSize = `${def}vh`;
+		//document.getElementById("anon").style.fontSize = `${def}vh`;
 		while (true) {
 			if (document.getElementById("anon").clientHeight > document.getElementById("anon_div").clientHeight) {
 				def -= 0.1;
@@ -1572,13 +1498,15 @@ async function sizeANON() {
 
 				//console.log(def);
 				//console.log(document.getElementById("anon").style.fontSize);
-				//console.log(document.getElementById("anon").clientHeight);
-				//console.log(document.getElementById("anon_div").clientHeight);
+				//console.log(`${document.getElementById("anon").clientHeight} ANON`);
+				//console.log(`${document.getElementById("anon_div").clientHeight} ANONDIV`);
 			} else {
 				break;
 			}
 		}
+		console.log("SLEEP")
 		await sleep(8000);
+		advANON();
 		//console.log("check");
 
 	}
