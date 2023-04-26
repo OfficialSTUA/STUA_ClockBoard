@@ -157,16 +157,19 @@ def get_annoucements():
             item_fin.append(item_back)
             #export.append(item_fin)
             if target == "/":
+                item_fin[0][0] = item_fin[0][0][1:]
                 ANNOUCEMENTS.append(item_fin)
             elif target == "@":
+                item_fin[0][0] = item_fin[0][0][1:]
                 POSTER.append(item_fin)
-            elif target == "~":
+            elif target == "?":
+                item_fin[0][0] = item_fin[0][0][1:]
                 POSTER_NOTICES.append(item_fin)
             else:
                 NOTICES.append(item_fin)
         #ANNOUCEMENTS = export
             #print(item)
-        print(str(POSTER) + " GET")
+        #print(str(POSTER) + " GET")
     #print(f_read)
 
 get_annoucements()
@@ -344,6 +347,13 @@ def delay():
         for pic in item[0]:
             if pic not in emblems:
                 emblems.append(pic)
+
+    for item in ANNOUCEMENTS:
+        for pic in item[0]:
+            if pic not in emblems:
+                emblems.append(pic)
+
+    #print(emblems)
     emblems = sort_char(emblems)
     for item in emblems:
         emblems_str += f'<div style="float: left; height: 5.5vh; width: fit-content; margin: 4px;"><img src="/static/svg/{item.lower()}.svg" style="height: inherit;"></div>'
@@ -394,6 +404,7 @@ def delay():
                 ANNOUCEMENTS_INDEX = ANNOUCEMENTS_INDEX + 1
             #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
             annoucement = [i.copy() for i in ANNOUCEMENTS]
+            #print(annoucement)
             #print(id(annoucement[ANNOUCEMENTS_INDEX]))
             #print(id(ANNOUCEMENTS[ANNOUCEMENTS_INDEX]))
             #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
@@ -451,13 +462,13 @@ def delay():
             #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
             delays_export.append(len(DELAYS))
             #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
-            #print(ANNOUCEMENTS)
+            #print(DELAYS)
             for DELAY in DELAYS:
                 while DELAY[1].find("[") != -1:
                     index1 = DELAY[1].index("[")
                     index2 = DELAY[1].index("]")
                     DELAY[1] = DELAY[1].replace(DELAY[1][index1:index2+1], f'<img src="/static/svg/{DELAY[1][index1+1:index2].lower()}.svg" style="height: 5.5vh; margin-bottom: 1%;">')
-            #print(ANNOUCEMENTS)
+            #print(DELAYS)
             for i in range(2):
                 delays_export.append("")
             for item in DELAYS:
@@ -480,6 +491,7 @@ def delay():
             return delays_export
 
 #delay()
+delay()
 
 def subway():
 
