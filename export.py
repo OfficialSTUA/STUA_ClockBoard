@@ -35,6 +35,26 @@ def get_schedule():
 
 get_schedule()
 
+def blankspace():
+    output = []
+    today = datetime.datetime.now()
+    strday = today.strftime("%B ;;, %Y")
+    strtemp = today.strftime("%d")
+    if strtemp[0] == "0":
+        strtemp = strtemp[1]
+    strday = strday.replace(";;", strtemp)
+    output.append(f'{strday} - {get_weekday(today.weekday())}')
+    output.append("N/A")
+    output.append("No Testing")
+    output.append("No School/Special Schedule")
+    output.append("Period --")
+    output.append(strday)
+    output.append("12:00")
+    output.append("--")
+    output.append("--")
+    output.append("No School")
+    return output
+
 def export_schedule():
     global JSON
     global SCHMON
@@ -119,16 +139,7 @@ def export_schedule():
     except:
         output = []
     if output == []:
-        output.append(f'{strday} - {get_weekday(today.weekday())}')
-        output.append("N/A")
-        output.append("No Testing")
-        output.append("No School/Special Schedule")
-        output.append("Period --")
-        output.append(strday)
-        output.append("12:00")
-        output.append("--")
-        output.append("--")
-        output.append("No School")
+        output = blankspace()
     return output
         
 
@@ -191,75 +202,102 @@ def wifi_disconnect():
         return True
 
 def refresh():
-    global CRIT_RATE
-    global WIFI
-    global RENDER
-    global PROGRESS
-    global TEST
-    global POSTER
-    global ANNOUCEMENTS
-    global POSTER_NOTICES
-    sch = export_schedule()
-    load_status = ""
-    if wifi_disconnect() == True:
-        load_status = "OFFLINE"
-        WIFI = False
-    elif wifi_disconnect() == False and WIFI == False:
-        WIFI = True
-        RENDER = False
-        #PROGRESS = 0.0
-        stua.reset_loading_bar()
-    elif render() == False:
-        load_status = "RENDER"
-    else:
-        if (datetime.datetime.today() < datetime.datetime.strptime(f"{sch[5]} {sch[6]}", "%B %d, %Y %H:%M")) and (TEST == False):
-            load_status = "SCH"
+    try:
+        global CRIT_RATE
+        global WIFI
+        global RENDER
+        global PROGRESS
+        global TEST
+        global POSTER
+        global ANNOUCEMENTS
+        global POSTER_NOTICES
+        sch = export_schedule()
+        load_status = ""
+        if wifi_disconnect() == True:
+            load_status = "OFFLINE"
+            WIFI = False
+        elif wifi_disconnect() == False and WIFI == False:
+            WIFI = True
+            RENDER = False
+            #PROGRESS = 0.0
+            stua.reset_loading_bar()
+        elif render() == False:
+            load_status = "RENDER"
         else:
-            load_status = "DISPLAY"
+            if (datetime.datetime.today() < datetime.datetime.strptime(f"{sch[5]} {sch[6]}", "%B %d, %Y %H:%M")) and (TEST == False):
+                load_status = "SCH"
+            else:
+                load_status = "DISPLAY"
 
-    
-    #print(str(ANNOUCEMENTS) + " REF")
-    #copyANON = [""]
-    if ANNOUCEMENTS == [""] or ANNOUCEMENTS == []:
-        copyANON = []
-    else:
-        copyANON = [i.copy() for i in ANNOUCEMENTS]
+        
+        #print(str(ANNOUCEMENTS) + " REF")
+        #copyANON = [""]
+        if ANNOUCEMENTS == [""] or ANNOUCEMENTS == []:
+            copyANON = []
+        else:
+            copyANON = [i.copy() for i in ANNOUCEMENTS]
 
-    if POSTER != [""] or POSTER != []:
-        copyANON += [i.copy() for i in POSTER]
+        if POSTER != [""] or POSTER != []:
+            copyANON += [i.copy() for i in POSTER]
 
-    if POSTER_NOTICES != [""] or POSTER_NOTICES != []:
-        copyANON += [i.copy() for i in POSTER_NOTICES]
+        if POSTER_NOTICES != [""] or POSTER_NOTICES != []:
+            copyANON += [i.copy() for i in POSTER_NOTICES]
 
-    for item in copyANON:
-        while item[1].find("[") != -1:
-            index1 = item[1].index("[")
-            index2 = item[1].index("]")
-            item[1] = item[1].replace(item[1][index1:index2+1], f'<img src="/static/svg/{item[1][index1+1:index2].lower()}.svg" style="height: 5.5vh; margin-bottom: 1%;">')
+        for item in copyANON:
+            while item[1].find("[") != -1:
+                index1 = item[1].index("[")
+                index2 = item[1].index("]")
+                item[1] = item[1].replace(item[1][index1:index2+1], f'<img src="/static/svg/{item[1][index1+1:index2].lower()}.svg" style="height: 5.5vh; margin-bottom: 1%;">')
 
-    #print(str(ANNOUCEMENTS) + " REF")
+        #print(str(ANNOUCEMENTS) + " REF")
 
-    json_string = {
-        "load_status": str(load_status),
-        "load_progress": str(stua.get_loading_bar()),
-        "seventh": str(CRIT_RATE[0]),
-        "eighth": str(CRIT_RATE[1]),
-        "broadway": str(CRIT_RATE[2]),
-        "nassau": str(CRIT_RATE[3]),
-        "lexington": str(CRIT_RATE[4]),
-        "lirr": "25",
-        "sch_day": sch[0],
-        "sch_block": sch[1],
-        "sch_testing": sch[2],
-        "sch_sch": sch[3],
-        "sch_period": f'This Period is: <strong>{sch[4]}</strong>',
-        "sch_left": f'<strong>{sch[7]}</strong>',
-        "sch_right": f'<strong>{sch[8]}</strong>',
-        "sch_end": f'Ending At: <strong>{sch[9]}</strong>',
-        "sch_anon": copyANON
-    }
-    #print(json.dumps(json_string))
-    return json.dumps(json_string)
+        json_string = {
+            "load_status": str(load_status),
+            "load_progress": str(stua.get_loading_bar()),
+            "seventh": str(CRIT_RATE[0]),
+            "eighth": str(CRIT_RATE[1]),
+            "broadway": str(CRIT_RATE[2]),
+            "nassau": str(CRIT_RATE[3]),
+            "lexington": str(CRIT_RATE[4]),
+            "lirr": "25",
+            "sch_day": sch[0],
+            "sch_block": sch[1],
+            "sch_testing": sch[2],
+            "sch_sch": sch[3],
+            "sch_period": f'This Period is: <strong>{sch[4]}</strong>',
+            "sch_left": f'<strong>{sch[7]}</strong>',
+            "sch_right": f'<strong>{sch[8]}</strong>',
+            "sch_end": f'Ending At: <strong>{sch[9]}</strong>',
+            "sch_anon": copyANON
+        }
+        #print(json.dumps(json_string))
+        return json.dumps(json_string)
+    except Exception as e:
+        sch = blankspace()
+        json_string = {
+            "load_status": str(load_status),
+            "load_progress": str(stua.get_loading_bar()),
+            "seventh": str(CRIT_RATE[0]),
+            "eighth": str(CRIT_RATE[1]),
+            "broadway": str(CRIT_RATE[2]),
+            "nassau": str(CRIT_RATE[3]),
+            "lexington": str(CRIT_RATE[4]),
+            "lirr": "25",
+            "sch_day": sch[0],
+            "sch_block": sch[1],
+            "sch_testing": sch[2],
+            "sch_sch": sch[3],
+            "sch_period": f'This Period is: <strong>{sch[4]}</strong>',
+            "sch_left": f'<strong>{sch[7]}</strong>',
+            "sch_right": f'<strong>{sch[8]}</strong>',
+            "sch_end": f'Ending At: <strong>{sch[9]}</strong>',
+            "sch_anon": copyANON
+        }
+        #print(e)
+        #print(e.message)
+        with open("errors.txt", "a") as f:
+            f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
+        return json_string
 
 def render(change=False):
     global RENDER
@@ -337,21 +375,25 @@ def delay():
     emblems_str = ""
     delays = stua.alertsSubway(planned=False)
     #delays = []
-    for item in NOTICES:
-        delays.append(item)
+    if NOTICES != [] and NOTICES != [""]:
+        for item in NOTICES:
+            delays.append(item)
 
-    for item in POSTER_NOTICES:
-        delays.append(item)
+    if POSTER_NOTICES != [] and POSTER_NOTICES != [""]:
+        for item in POSTER_NOTICES:
+            delays.append(item)
 
-    for item in delays:
-        for pic in item[0]:
-            if pic not in emblems:
-                emblems.append(pic)
+    if delays != [] and delays != [""]:
+        for item in delays:
+            for pic in item[0]:
+                if pic not in emblems:
+                    emblems.append(pic)
 
-    for item in ANNOUCEMENTS:
-        for pic in item[0]:
-            if pic not in emblems:
-                emblems.append(pic)
+    if ANNOUCEMENTS != [] and ANNOUCEMENTS != [""]:
+        for item in ANNOUCEMENTS:
+            for pic in item[0]:
+                if pic not in emblems:
+                    emblems.append(pic)
 
     #print(emblems)
     emblems = sort_char(emblems)

@@ -1,5 +1,5 @@
 import stua, time, export, datetime, time, threading
-import dotenv, os, json, requests, traceback
+import dotenv, os, json, requests, traceback, multiprocessing
 from flask import Flask, render_template, Response, redirect
 import logging
 
@@ -174,4 +174,5 @@ def start():
 #daemon.start()
 
 if __name__ in "__main__":
+    multiprocessing.freeze_support()
     app.run(port=5000)

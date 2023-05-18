@@ -371,7 +371,10 @@ def _get_or_create_eventloop():
     except RuntimeError as ex:
         if "There is no current event loop in thread" in str(ex):
             loop = asyncio.new_event_loop()
-            asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+            try:
+                asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+            except:
+                pass
             asyncio.set_event_loop(loop)
             return asyncio.get_event_loop()
 
