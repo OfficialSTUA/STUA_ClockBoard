@@ -1,5 +1,5 @@
 
-import aiohttp, asyncio, traceback, concurrent.futures
+import aiohttp, asyncio, traceback, concurrent.futures, multiprocessing
 import requests, csv, datetime, math, os, json, calendar, traceback
 import time as te
 from abc import ABC, abstractmethod
@@ -658,7 +658,10 @@ def TESTT(stop, links, current_time, final, cur):
         #times = []
         
         final.append([cur, times[stop[2]-1]])
+        #print(final[1].terminus)
+        #print(final[0][1].terminus)
     except Exception as e:
+        #print(traceback.format_exc())
             #final.append("NO TRAINS")
         train = gtfsSubway()
         train.set("X", "NO TRAINS", "NO TRAINS", "NO TRAINS", stop[0], stop[1], "X", "NO TRAINS", "NO TRAINS", "NO TRAINS", "NO TRAINS", "NO TRAINS")
@@ -672,23 +675,25 @@ def TESTT(stop, links, current_time, final, cur):
 
 def _transitSubwayMODDED(stops, API):
 
-    final = []
-    current_time = datetime.datetime.now()
-    links = _get_or_create_eventloop().run_until_complete(_requestFeedMTA(_url(), API))
-    num = len(stops)
-    cur = 0
-    time0 = te.time()
-    pool = concurrent.futures.ThreadPoolExecutor()
-    for stop in stops:
-        cur += 1
-        print(f"RENDER PROGRESS: {cur}/{num}")
-        pool.submit(TESTT, stop, links, current_time, final, cur)
+    with multiprocessing.Manager() as manager:
+        final = manager.list()
+            
+        current_time = datetime.datetime.now()
+        links = _get_or_create_eventloop().run_until_complete(_requestFeedMTA(_url(), API))
+        num = len(stops)
+        cur = 0
+        time0 = te.time()
+        pool = concurrent.futures.ProcessPoolExecutor()
+        for stop in stops:
+            cur += 1
+            print(f"RENDER PROGRESS: {cur}/{num}")
+            pool.submit(TESTT, stop, links, current_time, final, cur)
 
-    pool.shutdown(wait=True)
-    final.sort()
-    #print(final)
-    final = [i[1] for i in final]
-    print(te.time() - time0)
+        pool.shutdown(wait=True)
+        final.sort()
+        #print(final)
+        final = [i[1] for i in final]
+        print(te.time() - time0)
     '''
     with open(f"logs/Print/{(datetime.datetime.now()).strftime('%d%m%Y')}.txt","a") as test:
         test.write(str(times)+ f" {datetime.datetime.now()}\n")

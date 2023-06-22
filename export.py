@@ -2,6 +2,12 @@ import json, time, datetime, traceback
 import dotenv, os, asyncio, requests, csv
 import stua
 
+MSUB = None
+MLIRR = None
+MDELAY = None
+MROTATE = None
+MREFRESH = "LOADING"
+
 ACTIVE_INDEX = 0
 ACTIVE_DELAYS_LEN = 0
 #DEBUG = True 
@@ -23,6 +29,22 @@ SCHMON = ["06:00", "06:30", "07:00", "07:30", "07:40", "07:50", "08:00", "08:10"
 dotenv.load_dotenv()
 stua.keyMTA(os.getenv("NYCT")) #os.getenv("NYCT"))
 stua.keyBUSTIME(os.getenv("BusTime"))
+
+def get_MSUB():
+    global MSUB
+    return MSUB
+
+def get_MLIRR():
+    global MLIRR
+    return MLIRR
+
+def get_MDELAY():
+    global MDELAY
+    return MDELAY
+
+def get_MROTATE():
+    global MROTATE
+    return MROTATE
 
 def get_weekday(num):
     calend = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -185,6 +207,25 @@ def get_annoucements():
 
 get_annoucements()
 
+def delay_export():
+    global MDELAY
+    delay_get = delay()
+    json_str = {
+        "right_side_onedelay": {
+            "emblem": delay_get[1],
+            "delay": delay_get[2]
+        },
+        "right_side_multipledelay": {
+            "one": delay_get[3],
+            "two": delay_get[4],
+            "three": delay_get[5]
+        },
+        "delay_count": delay_get[6],
+        "delay_num": delay_get[7]
+    }
+    MDELAY = json_str
+    return delay_get
+
 def get_timer():
     global TIMER
     return TIMER
@@ -202,76 +243,97 @@ def wifi_disconnect():
         return True
 
 def refresh():
-    try:
-        global CRIT_RATE
-        global WIFI
-        global RENDER
-        global PROGRESS
-        global TEST
-        global POSTER
-        global ANNOUCEMENTS
-        global POSTER_NOTICES
-        sch = export_schedule()
-        load_status = ""
-        if wifi_disconnect() == True:
-            load_status = "OFFLINE"
-            WIFI = False
-        elif wifi_disconnect() == False and WIFI == False:
-            WIFI = True
-            RENDER = False
-            #PROGRESS = 0.0
-            stua.reset_loading_bar()
-        elif render() == False:
-            load_status = "RENDER"
-        else:
-            if (datetime.datetime.today() < datetime.datetime.strptime(f"{sch[5]} {sch[6]}", "%B %d, %Y %H:%M")) and (TEST == False):
-                load_status = "SCH"
-            else:
-                load_status = "DISPLAY"
+    global CRIT_RATE
+    global WIFI
+    global RENDER
+    global PROGRESS
+    global TEST
+    global POSTER
+    global ANNOUCEMENTS
+    global POSTER_NOTICES
+    
+    global MSUB, MLIRR, MDELAY, MROTATE
 
-        
-        #print(str(ANNOUCEMENTS) + " REF")
-        #copyANON = [""]
-        if ANNOUCEMENTS == [""] or ANNOUCEMENTS == []:
-            copyANON = []
-        else:
-            copyANON = [i.copy() for i in ANNOUCEMENTS]
+    #sch = export_schedule()
+    #print(wifi_disconnect())
+    load_status = "LOADING"
+    # if wifi_disconnect() == True:
+    #     load_status = "OFFLINE"
+    #     WIFI = False
+    # elif wifi_disconnect() == False and WIFI == False:
+    #     WIFI = True
+    #     RENDER = False
+    #     #PROGRESS = 0.0
+    #     #stua.reset_loading_bar()
+    if (MSUB != None) and (MLIRR != None) and (MDELAY != None) and (MROTATE != None):
+        load_status = "DISPLAY"
+    else:
+        load_status = "LOADING"
+    # elif render() == False:
+    #     load_status = "RENDER"
+    # else:
+    #     if (datetime.datetime.today() < datetime.datetime.strptime(f"{sch[5]} {sch[6]}", "%B %d, %Y %H:%M")) and (TEST == False):
+    #         load_status = "SCH"
+    #     else:
+    #         load_status = "DISPLAY"
 
-        if POSTER != [""] or POSTER != []:
-            copyANON += [i.copy() for i in POSTER]
-
-        if POSTER_NOTICES != [""] or POSTER_NOTICES != []:
-            copyANON += [i.copy() for i in POSTER_NOTICES]
-
-        for item in copyANON:
-            while item[1].find("[") != -1:
-                index1 = item[1].index("[")
-                index2 = item[1].index("]")
-                item[1] = item[1].replace(item[1][index1:index2+1], f'<img src="/static/svg/{item[1][index1+1:index2].lower()}.svg" style="height: 5.5vh; margin-bottom: 1%;">')
-
-        #print(str(ANNOUCEMENTS) + " REF")
-
-        json_string = {
-            "load_status": str(load_status),
-            "load_progress": str(stua.get_loading_bar()),
+    json_string = {
+        "access": "Welcome to the StuyTransit Departure Board API!",
+        "crit_rate": {
             "seventh": str(CRIT_RATE[0]),
             "eighth": str(CRIT_RATE[1]),
             "broadway": str(CRIT_RATE[2]),
             "nassau": str(CRIT_RATE[3]),
             "lexington": str(CRIT_RATE[4]),
-            "lirr": "25",
-            "sch_day": sch[0],
-            "sch_block": sch[1],
-            "sch_testing": sch[2],
-            "sch_sch": sch[3],
-            "sch_period": f'This Period is: <strong>{sch[4]}</strong>',
-            "sch_left": f'<strong>{sch[7]}</strong>',
-            "sch_right": f'<strong>{sch[8]}</strong>',
-            "sch_end": f'Ending At: <strong>{sch[9]}</strong>',
-            "sch_anon": copyANON
-        }
-        #print(json.dumps(json_string))
-        return json.dumps(json_string)
+            "lirr": "25"
+        },
+        "load_status": str(load_status)
+    }
+
+    """
+    #print(str(ANNOUCEMENTS) + " REF")
+    #copyANON = [""]
+    if ANNOUCEMENTS == [""] or ANNOUCEMENTS == []:
+        copyANON = []
+    else:
+        copyANON = [i.copy() for i in ANNOUCEMENTS]
+
+    if POSTER != [""] or POSTER != []:
+        copyANON += [i.copy() for i in POSTER]
+
+    if POSTER_NOTICES != [""] or POSTER_NOTICES != []:
+        copyANON += [i.copy() for i in POSTER_NOTICES]
+
+    for item in copyANON:
+        while item[1].find("[") != -1:
+            index1 = item[1].index("[")
+            index2 = item[1].index("]")
+            item[1] = item[1].replace(item[1][index1:index2+1], f'<img src="/static/svg/{item[1][index1+1:index2].lower()}.svg" style="height: 5.5vh; margin-bottom: 1%;">')
+
+    #print(str(ANNOUCEMENTS) + " REF")
+
+    json_string = {
+        "load_status": str(load_status),
+        "load_progress": str(stua.get_loading_bar()),
+        "seventh": str(CRIT_RATE[0]),
+        "eighth": str(CRIT_RATE[1]),
+        "broadway": str(CRIT_RATE[2]),
+        "nassau": str(CRIT_RATE[3]),
+        "lexington": str(CRIT_RATE[4]),
+        "lirr": "25",
+        "sch_day": sch[0],
+        "sch_block": sch[1],
+        "sch_testing": sch[2],
+        "sch_sch": sch[3],
+        "sch_period": f'This Period is: <strong>{sch[4]}</strong>',
+        "sch_left": f'<strong>{sch[7]}</strong>',
+        "sch_right": f'<strong>{sch[8]}</strong>',
+        "sch_end": f'Ending At: <strong>{sch[9]}</strong>',
+        "sch_anon": copyANON
+    }
+    #print(json.dumps(json_string))
+    return json.dumps(json_string)
+
     except Exception as e:
         sch = blankspace()
         json_string = {
@@ -297,7 +359,9 @@ def refresh():
         #print(e.message)
         with open("errors.txt", "a") as f:
             f.write(f"{datetime.datetime.now()}: {str(traceback.format_exc())}\n----------")
-        return json_string
+        """
+
+    return json_string
 
 def render(change=False):
     global RENDER
@@ -309,7 +373,7 @@ def render(change=False):
     return False
 
 def timer():
-    time.sleep(4)
+    #time.sleep(4)
     global TIMER
     if TIMER == True:
         TIMER = False
@@ -358,7 +422,19 @@ def branch(terminus):
     elif terminus == "Jamaica-179 St":
         return "179"
 
+def rotate():
+    global MROTATE
+    json_str = {
+        "timer": str(timer()),
+        "delay_count": str(delay_update(current=True))
+    }
+    MROTATE = json.dumps(json_str)
+    return json.dumps(json_str)
+
 def delay():
+
+    global MDELAY
+
     #print("delay req received")
     global DELAYS
     global ACTIVE_INDEX
@@ -411,6 +487,7 @@ def delay():
         for i in range(7):
             delays_export.append("")
             print("delays done")
+        #MDELAY = delays_export
         return delays_export
     else:
         #get_annoucements()
@@ -499,6 +576,7 @@ def delay():
             #print(str(ANNOUCEMENTS) + " DEL FIN1")
             delays_export.append(emblems_str)
             delays_export.append(f"{ACTIVE_INDEX+1}/{len(grouped_delays)}")
+            #MDELAY = delays_export
             return delays_export
         else:
             #DELAYS[0][1] = DELAYS[0][1] + "EEEE"
@@ -530,14 +608,16 @@ def delay():
             print("delays done")
             delays_export.append(emblems_str)
             delays_export.append(f"{ACTIVE_INDEX+1}/{len(grouped_delays)}")
+            #MDELAY = delays_export
             return delays_export
 
 #delay()
-delay()
+#delay()
 
 def subway():
 
     global CRIT_RATE
+    #global MSUB
 
     seventh_ave_crit = CRIT_RATE[0]
     eighth_avenue_crit = CRIT_RATE[1]
@@ -553,17 +633,27 @@ def subway():
                                         ("R28", "S", 1, broadway_crit, "NONE"), ("R28", "S", 2, broadway_crit, "NONE"), #22-23
                                         ("M21", "N", 1, nassau_crit, "NONE"), ("M21", "N", 2, nassau_crit, "NONE"), #24-25
                                         ("640", "N", 1, lexington_avenue_crit, "NONE"), ("640", "N", 2, lexington_avenue_crit, "NONE"), ("640", "N", 3, lexington_avenue_crit, "NONE"), ("640", "N", 4, lexington_avenue_crit, "NONE")]) #26-29
+    #print(masterlistSUBWAY)
+    #MSUB = masterlistSUBWAY
     return masterlistSUBWAY
 
 def bus():
+
+    #global MBUS
+
     masterlistBUS = stua.gtfsBusBATCHED([("404969", 0, 1, 1, "NONE"), ("404969", 0, 2, 1, "NONE"), #0-1
                                         ("803147", 0, 1, 2, "NONE"), ("803147", 0, 2, 2, "NONE"), #2-3
                                         ("404238", 1, 1, 7, "SIM1"), ("404238", 1, 2, 7, "SIM1"), ("404238", 1, 1, 7, "SIM2"), ("404238", 1, 2, 7, "SIM2"), #4-7
                                         ("404225", 1, 1, 7, "X27"), ("404225", 1, 2, 7, "X27"), ("404225", 1, 1, 7, "X28"), ("404225", 1, 2, 7, "X28"), ("405065", 0, 1, 1, "M20"), ("405065", 0, 2, 1, "M20"), ("903013", 1, 1, 6, "SIM7"), ("903013", 1, 2, 6, "SIM7"), #8-15
                                         ("903013", 1, 1, 6, "SIM33"), ("903013", 1, 2, 6, "SIM33"), ("404219", 1, 1, 7, "SIM34"), ("404219", 1, 2, 7, "SIM34")]) #16-19
+    
+    #MBUS = masterlistBUS
     return masterlistBUS
 
 def lirr():
+
+    #global MLIRR
+
     print("lirr done")
     masterlistLIRR = []
     for i in range(3):
@@ -576,6 +666,8 @@ def lirr():
     print("Gctm")
     masterlistLIRR[2].get(("349", "0", 1, 25, ["Port Washington", "Hempstead"]))
     print(masterlistLIRR[2].station_id_list)
+
+    #MLIRR = masterlistLIRR
 
     return masterlistLIRR
 
@@ -591,6 +683,8 @@ def modlirrTIME(input):
     return t
 
 def export_lirr():
+    global MLIRR
+
     masterlistLIRR = lirr()
     #print("lirr done")
     json_string = {
@@ -602,12 +696,13 @@ def export_lirr():
             "stops": [f"{' - '.join(masterlistLIRR[0].station_name_list)}", f"{' - '.join(masterlistLIRR[1].station_name_list)}", f"{' - '.join(masterlistLIRR[2].station_name_list)}"]
         }
     }
+    MLIRR = json.dumps(json_string)
     return json.dumps(json_string)
 
 #print(export_lirr())
 
 def export():
-    
+    global MSUB
     #print(delay_get)
     #print(DELAYS)
     #print("req received")
@@ -839,7 +934,7 @@ def export():
     }
 
     print("exported")
-
+    MSUB = json.dumps(json_string)
     return json.dumps(json_string)   
 
 #get_annoucements()
