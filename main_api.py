@@ -2,6 +2,7 @@ import stua, time, export, datetime, time, threading
 import dotenv, os, json, requests, traceback, multiprocessing
 from flask import Flask, render_template, Response, redirect, jsonify
 import logging
+from flask_cors import CORS, cross_origin
 
 #log = logging.getLogger()
 
@@ -12,30 +13,31 @@ REFRESH = True
 DELAY = True
 
 app = Flask(__name__)
+CORS(app)
 
 # @app.route('/', methods=['GET', 'POST'])
 # def index():
 #     return jsonify(export.export())
 
 @app.route('/')
+@cross_origin()
 def refresh():
-    return Response("data:" + str(export.refresh()) + "\n\n", mimetype='text/json')
-
-@app.route('/rotate')
-def rotate():
-    return Response("data:" + str(export.get_MROTATE()) + "\n\n", mimetype='text/json')
+    return Response("{data:" + str(export.refresh()) + "}\n\n", mimetype='text/json')
 
 @app.route('/delay')
+@cross_origin()
 def delay():
-    return Response("data:" + str(export.get_MDELAY()) + "\n\n", mimetype='text/json')
+    return Response("{data:" + str(stua.alertsSubway(planned=False)) + "}\n\n", mimetype='text/json')
 
 @app.route('/lirr')
+@cross_origin()
 def lirr():
-    return Response("data:" + str(export.get_MLIRR()) + "\n\n", mimetype='text/json')
+    return Response("{data:" + str(export.export_lirr()) + "}\n\n", mimetype='text/json')
 
 @app.route('/data')
+@cross_origin()
 def data():
-    return Response("data:" + str(export.get_MSUB()) + "\n\n", mimetype='text/json')
+    return Response(jsonify(data=str(export.export())), mimetype='text/json')
 
 # @app.route('/rotate')
 # def rotate():
@@ -177,6 +179,6 @@ def background():
 
 if __name__ in "__main__":
     multiprocessing.freeze_support()
-    daemon = threading.Thread(target=background, daemon=True, name='Monitor')
-    daemon.start()
+    #daemon = threading.Thread(target=background, daemon=True, name='Monitor')
+    #daemon.start()
     app.run(port=7082)
